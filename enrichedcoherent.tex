@@ -1,0 +1,701 @@
+\documentclass[10pt]{amsart}
+
+%\usepackage[notref,notcite]{showkeys}
+
+%Put numbers to the left of ``Theorem'', etc.
+\swapnumbers
+
+% AMS-LaTeX packages
+\usepackage{amssymb,amsfonts}
+\usepackage{mathtools}
+\usepackage[alphabetic]{amsrefs}
+\usepackage{hyperref}
+
+% TikZ settings
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows}
+
+% Fonts
+\usepackage[cal=dutchcal,bb=ams,scr=bickham]{mathalfa}
+
+% Compile diagrams into seperate files.  (This is usually not worthwhile.)
+%\CompileMatrices
+
+\title[The Enriched Coherent Nerve]{Cartesian-Enriched Quasicategories and the Coherent Nerve}
+\author[H. Gindi]{Harry Gindi}
+\address{Department of Mathematics \\ University of Regensburg \\ Regensburg, Bavaria 93051}
+\email{harry.gindi@gmail.com}
+\date{\today}
+\subjclass{ 18A30, 18B40, 18C10, 18C30, 18C35, 18D05,
+18D50, 18E35, 18G50, 18G55, 55P10, 55P15, 55Q05, 55U35, 55U40}
+\keywords{enriched categories, higher category theory}
+
+
+% For temporary questions.  For example, \margnote{This is something
+% I'm confused about.} puts that message in the margin.
+\newcommand{\margnote}[1]{\mbox{}\marginpar{\tiny\hspace{0pt}#1}}
+
+
+
+% To get ``linear'' numbering of subsections and theorems.
+\numberwithin{equation}{section}
+
+% why does this work?
+\makeatletter
+  \let\c@subsection\c@equation
+\makeatother
+
+\theoremstyle{plain}   %% This is the default, anyway
+
+% Standard theorem types.
+\newtheorem{thm}[subsection]{Theorem}
+\newtheorem{prop}[subsection]{Proposition}
+\newtheorem{cor}[subsection]{Corollary}
+\newtheorem{lemma}[subsection]{Lemma}
+\newtheorem{claim}[subsection]{Claim}
+\newtheorem{conjecture}[subsection]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{rem}[subsection]{Remark}    
+\newtheorem{note}[subsection]{Note}   
+\newtheorem{example}[subsection]{Example}
+\newtheorem{ques}[subsection]{Question}
+\newtheorem{defn}[subsection]{Definition}
+\newtheorem{exer}[subsection]{Exercise}
+\newtheorem{warning}[subsection]{Warning}
+\renewcommand{\therem}{}
+
+\theoremstyle{plain}
+
+
+%%% standard operators for mathematics
+
+% general categorical things
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Sc}{Sc}
+\DeclareMathOperator{\Sd}{Sd}
+\DeclareMathOperator{\Pb}{Pb}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator*{\coliml}{colim}
+\DeclareMathOperator{\Cok}{Cok}
+\DeclareMathOperator{\cok}{cok}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\El}{El}
+\DeclareMathOperator{\Psh}{Psh}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Lan}{Lan}
+\newcommand{\op}{\ensuremath{{\operatorname{op}}}}
+\newcommand{\Nec}{\ensuremath{{\mathcal{Nec}}}}
+\newcommand{\Hoc}{\ensuremath{{\mathcal{Hoc}}}}
+\newcommand{\Cat}{\ensuremath{\mathbf{Cat}}}
+\newcommand{\slt}{\ensuremath{<_{\mathbf{N}}}}
+\newcommand{\sleq}{\ensuremath{\leq_{\mathbf{N}}}}
+\newcommand{\bound}[1]{\ensuremath{{\partial\Theta[#1]}}}
+\newcommand{\cellset}{\ensuremath{\psh{\Theta}}}
+\newcommand{\sintcell}{\ensuremath{\psh{\Delta\int\Theta}}}
+
+% shortcuts for arrows
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\xla}{\xleftarrow}
+
+% category theory
+\newcommand{\cat}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\overcat}[2]{{(#1\downarrow #2)}}
+\newcommand{\bltri}{\blacktriangleleft}
+
+
+
+% bifunctors
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Hom}{Hom}
+
+% homotopy theory
+\DeclareMathOperator{\ho}{Ho}
+\DeclareMathOperator{\hocolim}{hocolim}
+\DeclareMathOperator{\holim}{holim}
+\DeclareMathOperator*{\hocoliml}{hocolim}
+\DeclareMathOperator*{\holiml}{holim}
+
+% macros for standard mathematical notations
+\newcommand{\realiz}[1]{\ensuremath{\left\lvert#1\right\rvert}}
+\newcommand{\len}[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand{\psh}[1]{\ensuremath{\widehat{#1}}}
+\newcommand{\set}[2]{\ensuremath{{\{\,#1\mid#2\,\}}}}
+\newcommand{\tensor}[1]{\ensuremath{\underset{#1}{\otimes}}}
+\newcommand{\pullback}[1]{\ensuremath{\underset{#1}{\times}}}
+\newcommand{\union}[1]{\ensuremath{\underset{#1}{\cup}}}
+\newcommand{\fsum}[1]{\ensuremath{\underset{#1}+}}
+\newcommand{\fdiff}[1]{\ensuremath{\underset{#1}-}}
+\newcommand{\powser}[1]{\ensuremath{[\![#1]\!]}}
+\newcommand{\ndiv}{\ensuremath{\not|}}
+\newcommand{\pairing}[2]{\ensuremath{\langle#1,#2\rangle}}
+
+% some standard rings and fields
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathcal{C}}}
+\newcommand{\G}{\ensuremath{\mathbb{G}}}
+
+% topology
+\DeclareMathOperator{\pt}{pt}
+\DeclareMathOperator{\map}{map}
+\DeclareMathOperator{\heit}{ht}
+\newcommand{\eev}{\wedge}
+\newcommand{\sm}{\wedge} % smash product
+
+% for defined words
+\newcommand{\dfn}{\textbf}
+
+% a ``backwards'' colon
+\def\noloc{\;{:}\,}
+
+% defining equals
+\newcommand{\defeq}{\overset{\mathrm{def}}=}
+
+% to force a paragraph break at the start of theorems and proofs
+\newcommand{\forcepar}{\mbox{}\par}
+
+
+% Wide margins.
+\setlength{\textwidth}{6.05in}
+\setlength{\oddsidemargin}{.225in}
+\setlength{\evensidemargin}{.225in}
+
+% Only sections appear in table of contents.
+\setcounter{tocdepth}{1}
+
+% Don't force the bottoms of the pages to be at the same spot:
+\raggedbottom
+
+% Allow worse line breaks while this work is in progress.
+\tolerance=3000
+% We'll get fewer ``underfull hbox'' messages with this set.
+\hbadness=4000
+% We'll get fewer ``overfull hbox'' messages with this set.
+\hfuzz=1pt
+
+%%
+\begin{document}
+
+%%% abstract
+\begin{abstract}
+We introduce, for \(\C\) a small regular Reedy category, a model structure on \(\Psh(\Theta[\C])\) whose fibrant objects are the formal \(\C\)-quasicategories.  This model structure is Quillen-biequivalent to the model category of Rezk on \(\Psh_\Delta(\Theta[\C])\) whose fibrant objects are formal \(\C\)-complete Segal spaces.  If \(\mathcal{M}=(\Psh_\Delta(\C),S)\) is a cartesian presentation in the sense of Rezk, then by Rezk's theorem, we obtain a  cartesian-closed left-Bousfield localization of the formal \(\C\)-complete Segal spaces whose fibrant objects are the \(\mathcal{M}\)-enriched complete Segal spaces.  These data also give a left-Bousfield localization of the formal \(\C\)-quasicategories whose fibrant objects are called the \(\mathcal{M}\)-enriched quasicategories that is again Quillen biequivalent to the \(\mathcal{M}\)-enriched complete Segal spaces.
+
+We then construct an adjunction \(\mathfrak{C}:\Psh(\Theta[\C])\rightleftarrows \Cat_{\Psh_\Delta(\C)}:\mathfrak{N}\) that becomes a Quillen pair when both sides are considered with the appropriate model structures, and furthermore, we show that this adjunction is compatible with cartesian-closed left-Bousfield localizations of \(\Psh_\Delta(\C)\).  Then, following Dugger and Spivak, we develop a calculus of enriched necklaces and use this calculus to prove that the Quillen pair \((\mathfrak{C}, \mathfrak{N})\) is an equivalence.  Finally, we apply all of this machinery to construct a version of the Yoneda embedding for enriched quasicategories and demonstrate that it is fully faithful.    
+\end{abstract}
+
+%%% the title
+\maketitle
+
+%%% table of contents
+%\tableofcontents
+
+
+%%%%%
+\section{Introduction}
+In his thesis, David Oury introduced machinery to give a novel proof that his constructed model structure on \(\Theta_2\)-sets is cartesian-monoidal closed. Charles Rezk constructed a model structure on \(\Theta_2\)-spaces that is known to be Quillen biequivalent to Oury's model structure.  However,  Rezk's construction allows for enrichment in a larger class of model categories, namely cartesian-closed model categories whose underlying categories are simplicial presheaves on a small category \(\C\) satisfying some tame restrictions.
+
+Bergner and Rezk also showed by means of a zig-zag of Quillen equivalences that \(\Theta_n\)-spaces model the same homotopy theory as \(\Psh_\Delta(\Theta_{n-1})\)-enriched categories.  Because the equivalence is indirect, however, many of the ideas from Lurie's work on \((\infty,1)\)-categories cannot be adapted in a straightforward manner.  In order to rectify this, we construct a generalized version of the coherent realization and nerve using \(\Theta_n\)-sets (or more generally \(\Theta[\C]\)-sets), and we demonstrate that this adjunction is a Quillen equivalence using an enriched version of Dugger and Spivak's calculus of necklaces. In fact, our result is strictly stronger than the result of Rezk and Bergner because it allows us to account for the cases \(\Theta=\Theta_\omega\) as well as prove the equivalence when \(\C\neq \Theta_n\), which the Rezk-Bergner approach could not handle, since one of the categories appearing in the zig-zag (the height-\(n\) analogue of Segal categories) does not make sense for general \(\C\). 
+
+Taking all of these results together allows us to define suitably enriched versions of the Yoneda embedding, which is a significant result that as a corollary allows for substantial development of the theory of weak \(\omega\)-categories (that is, \((\infty,\infty)\)-categories). In particular, we can define weighted pseudolimits and pseudocolimits in terms of representability of presheaves, and these can be used to define the other universal constructions.  
+
+%Unfortunately, it has not been proven that the (op)lax mapping objects \(\operatorname{Fun}_{\mathcal{L}}(X,Y)\) and \(\operatorname{Fun}_{\mathcal{R}}(X,Y)\) are homotopy-invariant, so although we could give a description of what we expect (op)lax weighted limits and colimits to be, it is not known if these definitions are homotopy-invariant and therefore well-defined. This is also a key gap in proving a higher-dimensional version of the straightening theorem.  We can actually construct the straightening and unstraightening pair, but due to serious combinatorial difficulties involving the (op)lax join and slice, as well as figuring out the precise lifting conditions for higher cartesian fibrations, we have been unable to prove even that the unmarked unstraightening functor sends projectively fibrant diagrams to cartesian fibrations.  The proof of this property (well-short of proving an equivalence of model categories, which probably also requires taking markings into account) can be reduced to showing that the natural projection of the lax slice over a vertex, \(X_{/^{\ell} x}\to X\) is always a cartesian fibration for \(X\) fibrant.   We encourage others interested in the field to take a serious look at this open problem.
+
+\section{The wreath product with \(\Delta\)}
+In this section, we will consider a slightly more general definition of the wreath product with \(\Delta\), as in Oury's thesis. Segal observed long ago that a monoidal category is classified precisely by a pseudofunctor \(M_\bullet:\Delta^\op\to \Cat\) such that \(M_0=\ast\) is the terminal category and the maps \(M_n \to {(M_1)}^n\) induced by the inclusion of the spine \(Sp[n]\hookrightarrow \Delta^n\) are all isomorphisms.  This brings us to our first definition:
+
+\begin{defn}
+  Suppose \(\mathcal{V}\) is a monoidal category.  Then we construct a Grothendieck fibration \[\Delta\int\mathcal{V}\to \Delta\] by applying the Grothendieck construction to the functor \[\mathcal{V}_\bullet:\Delta^\op\to \Cat\] classifying \(\mathcal{V}\). We call the total space of this fibration the \emph{wreath product} of \(\Delta\) with \(\mathcal{V}\).
+  
+  Recall that the \(2\)-pseudofunctor \(\mathbf{CAT}(\Delta^\op, \Cat)(\cdot,\cdot)\) is defined by sending a pair of pseudofunctors \(F_\bullet,G_\bullet\) to the category whose objects are pseudonatural transformations \(F_\bullet\Rightarrow G_\bullet\) and whose morphisms are modifications. If \(G_\bullet\) is a pseudofunctor, we define the functor \[h_{G_\bullet}=\mathbf{CAT}(\Delta^\op, \Cat)(\cdot,G_\bullet):\mathbf{CAT}(\Delta^\op, \Cat)\to \mathbf{CAT}\]
+
+  Recall also that there is a fully-faithful embedding \[\iota_*:\operatorname{Fun}(\Delta^\op,\operatorname{Set}) \hookrightarrow \operatorname{Fun}(\Delta^\op,\mathbf{CAT}),\] obtained from \(\iota:\operatorname{Set} \hookrightarrow \Cat\).   
+  
+  Then by composition, we obtain a functor \[h_{\mathcal{V}_\bullet}\circ \iota_*: \psh{\Delta}^\op \to \mathbf{CAT}.\] Then we define the fibration \[\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}\] to be the Grothendieck construction of \(h_{\mathcal{V}_\bullet}\circ\iota_*\). The total space of this fibration is called the category of \emph{\(\mathcal{V}\)-labeled simplicial sets}.
+\end{defn}
+
+\begin{prop} The pullback of the fibration \[\psh{\Delta}\int V \to \psh{\Delta}\] along the Yoneda embedding \(\Delta\hookrightarrow \psh{\Delta}\) is exactly the fibration \[\Delta\int\mathcal{V}\to \Delta,\] and therefore, the induced map \[\Delta\int\mathcal{V}\hookrightarrow \psh{\Delta}\int\mathcal{V}\] is a fully faithful embedding.
+\end{prop}
+\begin{proof}    Notice that by the bicategorical Yoneda lemma there is a natural equivalence \[h_{\mathcal{V}_\bullet}\circ \iota_*(\Delta^n)\simeq \mathcal{V}_n,\] so \(\mathcal{V}_\bullet\) is naturally equivalent to the restriction of \(h_\mathcal{V}\circ \iota_*\) along the Yoneda embedding, so it follows that \(\Delta\int \mathcal{V} \to \Delta\) is equivalent to the pullback of \(\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}\) along a fully faithful embedding and therefore the evident map \[\Delta\int \mathcal{V} \to \psh{\Delta}\int \mathcal{V}\] is also fully faithful.  
+\end{proof}
+
+%\begin{thm}\label{cocomplete} If \(\mathcal{V}\) is monoidal-biclosed and cocomplete, then the category \(\psh{Delta}\int\mathcal{V}\) is cocomplete.  
+%\end{thm}
+%\begin{proof} This follows from work done by B\'enabou, Par\'e, Schumacher, and Street, specifically, when \(\mathcal{V}\) is biclosed and cocomplete, the pseudofunctor we used to define the fibration has the property that evaluation on each object is cocomplete and the property that evaluation on any map of simplicial sets gives a left-adjoint, which follows from the fact that \(\mathcal{V}\) is biclosed.   
+%\end{proof}
+
+\begin{rem} If \(\mathcal{V}\) is braided monoidal, we expect that \(\psh{\Delta \int V}\) can also be equipped with a monoidal structure. To see this, consider the following example: \([2](v,v^\prime)\) and \([2](v^\prime,v)\).  The object assigned to the inner face on the first is \(v\otimes v^\prime\), while in the second, it is \(v^\prime\otimes v\).  The braiding allows these to glue together, so that when we do \([1](v)\boxtimes [1](v^\prime)\), the new object \((\Delta^1)^2\{v,v,v^\prime,v^\prime\}\) pastes along the common inner edge (obviously the indexing here is by the nondegenerate \(1\) cells lying only in the spines of higher nondegenerate simplices in the simplicial \(2\)-cube).  We intend to study this more general case in a future paper.
+\end{rem}
+
+For the purposes of this paper, we will not necessarily need this level of generality, but we expect it may be useful in the future. In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of presheaves of sets on a small Reedy category \(\C\) admitting a terminal object and no initial object.  Then we give the following definition.
+
+\begin{defn} For any small regular skeletal Reedy category \(\C\) admitting a terminal object and no initial object, we define \(\Theta[\C]\subseteq \Delta \int \psh{\C}\) to be the full subcategory spanned by the objects of the form \([n](h_{c_1},\cdots, h_{c_n})\) for \(c_1,\cdots, c_n \in \C\), and where \(h_\bullet\) denotes the Yoneda embedding.  
+\end{defn}
+
+\begin{rem} The requirement that \(\C\) have a terminal object and no initial object is a technical condition that ensures that \(\Theta[\C]\) embeds fully and faithfully \(\Cat_{\psh{\C}}\) and also that \(\Delta\) embeds fully and faithfully in \(\Theta[\C]\).  The condition that \(\C\) is regular skeletal Reedy is probably not necessary, but it will ensure later on that the generating cofibrations of the injective model structure on simplicial presheaves \(\Psh_\Delta(\C)\) admit a very simple description. 
+\end{rem}
+
+\section{The generalized intertwiner and \(\psh{\Delta}\int \psh{\C}\)}
+Rezk introduced an intertwining functor by means of an explicit construction, but Oury gave an even more powerful version, which we recall here:
+
+\begin{defn} Recall that we have a fully-faithful embedding \[L:\Theta[\C]\hookrightarrow \Delta\int\psh{\C}\hookrightarrow \psh{\Delta}\int\psh{\C}.\]  We define the \emph{intertwiner} to be the functor \[\square:\psh{\Delta}\int\psh{\C} \to \psh{\Theta[\C]}\] by the formula \[(S,\Omega)\mapsto S\square\Omega=\Hom_{\psh{\Delta}\int\psh{\C}}(L(\cdot), (S,\Omega)).\]  
+\end{defn}
+
+\begin{note} The restriction of the intertwiner to \(\Delta \int \psh{\C}\) is exactly the intertwiner of Rezk.  When we apply the intertwiner to an object belonging to the full subcategory \(\Delta\int \psh{\C}\), that is, \((S,\Omega)=[n](A_1,\dots, A_n)\), we will switch to Rezk's notation, namely \[V[n](A_1,\dots,A_n)\coloneqq S\square \Omega\]
+\end{note}
+
+The category \(\psh{\Delta}\int \psh{\C}\) is rather different from \(\psh{\Theta[\C]}\).  For example, in \(\psh{\Theta[\C]}\), we can take the quotient of the representable \([2](c,c')\) by killing the subobject \([1](c\times c')\), which is the inner face.  If we do this, the outer faces are merely connected together, and this object corepresents the situation in which a \(c\) cell is right inverse to a \(c^\prime\) cell.  But this object cannot be represented as the intertwiner of an object in \(\psh{\Delta}\int \psh{\C}\).  To see this, look at the fibre over the quotient \(X\) of \(\Delta^2\) by its inner face.  This simplicial set has a unique top-dimensional cell \(\sigma:\Delta^2\to X\), so giving a natural transformation \(X\to \psh{C}_\bullet\) is totally determined by our choice of where to map it.  Then by the simplicial relations, we can see that whatever pair of objects \(c,c^\prime\) we pick in \(\psh{C}_2=\psh{C}^2\), \(\partial_1 \Omega(\sigma)\cong c\times c^\prime\) by pseudonaturality.  However, we also know that the inner face \(\partial_1 \sigma\) is degenerate and therefore must map to the terminal object in \(\psh{\C}\).  This relation forces us to choose \(c=c^\prime=\ast\).  Similar problems happen when attempting to glue together objects that aren't identical between a pair of vertices.  
+
+The other main kind of pathology, shared with the full subcategory \(\Delta \int \psh{\C}\), is that it allows us to label simplices by the empty presheaf on \(\C\).  This is exactly the kind of pathology that is killed by the intertwiner.  For example, consider \([1](\emptyset)\).  Then \(V[1](\emptyset)=\ast \coprod \ast\), since the only object of \(\Theta[\C]\) admitting a map to \([1](\emptyset)\) is \([0]\).  
+
+\begin{defn} An object \((S,\Omega)\) of \(\psh{\Delta}\int\psh{\C}\) is called \emph{normalized} if the image of \(\Omega_1\) does not contain the empty presheaf on \(\C\).  
+\end{defn}
+
+\begin{prop} The restriction of the intertwiner to the full subcategory of normalized objects in \(\psh{\Delta}\int\psh{\C}\) is fully faithful.
+\end{prop}
+\begin{proof} 
+  Recall before we begin that a map \((S,\Omega)\to (S^\prime,\Omega^\prime)\) is given by a morphism of simplicial sets \(f:S\to S^\prime\) and a natural modification \(\zeta:\Omega\to \Omega^\prime\circ f\).
+
+  In order to prove fullness, let \(\gamma:S\square\Omega\to S^\prime\square\Omega^\prime\) be a map in \(\psh{\Theta[\C]}\). We notice that \(\Hom([n](\emptyset,\dots,\emptyset), (S,\Omega))\) is naturally isomorphic to \(S_n\), and proceed by diagram chase. Since by assumption \((S,\Omega)\) is normalized, every map \([n](\emptyset,\dots,\emptyset)\to (S,\Omega)\) factors uniquely through at least one map \([n](c_1,\dots,c_n)\to (S,\Omega)\).  
+  
+  Choosing such a factorization, the natural transformation \(\gamma\) sends this to a map \[[n](c_1,\dots,c_n)\to (S^\prime,\Omega^\prime),\] and finally, precomposing this map with the unique map \([n](\emptyset,\dots,\emptyset)\to [n](c_1,\dots,c_n)\), we obtain a map \([n](\emptyset,\dots,\emptyset)\to (S^\prime,\Omega^\prime)\). Taking these together gives a map \(S_n\to S^\prime_n\), naturally in \(n\).   
+  
+  Now assume that \(S^\prime=S\) and that the map induced by \(\gamma\) is the identity.  Then notice that a map \[[n](c_1,\dots,c_n)\to (S,\Omega)\] is completely determined by its action on the degree \(n\) part, but this amounts to picking an \(n\)-simplex of \(S\) together with its labeling \((A_1,\dots,A_n)\), and a map \((c_1,\dots,c_n)\to (A_1,\dots,A_n)\).  Then the natural transformation gives a natural map \(((A_1)_{c_1},\dots,(A_n)_{c_n})\to ((A^\prime_1)_{c_1},\dots,(A^\prime_n)_{c_n})\), taking the naturality in \(n\) and the \(c_i\), these together determine a natural modification \(\Omega\to \Omega^\prime\).
+
+  To see faithfulness, notice that the construction in the proof of fullness defines a left-inverse to the definition of the map on morphisms defined by the intertwiner.
+\end{proof}
+
+\begin{defn} We say that a presheaf \(X\) on \(\Theta[\C]\) is \emph{sober} if it is the image of a normalized object of \(\psh{\Delta}\int \psh{\C}\). If \(f:X\to Y\) is the image under the intertwiner of a cartesian map of normalized labeled simplicial sets, we call \(f\) \emph{cartesian}.  
+\end{defn}
+
+\begin{rem}
+\end{rem}
+
+\begin{prop} All representable presheaves on \(\Theta[\C]\) are sober. 
+\end{prop}
+\begin{proof} By construction.
+\end{proof}
+
+\begin{prop} The class of sober presheaves is closed under cartesian product.
+\end{prop}
+\begin{proof} From the construction of the intertwiner, we see that if \(\psh{\Delta}\int \psh{\C}\) has all cartesian products, then the intertwiner preserves them, since 
+  \[\Hom_{\psh{\Delta}\int\psh{\C}}(L(\cdot), (S,\Omega)\times (S^\prime,\Omega^\prime))=\Hom_{\psh{\Delta}\int\psh{\C}}(L(\cdot), (S,\Omega))\times \Hom_{\psh{\Delta}\int\psh{\C}}(L(\cdot), (S^\prime,\Omega^\prime)).\] Then we define the cartesian product of \((S,\Omega)\) and \((S^\prime,\Omega^\prime)\) by the formula \[S\times S^\prime \xrightarrow{\Omega \times \Omega^\prime} \psh{\C}_\bullet \times \psh{\C}_\bullet \xrightarrow{\times} \psh{\C}_\bullet.\]  It is clear that this satisfies the universal property of the product.
+\end{proof}
+
+\begin{prop}The functor associated with the fibration \(\Theta[\C]\to \Delta\) induces an adjunction \[\pi:\psh{\Theta[\C]} \rightleftarrows \psh{\Delta}:\tau.\] If \(X=S\square\Omega\) is sober, and \(f:S^\prime\to S\) is a map of simplicial sets, then the image of the cartesian lift \(\tilde{f}:(S^\prime, f^\ast(\Omega))\to (S,\Omega)\) under the intertwiner is exactly the pullback of \(\tau(f)\) along the component at \(X\) of the unit of the adjunction \(\mu_X:X\to \tau\pi X= \tau S\).
+\end{prop}
+\begin{proof} By inspection of the definition of \(S\square\Omega\), we can see that \(\pi(S\square\Omega)=S\). 
+  
+  We can see that \(\tau\) factors as \(\square\circ \mathfrak{t}\), where \(\mathfrak{t}\) is the right-adjoint to the projection \(\psh{\Delta}\int \psh{\C}\), which exists by explicit computation as the functor sending the simplicial set \(S\) to the object \((S,\Omega_{\mathfrak{t}})\) where \(\Omega_{\mathfrak{t}}\) is the labeling sending all simplices of \(S\) to the terminal presheaf on \(\C\).   We can see that the pullback of \((S,\Omega)\) along \(f:S^\prime\to S\) satisfies the universal property of the fibre product of the unit map \((S,\Omega)\to \mathfrak{t}(S)\) with the map \(\mathfrak{t}(f)\), so such pullbacks exist in \(\psh{\Delta}\int \psh{\C}\) and are obviously preserved by \(\square\), which by construction preserves whatever limits exist.   
+
+  The proposition follows immediately from these two observations.
+\end{proof}
+\section{The coherent realization for \(\Theta[\C]\)}
+Even though \(\C\) has assumptions that ensure it isn't the terminal category, for whatever reason, things work out okay, and we obtain the basis for our comparison: There is an adjoint pair that should be familiar to those who have experience with \((\infty,1)\)-categories, namely the coherent realization and nerve pair, \[\mathfrak{C}: \psh{\Delta}=\psh{\Theta[\ast]}  \rightleftarrows \Cat_{\Psh_\Delta(\ast)} =\Cat_{\Delta} :\mathfrak{N}.\]
+
+An important theorem early in \emph{Higher Topos Theory} tells us that this adjunction gives a Quillen equivalence when the lefthand side is equipped with the Joyal model structure and the righthand side is equipped with the Bergner model structure.  The goal of this section is to show that for any \(\C\) with the aforementioned properties, we can construct an analogous adjunction:
+\[\mathfrak{C}:\psh{\Theta[\C]} \rightleftarrows \Cat_{\Psh_\Delta(\C)}:\mathfrak{N}.\]
+
+We will extensively abuse notation in what follows by identifying a simplicial set with its associated constant simplicial presheaf on \(\C\) and identifying a presheaf on \(\C\) with its associated discrete simplicial presheaf.  
+
+\begin{defn}
+  We define a construction on objects \[Q:\Delta\int\psh{\C}\to \Cat_{\Psh_\Delta(\C)}.\] Suppose \([n](X_1,\dots, X_n)\) is any object of \(\Delta\int\psh{\C}\). Then we define \(Q([n](X_1,\dots,X_n)\) as follows:
+  \begin{itemize}
+    \item The objects are the vertices \(\{0,\dots,n\}\)
+    \item The Hom-object 
+    \[\Hom(i,j)=
+    \begin{cases}
+      \emptyset &\text{ for } i>j\\
+      c\Delta^0 &\text{ for } i=j\\
+      X_{i+1} \times \Delta^1 \times \dots \times \Delta^1 X_j &\text{ for } i<j
+    \end{cases}
+    \]
+    \item The associative composition law, \(\Hom(i,j)\times \Hom(j,k)\to \Hom(j,k)\) which is the inclusion on the bottom face with respect to \(j\):
+    \begin{align*} X_{i+1}\times \Delta^1\times\dots\times\Delta^1\times X_j \times&\{1\}\times X_{j+1} \times \Delta^1\times\dots\times\Delta^1\times X_k\\
+      &\downarrow\\
+      X_{i+1}\times \Delta^1\times\dots\times\Delta^1\times X_j\times&\Delta^1\times X_{j+1} \times \Delta^1\times\dots\times\Delta^1\times X_k
+    \end{align*}
+  \end{itemize}
+\end{defn}
+
+\begin{prop} The construction \(Q\) is functorial. 
+\end{prop}
+\begin{proof} 
+  Recall that a map \[[n](X_1,\dots, X_n) \to [m](Y_1,\dots Y_m)\] in \(\Delta \int \psh{\C}\) is given by a pair \((\gamma,\mathbf{f})\), where \(\gamma:[n]\to [m]\) is a map of simplices together with a family of maps \[\mathbf{f}=\left(f_i: X_i \to \prod_{j=\gamma(i-1)}^{\gamma(i)}Y_j\right)_{i=1}^n.\] 
+
+  If for \(0<i\leq n\), we have \(\gamma(i-1)=\gamma(i)\), we can see easily that \(\gamma\) factors through the codegeneracy map \[[n](X_1,\dots,X_n)\to [n-1](X_1,\dots,\psh{X_i},\dots,X_n).\]  Applying this factorization repeatedly, we factor \((\gamma,\mathbf{f})\) as a codegeneracy followed by a map \((\gamma^\prime,f^\prime)\) such that \(\gamma^\prime\) is the inclusion of a coface \([n^\prime]\hookrightarrow [m]\).  
+  
+  Since \(\Delta\int \psh{\C}\) is fibred over \(\Delta\), we may take the cartesian lift of \(\gamma^\prime\), which is the map \[\overline{\gamma^\prime}=(\gamma^\prime,\mathbf{id}):[n']\left(\prod_{j=\gamma^\prime(0)}^{\gamma^\prime(1)}Y_j, \dots, \prod_{j=\gamma^\prime(n^\prime-1)}^{\gamma^\prime(n^\prime)} Y_j \right)\hookrightarrow [m](Y_1,\dots,Y_m).\]  By cartesianness, we have a unique factorization of \((\gamma^\prime,\mathbf{f^\prime})\) by this map, yielding a map \[(\id,\overline{f^\prime}):[n'](X^\prime_1,\dots,X^\prime_{n^\prime})\to [n']\left(\prod_{j=\gamma^\prime(0)}^{\gamma^\prime(1)}Y_j, \dots, \prod_{j=\gamma^\prime(n^\prime-1)}^{\gamma^\prime(n^\prime)} Y_j \right).\]
+
+  Then to prove the proposition, we need to show functoriality in three cases:
+  \begin{itemize}
+    \item If the map \((\gamma,\mathbf{f})\) is a codegeneracy of codimension \(1\), suppose \(\gamma=\sigma^i:[n+1]\to [n]\) for \(0\leq i\leq n\).  Then \(Q((\sigma^i,\mathbf{id}))_{ab}:\Hom(a,b)\to \Hom(\sigma^i(a),\sigma^i(b))\) is defined on the homs as follows: 
+    \[Q(\sigma^i)_{ab}=
+    \begin{cases} 
+      \id\times \operatorname{min}\circ \tau_{X_{i}} \times \id &\text{ if } a <  i \leq b\\
+      \id &\text{ otherwise }
+    \end{cases}\]
+     where \(\operatorname{min}:\Delta^1\times \Delta^1\to \Delta^1\) is induced by the map of posets sending \((x,y)\mapsto \operatorname{min}(x,y)\) and \(\tau_{X_{i}}\to \ast\) is the terminal map.  Specifically, in the case where \(a< i \leq b\), the map is given by the composite:  
+     \begin{align*} X_{a+1}\times \Delta^1\times\dots\times\Delta^1\times &X_{i} \times \Delta^1 \times \dots\times\Delta^1\times X_{b}\\
+      &\downarrow\\
+      X_{a+1}\times \Delta^1\times\dots\times\Delta^1\times &\ast \times \Delta^1 \times \dots\times\Delta^1\times X_{b}\\
+      &\parallel\\
+      X_{a+1}\times \Delta^1\times\dots\times\Delta^1 &\times \Delta^1 \times \dots\times\Delta^1\times X_{b}\\
+      &\downarrow\\
+      X_{a+1}\times \Delta^1\times\dots\times &\Delta^1 \times \dots\times\Delta^1\times X_{b}\\
+    \end{align*}
+    If \(i=0\) or \(i=n\), we consider \(\Delta^0=\ast\) to be \(\{0\}\).
+    \item If the map \((\gamma,\mathbf{f})\) is a pure coface of codimension \(1\), we have two subcases: If it is an outer coface, the map is just the obvious inclusion.  If it is an inner coface, it has a term that looks like \(X_{i}\times X_{i+1}\), and this is included in all of the \(\Hom\) objects as \(X_{i}\times \{0\} \times X_{i+1}\)
+    \item If the map \((\gamma,\mathbf{f})\) is such that \(\gamma=\id\), since each of the \(\Hom\) objects is given as a product of the \(X_i\) with \(\Delta^1\) of the same length, just map them by \(f_a\times\Delta^1\times \dots \times\Delta^1 \times f_{b-1}\) using the functoriality of the cartesian product.
+  \end{itemize}
+  It is an easy exercise to see that this assignment is functorial and completely analogous to the un-enriched case.
+\end{proof}
+
+Finally, we come to the form of this functor that we will be using:
+
+\begin{defn} Let \(\mathfrak{C}\) be the composite \[\Theta[\C]\hookrightarrow\Delta\int \psh{\C} \xrightarrow{Q} \Cat_{\Psh_\Delta(\C)}.\] Since \(\Cat_{\Psh_\Delta(\C)}\) is cocomplete, there exists a colimit-preserving extension to \(\psh{\Theta[\C]}\), the \emph{homotopy-coherent realization}, which by abuse of notation, we also call \(\mathfrak{C}\).  It is the left adjoint in an adjunction \[\mathfrak{C}:\psh{\Theta[\C]}\rightleftarrows \Cat_{\Psh_\Delta(\C)}:\mathfrak{N},\]  wherein the right adjoint is called the \emph{homotopy-coherent nerve}. 
+\end{defn}
+
+\section{Enriched necklaces and the coherent realization}
+Necklaces were introduced by Dugger and Spivak in order to understand the mapping objects \(\Hom_{\mathfrak{C}(X)}\) and give a much easier proof than Lurie's that the homotopy-coherent realization and nerve form a Quillen equivalence.  In this section, we will introduce an enriched version of necklaces that will serve the same purpose.  
+
+\begin{defn} 
+  A \emph{pre-necklace} is a sober presheaf on \(\Theta[\C]\) whose projection to \(\psh{\Delta}\) is a simplicial necklace in the sense of Dugger and Spivak.  
+
+  Given a pre-necklace \(T\), we define the \emph{shape of \(T\)} to be its associated simplicial set \(\pi(T)\).
+  
+  Suppose \(T\) is a pre-necklace such that its projection is the simplicial necklace \(\Delta^{m_1}\vee \dots \vee \Delta^{m_k}\). Then we say that \(T\) is a \emph{necklace} if the pullback of \(T\) along each bead inclusion \(\Delta^{m_i}\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is representable for each \(0\leq i \leq k\).  
+
+   We consider every necklace \(T\) as bi-pointed by its initial and terminal vertex, which we will write as \(\alpha\) and \(\omega\) respectively.  A \emph{morphism of necklaces} is a morphism of \(f:T\to T^\prime\) of \(\psh{\Theta[\C]}_{\ast,\ast}\) between necklaces such that \(f(\alpha_T)=\alpha_{T^\prime}\) and \(f(\omega_T)=\omega_{T^\prime}\). We define the category \(\Nec\) to be the full subcategory \(\psh{\Theta[\C]}_{\ast,\ast}\) consisting of the necklaces and morphisms of necklaces between them.
+  
+  We define the sets \(V_T\) (resp. \(J_T\)) of \emph{vertices of \(T\)} (resp. \emph{joints of \(T\)}) to be the sets of vertices and joints of the underlying simplicial necklace. 
+  
+  Similarly, for a pair of vertices \(a,b\) of \(T\) with \(a\leq b\) we define \(V_T(a,b)\)to be the subset of all vertices \(i\) such that \(a\leq i\leq b\). We define \(J_T(a,b)\) to be \(\{a,b\}\cup (V_T(a,b)\cap J_T)\).   
+
+  Given \(a,b\in V_T\), there is a full simplicial subset \(\pi(T)(a,b)\subseteq \pi(T)\) consisting of the simplicial set of simplices \(\sigma\) of \(\pi(T)\) for which all vertices of \(\sigma\) lie in \(V_T(a,b)\). We define \(T(a,b)\) to be the pullback of \(T\) along the inclusion \(\pi(T)(a,b)\hookrightarrow \pi(T)\).  It is clear from this definition that \(V_T(a,b)=V_{T(a,b)}\) and \(J_T(a,b)=J_{T(a,b)}\).
+\end{defn}
+
+Following Dugger and Spivak, we define a construction as follows: Given a presheaf \(X\) on \(\Theta[\C]\) with two vertices \(x,y\in X_0\), we obtain a functor \[\mathcal{E}_X(x,y):\overcat{\Nec}{X_{x,y}} \to \Psh_\Delta(\C)\] defined by the rule \[(T\to X_{x,y})\mapsto \mathfrak{C}(T)(\alpha_T,\omega_T).\] We define \[E_X(x,y)=\colim(\mathcal{E}(x,y)),\] which by the universal property of colimits admits a universal map \[E_X(x,y)\to \mathfrak{C}(X)(x,y).\] We can see that there is an associative composition operation \[E_X(x,y)\times E_X(y,z)\to E_X(x,z)\] inherited from the operation of wedge-concatenation of necklaces \[\mathcal{E}_X(x,y)\times \mathcal{E}_X(y,z) \to \mathcal{E}_X(x,z).\] This makes \(E_X\) into a \(\Psh_\Delta(\C)\)-enriched category equipped with a functor \(E_X\to \mathfrak{C}(X)\).  
+
+\begin{prop} For any presheaf \(X\) on \(\psh{\Theta[\C]},\) the induced map \(E_X\to \mathfrak{C}(X)\) is an isomorphism.  
+\end{prop}
+\begin{proof} Following along closely with the proof of \cite{ds1}*{Proposition 4.3}, we consider the following commutative diagram: 
+  \begin{equation*}
+  \begin{tikzpicture}
+  \matrix (b) [matrix of math nodes, row sep=3em,
+  column sep=3em, text height=1.5ex, text depth=0.25ex]
+  { \left( \colim_{\overcat{\Theta[\C]}{X}} E_{\Theta[\C]^t}\right)(x,y) & E_X(x,y) \\
+  \left( \colim_{\overcat{\Theta[\C]}{X}} \mathfrak{C}(\Theta[\C]^t)\right)(x,y) &  \mathfrak{C}(X)(x,y) \\};
+  \path[->, font=\scriptsize]
+  (b-1-1) edge (b-1-2)
+          edge node[auto,swap]{\(\scriptstyle \cong\)} (b-2-1)
+  (b-2-1) edge [-,double] (b-2-2)
+  (b-1-2) edge (b-2-2);
+  \end{tikzpicture}.
+  \end{equation*}
+  The bottom horizontal equality is by definition, and the left vertical map is an isomorphism because \(E_{\Theta[\C]^t}\cong \mathfrak{C}(\Theta[\C]^t)\) for all representables, since they are all necklaces and therefore are terminal in their respective diagrams defining \(E\). It follows that the top horizontal map is injective, and it suffices therefore to show that it is surjective.  But the same argument as in \cite{ds1}*{Proposition 4.3} works with no change whatsoever.
+\end{proof}
+
+This is not the end of the story.  This colimit is still very complicated, and we must simplify it further.  In particular, we will show that \(\mathfrak{C}(X)(x,y)_c\) can be represented as a colimit of simplicial necklaces functorially in \(c\).  This will play an important role in obtaining appropriate analogues of the other models for \(\mathfrak{C}\) from \cite{ds1}.  In order to continue down this road, we need the following definition:
+
+\begin{defn}
+  We say that a necklace \(T\) is \emph{of uniform type \(c\in \C\)} if the pullback of \(T\) along each bead inclusion \(\Delta^{m_i}\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is the representable presheaf associated with \([m_i](c,\dots,c)\).  If \(T\) is any simplicial necklace, we denote by \(T\{c\}\) the necklace of type \(c\) of the same underlying simplicial shape. We define the category \(\Nec_c\) to be the full subcategory of the category \(\Nec\) spanned by the necklaces of uniform type \(c\).  
+\end{defn}
+
+\begin{defn}
+  We define the subcategory \[\Nec^\mathbf{sp}_c{X_{x,y}}\subseteq \Nec_c\] to be the wide subcategory whose morphisms are are \emph{special}, which are maps that factor as the composite of a pure codegeneracy followed by a map whose restriction to each edge of the spine of the domain is a diagonal \(c\xrightarrow{id^k} c^k\) of the appropriate arity. 
+\end{defn}
+
+We begin by giving the following construction: Given a presheaf \(X\) on \(\Theta[\C]\) together with two vertices \(x,y\in X_0\), we give a functor \[\mathcal{E}_{X,c}(x,y):\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\to \psh{\Delta}\] defined by the rule \[T\mapsto \mathfrak{C}_\Delta(\pi(T))(\alpha,\omega),\] where \(\mathfrak{C}_\Delta\) denotes the ordinary coherent realization of a simplicial set.
+
+We then define a simplicial set \[E_{X,c}(x,y)=\colim \mathcal{E}_{X,c}.\] We note that by concatenation of necklaces of uniform type \(c\), we obtain an associative composition law \[E_{X,c}(x,y)\times E_{X,c}(y,z)\to E_{X,c}(x,z).\]  We will see in what follows that \(E_{X,c}\) is naturally isomorphic to \(\mathfrak{C}(X)_c\).  
+
+\begin{lemma}\label{replemma} If \(T\) is a necklace of uniform type \(c\) and \(T^\prime\) is any necklace, then every morphism of necklaces \(f:T\to T^\prime\) factors uniquely as the composite of a special map \(T\to T^\prime\{c\}\) and a map \(f_*:T^\prime\{c\}\to T^\prime\) that projects to the identity map in \(\psh{\Delta}\).
+\end{lemma}
+\begin{proof} We reduce immediately to the case where the map on underlying simplicial necklaces is injective, using the Eilenberg-Zilber property for necklaces.  We can also assume that \(T^\prime\) is representable of the form \([n](c_1,\dots,c_n)\), since given an injective map of simplicial necklaces \(\pi(T)\to \pi(T^\prime\), every bead of \(\pi(T)\) lands in exactly one bead of \(\pi(T^\prime).\)
+
+Then we look at the action of \(f\) on each edge \(e\) of the spine of \(T\). Notice that if \(f\) maps an edge \(e\) of the spine of \(\pi(T)\) to the edge \(i<j\), we obtain a map \[c\to \prod_{k=i+1}^j c_k,\] which by the universal property of the product, corresponds to a family of maps \((f_k:c\to c_k)_{k=i+1}^j\).  Since \(f\) must map the spine of \(\pi(T)\) to a directed path from \(0\to n\), taken together, we obtain maps \[(f_k:c\to c_k)_{k=1}^n.\] These data together with the identity map \(\id:[n]\to [n]\) specify precisely a map \([n](c,\dots,c)\to [n](c_1,\dots,c_n)\).  We have the obvious map \(T\to [n](c,\dots,c)\) where each edge of the spine is assigned the appropriate diagonal map, and this composes with the new map \([n](c,\dots,c)\to [n](c_1,\dots,c_n)\) to give the original map. This factorization is clearly unique.
+\end{proof}
+
+\begin{prop} If \(T\) is a necklace, then \(E_{T,c}(\alpha,\omega)\) is canonically isomorphic to \(\mathfrak{C}(T)(\alpha,\omega)_c\)
+\end{prop}
+\begin{proof} By the lemma, we see that there is a discrete full cofinal subcategory of \(\overcat{\Nec^\mathbf{sp}_c}{T}\) spanned by the maps \(T\{c\} \to T\), so it suffices to show that \(\mathfrak{C}(T)(\alpha,\omega)_c\) is a disjoint union of copies of \(\mathfrak{C}(T)(\alpha,\omega)_c\) indexed by the maps \(T\{c\}\to T\), but this follows by an easy direct computation of \(\mathfrak{C}(T)(\alpha,\omega)_c\), which we give for the case \(T=[n](c_1,\dots,c_n)\) as \[\Hom(c,c_1) \times \Delta^1\times \dots \Delta^1 \times \Hom(c,c_n).\]  For a more general necklace of shape \(\Delta^{m_1}\vee \dots \vee \Delta^{m_k},\) it is the same, but omitting the appropriate \(\Delta^1\) terms.  
+\end{proof}
+
+These propositions give us what we need to prove the aforementioned reduction:
+
+\begin{prop} For any presheaf \(X_{x,y}\) on \(\Theta[\C]\), we have natural isomorphisms of \(\Psh_\Delta(\C)\)-enriched categories, \(E_{X,\bullet}\cong E_X \cong \mathfrak{C}(X).\)
+\end{prop}
+\begin{proof} We begin by naming the natural inclusion 
+  \[\iota_c:\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\hookrightarrow \overcat{\Nec}{X_{x,y}}\]
+  Then we compute:
+  \begin{align*}
+    E_{X,c}(x,y)& = \colim_{\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}} \mathcal{E}_{X,c}(x,y)\\
+    &= \Lan_{\pt} \mathcal{E}_{X,c}(x,y)
+    \intertext{where \(\pt\) denotes the terminal functor} 
+    &=\Lan_{\pt \circ \iota_c} \mathcal{E}_{X,c}(x,y)\\
+    &\cong\Lan_{\pt}\left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y)\right)\\ 
+    &= \colim_{\overcat{\Nec}{X_{x,y}}} \left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y) \right),
+    \intertext{but by the formula for pointwise Left Kan extensions,}
+    &\cong \colim_{\overcat{\Nec}{X_{x,y}}} \left(\colim_{\overcat{\Nec^\mathbf{sp}_c}{T}}\mathcal{E}_{T,c}(\alpha,\omega)\right)\\
+    &= \colim_{\overcat{\Nec}{X_{x,y}}} \mathfrak{C}(T)(\alpha,\omega)_c\\
+    &= {E_X(x, y)}_c\\
+    &\cong {\mathfrak{C}(X)(x,y)}_c,
+  \end{align*}
+  which proves the proposition.
+\end{proof}
+
+\section{Homotopical models for \(\mathfrak{C}\)}
+In their paper \cite{ds1}, Dugger and Spivak make use of another model for \(\mathfrak{C}_\Delta\), which they call \(\mathfrak{C}^\Nec)\), but which we will denote by \(\mathfrak{C}_\Delta^\Nec\).  They show that this functor is related by a zig-zag of weak equivalences to \(\mathfrak{C}_\Delta\).  Although it is not a left-adjoint, it is highly computable and easy to understand because its mapping spaces are always just the nerves of ordinary categories.  
+
+We will define a version of \(\mathfrak{C}^\Nec\) for \(\Theta[\C]\)-sets and show that it too is related by a zig-zag of natural weak equivalences of \(\Psh_\Delta\)-enriched categories to \(\mathfrak{C}\). Following Dugger and Spivak, we also construct a third model \(\mathfrak{C}^{\operatorname{hoc}}\) modeled by taking the homotopy-colimit instead of the ordinary colimit that we showed defines \(\mathcal{C}\). 
+
+\begin{defn} The \emph{necklace realization} \(\mathfrak{C}^\Nec(X)\) of a presheaf \(X\) on \(\Theta[\C]\) is defined to be the \(\Psh_\Delta(\C)\)-enriched category whose set of objects is the set of vertices of \(X\) and whose mapping objects are simplicial presheaves on \(\C\) defined by the rule: 
+  \[c\mapsto \mathfrak{C}^\Nec(x,y)_c=N(\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}).\] 
+  As usual, the composition \[\mathfrak{C}^\Nec(X)(x,y)\times \mathfrak{C}^\Nec(X)(y,z)\to \mathfrak{C}^\Nec(X)(x,z)\] is obtained by concatenation of uniform necklaces.
+
+  The \emph{homotopy colimit realization} is defined similarly to the ordinary \(\mathfrak{C}\), but instead of an using an ordinary colimit, we define \[\mathfrak{C}^\Hoc(X)(x,y)_c=\hocolim\mathcal{E}_{X,c}(x,y).\]
+\end{defn}
+
+Dugger and Spivak use a very specific model of the homotopy colimit of a diagram in simplicial sets, and it works perfectly here as well.  By \cite{ds1}*{Remark 5.1}, we note that the homotopy colimit of a diagram \(F:D\to \psh{\Delta}\) can be modeled as the diagonal simplicial set of the bisimplicial set whose \(k,\ell\) simplices are given by pairs \[(\sigma:[n]\to D; x \in F(\sigma(0))_\ell).\]  Using this model we can see that the nerve of a category is isomorphic to this model of the homotopy colimit of the constant diagram at \(\Delta^0\).  
+
+In the case of \(\mathfrak{C}^\Hoc\), we can see immediately that there is a unique natural transformation \[\mathcal{E}_{X,c}(x,y)\to \pt,\] and this induces a map on homotopy colimits.  Moreover, since \(\mathcal{E}_{X,c}(x,y)(T)=\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega)\) and since \(\pi(T)\) is a simplicial necklace,  \(\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega)\) is weakly contractible. Therefore, the induced map on homotopy-colimits is a weak equivalence of simplicial sets.  This shows that the natural map \[\mathfrak{C}^\Hoc \to \mathfrak{C}^\Nec\] is a weak equivalence.  
+
+Then we need to show that \(E_{X,c}\) is a homotopy colimit:
+\begin{thm}The natural map \[\mathfrak{C}^\Hoc \to \mathfrak{C}\] is a natural weak equivalence.
+\end{thm}
+\begin{proof} See \cite{ds1}*{4.4,4.10,5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \(\ell^\mathrm{th}\) row of the bisimplicial set of pairs \[(\sigma:[n]\to D; x \in F(\sigma(0))_\ell)\] is homotopy-discrete, which means that the homotopy and ordinary colimit agree.  Our indexing category is just a disjoint union of copies of their indexing category, so if theirs is homotopy-discrete, so is ours.  
+\end{proof}
+\section{Enriched gadgets}
+The general theory of gadgets developed in \cite{ds1} is difficult to adapt to the enriched setting, and we give a less-than-ideal generalization in the sequel:
+
+\begin{defn} 
+  A \emph{pre-gadget} of rank \(n\) is a functor \[G: \C \to \psh{\Theta[\C]}_{\ast,\ast}\] such that there exists a simplicial set \(S\) and a natural isomorphism \[\mathfrak{C}(G(c))(\alpha,\omega) \cong S\times c^n\] for all \(c\in \C\) (where \(c^n\) denotes the \(n^\mathrm{th}\) cartesian power of the representable), where naturality implies that for any \(f:c\to d\) in \(\C\), \[\mathfrak{C}(G(f))(\alpha,\omega)=\id_S \times f^n.\]
+  
+  A \emph{gadget} of rank \(n\) is a pre-gadget \(G\) such that the projection map \[\mathfrak{C}(G(c))(\alpha,\omega) \cong S\times c^n \to c^n\] is a weak equivalence.  That is to say, \(S\) is weakly contractible.
+\end{defn}
+
+\begin{rem} We can see from the definition that every simplicial necklace \(T\) defines a gadget sending \(c\) in \(\C\) to the uniform necklace \(T\{c\}\) of type \(c\).  In what follows, by abuse of notation, we will use \(T\) to denote both the underlying simplicial necklace as well as this gadget.
+\end{rem}
+
+Unlike in the simplicial case, we have seen that we cannot simply get away with looking at full subcategories, so we have to be careful about morphisms.
+
+\begin{defn} 
+  Let \(T\) be a simplicial necklace.  Then for a gadget \(G\) of rank \(n\), we define a \emph{special morphism} \(f:T\to G\) to be a natural transformation such that for each \(c\) in \(\C\), the image of the induced map \[\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega) \to \mathfrak{C}(G)(\alpha,\omega)_c=S\times \Hom(c,c)^n\] belongs to the connected component corresponding to the \(n^\mathrm{th}\) diagonal \((\id_c)^n\). 
+
+  More generally, given a pair of gadgets \(G,G^\prime\), we define a \emph{special morphism} \(\phi:G\to G^\prime\) to be a natural transformation such that given any simplicial necklace \(T\) and any special morphism \(f:T\to G\), the induced map \(\phi\circ f:T\to G^\prime\) is special.  
+\end{defn}
+
+\begin{rem} If \(T\) and \(T^\prime\) are two simplicial necklaces, the component at \(c\) of a special morphism \(T\to T^\prime\) is precisely a special map between uniform necklaces of type \(c\).
+\end{rem}
+
+\begin{defn} We define \emph{a category of gadgets} \(\mathcal{G}\) to be a subcategory of the category of all gadgets and special maps containing all necklaces and all special morphisms \(T\to G\) where \(T\) is a necklace and \(G\) is in \(\mathcal{G}\).  We say that the category of gadgets is \emph{closed under wedges} if it is closed under concatenation of gadgets.
+
+We define \(\mathcal{G}_c\) to be the image of \(\mathcal{G}\) under evaluation at \(c\in \C\).
+\end{defn}
+
+\begin{defn} Given a presheaf \(X\) on \(\Theta[\C]\) and a category of gadgets \(\mathcal{G}\) closed under wedges, we define a \(\Psh_\Delta(\C)\)-enriched category \(\mathfrak{C}^{\mathcal{G}}(X)\) to be the category whose objects are the vertices of \(X\) and whose Hom-objects are given by the formula \[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_c\coloneqq N\overcat{\mathcal{G}_c}{X_{x,y}}.\]  This defines an enriched category by taking the composition operation to be concatenation of gadgets, which works since \(\mathcal{G}\) is closed under wedges.
+\end{defn}
+\begin{prop} Given a presheaf \(X\) on \(\Theta[\C]\) and two vertices \(x,y\) of \(X\) and a category of gadgets \(\mathcal{G}\) the map \[N\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}} \hookrightarrow N\overcat{\mathcal{G}_c}{X_{x,y}}\] is a weak homotopy equivalence.
+\end{prop}
+\begin{proof} By Quillen's theorem A, it suffices to look at the overcategories \(\overcat{\Nec^\mathbf{sp}_c}{G(c)}\) along the inclusion \(\Nec^\mathbf{sp}_c\hookrightarrow \mathcal{G}_c\) for all \(G\) in \(\mathcal{G}\) and show that they are contractible, but these overcategories correspond on-the-nose to the subcategories classifying the diagonal component of \(\mathfrak{C}^\Nec(G)(\alpha,\omega)\), which is contractible because \(G\) is a gadget.
+\end{proof}
+\begin{cor} The constructions \(\mathfrak{C}^\Nec\) and \(\mathfrak{C}^\mathcal{G}\) are naturally weakly Dwyer-Kan equivalent.
+\end{cor}
+\begin{proof} The map between the two constructions is the identity on objects and induces Hom-wise weak equivalences of simplicial presheaves.
+\end{proof}
+
+\section{First application of gadgets}
+In this section, we use gadgets to prove that for any two presheaves \(X\) and \(Y\) on \(\Theta[\C]\), the natural map \[\mathfrak{C}(X\times Y)\to \mathfrak{C}(X)\times \mathfrak{C}(Y)\] is a weak equivalence.   
+
+\section{The horizontal Joyal model structure}
+We define a Cisinski model structure on \(\psh{\Theta[\C]}\) and state several results that we will need in the sequel:
+
+\begin{defn} 
+  There is a Cisinski model structure called the \emph{horizontal Joyal model structure} on \(\psh{\Theta[\C]}\) where the separating interval is given by \[E^1=\operatorname{cosk}_0 \Delta^1,\] and the set of generating anodynes is given by \[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n}) : 0<k<n \text{ and } c_1,\dots,c_n \in \Ob \C\},\] where \(\lambda^n_k:\Lambda^n_k\hookrightarrow \Delta^n\) is the simplicial horn inclusion, and where \(\delta^c:\partial c \hookrightarrow c\) is the inclusion of the boundary of \(c\) (recall that \(\C\) was taken to be a regular skeletal Reedy category, so this makes sense).  
+  
+  We call \(\operatorname{Cell}(\mathscr{J})\) the class of \emph{horizontal inner anodynes}, and we call \(\operatorname{rlp}(\mathscr{J})\) the class of \emph{horizontal inner fibrations}.  
+\end{defn}
+
+\begin{rem}The precise definition and construction of the corner-intertwiner \(\square^\lrcorner_n\) is deferred to Appendix \ref{cornertensor}, but in this particular case, we can compute it by hand in terms of the intertwiner to be \[V_{\Lambda^n_k}(c_1,\dots,c_n) \cup \left(\bigcup_{i=1}^n V[n](c_1,\dots,\partial c_i \dots, c_n) \right) \hookrightarrow [n](c_1,\dots,c_n),\] where \(V_{\Lambda^n_k}(c_1,\dots,c_n)\) is the pullback of \([n](c_1,\dots,c_n)\) by the inclusion \(\Lambda^n_k\hookrightarrow \Delta^n\) (whenever \(K\subseteq \Delta^n\), we can apply this formula to compute the corner tensor).   
+\end{rem}
+
+\begin{defn} We call an object with the right lifting property with respect to \(\mathscr{J}\) a \emph{formal \(\C\)-quasicategory}. 
+\end{defn}
+
+The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in Appendix \ref{horizontal}.
+
+\begin{prop} The class of all monomorphisms of \(\psh{\Theta[\C]}\) is exactly \(\operatorname{Cell}(\mathscr{M}),\) where \[\mathscr{M}=\{\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) : n\geq 0 \text{ and } c_1,\dots,c_n \in \Ob \C\}.\]    
+\end{prop}
+
+\begin{prop}For any inner anodyne inclusion \(\iota:K\hookrightarrow \Delta^n\) and any family \(f_1,\dots,f_n\) of monomorphisms of \(\psh{\C}\), the map \[\square^\lrcorner_n(\iota,f_1,\dots,f_n)\] is horizontal inner anodyne.
+\end{prop}
+
+\begin{thm} The horizontal Joyal model structure is Cartesian-closed, and in particular, \[\operatorname{Cell}(\mathscr{M})\times^\lrcorner \operatorname{Cell}(\mathscr{J}) \subseteq \operatorname{Cell}(\mathscr{J}).\]
+\end{thm}
+
+\begin{thm} A horizontal inner fibration between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it has the right lifting property with respect to the map \(\Delta^0\hookrightarrow E^1\).  In particular, the formal \(\C\)-quasicategories are exactly the fibrant objects for the horizontal Joyal model structure.
+\end{thm}
+
+\section{Quillen functoriality}
+In this section, we show that the adjunction \(\mathfrak{C}\dashv \mathfrak{N}\) is a Quillen adjunction between \[\psh{\Theta[\C]}_{\mathrm{hJoyal}}\] and \[\Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}.\]  We begin with the following observation:
+
+\begin{prop} For any \(n>0\), let \(K\subseteq \{1,\dots,n-1\}\) and define \[\Lambda^n_K=\bigcup_{i\notin K} \partial_i \Delta^n,\]  and let \[\lambda^n_K:\Lambda^n_K\hookrightarrow \Delta^n\] denote the inclusion map.  Then \[\mathfrak{C}(\square^\lrcorner_n(\lambda^n_K,\delta^{c_1},\dots,\delta^{c_n}))(i,j)\] is an isomorphism whenever \(i\neq 0\) or \(j\neq n\).  Moreover, the map \[\mathfrak{C}(\square^\lrcorner_n(\lambda^n_K,\delta^{c_1},\dots,\delta^{c_n}))(0,n)\] is exactly \[\delta^{c_1}\times^\lrcorner h^1_K \times^\lrcorner \dots \times^\lrcorner h^{n-1}_K \times^\lrcorner \delta^{c_n},\] where \[h^k_K = \begin{cases} \lambda^1_1 \text{ if } k\in K \\ \delta^1 \text{ otherwise}\end{cases}.\]
+\end{prop}
+\begin{proof} 
+  Let \(X\) denote the domain of \(\square^\lrcorner_n(\lambda^n_K,\delta^{c_1},\dots,\delta^{c_n})\).  If \(f:T\to [n](c_1,\dots,c_n)_{i,j}\) is a bi-pointed map from a necklace \(T\), with \(i\neq 0\), then \(f\) factors through the inclusion of the subobject \([n-1](c_2,\dots,c_n)\subseteq V_{\Lambda^n_K}(c_1,\dots,c_n)\), so \(\mathfrak{C}(X)(i,j)=\mathfrak{C}([n](c_1,\dots,c_n)\).  The case where \(j\neq n\) follows by symmetry.  
+
+  The second part comes from the observation that when \(K=\{1,\dots,n-1\}\), \[\mathfrak{C}(V_{\Lambda^n_K}(c_1,\dots,c_n))(0,n)=\bigcup_{i=1}^{n-1} c_1\times \Gamma^1_i \times \dots \times \Gamma^{n-1}_i \times c_n,\] where \[\Gamma^\ell_i=\begin{cases} \Lambda^1_1 \text{ for } \ell=i\\ \Delta^1 \text{ otherwise} \end{cases}.\]  To see this, notice that \(\Lambda^n_K\) is the union of the two outer faces, and attaching them along their common face gives a colimit in \(\Cat_{\Psh_\Delta(\C)}\) where \(\mathfrak{C}(V_{\Lambda^n_K}(c_1,\dots,c_n)(0,n)\) is freely generated by compositions \[\mathfrak{C}([n-1](c_1,\dots,c_{n-1}))(0,\ell)\times \{1\} \times \mathfrak{C}([n-1](c_2,\dots,c_{n}))(\ell,n).\]
+  
+  For when \(K\) is otherwise, each additional inner face gives the factor \[\mathfrak{C}([n-1](c_1,\dots,c_{n-1}))(0,\ell)\times \{0\} \times \mathfrak{C}([n-1](c_2,\dots,c_{n}))(\ell,n),\] so in general, \[\mathfrak{C}(V_{\Lambda^n_K}(c_1,\dots,c_n))(0,n)=\bigcup_{i=1}^{n-1} c_1\times \Gamma^1_{i,K} \times \dots \times \Gamma^{n-1}_{i,K} \times c_n,\] where \[\Gamma^\ell_{i,K}=\begin{cases} \partial\Delta^1 \text{ for } \ell=i \text{ and } i\in K\\ \Lambda^1_1 \text{ for } \ell=i \text{ and } i\notin K\\ \Delta^1 \text{ otherwise} \end{cases}.\] Each factor \[V[n](c_1,\dots,\partial c_j, \dots, c_n)\] contributes \[\mathfrak{C}(V[n](c_1,\dots,\partial c_j, \dots, c_n))(0,n)=c_1\times \Delta^1\times\dots \times \Delta^1 \times \partial c_j \times \Delta^1 \times \dots \times \Delta^1 \times c_n,\] and taking the union of all of the factors gives exactly the domain of the inclusion \[\delta^{c_1}\times^\lrcorner h^1_K \times^\lrcorner \dots \times^\lrcorner h^{n-1}_K \times^\lrcorner \delta^{c_n}.\]
+\end{proof}
+\begin{prop}\label{quillen1} The functor \(\mathfrak{C}\) sends monomorphisms to cofibrations and horizontal inner anodynes to trivial cofibrations.
+\end{prop}
+\begin{proof} 
+  Let \[U:\Psh_\Delta(\C) \to \Cat_{\Psh_\Delta(\C)}\] be the functor sending a simplicial presheaf \(X\) to the enriched category with objects \(\{0,1\}\) with \(U(X)(0,0)=U(X)(1,1)=\ast\), \(U(X)(1,0)=\emptyset\), and \(U(X)(0,1)=X\).  
+  
+  When \(K=\emptyset\), \(\lambda^n_K=\delta^n\), so the lemma tells us that \[\mathfrak{C}(\square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\] is a pushout of the map \[U(\delta^{c_1}\times^\lrcorner \delta^1 \times^\lrcorner \dots \times^\lrcorner \delta^1 \times^\lrcorner \delta^{c_n}),\] which is a cofibration, which proves the claim.
+
+  Similarly, when \(K\) is a singleton, \(\lambda^n_K=\lambda^n_k\) is the inclusion of an inner horn, so \[\mathfrak{C}(\square^\lrcorner_n(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n})\] is the pushout of the map \[U(\delta^{c_1}\times^\lrcorner h^1_k \times^\lrcorner \dots \times^\lrcorner h^{n-1}_k \times^\lrcorner \delta^{c_n}),\] where \(h^k_k=\lambda^1_1\).  This is a corner map where one factor is a trivial cofibration (because it is Kan anodyne), and therefore its image under \(U\) is a trivial cofibration.  Since the pushout of a trivial cofibration is a trivial cofibration, we are done.
+\end{proof}
+
+\begin{cor} The coherent nerve of a fibrant \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched category is a formal \(\C\)-quasicategory.
+\end{cor}
+
+We follow along with \cite{ds1}*{Section 6} in the next few proofs. Recall that we defined \(E^n=\operatorname{cosk}_0 \Delta^n\). Then we have the following lemma:
+\begin{lemma} The object \(\mathfrak{C}(E^n)\) is contractible for all \(n\).  
+\end{lemma}
+\begin{proof} We notice immediately that \(\mathfrak{C}(E^n)(i,j)_\bullet\) is a constant simplicial presheaf for all \(i,j\), so it suffices to show taht \(\mathfrak{C}(E^n)(i,j)_\ast\) is contractible for all \(i,j\), but then it follows immediately from the classical case. 
+\end{proof}
+
+\begin{prop}The functor \(\mathfrak{C}\) takes horizontal Joyal equivalences to weak equivalences of \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched categories.
+\end{prop}
+\begin{proof} 
+  First, notice that by Section \ref{productlemma}, we have that the map \[\mathfrak{C}(X\times E^n)\xrightarrow{\sim} \mathfrak{C}(X)\times \mathfrak{C}(E^n),\] and that by the previous lemma, we have that \[\mathfrak{C}(X)\times \mathfrak{C}(E^n)\xrightarrow{\sim} X\] is also a weak equivalence.  The composite of these two maps is exactly \[\mathfrak{C}(p_X):\mathfrak{C}(X\times E^n)\to \mathfrak{C}(X),\] which is therefore also a weak equivalence.
+  
+  Since \(X \coprod X \hookrightarrow X\times E^1\) is monic, it follows that \(\mathfrak{C}\) carries it into a cofibration by Proposition \ref{quillen1}, so taking these two facts together, we see that \[\mathfrak{C}(X)\coprod \mathfrak{C}(X)=\mathfrak{C}(X\coprod X) \hookrightarrow \mathfrak{C}(X\times E^1) \xrightarrow{\sim} \mathfrak{C}(X)\] exhibits \(\mathfrak{C}(X\times E^1)\) as a cylinder object for \(X\) in the category of \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched categories. 
+
+  If \(\mathcal{D}\) is a fibrant \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched category, we may compute the set of  homotopy classes of maps \([\mathfrak{C}(X),\mathcal{D}]\) as the coequalizer \[\colim \left(\Cat_{\Psh_\Delta(\C)}(\mathfrak{C}(X),\mathcal{D})\rightrightarrows \Cat_{\Psh_\Delta(\C)}(\mathfrak{C}(X\times E^1),\mathcal{D})\right),\] which is isomorphic under adjunction to 
+  \[\colim \left( \psh{\Theta[\C]}(X,\mathfrak{N}(\mathcal{D})) \rightrightarrows \psh{\Theta[\C]}(X\times E^1,\mathfrak{N}(\mathcal{D}))\right).\]
+
+  But now notice that \[[\mathfrak{C}(X),\mathcal{D}] \cong [X, \mathfrak{N}\mathcal{D}]_{E^1}]\].  By the usual model categorical nonsense, a map \(\mathcal{A}\to \mathcal{A}^\prime\) between cofibrant objects in \(\Cat_{\Psh_\Delta(\C)}\) is a weak equivalence if and only if it induces a bijection \[[\mathcal{A}^\prime,\mathcal{D}]\to [\mathcal{A},\mathcal{D}]\] for all fibrant objects \(\mathcal{D}\). However, a horizontal Joyal equivalence has exactly this property for \[[\cdot,\cdot]_{E^1},\] and since \(\mathfrak{N}(\mathcal{D})\) is a formal \(\C\)-quasicategory for all fibrant \(\mathcal{D}\), we are done.  
+\end{proof}
+\appendix
+\section{The corner tensor construction}\label{cornertensor}
+\section{The horizontal Joyal model structure}\label{horizontal}
+%%% bibliography
+\begin{bibdiv}
+\begin{biblist}
+%\bibselect{bibdatabase}
+
+\bib{berger-iterated-wreath}{article}{
+  author={Berger, C.},
+  title={Iterated wreath product of the simplex category and iterated loop spaces},
+  journal={Adv. Math.},
+  volume={213},
+  date={2007},
+  number={1},
+  pages={230--270},
+  issn={0001-8708},
+  review={\MR {2331244 (2008f:55010)}},
+}
+
+\bib{cisinski-book}{book}{
+author={Cisinski, D.-C.},
+title={Les pr\'efaisceaux comme mod\`eles des types d'homotopie},
+publisher={Soc. Math. France},
+date={2006},
+series={Ast\'erisque},
+volume={308},
+}
+
+\bib{ds1}{article}{
+  author={Dugger, D.},
+  author={Spivak, D.},
+  title={Rigidification of quasi-categories},
+  journal={Algebr. Geom. Topol.},
+  volume={11},
+  date={2011},
+  number={1},
+  pages={225--261},
+  review={\MR{2764042}},
+}
+
+\bib{ds2}{article}{
+  author={Dugger, D.},
+  author={Spivak, D.},
+  title={Mapping spaces in quasi-categories},
+  journal={Algebr. Geom. Topol.},
+  volume={11},
+  date={2011},
+  number={1},
+  pages={263--325},
+  review={\MR{2764043}},
+}
+
+\bib{lmw}{article}{
+author={Lafont, Y. AND Metayer, F. AND Worytkiewicz, K.},
+title={A folk model structure on omega-cat}, 
+journal={Preprint},
+date={2007},
+}
+
+\bib{oury}{thesis}{
+	author={Oury, D.},
+	title={Duality for Joyal’s category \(\Theta\) and homotopy concepts for \(\Theta_2\)-sets},
+	organization={Macquarie University},
+	date={2010},
+	}
+
+\bib{rezk-theta-n-spaces}{article}{
+  author={Rezk, C.},
+  title={A Cartesian presentation of weak \(n\)-categories},
+  journal={Geom. Topol.},
+  volume={14},
+  date={2010},
+  number={1},
+  pages={521--571},
+  issn={1465-3060},
+  review={\MR {2578310}},
+  doi={10.2140/gt.2010.14.521},
+}
+
+\bib{steiner-2004}{article}{
+author={Steiner, R.},
+title={Omega-categories and chain complexes}, 
+journal={Homology, Homotopy, Appl},
+volume={6},
+date={2004}, 
+number={1},
+pages={175-200},
+}
+
+\bib{steiner-2007}{article}{
+author={Steiner, R.},
+title={Simple omega-categories and chain complexes}, 
+journal={Homology, Homotopy, Appl},
+volume={9},
+date={2007}, 
+number={1},
+pages={175-200},
+}
+
+
+\end{biblist}
+\end{bibdiv}
+\end{document}
+
+
