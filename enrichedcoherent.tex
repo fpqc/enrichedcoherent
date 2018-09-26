@@ -479,6 +479,7 @@ Then we need to show that \(E_{X,c}\) is a homotopy colimit:
 \end{thm}
 \begin{proof} See \cite{ds1}*{4.4,4.10,5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \(\ell^\mathrm{th}\) row of the bisimplicial set of pairs \[(\sigma:[n]\to D; x \in F(\sigma(0))_\ell)\] is homotopy-discrete, which means that the homotopy and ordinary colimit agree.  Our indexing category is just a disjoint union of copies of their indexing category, so if theirs is homotopy-discrete, so is ours.  
 \end{proof}
+
 \section{Enriched gadgets}
 The general theory of gadgets developed in \cite{ds1} is difficult to adapt to the enriched setting, and we give a less-than-ideal generalization in the sequel:
 
@@ -518,9 +519,6 @@ We define \(\mathcal{G}_c\) to be the image of \(\mathcal{G}\) under evaluation 
 \begin{proof} The map between the two constructions is the identity on objects and induces Hom-wise weak equivalences of simplicial presheaves.
 \end{proof}
 
-\section{First application of gadgets}
-In this section, we use gadgets to prove that for any two presheaves \(X\) and \(Y\) on \(\Theta[\C]\), the natural map \[\mathfrak{C}(X\times Y)\to \mathfrak{C}(X)\times \mathfrak{C}(Y)\] is a weak equivalence.   
-
 \section{The horizontal Joyal model structure}
 We define a Cisinski model structure on \(\psh{\Theta[\C]}\) and state several results that we will need in the sequel:
 
@@ -547,11 +545,11 @@ The following results are stated here without proof.  All proofs are heavily ins
 \begin{thm} The horizontal Joyal model structure is Cartesian-closed, and in particular, \[\operatorname{Cell}(\mathscr{M})\times^\lrcorner \operatorname{Cell}(\mathscr{J}) \subseteq \operatorname{Cell}(\mathscr{J}).\]
 \end{thm}
 
-\begin{thm} A horizontal inner fibration between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it has the right lifting property with respect to the map \(\Delta^0\hookrightarrow E^1\).  In particular, the formal \(\C\)-quasicategories are exactly the fibrant objects for the horizontal Joyal model structure.
+\begin{thm}\label{isofibrations} A horizontal inner fibration between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it has the right lifting property with respect to the map \(\Delta^0\hookrightarrow E^1\).  In particular, the formal \(\C\)-quasicategories are exactly the fibrant objects for the horizontal Joyal model structure.
 \end{thm}
 
 \section{Quillen functoriality}
-In this section, we show that the adjunction \(\mathfrak{C}\dashv \mathfrak{N}\) is a Quillen adjunction between \[\psh{\Theta[\C]}_{\mathrm{hJoyal}}\] and \[\Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}.\]  We begin with the following observation:
+In this section, we show that the adjunction \[\psh{\Theta[\C]}_{\mathrm{hJoyal}} \underset{mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\] is a Quillen pair. We begin with the following observation:
 
 \begin{prop} For any \(n>0\), let \(K\subseteq \{1,\dots,n-1\}\) and define \[\Lambda^n_K=\bigcup_{i\notin K} \partial_i \Delta^n,\]  and let \[\lambda^n_K:\Lambda^n_K\hookrightarrow \Delta^n\] denote the inclusion map.  Then \[\mathfrak{C}(\square^\lrcorner_n(\lambda^n_K,\delta^{c_1},\dots,\delta^{c_n}))(i,j)\] is an isomorphism whenever \(i\neq 0\) or \(j\neq n\).  Moreover, the map \[\mathfrak{C}(\square^\lrcorner_n(\lambda^n_K,\delta^{c_1},\dots,\delta^{c_n}))(0,n)\] is exactly \[\delta^{c_1}\times^\lrcorner h^1_K \times^\lrcorner \dots \times^\lrcorner h^{n-1}_K \times^\lrcorner \delta^{c_n},\] where \[h^k_K = \begin{cases} \lambda^1_1 \text{ if } k\in K \\ \delta^1 \text{ otherwise}\end{cases}.\]
 \end{prop}
@@ -575,24 +573,22 @@ In this section, we show that the adjunction \(\mathfrak{C}\dashv \mathfrak{N}\)
 \begin{cor} The coherent nerve of a fibrant \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched category is a formal \(\C\)-quasicategory.
 \end{cor}
 
-We follow along with \cite{ds1}*{Section 6} in the next few proofs. Recall that we defined \(E^n=\operatorname{cosk}_0 \Delta^n\). Then we have the following lemma:
-\begin{lemma} The object \(\mathfrak{C}(E^n)\) is contractible for all \(n\).  
+\begin{lemma} The object \(\mathfrak{C}(E^n)\) is weakly contractible for all \(n\).  
 \end{lemma}
-\begin{proof} We notice immediately that \(\mathfrak{C}(E^n)(i,j)_\bullet\) is a constant simplicial presheaf for all \(i,j\), so it suffices to show taht \(\mathfrak{C}(E^n)(i,j)_\ast\) is contractible for all \(i,j\), but then it follows immediately from the classical case. 
+\begin{proof} We notice immediately that \(\mathfrak{C}(E^n)(i,j)_\bullet\) is a constant simplicial presheaf for all \(i,j\), so it suffices to show that \(\mathfrak{C}(E^n)(i,j)_\ast\) is contractible for all \(i,j\), but then it follows immediately from the classical case. 
 \end{proof}
 
-\begin{prop}The functor \(\mathfrak{C}\) takes horizontal Joyal equivalences to weak equivalences of \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched categories.
+\begin{prop} The coherent nerve sends fibrations between fibrant \(\Psh_\Delta(\C)\)-enriched categories to fibrations for the horizontal Joyal model structure.
 \end{prop}
-\begin{proof} 
-  First, notice that by Section \ref{productlemma}, we have that the map \[\mathfrak{C}(X\times E^n)\xrightarrow{\sim} \mathfrak{C}(X)\times \mathfrak{C}(E^n),\] and that by the previous lemma, we have that \[\mathfrak{C}(X)\times \mathfrak{C}(E^n)\xrightarrow{\sim} X\] is also a weak equivalence.  The composite of these two maps is exactly \[\mathfrak{C}(p_X):\mathfrak{C}(X\times E^n)\to \mathfrak{C}(X),\] which is therefore also a weak equivalence.
-  
-  Since \(X \coprod X \hookrightarrow X\times E^1\) is monic, it follows that \(\mathfrak{C}\) carries it into a cofibration by Proposition \ref{quillen1}, so taking these two facts together, we see that \[\mathfrak{C}(X)\coprod \mathfrak{C}(X)=\mathfrak{C}(X\coprod X) \hookrightarrow \mathfrak{C}(X\times E^1) \xrightarrow{\sim} \mathfrak{C}(X)\] exhibits \(\mathfrak{C}(X\times E^1)\) as a cylinder object for \(X\) in the category of \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched categories. 
-
-  If \(\mathcal{D}\) is a fibrant \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched category, we may compute the set of  homotopy classes of maps \([\mathfrak{C}(X),\mathcal{D}]\) as the coequalizer \[\colim \left(\Cat_{\Psh_\Delta(\C)}(\mathfrak{C}(X),\mathcal{D})\rightrightarrows \Cat_{\Psh_\Delta(\C)}(\mathfrak{C}(X\times E^1),\mathcal{D})\right),\] which is isomorphic under adjunction to 
-  \[\colim \left( \psh{\Theta[\C]}(X,\mathfrak{N}(\mathcal{D})) \rightrightarrows \psh{\Theta[\C]}(X\times E^1,\mathfrak{N}(\mathcal{D}))\right).\]
-
-  But now notice that \[[\mathfrak{C}(X),\mathcal{D}] \cong [X, \mathfrak{N}\mathcal{D}]_{E^1}]\].  By the usual model categorical nonsense, a map \(\mathcal{A}\to \mathcal{A}^\prime\) between cofibrant objects in \(\Cat_{\Psh_\Delta(\C)}\) is a weak equivalence if and only if it induces a bijection \[[\mathcal{A}^\prime,\mathcal{D}]\to [\mathcal{A},\mathcal{D}]\] for all fibrant objects \(\mathcal{D}\). However, a horizontal Joyal equivalence has exactly this property for \[[\cdot,\cdot]_{E^1},\] and since \(\mathfrak{N}(\mathcal{D})\) is a formal \(\C\)-quasicategory for all fibrant \(\mathcal{D}\), we are done.  
+\begin{proof} Given a fibration between two fibrant \(\Psh_\Delta(\C)\)-enriched categories, \(p:\mathcal{D}\to \mathcal{D}^\prime\), we see immediately that the coherent nerve takes this fibration to a horizontal inner fibration between formal \(\C\)-quasicategories by Proposition \ref{quillen1}.  To show that it is a fibration for the horizontal Joyal model structure, it suffices by Theorem \ref{isofibrations} to show that it has the right lifting property with respect to the inclusion \(e:\Delta^0 \hookrightarrow E^1\). By Proposition \ref{quillen1}, we see that \(\mathfrak{C}\) takes the monomorphism \(e\) to a cofibration, and by the previous lemma, we see that \(\mathfrak{C}(e)\) is a weak equivalence.  It follows that \(\mathfrak{N}(p)\) is a fibration for the horizontal Joyal model structure.  
 \end{proof}
+
+\begin{cor} The adjunction \[\psh{\Theta[\C]}_{\mathrm{hJoyal}} \underset{mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\] is a Quillen pair.
+\end{cor}
+\begin{proof} If \(\mathfrak{C}\) takes cofibrations to cofibrations, and \(\mathfrak{N}\) takes fibrations between fibrant objects to fibrations between fibrant objects, then the adjunction is a Quillen pair, but this is exactly what we proved in this section.
+\end{proof}
+
+\section{}
 \appendix
 \section{The corner tensor construction}\label{cornertensor}
 \section{The horizontal Joyal model structure}\label{horizontal}
