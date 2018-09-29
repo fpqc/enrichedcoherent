@@ -480,45 +480,6 @@ Then we need to show that \(E_{X,c}\) is a homotopy colimit:
 \begin{proof} See \cite{ds1}*{4.4,4.10,5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \(\ell^\mathrm{th}\) row of the bisimplicial set of pairs \[(\sigma:[n]\to D; x \in F(\sigma(0))_\ell)\] is homotopy-discrete, which means that the homotopy and ordinary colimit agree.  Our indexing category is just a disjoint union of copies of their indexing category, so if theirs is homotopy-discrete, so is ours.  
 \end{proof}
 
-\section{Enriched gadgets}
-The general theory of gadgets developed in \cite{ds1} is difficult to adapt to the enriched setting, and we give a less-than-ideal generalization in the sequel:
-
-\begin{defn} 
-  A \emph{pre-gadget} of rank \(n\) is a functor \[G: \C \to \psh{\Theta[\C]}_{\ast,\ast}\] such that there exists a simplicial set \(S\) and a natural isomorphism \[\mathfrak{C}(G(c))(\alpha,\omega) \cong S\times c^n\] for all \(c\in \C\) (where \(c^n\) denotes the \(n^\mathrm{th}\) cartesian power of the representable), where naturality implies that for any \(f:c\to d\) in \(\C\), \[\mathfrak{C}(G(f))(\alpha,\omega)=\id_S \times f^n.\]
-  
-  A \emph{gadget} of rank \(n\) is a pre-gadget \(G\) such that the projection map \[\mathfrak{C}(G(c))(\alpha,\omega) \cong S\times c^n \to c^n\] is a weak equivalence.  That is to say, \(S\) is weakly contractible.
-\end{defn}
-
-\begin{rem} We can see from the definition that every simplicial necklace \(T\) defines a gadget sending \(c\) in \(\C\) to the uniform necklace \(T\{c\}\) of type \(c\).  In what follows, by abuse of notation, we will use \(T\) to denote both the underlying simplicial necklace as well as this gadget.
-\end{rem}
-
-Unlike in the simplicial case, we have seen that we cannot simply get away with looking at full subcategories, so we have to be careful about morphisms.
-
-\begin{defn} 
-  Let \(T\) be a simplicial necklace.  Then for a gadget \(G\) of rank \(n\), we define a \emph{special morphism} \(f:T\to G\) to be a natural transformation such that for each \(c\) in \(\C\), the image of the induced map \[\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega) \to \mathfrak{C}(G)(\alpha,\omega)_c=S\times \Hom(c,c)^n\] belongs to the connected component corresponding to the \(n^\mathrm{th}\) diagonal \((\id_c)^n\). 
-
-  More generally, given a pair of gadgets \(G,G^\prime\), we define a \emph{special morphism} \(\phi:G\to G^\prime\) to be a natural transformation such that given any simplicial necklace \(T\) and any special morphism \(f:T\to G\), the induced map \(\phi\circ f:T\to G^\prime\) is special.  
-\end{defn}
-
-\begin{rem} If \(T\) and \(T^\prime\) are two simplicial necklaces, the component at \(c\) of a special morphism \(T\to T^\prime\) is precisely a special map between uniform necklaces of type \(c\).
-\end{rem}
-
-\begin{defn} We define \emph{a category of gadgets} \(\mathcal{G}\) to be a subcategory of the category of all gadgets and special maps containing all necklaces and all special morphisms \(T\to G\) where \(T\) is a necklace and \(G\) is in \(\mathcal{G}\).  We say that the category of gadgets is \emph{closed under wedges} if it is closed under concatenation of gadgets.
-
-We define \(\mathcal{G}_c\) to be the image of \(\mathcal{G}\) under evaluation at \(c\in \C\).
-\end{defn}
-
-\begin{defn} Given a presheaf \(X\) on \(\Theta[\C]\) and a category of gadgets \(\mathcal{G}\) closed under wedges, we define a \(\Psh_\Delta(\C)\)-enriched category \(\mathfrak{C}^{\mathcal{G}}(X)\) to be the category whose objects are the vertices of \(X\) and whose Hom-objects are given by the formula \[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_c\coloneqq N\overcat{\mathcal{G}_c}{X_{x,y}}.\]  This defines an enriched category by taking the composition operation to be concatenation of gadgets, which works since \(\mathcal{G}\) is closed under wedges.
-\end{defn}
-\begin{prop} Given a presheaf \(X\) on \(\Theta[\C]\) and two vertices \(x,y\) of \(X\) and a category of gadgets \(\mathcal{G}\) the map \[N\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}} \hookrightarrow N\overcat{\mathcal{G}_c}{X_{x,y}}\] is a weak homotopy equivalence.
-\end{prop}
-\begin{proof} By Quillen's theorem A, it suffices to look at the overcategories \(\overcat{\Nec^\mathbf{sp}_c}{G(c)}\) along the inclusion \(\Nec^\mathbf{sp}_c\hookrightarrow \mathcal{G}_c\) for all \(G\) in \(\mathcal{G}\) and show that they are contractible, but these overcategories correspond on-the-nose to the subcategories classifying the diagonal component of \(\mathfrak{C}^\Nec(G)(\alpha,\omega)\), which is contractible because \(G\) is a gadget.
-\end{proof}
-\begin{cor} The constructions \(\mathfrak{C}^\Nec\) and \(\mathfrak{C}^\mathcal{G}\) are naturally weakly Dwyer-Kan equivalent.
-\end{cor}
-\begin{proof} The map between the two constructions is the identity on objects and induces Hom-wise weak equivalences of simplicial presheaves.
-\end{proof}
-
 \section{The horizontal Joyal model structure}
 We define a Cisinski model structure on \(\psh{\Theta[\C]}\) and state several results that we will need in the sequel:
 
@@ -547,6 +508,9 @@ The following results are stated here without proof.  All proofs are heavily ins
 
 \begin{thm}\label{isofibrations} A horizontal inner fibration between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it has the right lifting property with respect to the map \(\Delta^0\hookrightarrow E^1\).  In particular, the formal \(\C\)-quasicategories are exactly the fibrant objects for the horizontal Joyal model structure.
 \end{thm}
+
+\begin{prop} Given a necklace \(T\), there is a unique embedding \(\iota_T:T\hookrightarrow \Delta[T]\), where \(\Delta[T]\) is the unique representable whose spine is exactly the spine of \(T\).  This map sends the spine of \(T\) isomorphically onto the spine of \(\Delta[T]\) and is a horizontal inner anodyne.   
+\end{prop}
 
 \section{Quillen functoriality}
 In this section, we show that the adjunction \[\psh{\Theta[\C]}_{\mathrm{hJoyal}} \underset{mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\] is a Quillen pair. We begin with the following observation:
@@ -583,15 +547,122 @@ In this section, we show that the adjunction \[\psh{\Theta[\C]}_{\mathrm{hJoyal}
 \begin{proof} Given a fibration between two fibrant \(\Psh_\Delta(\C)\)-enriched categories, \(p:\mathcal{D}\to \mathcal{D}^\prime\), we see immediately that the coherent nerve takes this fibration to a horizontal inner fibration between formal \(\C\)-quasicategories by Proposition \ref{quillen1}.  To show that it is a fibration for the horizontal Joyal model structure, it suffices by Theorem \ref{isofibrations} to show that it has the right lifting property with respect to the inclusion \(e:\Delta^0 \hookrightarrow E^1\). By Proposition \ref{quillen1}, we see that \(\mathfrak{C}\) takes the monomorphism \(e\) to a cofibration, and by the previous lemma, we see that \(\mathfrak{C}(e)\) is a weak equivalence.  It follows that \(\mathfrak{N}(p)\) is a fibration for the horizontal Joyal model structure.  
 \end{proof}
 
-\begin{cor} The adjunction \[\psh{\Theta[\C]}_{\mathrm{hJoyal}} \underset{mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\] is a Quillen pair.
+\begin{cor} The adjunction \[\psh{\Theta[\C]}_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\] is a Quillen pair.
 \end{cor}
 \begin{proof} If \(\mathfrak{C}\) takes cofibrations to cofibrations, and \(\mathfrak{N}\) takes fibrations between fibrant objects to fibrations between fibrant objects, then the adjunction is a Quillen pair, but this is exactly what we proved in this section.
 \end{proof}
 
-\section{}
+\section{Enriched gadgets}
+The general theory of gadgets developed in \cite{ds1} is difficult to adapt to the enriched setting, and we give a less-than-ideal generalization in the sequel:
+
+\begin{defn} 
+  A \emph{gadget} of rank \(n\) is a functor \[G: \C \to \psh{\Theta[\C]}_{\ast,\ast}\] such that there exists a \(c\)-indexed simplicial presheaf \(S_G^\bullet\) and a natural zig-zag of weak homotopy equivalences of simplicial presheaves \[\mathfrak{C}(G(c))(\alpha,\omega) \xleftarrow{\sim} S_G^c \xrightarrow{\sim} c^n\] for all \(c\in \C\) (where \(c^n\) denotes the \(n^\mathrm{th}\) cartesian power of the representable), where naturality implies that for any \(f:c\to d\) in \(\C\), the diagram
+    \begin{equation*}
+      \begin{tikzpicture}
+      \matrix (b) [matrix of math nodes, row sep=3em,
+      column sep=3em, text height=1.5ex, text depth=0.25ex]
+      { \mathfrak{C}(G(c))(\alpha,\omega) & S_G^c & c^n \\
+        \mathfrak{C}(G(d))(\alpha,\omega) & S_G^d & d^n\\};
+      \path[->, font=\scriptsize]
+      (b-1-2) edge (b-1-1)
+              edge (b-1-3)
+              edge node[auto,swap]{\(\scriptstyle{S^f_G}\)} (b-2-2)
+      (b-1-1) edge node[auto,swap]{\(\scriptstyle{\mathfrak{C}(G(f))(\alpha,\omega)} \)} (b-2-1)
+      (b-2-2) edge (b-2-1)
+      (b-2-2) edge (b-2-3)
+      (b-1-3) edge node[auto,swap]{\(\scriptstyle{f^n}\)} (b-2-3);
+      \end{tikzpicture}.
+    \end{equation*}
+  commutes. 
+\end{defn}
+
+\begin{rem} We can see from the definition that every simplicial necklace \(T\) defines a gadget sending \(c\) in \(\C\) to the uniform necklace \(T\{c\}\) of type \(c\).  In what follows, by abuse of notation, we will use \(T\) to denote both the underlying simplicial necklace as well as this gadget.
+\end{rem}
+
+Unlike in the simplicial case, we have seen that we cannot simply get away with looking at full subcategories, so we have to be careful about morphisms.
+
+\begin{defn} 
+  Let \(T\) be a simplicial necklace.  Then for a gadget \(G\) of rank \(n\), we define a \emph{special morphism} \(f:T\to G\) to be a natural transformation such that for each \(c\) in \(\C\), the image of the induced map \[\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega) \to \mathfrak{C}(G)(\alpha,\omega)_c\] lands in the connected component corresponding to the \(n^\mathrm{th}\) diagonal \((\id_c)^n\). 
+
+  More generally, given a pair of gadgets \(G,G^\prime\), we define a \emph{special morphism} \(\phi:G\to G^\prime\) to be a natural transformation such that given any simplicial necklace \(T\) and any special morphism \(f:T\to G\), the induced map \(\phi\circ f:T\to G^\prime\) is special.  
+\end{defn}
+
+\begin{rem} If \(T\) and \(T^\prime\) are two simplicial necklaces, the component at \(c\) of a special morphism \(T\to T^\prime\) is precisely a special map between uniform necklaces of type \(c\).
+\end{rem}
+
+\begin{defn} We define \emph{a category of gadgets} \(\mathcal{G}\) to be a subcategory of the category of all gadgets and special maps containing all necklaces and all special morphisms \(T\to G\) where \(T\) is a necklace and \(G\) is in \(\mathcal{G}\).  We say that the category of gadgets is \emph{closed under wedges} if it is closed under concatenation of gadgets.
+
+We define \(\mathcal{G}_c\) to be the image of \(\mathcal{G}\) under evaluation at \(c\in \C\).
+\end{defn}
+
+\begin{defn}
+  Given a presheaf \(X\) on \(\Theta[\C]\), two vertices \(x,y\) in \(X_0\) and a category of gadgets \(\mathcal{G}\), we define a simplicial presheaf on \(\C\) by the formula \[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_c\coloneqq N\overcat{\mathcal{G}_c}{X_{x,y}}.\]  
+  
+  When \(\mathcal{G}\) is closed under wedges, we can define the \(\Psh_\Delta(\C)\)-enriched category \(\mathfrak{C}^{\mathcal{G}}(X)\) to be the category whose objects are the vertices of \(X\) and whose Hom-objects are \[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_\cdot.\]  This defines an enriched category by taking the composition operation to be concatenation of gadgets, which works since \(\mathcal{G}\) is closed under wedges.
+\end{defn}
+\begin{prop} Given a presheaf \(X\) on \(\Theta[\C]\) and two vertices \(x,y\) of \(X\) and a category of gadgets \(\mathcal{G}\) the map \[N\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}} \hookrightarrow N\overcat{\mathcal{G}_c}{X_{x,y}}\] is a weak homotopy equivalence.
+\end{prop}
+\begin{proof} By Quillen's theorem A, it suffices to look at the overcategories \(\overcat{\Nec^\mathbf{sp}_c}{G(c)}\) along the inclusion \(\Nec^\mathbf{sp}_c\hookrightarrow \mathcal{G}_c\) for all \(G\) in \(\mathcal{G}\) and show that their nerves are contractible, but these overcategories correspond on-the-nose to the subcategories classifying the diagonal component of \(\mathfrak{C}^\Nec(G)(\alpha,\omega)\), which is contractible because \(G\) is a gadget.
+\end{proof}
+\begin{cor} The constructions \(\mathfrak{C}^\Nec\) and \(\mathfrak{C}^\mathcal{G}\) are naturally weakly Dwyer-Kan equivalent when \(\mathcal{G}\) is closed under wedges.
+\end{cor}
+\begin{proof} The map between the two constructions is the identity on objects and induces Hom-wise weak equivalences of simplicial presheaves.
+\end{proof}
+
+\section{The \(\Hom\) by cosimplicial resolution}
+For every object \([1](c)\) in \(\Theta[\C]\), we introduce four canonical cosimplicial resolutions, which we can use to define simplicial presheaves that represent the mapping space between two vertices of a \(\Theta[C]\)-set.  
+
+First, we define the functor \[(\bullet)^{\triangleright}(c),\text{ resp. }(\bullet)^{\triangleleft}(c): \Delta \to \Theta[\C],\] which sends \[[n]\mapsto [n+1](\ast,\dots,\ast,c), \text{ resp. } [n]\mapsto [n+1](c,\ast,\dots,\ast).\]  We see immediately that there are natural embeddings \[([n])^{\triangleright,c} \hookrightarrow \Delta^n \times [1](c)  \hookleftarrow ([n])^{\triangleleft,c}\] where each map embeds along the respective outer shuffle. We also have an obvious natural embedding \[\Delta^n\times [1](c) \hookrightarrow E^n\times [1](c).\]
+
+Then we define the following four cosimplicial objects:
+\[C^\bullet_{\mathrm{cyl}}(c)\coloneqq \colim \left( V[1](\emptyset) \leftarrow \Delta^\bullet \times V[1](\emptyset) \hookrightarrow \Delta^\bullet\times [1](c)\right)\]
+\[C^\bullet_{E}(c)\coloneqq \colim \left( V[1](\emptyset) \leftarrow E^\bullet \times V[1](\emptyset) \hookrightarrow E^\bullet\times [1](c)\right)\]
+\[C^\bullet_{R}(c)\coloneqq \colim \left( \ast \leftarrow \Delta^\bullet \xrightarrow{\partial^{\bullet}} (\bullet)^\triangleright(c)\right)\]
+\[C^\bullet_{L}(c)\coloneqq \colim \left( \ast \leftarrow \Delta^\bullet \xrightarrow{\partial^0} (\bullet)^\triangleleft(c)\right).\]
+
+These cosimplicial objects fit in a natural diagram 
+\begin{equation*}
+  \begin{tikzpicture}
+  \matrix (b) [matrix of math nodes, row sep=3em,
+  column sep=3em, text height=1.5ex, text depth=0.25ex]
+  { C^\bullet_R(c) & &  \\
+    & C^\bullet_{\mathrm{cyl}}(c) & C^\bullet_E(c) \\
+    C^\bullet_L(c) & & \\};
+  \path[->, font=\scriptsize]
+  (b-1-1) edge (b-2-2)
+  (b-3-1) edge (b-2-2)
+  (b-2-2) edge (b-2-3);
+  \end{tikzpicture}.
+\end{equation*}
+induced by the inclusions we described above.  
+\begin{prop} Each of the cosimplicial objects described above is a Reedy-cofibrant object of bipointed presheaves on \(\Theta[\C]\), and each is objectwise horizontal-Joyal equivalent to the constant cosimplicial object \([1](c)\).  That is to say, each of these cosimplicial objects is a cosimplicial resolution of \([1](c)\) in \(\psh{\Theta[\C]}_{\ast,\ast}\). 
+\end{prop}
+\begin{proof} That they are Reedy-cofibrant is obvious, and it is also obvious that \(C^\bullet_E(c)\) is objectwise horizontal-Joyal equivalent to \([1](c)\).  The proof that the others are horizontal-Joyal equivalent will be covered in Appendix \ref{cosimplicial} by showing that each of the projection maps admits a horizontal inner-anodyne section.
+\end{proof}
+\begin{cor} Each of the functors \(C^n_\mathrm{cyl}(\bullet), C^n_R(\bullet), C^n_L(\bullet), C^n_E(\bullet)\) defines a rank-\(1\) gadget for each \(n\geq 0\).
+\end{cor}
+\begin{proof} Since \(\mathfrak{C}\) is left-Quillen, it preserves weak equivalences between cofibrant objects in \(\psh{\Theta[\C]}\).  It follows that since for each \(n\geq 0\) we have that \(C^n_{-}(\bullet)\to [1](\bullet)\) is a weak equivalence, then \[\mathfrak{C}(C^n_{-}(\bullet))(\alpha,\omega) \to \mathfrak{C}([1](\bullet))(\alpha,\omega)=\bullet\] is a weak equivalence, so we have the natural zig-zag we require.  
+\end{proof}
+\begin{defn} Given a bipointed presheaf \(X_{x,y}\) on \(\Theta[\C]\) we define the \emph{mapping object} from \(x\) to \(y\) to the simplicial presheaf obtained by taking homotopy function complexes \[\Map_X(x,y)_c\coloneqq h\psh{\Theta[\C]}_{\ast,\ast}([1](c), X).\] 
+\end{defn}
+
+We can compute these function complexes for horizontal-Joyal fibrant objects using our cosimplicial resolutions.  Then we have the following result:
+
+\begin{prop}\label{goodgadgets} Given a necklace \(T\) with spine \([1](c_1)\vee \dots \vee [1](c_n)\), \(\Map_T(\alpha,\omega) \simeq c_1\times\dots\times c_n\).
+\end{prop}
+\begin{proof} Since \(T\hookrightarrow \Delta[T]\) is a horizontal inner-anodyne and \(\Delta[T]\) is fibrant, we can compute \(\Map_T(\alpha,\omega)\) by the formula \[\Map_T(\alpha,\omega)_{k,c} = \psh{\Theta[\C]}_{\ast,\ast}(C^k_R(c), \Delta[T]),\] but every map \(C^k_R(c)\to \Delta[T]\) factors through the map \(C^n_R(c)\to [1](c),\) so this mapping object is exactly \((c_1\times \dots \times c_n)_c,\) which implies the claim.  
+\end{proof}
+
+\section{Comparing \(\mathfrak{C}(X)(x,y)\) with \(\Map_X(x,y)\)}
+
+We begin by defining a special category of gadgets \(\mathcal{Y}\), which is the full subcategory of the category of all gadgets whose objects are those gadgets \(G\) such that \(\Map_G(c)(\alpha,\omega) \simeq \mathfrak{C}(G(c))(\alpha,\omega)\).  
+
+In particular, by Proposition \ref{goodgadgets}, we see that every uniform necklace functor belongs to this category, so it is indeed a category of gadgets.  We define a full subcategory \(\mathcal{Y}^{\mathrm{f}}\subseteq \mathcal{Y}\) to be the full subcategory of \(\mathcal{Y}\) spanned by the functors \(G\) such that \(G(c)\) is fibrant for all \(c\in \Ob \C\).  
+
 \appendix
 \section{The corner tensor construction}\label{cornertensor}
-\section{The horizontal Joyal model structure}\label{horizontal}
+\section{Properties of \(\psh{\Theta[\C]}_\mathrm{hJoyal}\)}\label{horizontal}
+\section{Proof of cosimplicial resolutions}\label{cosimplicial}
 %%% bibliography
 \begin{bibdiv}
 \begin{biblist}
