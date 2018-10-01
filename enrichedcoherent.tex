@@ -248,6 +248,12 @@ For the purposes of this paper, we will not necessarily need this level of gener
 \begin{rem} The requirement that \(\C\) have a terminal object and no initial object is a technical condition that ensures that \(\Theta[\C]\) embeds fully and faithfully \(\Cat_{\psh{\C}}\) and also that \(\Delta\) embeds fully and faithfully in \(\Theta[\C]\).  The condition that \(\C\) is regular skeletal Reedy is probably not necessary, but it will ensure later on that the generating cofibrations of the injective model structure on simplicial presheaves \(\Psh_\Delta(\C)\) admit a very simple description. 
 \end{rem}
 
+\begin{rem} When \(\C\) has a terminal object, the inclusion \(\ast\to \C\) is a fully faithful right-adjoint.  The construction \(\Theta\) preserves fully faithful right-adjoints, so we have a right-adjoint functor \[\Delta=\Theta[\ast] \hookrightarrow \Theta[\C].\]  Passing to presheaf categories, this functor also extends to a colimit-preserving functor \[\mathscr{H}:\psh{\Delta} \hookrightarrow \psh{\Theta[\C]}.\]  In particular, on representables we have that \[\mathscr{H}(\Delta^n)=[n](\ast,\dots,\ast).\] 
+\end{rem}
+
+\begin{defn} We define a special cosimplicial object in \(\psh{\Theta[\C]}\) by the formula \[E^\bullet=\mathscr{H}(\operatorname{cosk}_0\Delta^\bullet).\]  This cosimplicial object will be a cosimplicial resolution of a point, once we define our model structures.
+\end{defn}
+
 \section{The generalized intertwiner and \(\psh{\Delta}\int \psh{\C}\)}
 Rezk introduced an intertwining functor by means of an explicit construction, but Oury gave an even more powerful version, which we recall here:
 
@@ -484,7 +490,7 @@ Then we need to show that \(E_{X,c}\) is a homotopy colimit:
 We define a Cisinski model structure on \(\psh{\Theta[\C]}\) and state several results that we will need in the sequel:
 
 \begin{defn} 
-  There is a Cisinski model structure called the \emph{horizontal Joyal model structure} on \(\psh{\Theta[\C]}\) where the separating interval is given by \[E^1=\operatorname{cosk}_0 \Delta^1,\] and the set of generating anodynes is given by \[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n}) : 0<k<n \text{ and } c_1,\dots,c_n \in \Ob \C\},\] where \(\lambda^n_k:\Lambda^n_k\hookrightarrow \Delta^n\) is the simplicial horn inclusion, and where \(\delta^c:\partial c \hookrightarrow c\) is the inclusion of the boundary of \(c\) (recall that \(\C\) was taken to be a regular skeletal Reedy category, so this makes sense).  
+  There is a Cisinski model structure called the \emph{horizontal Joyal model structure} on \(\psh{\Theta[\C]}\) where the separating interval is given by \[E^1=\mathscr{H}(\operatorname{cosk}_0 \Delta^1),\] and the set of generating anodynes is given by \[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n}) : 0<k<n \text{ and } c_1,\dots,c_n \in \Ob \C\},\] where \(\lambda^n_k:\Lambda^n_k\hookrightarrow \Delta^n\) is the simplicial horn inclusion, and where \(\delta^c:\partial c \hookrightarrow c\) is the inclusion of the boundary of \(c\) (recall that \(\C\) was taken to be a regular skeletal Reedy category, so this makes sense).  
   
   We call \(\operatorname{Cell}(\mathscr{J})\) the class of \emph{horizontal inner anodynes}, and we call \(\operatorname{rlp}(\mathscr{J})\) the class of \emph{horizontal inner fibrations}.  
 \end{defn}
@@ -495,7 +501,7 @@ We define a Cisinski model structure on \(\psh{\Theta[\C]}\) and state several r
 \begin{defn} We call an object with the right lifting property with respect to \(\mathscr{J}\) a \emph{formal \(\C\)-quasicategory}. 
 \end{defn}
 
-The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in Appendix \ref{horizontal}.
+The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in Appendix \ref{horizontal} and \ref{admissible}.
 
 \begin{prop} The class of all monomorphisms of \(\psh{\Theta[\C]}\) is exactly \(\operatorname{Cell}(\mathscr{M}),\) where \[\mathscr{M}=\{\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) : n\geq 0 \text{ and } c_1,\dots,c_n \in \Ob \C\}.\]    
 \end{prop}
@@ -600,7 +606,7 @@ We define \(\mathcal{G}_c\) to be the image of \(\mathcal{G}\) under evaluation 
   
   When \(\mathcal{G}\) is closed under wedges, we can define the \(\Psh_\Delta(\C)\)-enriched category \(\mathfrak{C}^{\mathcal{G}}(X)\) to be the category whose objects are the vertices of \(X\) and whose Hom-objects are \[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_\cdot.\]  This defines an enriched category by taking the composition operation to be concatenation of gadgets, which works since \(\mathcal{G}\) is closed under wedges.
 \end{defn}
-\begin{prop} Given a presheaf \(X\) on \(\Theta[\C]\) and two vertices \(x,y\) of \(X\) and a category of gadgets \(\mathcal{G}\) the map \[N\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}} \hookrightarrow N\overcat{\mathcal{G}_c}{X_{x,y}}\] is a weak homotopy equivalence.
+\begin{prop}\label{gadgetlemma} Given a presheaf \(X\) on \(\Theta[\C]\) and two vertices \(x,y\) of \(X\) and a category of gadgets \(\mathcal{G}\) the map \[N\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}} \hookrightarrow N\overcat{\mathcal{G}_c}{X_{x,y}}\] is a weak homotopy equivalence.
 \end{prop}
 \begin{proof} By Quillen's theorem A, it suffices to look at the overcategories \(\overcat{\Nec^\mathbf{sp}_c}{G(c)}\) along the inclusion \(\Nec^\mathbf{sp}_c\hookrightarrow \mathcal{G}_c\) for all \(G\) in \(\mathcal{G}\) and show that their nerves are contractible, but these overcategories correspond on-the-nose to the subcategories classifying the diagonal component of \(\mathfrak{C}^\Nec(G)(\alpha,\omega)\), which is contractible because \(G\) is a gadget.
 \end{proof}
@@ -612,10 +618,10 @@ We define \(\mathcal{G}_c\) to be the image of \(\mathcal{G}\) under evaluation 
 \section{The \(\Hom\) by cosimplicial resolution}
 For every object \([1](c)\) in \(\Theta[\C]\), we introduce four canonical cosimplicial resolutions, which we can use to define simplicial presheaves that represent the mapping space between two vertices of a \(\Theta[C]\)-set.  
 
-First, we define the functor \[(\bullet)^{\triangleright}(c),\text{ resp. }(\bullet)^{\triangleleft}(c): \Delta \to \Theta[\C],\] which sends \[[n]\mapsto [n+1](\ast,\dots,\ast,c), \text{ resp. } [n]\mapsto [n+1](c,\ast,\dots,\ast).\]  We see immediately that there are natural embeddings \[([n])^{\triangleright,c} \hookrightarrow \Delta^n \times [1](c)  \hookleftarrow ([n])^{\triangleleft,c}\] where each map embeds along the respective outer shuffle. We also have an obvious natural embedding \[\Delta^n\times [1](c) \hookrightarrow E^n\times [1](c).\]
+First, we define the functor \[(\bullet)^{\triangleright}(c),\text{ resp. }(\bullet)^{\triangleleft}(c): \Delta \to \Theta[\C],\] which sends \[[n]\mapsto [n+1](\ast,\dots,\ast,c), \text{ resp. } [n]\mapsto [n+1](c,\ast,\dots,\ast).\]  We see immediately that there are natural embeddings \[([n])^{\triangleright,c} \hookrightarrow \Delta^n \times [1](c)  \hookleftarrow ([n])^{\triangleleft,c}\] where each map embeds along the respective outer shuffle. We also have an obvious natural embedding \[\mathscr{H}(\Delta^n)\times [1](c) \hookrightarrow E^n\times [1](c).\]
 
 Then we define the following four cosimplicial objects:
-\[C^\bullet_{\mathrm{cyl}}(c)\coloneqq \colim \left( V[1](\emptyset) \leftarrow \Delta^\bullet \times V[1](\emptyset) \hookrightarrow \Delta^\bullet\times [1](c)\right)\]
+\[C^\bullet_{\mathrm{cyl}}(c)\coloneqq \colim \left( V[1](\emptyset) \leftarrow \Delta^\bullet \times V[1](\emptyset) \hookrightarrow \mathscr{H}(\Delta^\bullet)\times [1](c)\right)\]
 \[C^\bullet_{E}(c)\coloneqq \colim \left( V[1](\emptyset) \leftarrow E^\bullet \times V[1](\emptyset) \hookrightarrow E^\bullet\times [1](c)\right)\]
 \[C^\bullet_{R}(c)\coloneqq \colim \left( \ast \leftarrow \Delta^\bullet \xrightarrow{\partial^{\bullet}} (\bullet)^\triangleright(c)\right)\]
 \[C^\bullet_{L}(c)\coloneqq \colim \left( \ast \leftarrow \Delta^\bullet \xrightarrow{\partial^0} (\bullet)^\triangleleft(c)\right).\]
@@ -646,23 +652,67 @@ induced by the inclusions we described above.
 \begin{defn} Given a bipointed presheaf \(X_{x,y}\) on \(\Theta[\C]\) we define the \emph{mapping object} from \(x\) to \(y\) to the simplicial presheaf obtained by taking homotopy function complexes \[\Map_X(x,y)_c\coloneqq h\psh{\Theta[\C]}_{\ast,\ast}([1](c), X).\] 
 \end{defn}
 
-We can compute these function complexes for horizontal-Joyal fibrant objects using our cosimplicial resolutions.  Then we have the following result:
+We define a slightly modified version for special maps.  
 
-\begin{prop}\label{goodgadgets} Given a necklace \(T\) with spine \([1](c_1)\vee \dots \vee [1](c_n)\), \(\Map_T(\alpha,\omega) \simeq c_1\times\dots\times c_n\).
+\begin{defn} If \(G\) is a gadget, let \(\mathcal{G}\) denote the category of all gadgets with special maps between them.  Then we define the \emph{special mapping object} to be \[\Map^\mathbf{sp}_G(\alpha,\omega)_c=\mathcal{G}(C^\bullet_R(c),G(c)).\]
+\end{defn}
+
+\begin{prop}\label{goodgadgets} Given a necklace gadget \(T\), the special mapping object \[\Map^\mathbf{sp}_T(\alpha,\omega)\] is contractible.
 \end{prop}
-\begin{proof} Since \(T\hookrightarrow \Delta[T]\) is a horizontal inner-anodyne and \(\Delta[T]\) is fibrant, we can compute \(\Map_T(\alpha,\omega)\) by the formula \[\Map_T(\alpha,\omega)_{k,c} = \psh{\Theta[\C]}_{\ast,\ast}(C^k_R(c), \Delta[T]),\] but every map \(C^k_R(c)\to \Delta[T]\) factors through the map \(C^n_R(c)\to [1](c),\) so this mapping object is exactly \((c_1\times \dots \times c_n)_c,\) which implies the claim.  
+\begin{proof} Since \(T(c)\hookrightarrow \Delta[T](c)\) is a horizontal inner-anodyne and \(\Delta[T](c)\) is fibrant, we can compute \(\Map^\mathbf{sp}_{T(c)}(\alpha,\omega)\) by the formula \[\Map^\mathbf{sp}_T(\alpha,\omega)_{k,c} = \mathcal{G}(C_R^k(c),\Delta[T](c))\] but every map \(C^k_R(c)\to \Delta[T](c)\) factors through the map \(C^n_R(c)\to [1](c),\) and the only special map \([1](c)\to \Delta[T](c)\) is the one that maps \(c\) into \(c\times \dots \times c\) via the diagonal.
 \end{proof}
 
 \section{Comparing \(\mathfrak{C}(X)(x,y)\) with \(\Map_X(x,y)\)}
 
-We begin by defining a special category of gadgets \(\mathcal{Y}\), which is the full subcategory of the category of all gadgets whose objects are those gadgets \(G\) such that \(\Map_G(c)(\alpha,\omega) \simeq \mathfrak{C}(G(c))(\alpha,\omega)\).  
+We begin by defining a special category of gadgets \(\mathcal{Y}\), which is the full subcategory of the category of all gadgets whose objects are those gadgets \(G\) such that \(\Map^\mathbf{sp}_G(\alpha,\omega)\) is contractible. 
 
-In particular, by Proposition \ref{goodgadgets}, we see that every uniform necklace functor belongs to this category, so it is indeed a category of gadgets.  We define a full subcategory \(\mathcal{Y}^{\mathrm{f}}\subseteq \mathcal{Y}\) to be the full subcategory of \(\mathcal{Y}\) spanned by the functors \(G\) such that \(G(c)\) is fibrant for all \(c\in \Ob \C\).  
+In particular, by Proposition \ref{goodgadgets}, we see that every necklace gadget belongs to this category, so it is indeed a category of gadgets.  We define a full subcategory \(\mathcal{Y}_{\mathrm{f}}\subseteq \mathcal{Y}\) to be the full subcategory of \(\mathcal{Y}\) spanned by the gadgets \(G\) such that \(G(c)\) is fibrant for all \(c\in \Ob \C\).  
+
+Let \[C^\bullet(c) \xrightarrow{\sim} R^\bullet(c)\xrightarrow{\sim} [1](c)\] be a factorization into a Reedy trivial cofibration followed by a fibration, which is also a Reedy trivial fibration since we are factoring a Reedy equivalence. 
+
+The following proposition follows \cite{ds2}*{5.2} almost exactly word for word. 
+
+\begin{prop}  If \(X\) is formal \(\C\)-quasicategory,  and \(x,y\) are two vertices of \(x\), there is a commutative diagram 
+  \begin{equation*}
+    \begin{tikzpicture}
+    \matrix (b) [matrix of math nodes, row sep=3em,
+    column sep=3em, text height=1.5ex, text depth=0.25ex]
+    {\mathfrak{C}^\Nec(X)(x,y)_c & \mathfrak{C}^\mathcal{Y}(X)(x,y)_c & \mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)_c \\
+      & N\overcat{\Delta}{\psh{\Theta[\C]}_{\ast,\ast}(C^\bullet(c),X_{x,y})}  & N\overcat{\Delta}{\psh{\Theta[\C]}_{\ast,\ast}(R^\bullet(c),X_{x,y})} \\};
+    \path[->, font=\scriptsize]
+    (b-1-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-2)
+    (b-1-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)}(b-1-2)
+    (b-2-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)}(b-1-3)
+            edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
+    (b-2-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-2);
+    \end{tikzpicture}.
+  \end{equation*}
+  in which all of the maps are weak equivalences.
+\end{prop}
+\begin{proof} 
+  First, we already know that the map \[\mathfrak{C}^\Nec(X)(x,y)_c \to \mathfrak{C}^\mathcal{Y}(X)(x,y)_c\] is a weak equivalence by Proposition \ref{gadgetlemma}.  The map \[\mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)_c \hookrightarrow \mathfrak{C}^{\mathcal{Y}}(X)(x,y)_c\] is the image under the nerve of the functor \[j:\overcat{\mathcal{Y}_f(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}(c)}{X_{x,y}}.\]  We will show that it is a weak homotopy equivalence as follows: Let \(Z\mapsto \mathscr{F}(Z)\) denote a functorial fibrant replacement of \(Z\) in the horizontal Joyal model structure. Then since \(X\) is fibrant, there exists a map \(\mathscr{F}(X)\to X\) retracting the inclusion \(X\hookrightarrow \mathscr{F}(X)\).  Using this fact, we define a functor \[F:\overcat{\mathcal{Y}(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\] sending \[Y(c)\to X_{x,y} \mapsto \mathscr{F}Y(c)\to \mathscr{F}(X) \to X.\]  This works because \[\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\to \Map^\mathbf{sp}_{\mathscr{F}(Y(c))}(\alpha,\omega)\] and \[\mathfrak{C}(Y(c))(\alpha,\omega)\to \mathfrak{C}(\mathscr{F}(Y(c)))(\alpha,\omega)\] are weak equivalences, in the first instance because the formation of the special mapping space was homotopy-invariant, and in the second instance because \(\mathfrak{C}\) is left-Quillen. Then we see that \(Fj\) and \(jF\) both admit natural transformations back to the appropriate identity functors, which proves that they induce a weak homotopy equivalence on nerves.
+
+  The righthand vertical map comes from applying the nerve to the functor \[f:\overcat{\Delta}{\psh{\Theta[\C]}_{\ast,\ast}(R^\bullet(c),X_{x,y})} \to \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\] defined by the rule \[([n],R^n(c) \to X_{x,y}) \mapsto (R^n(c), R^n(c)\to X_{x,y}).\]  To show that this functor induces a weak equivalence on nerves, we apply Quillen's theorem A.  Notice that for an object \(y=(Y(c),Y(c)\to X_{x,y}\), the comma category \(\overcat{f}{y}\) is precisely 
+  \[\overcat{\Delta}{\mathcal{G}(c)(R^\bullet(c),Y(c))}=\overcat{\Delta}{\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)}.\] But by \cite{dk3}, the nerve of the category of elements of a simplicial set is weakly equivalent to that simplicial set, and since \(\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\) was assumed to be contractible, the result follows.
+
+  To see that the bottom map is an equivalence, it follows simply because \(C^\bullet(c) \to R^\bullet(c)\) is a Reedy trivial cofibration, so \[\psh{\Theta[\C]}_{\ast,\ast}(R^\bullet(c),X_{x,y})  \to \psh{\Theta[\C]}_{\ast,\ast}(C^\bullet(c),X_{x,y})\] is a weak equivalence.  Therefore, again by \cite{dk3}, the nerve of the category of elements of simplicial sets preserves weak equivalences.
+\end{proof}
+
+\begin{cor} For any formal \(\C\)-quasicategory \(X\) and any pair of vertices \(x,y\), there is a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\).
+\end{cor}
+
+
 
 \appendix
-\section{The corner tensor construction}\label{cornertensor}
-\section{Properties of \(\psh{\Theta[\C]}_\mathrm{hJoyal}\)}\label{horizontal}
+\section{The corner tensor construction}\label{cornertensor} In this section, we define general corner tensors and apply them to define the corner-intertwiner and corner-product.
+\section{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
+In this section, we demonstrate that the class of horizontal inner anodynes is closed under corner products with monomorphisms.
+\section{Recognition of horizontal Joyal fibrations}\label{admissible} 
+In this section, we give a recognition theorem for horizontal Joyal fibrations between formal \(\C\)-quasicategories.  In particular, we prove that a morphism between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it is a horizontal inner fibration and has the right lifting property with respect to the single morphism \(\{0\}\hookrightarrow E^1\). In the course of the proof, we will also demonstrate that the formal \(\C\)-quasicategories are precisely the fibrant objects of the horizontal Joyal model structure.
+
+We begin by defining a functor \[J:\psh{\Theta[\C]}\to \psh{\Theta[\C]}\] by the rule \[X\mapsto \mathscr{H}\psh{\Theta[\C]}(E^\bullet,X).\]  We can see that \(J(X)\subseteq X\) by observing that since the only nondegenerate representables of \(J(X)\) are simplices, that is to say, of the form \(\mathscr{H}\Delta^n\) and since given any such simplex of \(J(X)\),  we obtain a map \(E^n\to X,\) we can send the simplex to the composite \[\mathscr{H}(\Delta^n)\to E^n \to X.\]  
 \section{Proof of cosimplicial resolutions}\label{cosimplicial}
+In this section, we demonstrate that the three cosimplicial objects \(C^\bullet_R(c),\) \(C^\bullet_L(c),\) and \(C^\bullet_{\mathrm{cyl}}(c)\) are cosimplicial resolutions of \([1](c)\).  
 %%% bibliography
 \begin{bibdiv}
 \begin{biblist}
