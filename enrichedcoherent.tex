@@ -708,9 +708,36 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 \section{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
 In this section, we demonstrate that the class of horizontal inner anodynes is closed under corner products with monomorphisms.
 \section{Recognition of horizontal Joyal fibrations}\label{admissible} 
-In this section, we give a recognition theorem for horizontal Joyal fibrations between formal \(\C\)-quasicategories.  In particular, we prove that a morphism between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it is a horizontal inner fibration and has the right lifting property with respect to the single morphism \(\{0\}\hookrightarrow E^1\). In the course of the proof, we will also demonstrate that the formal \(\C\)-quasicategories are precisely the fibrant objects of the horizontal Joyal model structure.
+In this section, we give a recognition theorem for horizontal Joyal fibrations between formal \(\C\)-quasicategories.  In particular, we prove that a morphism between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it is a horizontal inner fibration and has the right lifting property with respect to the single morphism \(\{0\}\hookrightarrow E^1\). In the course of the proof, we will also demonstrate that the formal \(\C\)-quasicategories are precisely the fibrant objects of the horizontal Joyal model structure.  We begin with a definition:
 
-We begin by defining a functor \[J:\psh{\Theta[\C]}\to \psh{\Theta[\C]}\] by the rule \[X\mapsto \mathscr{H}\psh{\Theta[\C]}(E^\bullet,X).\]  We can see that \(J(X)\subseteq X\) by observing that since the only nondegenerate representables of \(J(X)\) are simplices, that is to say, of the form \(\mathscr{H}\Delta^n\) and since given any such simplex of \(J(X)\),  we obtain a map \(E^n\to X,\) we can send the simplex to the composite \[\mathscr{H}(\Delta^n)\to E^n \to X.\]  
+\begin{defn} 
+  For any representable \([x]=[n](c_1,\dots,c_n)\) with \(c_1=\ast\) (respectively with \(c_n=\ast\)), we define the \emph{horizontal left horn inclusion} (resp. \emph{horizontal right horn inclusion}) to be the map \[\square^\lrcorner_n(\lambda^n_0,\delta^{c_1}, \dots, \delta^{c_n})\] and respectively \[\square^\lrcorner_n(\lambda^n_n,\delta^{c_1}, \dots, \delta^{c_n}).\] 
+
+  We call the domain of such a map the \emph{left horn} (resp. \emph{right horn}) and denote it by \(\Lambda^n_L[x]\) (respectively \(\Lambda^n_R[x]\)). 
+\end{defn}
+
+This definition is a bit trickier than the usual definition of left and right horn, but it is sufficient for our purposes. The reason why we require the condition \(c_1=\ast\) (resp. \(c_n=\ast\)) is to ensure that we only remove a single face of codimension \(1\) from the horn.  
+
+\begin{defn} 
+  Let \(X\) be a presheaf on \(\Theta[\C]\), and let \(f:\Lambda^n_L[x]\to X\) be a map from a left horn.  Then we say that \(f\) is a \emph{special horizontal left horn} if the restriction of \(f\) along the inclusion \(\mathscr{H}\Delta^1=[1](c_1)\hookrightarrow [x]\) factors through \(E^1\), and dually for right horns. 
+
+  We say that a map \(X\to Y\) is \emph{special anodyne} if it is the transfinite composition of pushouts along special horn inclusions and horizontal inner anodynes.
+\end{defn}
+
+In what follows, fix the notation \(e:\{0\}\hookrightarrow E^1\) to be the obvious inclusion of the vertex.  The proof directly makes use of the filtration of \cite{ds2}{Proposition A.4}.
+
+\begin{prop} Given any representable presheaf \([x]=[r](c_1,\dots,c_r)\) such that \(n>0\), the map 
+  \[e \times^\lrcorner \square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_r})\]
+  is special anodyne.  
+\end{prop}
+\begin{proof}
+Let \([x]=[r](c_1,\dots,c_n)\) be a representable presheaf.  Then we begin by noting that \(E^1\times [x]\) is sober, since \(E^1\) is sober, representables are sober, and products of sober presheaves are sober. In particular, \(E^1\times [x]\) is a labeled simplicial set lying over \(E^1\times \Delta^n\).  We define the boundary of \([x]\) by \[\partial[x] = \operatorname{dom}\left(\square^\lrcorner_n(\delta^r, \delta^{c_1},\dots, \delta^{c_r})\right),\] that is, the domain of the corner-intertwiner.  Then the domain of the corner product can be written as \[M_0=\partial[x] \times E^1 \cup [x]\times \{0\}.\]  Let \(U_i[t]\) be the pullback of \(E^1\times [x]\) along the inclusion \(Y_i[t]\to E^1\times \Delta^r\) from \cite{ds2}*{Proposition A.4}.  Then set \[M_i[t]=U_i[t]\cup \left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\] From the proof of \cite{ds1}*{Proposition A.4}, we know that given any nondegenerate simplex of \(Y_i[t+1]\) its intersection with \(Y_i[t]\) is either an inner or special horn, so if we let \([z]=[t+1](z_1,\dots,z_{t+1}\) be the pullback of \(E^1\times [x]\), we see that its intersection with \(U_i[t]\) is exactly \(V_{\Lambda^{t+1}_k[z]}\), and all of the other necessary parts belong to \[\left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\] 
+
+Therefore, each of these attachments to \(M_i[t]\) is either a horizontal inner horn attachment or a special outer horn attachment, which proves the proposition.
+\end{proof}
+
+With this messy part out of the way, it suffices to show that every horizontal inner fibration between formal \(\C\)-quasicategories has the right lifting property with respect to special inner horn inclusions.
+
 \section{Proof of cosimplicial resolutions}\label{cosimplicial}
 In this section, we demonstrate that the three cosimplicial objects \(C^\bullet_R(c),\) \(C^\bullet_L(c),\) and \(C^\bullet_{\mathrm{cyl}}(c)\) are cosimplicial resolutions of \([1](c)\).  
 %%% bibliography
