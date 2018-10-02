@@ -403,8 +403,8 @@ Following Dugger and Spivak, we define a construction as follows: Given a preshe
   \begin{tikzpicture}
   \matrix (b) [matrix of math nodes, row sep=3em,
   column sep=3em, text height=1.5ex, text depth=0.25ex]
-  { \left( \colim_{\overcat{\Theta[\C]}{X}} E_{\Theta[\C]^t}\right)(x,y) & E_X(x,y) \\
-  \left( \colim_{\overcat{\Theta[\C]}{X}} \mathfrak{C}(\Theta[\C]^t)\right)(x,y) &  \mathfrak{C}(X)(x,y) \\};
+  { \left( \coliml\limits_{\overcat{\Theta[\C]}{X}} E_{\Theta[\C]^t}\right)(x,y) & E_X(x,y) \\
+  \left( \coliml\limits_{\overcat{\Theta[\C]}{X}} \mathfrak{C}(\Theta[\C]^t)\right)(x,y) &  \mathfrak{C}(X)(x,y) \\};
   \path[->, font=\scriptsize]
   (b-1-1) edge (b-1-2)
           edge node[auto,swap]{\(\scriptstyle \cong\)} (b-2-1)
@@ -481,7 +481,7 @@ Dugger and Spivak use a very specific model of the homotopy colimit of a diagram
 In the case of \(\mathfrak{C}^\Hoc\), we can see immediately that there is a unique natural transformation \[\mathcal{E}_{X,c}(x,y)\to \pt,\] and this induces a map on homotopy colimits.  Moreover, since \(\mathcal{E}_{X,c}(x,y)(T)=\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega)\) and since \(\pi(T)\) is a simplicial necklace,  \(\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega)\) is weakly contractible. Therefore, the induced map on homotopy-colimits is a weak equivalence of simplicial sets.  This shows that the natural map \[\mathfrak{C}^\Hoc \to \mathfrak{C}^\Nec\] is a weak equivalence.  
 
 Then we need to show that \(E_{X,c}\) is a homotopy colimit:
-\begin{thm}The natural map \[\mathfrak{C}^\Hoc \to \mathfrak{C}\] is a natural weak equivalence.
+\begin{thm}\label{necthm} The natural map \[\mathfrak{C}^\Hoc \to \mathfrak{C}\] is a natural weak equivalence.
 \end{thm}
 \begin{proof} See \cite{ds1}*{4.4,4.10,5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \(\ell^\mathrm{th}\) row of the bisimplicial set of pairs \[(\sigma:[n]\to D; x \in F(\sigma(0))_\ell)\] is homotopy-discrete, which means that the homotopy and ordinary colimit agree.  Our indexing category is just a disjoint union of copies of their indexing category, so if theirs is homotopy-discrete, so is ours.  
 \end{proof}
@@ -553,7 +553,7 @@ In this section, we show that the adjunction \[\psh{\Theta[\C]}_{\mathrm{hJoyal}
 \begin{proof} Given a fibration between two fibrant \(\Psh_\Delta(\C)\)-enriched categories, \(p:\mathcal{D}\to \mathcal{D}^\prime\), we see immediately that the coherent nerve takes this fibration to a horizontal inner fibration between formal \(\C\)-quasicategories by Proposition \ref{quillen1}.  To show that it is a fibration for the horizontal Joyal model structure, it suffices by Theorem \ref{isofibrations} to show that it has the right lifting property with respect to the inclusion \(e:\Delta^0 \hookrightarrow E^1\). By Proposition \ref{quillen1}, we see that \(\mathfrak{C}\) takes the monomorphism \(e\) to a cofibration, and by the previous lemma, we see that \(\mathfrak{C}(e)\) is a weak equivalence.  It follows that \(\mathfrak{N}(p)\) is a fibration for the horizontal Joyal model structure.  
 \end{proof}
 
-\begin{cor} The adjunction \[\psh{\Theta[\C]}_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\] is a Quillen pair.
+\begin{cor}\label{horizquillen} The adjunction \[\psh{\Theta[\C]}_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\] is a Quillen pair.
 \end{cor}
 \begin{proof} If \(\mathfrak{C}\) takes cofibrations to cofibrations, and \(\mathfrak{N}\) takes fibrations between fibrant objects to fibrations between fibrant objects, then the adjunction is a Quillen pair, but this is exactly what we proved in this section.
 \end{proof}
@@ -701,6 +701,68 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 \begin{cor} For any formal \(\C\)-quasicategory \(X\) and any pair of vertices \(x,y\), there is a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\).
 \end{cor}
 
+\begin{thm}\label{counitthm} For any fibrant \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched category \(\mathcal{D}\), the counit map \[\epsilon_\mathcal{D}:\mathfrak{C}(\mathfrak{N}\mathcal{D})\to \mathcal{D}\] is a weak equivalence of \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched categories.
+\end{thm}
+\begin{proof}
+Let \(\C^\bullet=C^\bullet_R\).  Then consider the following commutative diagram:
+  \begin{equation*}
+    \begin{tikzpicture}
+    \matrix (b) [matrix of math nodes, row sep=3em,
+    column sep=2em, text height=1.5ex, text depth=0.25ex]
+    {  \mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c & \mathcal{D}(x,y)_c & \\
+    \coliml\limits_{T(c)\to \mathfrak{\mathfrak{N}}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega) &
+    \coliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega) 
+    & \coliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \\
+    \hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega)  &
+    \hocoliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega) 
+    & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \\
+    \hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}}  \ast & \hocoliml\limits_{Y\to \mathfrak{N}\mathcal{D}} \ast &
+    \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \ast \\};
+    \path[->, font=\scriptsize]
+    (b-1-1) edge (b-1-2)
+    (b-2-1) edge (b-1-1) edge (b-2-2)
+    (b-2-2) edge (b-1-2)
+    (b-2-3) edge (b-2-2) edge (b-1-2)
+    (b-3-1) edge (b-2-1) edge (b-3-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-1)
+    (b-3-2) edge (b-2-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-2)
+    (b-3-3) edge (b-2-3) edge (b-3-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-3)
+    (b-4-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-2)
+    (b-4-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)} (b-4-2);
+    \end{tikzpicture}
+  \end{equation*}
+
+  The two horizontal maps in the bottom row are weak equivalences by the previous proposition and the fact that \(\mathfrak{N}\) takes fibrant objects to fibrant objects.  The indicated vertical maps are also weak equivalences because \(\pi\) takes gadgets to simplicial gadgets, which have the property that \(\mathfrak{C}_\Delta(G)(\alpha,\omega)\) is weakly contractible.  By \(3\)-for-\(2\), it follows that the horizontal maps in the third row are all weak equivalences.  We reduce this diagram to a smaller diagram
+  \begin{equation*}
+    \begin{tikzpicture}
+    \matrix (b) [matrix of math nodes, row sep=3em,
+    column sep=2em, text height=1.5ex, text depth=0.25ex]
+    {  \mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c & \mathcal{D}(x,y)_c & \\
+    \hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega)  &
+    \hocoliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega) 
+    & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \\};
+    \path[->, font=\scriptsize]
+    (b-1-1) edge (b-1-2)
+    (b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
+    (b-2-2) edge (b-1-2)
+    (b-2-3) edge node[auto,swap]{\(\scriptstyle{\gamma_c}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\sim}\)} (b-2-2);
+    \end{tikzpicture},
+  \end{equation*}
+in which the left vertical map is a weak equivalence by Theorem \ref{necthm}. By \(3\)-for-\(2\), we can see that it suffices to show that the map \[\gamma_c: \hocoliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \to \coliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega)\to \mathcal{D}(x,y),c\] is a weak equivalence. 
+To do this, notice that 
+\begin{align*}\psh{\Theta[\C]}_{\ast,\ast}(C^n(c), \mathfrak{N}\mathcal{D}_{x,y})
+&\cong \overcat{\partial[1]}{\Cat_{\Psh_\Delta(\C)}}(\mathfrak{C}(C^n(c)_{\alpha,\omega},\mathcal{D}_{x,y})\\
+&\cong \Psh_\Delta(\C)(\mathfrak{C}(C^n(c))(\alpha,\omega), \mathcal{D}(x,y)).\end{align*}
+
+As in the proof of \cite{ds2}*{Proposition 5.8}, we define the cosimplicial simplicial set \(Q^\bullet = \mathfrak{C}_\Delta (\pi C^\bullet)(\alpha,\omega)\), which is obviously isomorphic to the \(Q^\bullet\) defined in \cite{ds2}. Moreover, by direct computation, we see that \[\mathfrak{C}(C^\bullet(c))(\alpha,\omega)\cong Q^\bullet \times c.\]
+Then we see immediately that 
+\[\Psh_\Delta(\C)(\mathfrak{C}(C^n(c))(\alpha,\omega), \mathcal{D}(x,y)) \cong \Psh_\Delta(\C)(Q^n \times c, \mathcal{D}(x,y))\cong \psh{\Delta}(Q^n, \mathcal{D}(x,y)_c),\]
+so \(\gamma_c\) is precisely the map obtained by composing \[\left(\hocoliml_{[n],Q^n\to \mathcal{D}(x,y)_c} Q^n\right) \to \left(\coliml_{[n],Q^n\to \mathcal{D}(x,y)_c} Q^n\right) \to \mathcal{D}(x,y)_c.\] The result then follows immediately by application of \cite{ds2}*{Lemma 5.9}.  
+\end{proof}
+
+\begin{rem} This theorem is actually a really strong and surprising result because it implies that the counit map is a weak equivalence for categories enriched in any cartesian-closed left-Bousfield localization of \(\Psh_\Delta(\C)_{inj}\).  It reduces proving comparison theorems for such localizations to showing that \(\mathfrak{C}\) is a left-Quillen functor (something we already know for the horizontal Joyal model structure by Corollary \ref{horizquillen}) and homotopy-conservative.  
+\end{rem}
+
+\section{Horizontal Dwyer-Kan equivalences}
 
 
 \appendix
