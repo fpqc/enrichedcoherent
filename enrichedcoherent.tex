@@ -10,7 +10,7 @@
 % For convenience
 \usepackage{verbatim}
 % Fonts
-\usepackage[cal=euler,scr=rsfs]{mathalfa}
+\usepackage[cal=euler,scr=rsfso]{mathalfa}
 % Bib
 \usepackage[alphabetic]{amsrefs}
 
@@ -451,8 +451,10 @@ We then define a simplicial set \[E_{X,c}(x,y)=\colim \mathcal{E}_{X,c}.\] We no
 
 \begin{prop} If \(T\) is a necklace, then \(E_{T,c}(\alpha,\omega)\) is canonically isomorphic to \(\mathfrak{C}(T)(\alpha,\omega)_c\)
 \end{prop}
-\begin{proof} By the lemma, we see that there is a discrete full cofinal subcategory of \(\overcat{\Nec^\mathbf{sp}_c}{T}\) spanned by the maps \(T\{c\} \to T\), so it suffices to show that \(\mathfrak{C}(T)(\alpha,\omega)_c\) is a disjoint union of copies of \(\mathfrak{C}(T)(\alpha,\omega)_c\) indexed by the maps \(T\{c\}\to T\), but this follows by an easy direct computation of \(\mathfrak{C}(T)(\alpha,\omega)_c\), which we give for the case \(T=[n](c_1,\dots,c_n)\) as \[\Hom(c,c_1) \times \Delta^1\times \dots
-		\times \Delta^1 \times \Hom(c,c_n).\]  For a more general necklace of shape \(\Delta^{m_1}\vee \dots \vee \Delta^{m_k},\) it is the same, but omitting the appropriate \(\Delta^1\) terms.
+\begin{proof}
+	By the lemma, we see that there is a discrete full cofinal subcategory of \(\overcat{\Nec^\mathbf{sp}_c}{T}\) spanned by the maps \(T\{c\} \to T\), so it suffices to show that \(\mathfrak{C}(T)(\alpha,\omega)_c\) is a disjoint union of copies of \(\mathfrak{C}_\Delta(\pi(T\{c\}))(\alpha,\omega)\) indexed by the maps \(T\{c\}\to T\) that project to the identity, but this follows by an easy direct computation of \(\mathfrak{C}(T)(\alpha,\omega)_c\), which we give for the case \(T=[n](c_1,\dots,c_n)\) as 
+	\[\Hom(c,c_1) \times \Delta^1\times \dots \times \Delta^1 \times \Hom(c,c_n).\]
+	For a more general necklace of shape \(\Delta^{m_1}\vee \dots \vee \Delta^{m_k},\) it is the same, but omitting the appropriate \(\Delta^1\) terms.
 \end{proof}
 
 These propositions give us what we need to prove the aforementioned reduction:
@@ -463,16 +465,16 @@ These propositions give us what we need to prove the aforementioned reduction:
 	\[\iota_c:\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\hookrightarrow \overcat{\Nec}{X_{x,y}}\]
 	Then we compute:
 	\begin{align*}
-		E_{X,c}(x,y) & = \colim_{\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}} \mathcal{E}_{X,c}(x,y)                                                      \\
+		E_{X,c}(x,y) & = \colim_{\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}} \mathcal{E}_{X,c}(x,y)\\
 		             & = \Lan_{\pt} \mathcal{E}_{X,c}(x,y)
 		\intertext{where \(\pt\) denotes the terminal functor}
-		             & =\Lan_{\pt \circ \iota_c} \mathcal{E}_{X,c}(x,y)                                                                             \\
-		             & \cong\Lan_{\pt}\left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y)\right)                                                            \\
+		             & =\Lan_{\pt \circ \iota_c} \mathcal{E}_{X,c}(x,y)\\
+		             & \cong\Lan_{\pt}\left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y)\right)\\
 		             & = \colim_{\overcat{\Nec}{X_{x,y}}} \left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y) \right),
 		\intertext{but by the formula for pointwise Left Kan extensions,}
 		             & \cong \colim_{\overcat{\Nec}{X_{x,y}}} \left(\colim_{\overcat{\Nec^\mathbf{sp}_c}{T}}\mathcal{E}_{T,c}(\alpha,\omega)\right) \\
-		             & = \colim_{\overcat{\Nec}{X_{x,y}}} \mathfrak{C}(T)(\alpha,\omega)_c                                                          \\
-		             & = {E_X(x, y)}_c                                                                                                              \\
+		             & = \colim_{\overcat{\Nec}{X_{x,y}}} \mathfrak{C}(T)(\alpha,\omega)_c\\
+		             & = {E_X(x, y)}_c\\
 		             & \cong {\mathfrak{C}(X)(x,y)}_c,
 	\end{align*}
 	which proves the proposition.
@@ -500,14 +502,20 @@ Then we need to show that \(E_{X,c}\) is a homotopy colimit:
 	The natural map \[\mathfrak{C}^\Hoc \to \mathfrak{C}\] is a natural weak equivalence.
 \end{thm}
 \begin{proof}
-	See \cite{ds1}*{4.4,4.10,5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \(\ell^\mathrm{th}\) row of the bisimplicial set of pairs \[(\sigma:[n]\to D; x \in F(\sigma(0))_\ell)\] is homotopy-discrete, which means that the homotopy and ordinary colimit agree.  Our indexing category is just a disjoint union of copies of their indexing category, so if theirs is homotopy-discrete, so is ours.
+	See \cite{ds1}*{4.4, 4.10, 5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \(\ell^\mathrm{th}\) row of the bisimplicial set of pairs 
+	\[(\sigma:[n]\to D; x \in F(\sigma(0))_\ell)\]
+	is homotopy-discrete, which means that the homotopy and ordinary colimit agree.  Our indexing category is just a disjoint union of copies of their indexing category, so if theirs is homotopy-discrete, so is ours.
 \end{proof}
 
 \section{The horizontal Joyal model structure}
 We define a Cisinski model structure on \(\cellset\) and state several results that we will need in the sequel:
 
 \begin{defn}
-	There is a Cisinski model structure called the \emph{horizontal Joyal model structure} on \(\cellset\) where the separating interval is given by \[E^1=\mathscr{H}(\operatorname{cosk}_0 \Delta^1),\] and the set of generating anodynes is given by \[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n}) : 0<k<n \text{ and } c_1,\dots,c_n \in \Ob \C\},\] where \(\lambda^n_k:\Lambda^n_k\hookrightarrow \Delta^n\) is the simplicial horn inclusion, and where \(\delta^c:\partial c \hookrightarrow c\) is the inclusion of the boundary of \(c\) (recall that \(\C\) was taken to be a regular skeletal Reedy category, so this makes sense).
+	There is a Cisinski model structure called the \emph{horizontal Joyal model structure} on \(\cellset\) where the separating interval is given by 
+	\[E^1=\mathscr{H}(\operatorname{cosk}_0 \Delta^1),\]
+	and the set of generating anodynes is given by
+	\[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n}) : 0<k<n \text{ and } c_1,\dots,c_n \in \Ob \C\},\]
+	where \(\lambda^n_k:\Lambda^n_k\hookrightarrow \Delta^n\) is the simplicial horn inclusion, and where \(\delta^c:\partial c \hookrightarrow c\) is the inclusion of the boundary of \(c\) (recall that \(\C\) was taken to be a regular skeletal Reedy category, so this makes sense).
 
 	We call \(\operatorname{Cell}(\mathscr{J})\) the class of \emph{horizontal inner anodynes}, and we call \(\operatorname{rlp}(\mathscr{J})\) the class of \emph{horizontal inner fibrations}.
 \end{defn}
@@ -520,7 +528,7 @@ We define a Cisinski model structure on \(\cellset\) and state several results t
 	We call an object with the right lifting property with respect to \(\mathscr{J}\) a \emph{formal \(\C\)-quasicategory}.
 \end{defn}
 
-The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in Appendix \ref{horizontal} and \ref{admissible}.
+The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in the Appendices \ref{horizontal} and \ref{admissible}.
 
 \begin{prop}
 	The class of all monomorphisms of \(\cellset\) is exactly \(\operatorname{Cell}(\mathscr{M}),\) where \[\mathscr{M}=\{\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) : n\geq 0 \text{ and } c_1,\dots,c_n \in \Ob \C\}.\]
@@ -1055,7 +1063,27 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
 \begin{proof} It suffices to show that \(\mathfrak{C}\) is homotopy-conservative, so let \(f:X\to Y\) be a map in \(\cellset\) such that \(\mathfrak{C}(f)\) is an equivalence in \(\Cat_{\Psh_\Delta(\C)_{\M}}\). Using the same argument as in Section \ref{horizcomparison}, we reduce to the case where \(f:X\to Y\) is a map between \(\M\)-quasicategories.  Since \(\M\)-quasicategories are also formal \(\C\)-quasicategories, we can apply Corollary \ref{mapspacecomparison} to obtain a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\) for any pair of vertices \(x,y\) of \(X\).  By \(3\)-for-\(2\) and since \[\mathfrak{C}(X)(x,y) \to \mathfrak{C}(Y)(fx,fy)\] was assumed to be an \(\M\)-equivalence, we see that the map \(\Map_X(x,y)\to \Map_Y(fx,fy)\) must also be an \(\M\)-equivalence.  In fact, since both \(\Map_X(x,y)\) and \(\Map_Y(fx,fy)\) are local, this map is actually an equivalence for \(\Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\).  The argument showing that \(f\) is bijective on iso-components is the same as in the proof of Proposition \ref{conservativity} by using the homotopy category.  Therefore, it follows that \(f\) is a horizontal Dwyer-Kan equivalence, which concludes the proof.
 \end{proof}
 \section{The Yoneda embedding and Yoneda's theorem}
+We begin by constructing the Yoneda embedding relative to a cartesian presentation \(\M=(\C,\setS)\):
+\begin{defn}
+	Let \(X\) be a presheaf on \(\Theta[\C]\), and let \(f:\mathfrak{C}(X) \xrightarrow{\sim} \mathcal{D}\) be an \(\M\)-enriched fibrant replacement.  Since \(\mathcal{D}\) is fibrant, the enriched Yoneda embedding 
+	\[\mathcal{D}\hookrightarrow \Psh_\Delta(\C)^{\mathcal{D}^\op}\]
+	factors through the full subcategory \((\Psh_\Delta(\C)_\M^\circ)^{\mathcal{D}^\op}\) where \(\Psh_\Delta(\C)_\M^\circ\) is the full subcategory of \(\M\)-fibrant objects.  This factorization exists since all of the \(\Hom\)-objects of \(\mathcal{D}\) are \(\M\)-fibrant.  By adjointness, we obtain a map 
+	\[\mathcal{D} \times \mathcal{D}^\op \to \Psh_\Delta(\C)_\M^\circ.\]
+	We also have a natural map 
+	\[\mathfrak{C}(X\times X^\op) \xrightarrow{\mathfrak{C}(p_1) \times \mathfrak{C}(p_2)} \mathfrak{C}(X) \times \mathfrak{C}(X)^\op \xrightarrow{f \times f^\op} \mathcal{D}\times \mathcal{D}^\op,\]
+	and composing these maps together, we obtain a map 
+	\[\mathfrak{C}(X\times X^\op) \to \Psh_\Delta(\C)_\M^\circ,\]
+	which yields, by adjunction,
+	\[X\times X^\op \to \mathfrak{N}(\Psh_\Delta(\C)_\M^\circ).\]
+	We denote \(\mathfrak{N}(\Psh_\Delta(\C)_\M^\circ)\) simply by \(\M\), and finally, we obtain \emph{the Yoneda embedding} for \(\M\)-quasicategories:
+	\[X\to \M^{X^\op}.\]
+\end{defn}
 
+\begin{prop}
+	The Yoneda embedding is fully faithful.
+\end{prop}
+\begin{proof}
+\end{proof}
 \appendix
 \section{The corner tensor construction}\label{cornertensor} In this section, we define general corner tensors and apply them to define the corner-intertwiner and corner-product.
 \section{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
