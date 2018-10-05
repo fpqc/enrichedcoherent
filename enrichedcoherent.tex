@@ -1023,12 +1023,30 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
       \emptyset \text{ otherwise}
     \end{cases}. 
   \]
-  The functor \(\mathbf{2}(\bullet)\) is clearly a left-Quillen functor 
-  \[\Psh_\Delta(\C)_{\mathrm{inj}} \to \overcat{\ast \coprod \ast}{\Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}},\] so in particular, it preserves homotopy-colimits, and for all \(n \geq 0\) and \(c \in \C\), there is a natural weak equivalence 
-  \[\mathfrak{C}(\Sigma(\Delta^n \times c))(\alpha,\omega) \cong Q^n \times c \xrightarrow{\sim} Delta^n \times c \cong \mathbf{2}(c\times \Delta^n)(0,1)\]
-  that lifts to an equivalence
-  \[\mathfrak{C}(\Sigma(\Delta^n\times c) \xrightarrow{\sim} \mathbf{2}(\Delta^n\times c).\]  Since both functors preserve homotopy colimits, we see that for any simplicial presheaf \(A\) on \(\C\), the induced map 
-  \[\gamma_A:\mathfrak{C}(\Sigma(A) \xrightarrow{\sim} \mathbf{2}(A).\]
+  For all \(n \geq 0\) and \(c \in \C\), there is a natural weak equivalence 
+  \[\mathfrak{C}(\Sigma(\Delta^n \times c))(\alpha,\omega) \cong Q^n \times c \xrightarrow{\sim} Delta^n \times c \cong \mathbf{2}(c\times \Delta^n)(0,1).\] 
+  Following \cite{htt}*{Proposition 2.2.2.7}, We define a realization 
+  \[\realiz{\bullet}_{Q}:\Psh_\Delta(\C)\to \Psh_\Delta(\C)\] 
+  by left Kan extension of the functor \(\Delta^n\times c \mapsto Q^n \times c\) along the Yoneda embedding. Let \(\mathcal{A}\) denote the class of simplicial presheaves \(A\) on \(\C\) such that the map
+  \[\realiz{A}_Q \to A\]
+  is an injective equivalence.  This class is closed under filtered colimits, since injective weak equivalences are closed under filtered colimits, so it suffices to consider the case where \(A\) has finitely many nondegenerate representable cells \([n] \times c\).  Since \(\Delta\) and \(\C\) are regular skeletal Reedy, so is their product, and the boundary of a representable cell is given by the formula 
+  \[\partial(\Delta^n\times c)=\partial\Delta^n \times c \cup \Delta^n \times \partial c.\]
+  We work by induction on Reedy dimension and number of cells.
+  If \(A=\emptyset\), we are done, since the map in question is the identity.
+  Otherwise, suppose
+  \[A=A^\prime \coprod_{\partial(\Delta^n\times c)}  \Delta^n\times c.\]
+  This is a homotopy pushout since \(\partial(\Delta^n \times c) \to \Delta^n\times c\) is an injective cofibration. Similarly, 
+  \[\realiz{A}_Q=\realiz{A^\prime} \coprod_{\realiz{\partial(\Delta^n\times c)}_Q}  \realiz{\Delta^n\times c}\]
+  is also a homotopy-pushout since \(\realiz{\bullet}_Q\) preserves monomorphisms.  Then we see that the map 
+  \[\realiz{\Delta^n \times c}_Q=Q^n \times c \to \Delta^n\times c\] is already a weak equivalence since \(Q^n\to \Delta^n\) is a weak equivalence and the injective model structure is cartesian.  The map 
+  \[\realiz{\partial(\Delta^n \times c)}_Q \to \partial(\Delta^n \times c)\]
+  is a weak equivalence by the induction hypothesis, since the Reedy dimension of \(\partial(\Delta^n \times c)\) is less than the dimension of \(\Delta^n \times c\). Finally, we see that 
+  \[\realiz{A^\prime}_Q \to A^\prime\]
+  is a weak equivalence since \(A^\prime\) has one fewer nondegenerate cell than \(A\) and is therefore also covered in the induction hypothesis.
+
+  Therefore, the natural map
+  \[\mathfrak{C}(\Sigma(A))\cong \mathbf{2}(\realiz{A}_Q) \xrightarrow{\sim} \mathbf{2}(A)\]
+  is a weak equivalence in \(\Cat_{\Psh_{\Delta}(C)_{\mathrm{inj}}}\) for all simplicial presheaves \(A\) on \(\C\).
   From this, it follows that since \(\mathbf{2}(b\times^\lrcorner f)\) is an \(\M\)-equivalence for any \(f\in \setS\), and since we have a natural equivalence of arrows \[\mathfrak{C}(\Sigma(b\times^\lrcorner f))\xrightarrow{\sim} \mathbf{2}(b\times^\lrcorner f),\] then by \(3\)-for-\(2\), \(\mathfrak{C}(\Sigma(b\times^\lrcorner f)\) is a weak equivalence, which proves left-Quillen functoriality.
 \end{proof}
 \begin{thm}\label{maintheorem2}
@@ -1132,6 +1150,13 @@ In this section, we demonstrate that the three cosimplicial objects \(C^\bullet_
 			title={A folk model structure on omega-cat},
 			journal={Preprint},
 			date={2007},
+		}
+
+		\bib{htt}{book}{
+		title={Higher Topos Theory},
+		author={Lurie, Jacob},
+		date={2009},
+		publisher={Princeton University Press},
 		}
 
 		\bib{oury}{thesis}{
