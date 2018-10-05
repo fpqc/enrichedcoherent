@@ -158,6 +158,7 @@
 \DeclareMathOperator{\pt}{pt}
 \DeclareMathOperator{\map}{map}
 \DeclareMathOperator{\heit}{ht}
+\DeclareMathOperator{\Fib}{Fib}
 \newcommand{\eev}{\wedge}
 \newcommand{\sm}{\wedge} % smash product
 
@@ -778,7 +779,8 @@ Let \[C^\bullet(c) \xrightarrow{\sim} R^\bullet(c)\xrightarrow{\sim} [1](c)\] be
 
 The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 
-\begin{prop}  If \(X\) is formal \(\C\)-quasicategory,  and \(x,y\) are two vertices of \(x\), there is a commutative diagram
+\begin{prop} 
+  If \(X\) is formal \(\C\)-quasicategory,  and \(x,y\) are two vertices of \(x\), there is a commutative diagram
 	\begin{equation*}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
@@ -797,40 +799,42 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 	in which all of the maps are weak equivalences.
 \end{prop}
 \begin{proof}
-  First, we already know that the map
-  \[\mathfrak{C}^\Nec(X)(x,y)_c \to \mathfrak{C}^\mathcal{Y}(X)(x,y)_c\]
-  is a weak equivalence by Proposition \ref{gadgetlemma}.  The map
-  \[\mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)_c \hookrightarrow \mathfrak{C}^{\mathcal{Y}}(X)(x,y)_c\]
-  is the image under the nerve of the functor
-  \[j:\overcat{\mathcal{Y}_f(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}(c)}{X_{x,y}}.\]
-  We will show that it is a weak homotopy equivalence as follows: Let \(Z\mapsto \mathscr{F}(Z)\) denote a functorial fibrant replacement of \(Z\) in the horizontal Joyal model structure. Then since \(X\) is fibrant, there exists a map \(\mathscr{F}(X)\to X\) retracting the inclusion \(X\hookrightarrow \mathscr{F}(X)\).  Using this fact, we define a functor
-  \[F:\overcat{\mathcal{Y}(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\]
-  sending \[Y(c)\to X_{x,y} \mapsto \mathscr{F}Y(c)\to \mathscr{F}(X) \to X.\]
-  This works because 
-  \[\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\to \Map^\mathbf{sp}_{\mathscr{F}(Y(c))}(\alpha,\omega)\]
-  and
-  \[\mathfrak{C}(Y(c))(\alpha,\omega)\to \mathfrak{C}(\mathscr{F}(Y(c)))(\alpha,\omega)\]
-  are weak equivalences, in the first instance because the formation of the special mapping space was homotopy-invariant, and in the second instance because \(\mathfrak{C}\) is left-Quillen. Then we see that \(Fj\) and \(jF\) both admit natural transformations back to the appropriate identity functors, which proves that they induce a weak homotopy equivalence on nerves.
+	First, we already know that the map
+	\[\mathfrak{C}^\Nec(X)(x,y)_c \to \mathfrak{C}^\mathcal{Y}(X)(x,y)_c\]
+	is a weak equivalence by Proposition \ref{gadgetlemma}.  The map
+	\[\mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)_c \hookrightarrow \mathfrak{C}^{\mathcal{Y}}(X)(x,y)_c\]
+	is the image under the nerve of the functor
+	\[j:\overcat{\mathcal{Y}_f(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}(c)}{X_{x,y}}.\]
+	We will show that it is a weak homotopy equivalence as follows: Let \(Z\mapsto \mathscr{F}(Z)\) denote a functorial fibrant replacement of \(Z\) in the horizontal Joyal model structure. Then since \(X\) is fibrant, there exists a map \(\mathscr{F}(X)\to X\) retracting the inclusion \(X\hookrightarrow \mathscr{F}(X)\).  Using this fact, we define a functor
+	\[F:\overcat{\mathcal{Y}(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\]
+	sending \[Y(c)\to X_{x,y} \mapsto \mathscr{F}Y(c)\to \mathscr{F}(X) \to X.\]
+	This works because
+	\[\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\to \Map^\mathbf{sp}_{\mathscr{F}(Y(c))}(\alpha,\omega)\]
+	and
+	\[\mathfrak{C}(Y(c))(\alpha,\omega)\to \mathfrak{C}(\mathscr{F}(Y(c)))(\alpha,\omega)\]
+	are weak equivalences, in the first instance because the formation of the special mapping space was homotopy-invariant, and in the second instance because \(\mathfrak{C}\) is left-Quillen. Then we see that \(Fj\) and \(jF\) both admit natural transformations back to the appropriate identity functors, which proves that they induce a weak homotopy equivalence on nerves.
 
-  The righthand vertical map comes from applying the nerve to the functor
-  \[f:\overcat{\Delta}{\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})} \to \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\]
-  defined by the rule
-  \[([n],R^n(c) \to X_{x,y}) \mapsto (R^n(c), R^n(c)\to X_{x,y}).\]
-  To show that this functor induces a weak equivalence on nerves, we apply Quillen's theorem A.  Notice that for an object \(y=(Y(c),Y(c)\to X_{x,y}\), the comma category \(\overcat{f}{y}\) is precisely
-  \[\overcat{\Delta}{\mathcal{G}(c)(R^\bullet(c),Y(c))}=\overcat{\Delta}{\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)}.\]
-  But by \cite{ds2}, the nerve of the category of elements of a simplicial set is weakly equivalent to that simplicial set, and since \(\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\) was assumed to be contractible, the result follows.
+	The righthand vertical map comes from applying the nerve to the functor
+	\[f:\overcat{\Delta}{\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})} \to \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\]
+	defined by the rule
+	\[([n],R^n(c) \to X_{x,y}) \mapsto (R^n(c), R^n(c)\to X_{x,y}).\]
+	To show that this functor induces a weak equivalence on nerves, we apply Quillen's theorem A.  Notice that for an object \(y=(Y(c),Y(c)\to X_{x,y}\), the comma category \(\overcat{f}{y}\) is precisely
+	\[\overcat{\Delta}{\mathcal{G}(c)(R^\bullet(c),Y(c))}=\overcat{\Delta}{\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)}.\]
+	But by \cite{ds2}, the nerve of the category of elements of a simplicial set is weakly equivalent to that simplicial set, and since \(\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\) was assumed to be contractible, the result follows.
 
-  To see that the bottom map is an equivalence, it follows simply because \(C^\bullet(c) \to R^\bullet(c)\) is a Reedy trivial cofibration, so 
-  \[\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})  \to \cellset_{\ast,\ast}(C^\bullet(c),X_{x,y})\]
-  is a weak equivalence.  Therefore, again by \cite{ds2}, the nerve of the category of elements of simplicial sets preserves weak equivalences.
+	To see that the bottom map is an equivalence, it follows simply because \(C^\bullet(c) \to R^\bullet(c)\) is a Reedy trivial cofibration, so
+	\[\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})  \to \cellset_{\ast,\ast}(C^\bullet(c),X_{x,y})\]
+	is a weak equivalence.  Therefore, again by \cite{ds2}, the nerve of the category of elements of simplicial sets preserves weak equivalences.
 \end{proof}
 
-\begin{cor}\label{mapspacecomparison} For any formal \(\C\)-quasicategory \(X\) and any pair of vertices \(x,y\), there is a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\).
+\begin{cor}\label{mapspacecomparison}
+  For any formal \(\C\)-quasicategory \(X\) and any pair of vertices \(x,y\), there is a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\).
 \end{cor}
 
-\begin{thm}\label{counitthm} For any fibrant \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched category \(\mathcal{D}\), the counit map
-  \[\epsilon_\mathcal{D}:\mathfrak{C}(\mathfrak{N}\mathcal{D})\to \mathcal{D}\]
-  is a weak equivalence of \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched categories.
+\begin{thm}\label{counitthm}
+  For any fibrant \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched category \(\mathcal{D}\), the counit map
+	\[\epsilon_\mathcal{D}:\mathfrak{C}(\mathfrak{N}\mathcal{D})\to \mathcal{D}\]
+	is a weak equivalence of \(\Psh_\Delta(\C)_{\mathrm{inj}}\)-enriched categories.
 \end{thm}
 \begin{proof}
 	Let \(\C^\bullet=C^\bullet_R\).  Then consider the following commutative diagram:
@@ -839,11 +843,11 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 			\matrix (b) [matrix of math nodes, row sep=3em,
 				column sep=2em]
 			{
-        \mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c & \mathcal{D}(x,y)_c & \\
-				\coliml\limits_{T(c)\to \mathfrak{\mathfrak{N}}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega) & \coliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega) & \coliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \\
-				\hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega) & \hocoliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega) & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega)   \\
-        \hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \ast & \hocoliml\limits_{Y\to \mathfrak{N}\mathcal{D}} \ast & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \ast \\
-      };
+				\mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c                                                                & \mathcal{D}(x,y)_c                                                                &                                                                                            \\
+				\coliml\limits_{T(c)\to \mathfrak{\mathfrak{N}}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega)   & \coliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega)   & \coliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega)   \\
+				\hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega) & \hocoliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega) & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \\
+				\hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \ast                                                    & \hocoliml\limits_{Y\to \mathfrak{N}\mathcal{D}} \ast                                                    & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \ast                                                      \\
+			};
 			\path[->, font=\scriptsize]
 			(b-1-1) edge (b-1-2)
 			(b-2-1) edge (b-1-1) edge (b-2-2)
@@ -862,9 +866,9 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em,
 				column sep=2em]
-			  {
-        \mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c & \mathcal{D}(x,y)_c  & \\
-				\hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega) &	\hocoliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega) & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \\};
+			{
+				\mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c                                                                & \mathcal{D}(x,y)_c                                                                &                                                                                                                     \\
+				\hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega) & \hocoliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega) & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \\};
 			\path[->, font=\scriptsize]
 			(b-1-1) edge (b-1-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
@@ -872,91 +876,92 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 			(b-2-3) edge node[auto,swap]{\(\scriptstyle{\gamma_c}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\sim}\)} (b-2-2);
 		\end{tikzpicture},
 	\end{equation*}
-  in which the left vertical map is a weak equivalence by Theorem \ref{necthm}. By \(3\)-for-\(2\), we can see that it suffices to show that the map 
-  \[\gamma_c: \hocoliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \to \coliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega)\to \mathcal{D}(x,y),c\]
-  is a weak equivalence.
+	in which the left vertical map is a weak equivalence by Theorem \ref{necthm}. By \(3\)-for-\(2\), we can see that it suffices to show that the map
+	\[\gamma_c: \hocoliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \to \coliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega)\to \mathcal{D}(x,y),c\]
+	is a weak equivalence.
 	To do this, notice that
-  \begin{align*}
-    \cellset_{\ast,\ast}(C^n(c), \mathfrak{N}\mathcal{D}_{x,y}) & \cong \overcat{\partial[1]}{\Cat_{\Psh_\Delta(\C)}}(\mathfrak{C}(C^n(c)_{\alpha,\omega},\mathcal{D}_{x,y}) \\
-     & \cong \Psh_\Delta(\C)(\mathfrak{C}(C^n(c))(\alpha,\omega), \mathcal{D}(x,y)).
-  \end{align*}
+	\begin{align*}
+		\cellset_{\ast,\ast}(C^n(c), \mathfrak{N}\mathcal{D}_{x,y}) & \cong \overcat{\partial[1]}{\Cat_{\Psh_\Delta(\C)}}(\mathfrak{C}(C^n(c)_{\alpha,\omega},\mathcal{D}_{x,y}) \\
+		& \cong \Psh_\Delta(\C)(\mathfrak{C}(C^n(c))(\alpha,\omega), \mathcal{D}(x,y).
+	\end{align*}
 
-  As in the proof of \cite{ds2}*{Proposition 5.8}, we define the cosimplicial simplicial set \(Q^\bullet = \mathfrak{C}_\Delta (\pi C^\bullet)(\alpha,\omega)\), which is obviously isomorphic to the \(Q^\bullet\) defined in \cite{ds2}. Moreover, by direct computation, we see that 
-  \[\mathfrak{C}(C^\bullet(c))(\alpha,\omega)\cong Q^\bullet \times c.\]
+	As in the proof of \cite{ds2}*{Proposition 5.8}, we define the cosimplicial simplicial set \(Q^\bullet = \mathfrak{C}_\Delta (\pi C^\bullet)(\alpha,\omega)\), which is obviously isomorphic to the \(Q^\bullet\) defined in \cite{ds2}. Moreover, by direct computation, we see that
+	\[\mathfrak{C}(C^\bullet(c))(\alpha,\omega)\cong Q^\bullet \times c.\]
 	Then we see immediately that
 	\[\Psh_\Delta(\C)(\mathfrak{C}(C^n(c))(\alpha,\omega), \mathcal{D}(x,y)) \cong \Psh_\Delta(\C)(Q^n \times c, \mathcal{D}(x,y))\cong \psh{\Delta}(Q^n, \mathcal{D}(x,y)_c),\]
-  so \(\gamma_c\) is precisely the map obtained by composing 
-  \[\left(\hocoliml_{[n],Q^n\to \mathcal{D}(x,y)_c} Q^n\right) \to \left(\coliml_{[n],Q^n\to \mathcal{D}(x,y)_c} Q^n\right) \to \mathcal{D}(x,y)_c.\]
-  The result then follows immediately by application of \cite{ds2}*{Lemma 5.9}.
+	so \(\gamma_c\) is precisely the map obtained by composing
+	\[\left(\hocoliml_{[n],Q^n\to \mathcal{D}(x,y)_c} Q^n\right) \to \left(\coliml_{[n],Q^n\to \mathcal{D}(x,y)_c} Q^n\right) \to \mathcal{D}(x,y)_c.\]
+	The result then follows immediately by application of \cite{ds2}*{Lemma 5.9}.
 \end{proof}
 
 \begin{rem}
-  This result is even stronger than it first appears, because it implies that the counit map is a weak equivalence for fibrant categories enriched in any cartesian-closed left-Bousfield localization of \(\Psh_\Delta(\C)_{inj}\).  It reduces proving comparison theorems for such localizations to showing that \(\mathfrak{C}\) is a left-Quillen functor (something we already know for the horizontal Joyal model structure by Corollary \ref{horizquillen}) and reflects weak equivalences.
+	This result is even stronger than it first appears, because it implies that the counit map is a weak equivalence for fibrant categories enriched in any cartesian-closed left-Bousfield localization of \(\Psh_\Delta(\C)_{inj}\).  It reduces proving comparison theorems for such localizations to showing that \(\mathfrak{C}\) is a left-Quillen functor (something we already know for the horizontal Joyal model structure by Corollary \ref{horizquillen}) and reflects weak equivalences.
 \end{rem}
 
-\section{The horizontal comparison theorem}
+\section{The horizontal comparison theorem}\label{horizcomparison}
 Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a stepping stone to proving the comparison theorem.  They use the definition of DK-equivalence as an intermediate step to proving that \(\mathfrak{C}_\Delta\) is homotopy-conservative.  We give an analogous definition as follows:
 
-\begin{defn} A map \(f:X\to Y\) of presheaves on \(\Theta[\C]\) is called a \emph{horizontal Dwyer-Kan equivalence} if the following two properties hold:
+\begin{defn}
+  A map \(f:X\to Y\) of presheaves on \(\Theta[\C]\) is called a \emph{horizontal Dwyer-Kan equivalence} if the following two properties hold:
 	\begin{itemize}
-    \item The induced map 
-    \[f_*:\operatorname{Ho}(\cellset_{\mathrm{hJoyal}}(\ast,X) \to \operatorname{Ho}(\cellset_{\mathrm{hJoyal}}(\ast,Y)\]
-    is bijective, and
-    \item For any two vertices \(x,x^\prime\in X_0\), the induced map
-    \[\Map_X(x,x^\prime) \to \Map_Y(f(x),f(x^\prime))\]
-    is a weak equivalence of simplicial presheaves on \(\C\).
+		\item The induced map
+		      \[f_*:\operatorname{Ho}(\cellset_{\mathrm{hJoyal}}(\ast,X) \to \operatorname{Ho}(\cellset_{\mathrm{hJoyal}}(\ast,Y)\]
+		      is bijective, and
+		\item For any two vertices \(x,x^\prime\in X_0\), the induced map
+		      \[\Map_X(x,x^\prime) \to \Map_Y(f(x),f(x^\prime))\]
+		      is a weak equivalence of simplicial presheaves on \(\C\).
 	\end{itemize}
 \end{defn}
 
 \begin{prop} A map \(f:X\to Y\) of presheaves on \(\Theta[\C]\) is a horizontal weak equivalence if and only if it is a horizontal Dwyer-Kan equivalence.
 \end{prop}
 \begin{proof}
-  It is clear that any horizontal Joyal equivalence is automatically horizontally Dwyer-Kan since our constructions are all homotopy-invariant, so we prove that all horizontal Dwyer-Kan equivalences are horizontal Joyal equivalences.  We notice immediately that if \(X\) and \(Y\) are fibrant, the horizontal Dwyer-Kan condition implies that the associated map \(\mathcal{Q}(f):\mathcal{Q}(X)\to \mathcal{Q}(Y)\) between complete \(\Theta[\C]\) Segal spaces is an equivalence, where 
-  \[\mathcal{Q}:\cellset \to \psh{\Theta[\C]\times \Delta}\]
-  is defined by the rule
-  \[\mathcal{Q}(X)_{[n](c_1,\dots,c_n),m} \defeq=\Hom([n](c_1,\dots,c_n)\times E^m,X).\]
-  Since \(\mathcal{Q}\) is the right adjoint of a Quillen equivalence by Appendix \ref{rezkcomparison}, a map \(f\) between fibrant objects is a weak equivalence if and only if its image under \(\mathcal{Q}\) is.  Therefore, the claim holds for \(X\) and \(Y\) fibrant.
+	It is clear that any horizontal Joyal equivalence is automatically horizontally Dwyer-Kan since our constructions are all homotopy-invariant, so we prove that all horizontal Dwyer-Kan equivalences are horizontal Joyal equivalences.  We notice immediately that if \(X\) and \(Y\) are fibrant, the horizontal Dwyer-Kan condition implies that the associated map \(\mathcal{Q}(f):\mathcal{Q}(X)\to \mathcal{Q}(Y)\) between complete \(\Theta[\C]\) Segal spaces is an equivalence, where
+	\[\mathcal{Q}:\cellset \to \psh{\Theta[\C]\times \Delta}\]
+	is defined by the rule
+	\[\mathcal{Q}(X)_{[n](c_1,\dots,c_n),m} \defeq=\Hom([n](c_1,\dots,c_n)\times E^m,X).\]
+	Since \(\mathcal{Q}\) is the right adjoint of a Quillen equivalence by Appendix \ref{rezkcomparison}, a map \(f\) between fibrant objects is a weak equivalence if and only if its image under \(\mathcal{Q}\) is.  Therefore, the claim holds for \(X\) and \(Y\) fibrant.
 
 	In general, given a horizontal Dwyer-Kan equivalence \(f:X\to Y\) where \(X\) and \(Y\) are no longer assumed to be fibrant, we can take a fibrant replacement \(\tilde{Y}\) of \(Y\) such that \(Y\to Y^\prime\) is a trivial cofibration for the horizontal Joyal model structure.  Then we can also factor \(X\to Y\to \tilde{Y}\) into a trivial Joyal cofibration \(X\to \tilde{X}\) followed by a fibration \(\tilde{X}\to \tilde{Y}\).  But notice now that the condition of being horizontally DK-equivalent is homotopy invariant, so the map \(\tilde{X}\to \tilde{Y}\) is also a horizontal DK-equivalence.  Since \(\tilde{Y}\) is fibrant and \(\tilde{X}\to \tilde{Y}\) is a horizontal Joyal fibration, this is a horizontal Joyal equivalence.  Then by \(3\)-for-\(2\)  we see that \(f\) is also a horizontal Joyal equivalence, which concludes the proof.
 \end{proof}
 
-\begin{prop}
-  A map \(f:X\to Y\) of presheaves on \(\Theta[\C]\) is a horizontal Joyal equivalence if and only if \(\mathfrak{C}(f)\) is an weak equivalence of \(\Psh_\Delta (\C)_{\mathrm{inj}}\)-enriched categories.
+\begin{prop}\label{conservativity}
+	A map \(f:X\to Y\) of presheaves on \(\Theta[\C]\) is a horizontal Joyal equivalence if and only if \(\mathfrak{C}(f)\) is an weak equivalence of \(\Psh_\Delta (\C)_{\mathrm{inj}}\)-enriched categories.
 \end{prop}
 \begin{proof}
 	We only need to check one direction, since the other direction is immediate by the fact that \(\mathfrak{C}\) is left-Quillen.  Assume \(f:X\to Y\) has the property that \(\mathfrak{C}(f)\) is an equivalence. Then as in the previous proposition, we can reduce to the case where \(X\) and \(Y\) are fibrant, but in this case, we know from Corollary \ref{mapspacecomparison} that \(\mathfrak{C}(X)(x,x^\prime)\) is connected by a natural zig-zag of weak equivalences to \(\Map_X(x,y)\), so if the map  \(\mathfrak{C}(X)(x,x^\prime)\to \mathfrak{C}(Y)(f(x),f(x^\prime))\) is a weak equivalence, it follows that the map \(\Map_X(x,x^\prime)\to \Map_Y(f(x),f(x^\prime))\) is also a weak equivalence.
 
-  Then it suffices to show that when \(\mathfrak{C}(f)\) is an equivalence, the induced map on sets of homotopy classes
-  \[[\ast,X]_{E^1} \to [\ast,Y]_{E^1}\]
-  is a bijection.  Notice that
-  \[[\ast,X]_{E^1} \cong \pi_0 \cellset(E^\bullet,X),\]
-  and since \(E^n=\mathscr{H}\operatorname{cosk}_0 \Delta^n\). By abuse of notation, we also denote the simplicial set \(\operatorname{cosk}_0 \Delta^n\) by \(E^n\).  We noticed earlier that \(\mathscr{H}\) has a right adjoint, which we now denote by \(\mathscr{N}\). Using this, we can rewrite the question as asking for the induced map to give a bijection
-  \[\pi_0 \psh{\Delta}(E^n,\mathscr{N}X) \to \pi_0 \psh{\Delta}(E^n,\mathscr{N}X),\]
-  which is the same as giving a bijection
-  \[[\Delta^0,\mathscr{N}X]_{E^1}\to [\Delta^0,\mathscr{N}X]_{E^1}\].
+	Then it suffices to show that when \(\mathfrak{C}(f)\) is an equivalence, the induced map on sets of homotopy classes
+	\[[\ast,X]_{E^1} \to [\ast,Y]_{E^1}\]
+	is a bijection.  Notice that
+	\[[\ast,X]_{E^1} \cong \pi_0 \cellset(E^\bullet,X),\]
+	and since \(E^n=\mathscr{H}\operatorname{cosk}_0 \Delta^n\). By abuse of notation, we also denote the simplicial set \(\operatorname{cosk}_0 \Delta^n\) by \(E^n\).  We noticed earlier that \(\mathscr{H}\) has a right adjoint, which we now denote by \(\mathscr{N}\). Using this, we can rewrite the question as asking for the induced map to give a bijection
+	\[\pi_0 \psh{\Delta}(E^n,\mathscr{N}X) \to \pi_0 \psh{\Delta}(E^n,\mathscr{N}X),\]
+	which is the same as giving a bijection
+	\[[\Delta^0,\mathscr{N}X]_{E^1}\to [\Delta^0,\mathscr{N}X]_{E^1}\].
 
-  Notice also that the data classifying an equivalence in \(\mathfrak{C}(X)\) all factor through the simplicial category \(\mathfrak{C}(X)_{\ast_\C}\) obtained by evaluating each of the \(\Hom\) objects at the terminal object \(\ast_{\C} of \C\).  It is an easy exercise to see that
-  \[\mathfrak{C}(X)_{\ast_C} \cong \mathfrak{C}_\Delta (\mathscr{N}X),\]
-  but since \(\mathscr{N}X\) is quite clearly a quasicategory, the claim follows immediately from the ordinary case.  This implies that \(f\) is a horizontal Dwyer-Kan equivalence, and therefore by the previous proposition, a horizontal Joyal equivalence, which concludes the proof.
+	Notice also that the data classifying an equivalence in \(\mathfrak{C}(X)\) all factor through the simplicial category \(\mathfrak{C}(X)_{\ast_\C}\) obtained by evaluating each of the \(\Hom\) objects at the terminal object \(\ast_{\C} of \C\).  It is an easy exercise to see that
+	\[\mathfrak{C}(X)_{\ast_C} \cong \mathfrak{C}_\Delta (\mathscr{N}X),\]
+	but since \(\mathscr{N}X\) is quite clearly a quasicategory, the claim follows immediately from the ordinary case.  This implies that \(f\) is a horizontal Dwyer-Kan equivalence, and therefore by the previous proposition, a horizontal Joyal equivalence, which concludes the proof.
 \end{proof}
 
 \begin{thm}\label{mainthm1}
-  The Quillen pair 
-  \[\cellset_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\]
-  is a Quillen equivalence.
+	The Quillen pair
+	\[\cellset_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\]
+	is a Quillen equivalence.
 \end{thm}
 \begin{proof}
-  All we have left to show is that the derived unit of the adjunction,
-  \[X\to \mathfrak{N}\mathfrak{C}(X) \to \mathfrak{N}\mathcal{D}\]
-  is a weak equivalence for all presheaves \(X\) on \(\Theta[\C]\), where \(\mathfrak{C}(X) \to \mathcal{D}\) is a weak equivalence and \(\mathcal{D}\) is fibrant.  However, by the previous proposition, we see that it suffices to show that the map
-  \[\mathfrak{C}(X)\to \mathfrak{C}\mathfrak{N}\mathfrak{C}(X) \to \mathfrak{C}\mathfrak{N}\mathcal{D}\]
-  is a weak equivalence.  We obtain a naturality square from the counit
+	All we have left to show is that the derived unit of the adjunction,
+	\[X\to \mathfrak{N}\mathfrak{C}(X) \to \mathfrak{N}\mathcal{D}\]
+	is a weak equivalence for all presheaves \(X\) on \(\Theta[\C]\), where \(\mathfrak{C}(X) \to \mathcal{D}\) is a weak equivalence and \(\mathcal{D}\) is fibrant.  However, by the previous proposition, we see that it suffices to show that the map
+	\[\mathfrak{C}(X)\to \mathfrak{C}\mathfrak{N}\mathfrak{C}(X) \to \mathfrak{C}\mathfrak{N}\mathcal{D}\]
+	is a weak equivalence.  We obtain a naturality square from the counit
 	\begin{equation*}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=2em]
 			{
 				\mathfrak{C}\mathfrak{N}\mathfrak{C}(X) & \mathfrak{C}\mathfrak{N}\mathcal{D} \\
-				\mathfrak{C}(X) & \mathcal{D}\\
+				\mathfrak{C}(X)                                               & \mathcal{D}                                               \\
 			};
 			\path[->, font=\scriptsize]
 			(b-1-1) edge (b-1-2) edge (b-2-1)
@@ -967,18 +972,72 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 	in which the indicated arrows are equivalences (for the bottom horizontal, this was by choice, and for the righthand vertical, it comes from Theorem \ref{counitthm}.  But if we precompose with the unit map \(\mathfrak{C}\eta_X:\mathfrak{C}(X)\to \mathfrak{C}\mathfrak{N}\mathfrak{C}(X)\), the lefthand arrow becomes the identity by the triangle identities, which proves the claim by \(3\)-for-\(2\).
 \end{proof}
 
-\begin{comment}
-In this section, we will state some results about a left Bousfield localization of \(\cellset_{\mathrm{hJoyal}}\) with respect to a Cartesian presentation \((\C,\setS)\) where \(\setS\) is a small set of monomorphisms of \(\psh{\C}\) such that the left Bousfield localization of \(\Psh_\Delta(\C)_{\mathrm{inj}}\) at \(\Delta^0\times \setS\) is a Cartesian model category.  This model structure can only be defined for a set \(\setS\) of monomorphisms \emph{in \(\psh{\C}\)}.  In Section \ref{rezkvert}, we will describe a localization of \(\psh{\Theta[\C]}_{\mathrm{hJoyal}}\) when \(S\) is any set of monomorphisms of \(\Psh_\Delta(\C)\) such that the localization of \(\Psh_\Delta (\C)_{\mathrm{inj}}\) is a Cartesian model category.  In Appendix \ref{comparisonvert}, we will show that these two presentations give the same model structure when \(\setS\) is discrete.
+\section{The \((\C,S)\)-enriched model structure}\label{rezkvert}
+While our presentation of the horizontal Joyal model structure comes mainly from David Oury's thesis \cite{oury}, what follows is independent, making use of the resolution technology we developed in the previous section to give a simple and satisfying story. Suppose \(\M=(\C,\setS)\) is a Cartesian presentation in the sense of Rezk, where \(\setS\) is a set of monomorphisms of \(\Psh_\Delta(\C)\) such that the left-Bousfield localization of \(\Psh_\Delta(\C)_\mathrm{inj}\) at \(\setS\) is a Cartesian model category.  
 
-\begin{defn} Given a set \(\setS\) of monomorphisms of \(\psh{\C}\) such that the localization of \(\Psh_\Delta(\C)_\mathrm{inj}\) at \(\setS\times \Delta^0\) is a cartesian model category, we call the pair \(\M=(\C,\setS)\) a \emph{discrete cartesian presentation}, or when the context is clear, a \emph{discrete presentation}.  If \(\M=(\C,\setS)\) is a discrete Cartesian presentation, by abuse of notation, we set \[\psh{\M}\defeq \mathcal{L}_{\setS\times \Delta^0}\left(\Psh_\Delta(\C)_\mathrm{inj}\right),\] where \(\mathcal{L}_{(-)}\) denotes the left Bousfield localization.
+Recall that we had a number of functorial cosimplicial objects \[C_{(-)}^\bullet(\bullet):\Delta \times \C \to \cellset_{\ast,\ast},\] such that \(C_{(-)}^\bullet(\bullet)\) was a cosimplicial resolution of \([1](\bullet)\), which is a Reedy cofibrant diagram \(\C\to \cellset_{\ast,\ast}\).  Since \(\cellset_{\ast,\ast}\) is cocomplete, \(C_{(-)}^\bullet(\bullet)\) extends to a cocontinuous functor \[\Sigma:\Psh_\Delta(\C)\to \cellset_{\ast,\ast}.\]  
+
+\begin{prop} The functor \(\Sigma_{(-)}\) is left-Quillen when \(\cellset_{\ast,\ast}\) is equipped with the horizontal Joyal model structure.
+\end{prop}
+\begin{proof} 
+  It clearly preserves cofibrations, so it suffices to show that its right adjoint preserves fibrations between fibrant objects.  However, this is clear, since the right adjoint sends a bi-pointed formal \(\C\) quasicategory \(X_{x,y}\) to \(\Map_X(x,y)\), which we saw sends horizontal Joyal fibrations to injective fibrations of simplicial presheaves on \(\C\).
+\end{proof}
+\begin{cor}
+  The functor \(\Sigma_{(-)}\) is independent up-to-homotopy of choice of resolution \(C_{(-)}^\bullet(\bullet)\).
+\end{cor}
+\begin{proof}
+  Since simplicial presheaves are always canonically the homotopy-colimit of their representables, and since left-Quillen functors send homotopy-colimits to homotopy-colimits, it suffices to show that \(\Sigma_{(-)}(\Delta^n\times c)\) is independent up-to-homotopy.  But this is clear since all \(C_{(-)}^\bullet(\bullet)\) are connected by natural zig-zags of natural weak equivalences, since they are all cosimplicial resolutions of the same functor \([1](\bullet)\).
+\end{proof}
+We can therefore, without any worry, denote \(\Sigma_{(-)}\) simply by \(\Sigma\).  Then we define the following model structure:
+\begin{defn}
+  If \(\M=(\C,\setS)\) is a Cartesian presentation, we define the model category \(\cellset_{\M}\) to be the left-Bousfield localization of \(\cellset_\mathrm{hJoyal}\) at the set \(\Sigma(\S)\), where we call the fibrant objects \emph{\(\M\)-enriched quasicategories} or simply \emph{\(\M\)-quasicategories}.
 \end{defn}
 
-\begin{lemma} Given a discrete cartesian presentation \(\M=(\C,\setS\), we can find another discrete Cartesian presentation \(\M^\prime = (\C,\setS^\prime)\) such that \(\psh{\M} = \psh{\M^\prime}\) and such that \[\mathscr{B} \times^\lrcorner \setS^\prime \subseteq \operatorname{Cell}(\setS^\prime),\] where \(\mathscr{B}\) is the set of boundary inclusions of \(\C\).
-\end{lemma}
-\begin{proof} Since \(\operatorname{Cell}(\mathscr{B})\) is the class of all monomorphisms by the fact that \(\C\) is regular skeletal Reedy, we know that \(\mathscr{B}\times^\lrcorner \mathscr{B}\subseteq \operatorname{Cell}(B)\).  Then we set \[\setS^\prime = \mathscr{B}\times^\lrcorner \setS.\]
+\begin{prop} Let \(\mathscr{B}\) denote the set of simplicial boundary inclusions.  Then a formal \(\C\)-quasicategory is an \(\M\)-quasicategory if and only if it has the right lifting property with respect to \[\Sigma(\mathscr{B}\times^\lrcorner \setS).\]
+\end{prop}
+\begin{proof} 
+  We know by the construction of the left-Bousfield localization of Cisinski model categories that a formal \(\C\)-quasicategory \(X\) is \(\Sigma(\setS)\)-local if and only if it has the right-lifting property with respect to \(E(\mathscr{B})\times^\lrcorner \Sigma(\setS)\), but this occurs only when for every \(s:A\to B\) in \(\setS\), the map \(X^{\Sigma(f)}:X^{\Sigma(B)} \to X^{\Sigma(A)}\) has the right lifting property with respect to \(E(\mathscr{B})\).  But since by adjunction, this happens when \(\mathscr{G}(X^{\Sigma(f)})\) is a trivial fibration, where \(\mathscr{G}\) is the functor sending a formal \(\C\)-quasicategory \(X\) to the Kan core of the underlying quasicategory \(\mathscr{N}(X)\).  Since all of the maps \(f \in \setS\) are monic, and since \(\Sigma\) preserves cofibrations, it follows that the \(X^{\Sigma(f)}\) are all horizontal Joyal fibrations, since the horizontal Joyal model structure is Cartesian.  Then, since \(\mathscr{N}\) sends horizontal Joyal fibrations between formal \(\C\)-quasicategories to Joyal fibrations of quasicategories, and since the Kan core of a Joyal fibration between quasicategories is a Kan fibration of Kan complexes, it suffices to show that the Kan fibration \(\mathscr{G}(X^f)\) is a trivial fibration. 
+  
+  Notice that \(\mathscr{G}(X^{\bullet})\) is exactly the simplicial mapping space \(\operatorname{hMap}^\Delta(bullet,X)\).  For any two vertices \(x,y\) of \(X\), it suffices therefore to show that \(\operatorname{hMap}^\Delta_{\ast,\ast}(\Sigma(f),X)\) is a trivial fibration.  But \(\operatorname{hMap}_{\ast,\ast}(\Sigma(f),X_{x,y})\) is exactly \(\operatorname{hMap}(f,\Map_X(x,y)\), which is a trivial fibration if and only if \(\Map_X(x,y)\) has the right lifting property with respect to \(b \times^\lrcorner f\) where \(b\) is a simplicial boundary inclusion, which proves the claim.
 \end{proof}
-\end{comment}
-\section{The \((\C,S)\)-enriched model structure in general}\label{rezkvert}
+\begin{cor} A formal \(\C\)-quasicategory \(X\) is an \(\M\)-quasicategory if and only if \(\Map_X(x,y)\) is \(\setS\)-local for all pairs of vertices \(x,y\) in \(X\).  
+\end{cor}
+
+\begin{thm} For any cartesian presentation \(\M=(\C,\setS)\), the model category \(\cellset_{\M}\) is Cartesian-closed.  
+\end{thm}
+\begin{proof}
+  This is exactly \cite{rezk-theta-n-spaces}*{Proposition 8.5}.
+\end{proof}
+
+In what follows, let \(\Sigma\) be \(\Sigma_R\).  
+
+\begin{prop} The pair \(\cellset_\M \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_{\Delta}(\C)_{\setS}}\) is a Quillen pair.
+\end{prop}
+\begin{proof}
+  It suffices to show that \(\mathfrak{N}\) preserves fibrant objects by the properties of the left-Bousfield localization.  Since the coherent nerve of any fibrant \(\Psh_\Delta(\C)\)-enriched category \(\mathcal{D}\) is already a formal \(\C\)-quasicategory, it suffices to show that \(\mathfrak{N}\mathcal{D}\) has the right-lifting property with respect to \(\Sigma(\mathscr{B}\times^\lrcorner \setS)\).  This will be true so long as the maps \(\mathfrak{C}(\Sigma(\mathscr{B}\times^\lrcorner \setS))\) are all weak equivalences.  To see this, let \(\mathbf{2}(A)\) for any simplicial presheaf \(A\) on \(\C\) denote the \(\Psh_\Delta(\C)\)-enriched category whose objects are \(\{0,1\}\) and where 
+  \[
+    \mathbf{2}(A)(x,y)=
+    \begin{cases}
+      \ast \text{ if } x=y\\
+      A \text{ if } x<y\\
+      \emptyset \text{ otherwise}
+    \end{cases}. 
+  \]
+  The functor \(\mathbf{2}(\bullet)\) is clearly a left-Quillen functor 
+  \[\Psh_\Delta(\C)_{\mathrm{inj}} \to \overcat{\ast \coprod \ast}{\Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}},\] so in particular, it preserves homotopy-colimits, and for all \(n \geq 0\) and \(c \in \C\), there is a natural weak equivalence 
+  \[\mathfrak{C}(\Sigma(\Delta^n \times c))(\alpha,\omega) \cong Q^n \times c \xrightarrow{\sim} Delta^n \times c \cong \mathbf{2}(c\times \Delta^n)(0,1)\]
+  that lifts to an equivalence
+  \[\mathfrak{C}(\Sigma(\Delta^n\times c) \xrightarrow{\sim} \mathbf{2}(\Delta^n\times c).\]  Since both functors preserve homotopy colimits, we see that for any simplicial presheaf \(A\) on \(\C\), the induced map 
+  \[\gamma_A:\mathfrak{C}(\Sigma(A) \xrightarrow{\sim} \mathbf{2}(A).\]
+  From this, it follows that since \(\mathbf{2}(b\times^\lrcorner f)\) is an \(\M\)-equivalence for any \(f\in \setS\), and since we have a natural equivalence of arrows \[\mathfrak{C}(\Sigma(b\times^\lrcorner f))\xrightarrow{\sim} \mathbf{2}(b\times^\lrcorner f),\] then by \(3\)-for-\(2\), \(\mathfrak{C}(\Sigma(b\times^\lrcorner f)\) is a weak equivalence, which proves left-Quillen functoriality.
+\end{proof}
+\begin{thm}\label{maintheorem2}
+  The Quillen pair \(\cellset_\M \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_{\Delta}(\C)_{\setS}}\) is a Quillen equivalence.
+\end{thm}
+\begin{proof} It suffices to show that \(\mathfrak{C}\) is homotopy-conservative, so let \(f:X\to Y\) be a map in \(\cellset\) such that \(\mathfrak{C}(f)\) is an equivalence in \(\Cat_{\Psh_\Delta(\C)_{\M}}\). Using the same argument as in Section \ref{horizcomparison}, we reduce to the case where \(f:X\to Y\) is a map between \(\M\)-quasicategories.  Since \(\M\)-quasicategories are also formal \(\C\)-quasicategories, we can apply Corollary \ref{mapspacecomparison} to obtain a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\) for any pair of vertices \(x,y\) of \(X\).  By \(3\)-for-\(2\) and since \[\mathfrak{C}(X)(x,y) \to \mathfrak{C}(Y)(fx,fy)\] was assumed to be an \(\M\)-equivalence, we see that the map \(\Map_X(x,y)\to \Map_Y(fx,fy)\) must also be an \(\M\)-equivalence.  In fact, since both \(\Map_X(x,y)\) and \(\Map_Y(fx,fy)\) are local, this map is actually an equivalence for \(\Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\).  The argument showing that \(f\) is bijective on iso-components is the same as in the proof of Proposition \ref{conservativity} by using the homotopy category.  Therefore, it follows that \(f\) is a horizontal Dwyer-Kan equivalence, which concludes the proof.
+\end{proof}
+\section{The Yoneda embedding and Yoneda's theorem}
+
 \appendix
 \section{The corner tensor construction}\label{cornertensor} In this section, we define general corner tensors and apply them to define the corner-intertwiner and corner-product.
 \section{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
@@ -1119,5 +1178,3 @@ In this section, we demonstrate that the three cosimplicial objects \(C^\bullet_
 	\end{biblist}
 \end{bibdiv}
 \end{document}
-
-
