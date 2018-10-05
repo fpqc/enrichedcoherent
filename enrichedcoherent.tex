@@ -1080,7 +1080,27 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
 \begin{proof} It suffices to show that \(\mathfrak{C}\) is homotopy-conservative, so let \(f:X\to Y\) be a map in \(\cellset\) such that \(\mathfrak{C}(f)\) is an equivalence in \(\Cat_{\Psh_\Delta(\C)_{\M}}\). Using the same argument as in Section \ref{horizcomparison}, we reduce to the case where \(f:X\to Y\) is a map between \(\M\)-quasicategories.  Since \(\M\)-quasicategories are also formal \(\C\)-quasicategories, we can apply Corollary \ref{mapspacecomparison} to obtain a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\) for any pair of vertices \(x,y\) of \(X\).  By \(3\)-for-\(2\) and since \[\mathfrak{C}(X)(x,y) \to \mathfrak{C}(Y)(fx,fy)\] was assumed to be an \(\M\)-equivalence, we see that the map \(\Map_X(x,y)\to \Map_Y(fx,fy)\) must also be an \(\M\)-equivalence.  In fact, since both \(\Map_X(x,y)\) and \(\Map_Y(fx,fy)\) are local, this map is actually an equivalence for \(\Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\).  The argument showing that \(f\) is bijective on iso-components is the same as in the proof of Proposition \ref{conservativity} by using the homotopy category.  Therefore, it follows that \(f\) is a horizontal Dwyer-Kan equivalence, which concludes the proof.
 \end{proof}
 \section{The Yoneda embedding and Yoneda's theorem}
-We begin by constructing the Yoneda embedding relative to a cartesian presentation \(\M=(\C,\setS)\):
+Before we give a construction of the Yoneda embedding and a proof of Yoneda's lemma for \(\M\)-quasicategories, we need two lemmas from \cite{htt}.   We fix a cartesian presentation \(\mathcal{M}=(\C,\setS)\) for the remainder of this section.
+
+\begin{prop}\cite{htt}*{4.2.4.4}\label{lurieprop1}
+	Let \(X\in \cellset\) be a cellular \(\C\)-set, \(\mathcal{D}\) a small \(\Psh_\Delta(\C)\)-enriched category, and let \(\mathfrak{C}(X)\to \mathcal{D}\) be an equivalence of \(\Psh_\Delta(\C)_{\setS}\)-enriched categories. Suppose \(\mathbf{A}\) is a \(\Psh_\Delta(\C)_{\setS}\)-enriched model category, and let \(\mathcal{U}\) be \(\mathcal{D}\)-chunk (see \cite{htt}*{A.3.4.9} for the definition).  Then the induced map
+	\[\mathfrak{N}((\mathcal{U}^\mathcal{D})^\circ)\to \mathfrak{N}(\mathcal{U}^\circ)^X\] is an equivalence of \(\M\)-quasicategories.
+\end{prop}
+\begin{proof} Although we have altered the statement slightly, the only result used in the proof in \cite{htt} that doesn't hold for all excellent monoidal model categories is \cite{htt}*{2.2.5.1}, but the analogue of this is exactly Theorem \ref{maintheorem2}.
+\end{proof}
+\begin{prop}\cite{htt}*{4.2.4.7}\label{lurieprop2}
+	Let \(\mathcal{I}\) be a fibrant \(\Psh_\Delta(\C)_{\setS}\)-enriched category, \(X\) an object of \(\cellset\), and \(p:\mathfrak{N}\to X\) be any map.  Then we can find the following:
+	\begin{itemize}
+		\item A fibrant \(\Psh_\Delta(\C)_{\setS}\)-enriched category \(\mathcal{D}\).
+		\item An enriched functor \(P:\mathcal{I}\to \mathcal{D}\).
+		\item A map \(j:X\to \mathfrak{N}(\mathcal{D})\) that is a weak equivalence in \(\cellset_\mathcal{M}\).
+		\item An equivalence between \(j\circ p\) and \(\mathfrak{N}(P)\) as objects of the \(\M\)-quasicategory \(\mathfrak{N}(\mathcal{D})^{\mathfrak{N}(\mathcal{I})}\).
+	\end{itemize}
+\end{prop}
+\begin{proof} No significant changes to the proof of \cite{htt}*{4.2.4.7}.
+\end{proof}
+
+We begin by constructing the Yoneda embedding:
 \begin{defn}
 	Let \(X\) be a presheaf on \(\Theta[\C]\), and let \(f:\mathfrak{C}(X) \xrightarrow{\sim} \mathcal{D}\) be an \(\M\)-enriched fibrant replacement.  Since \(\mathcal{D}\) is fibrant, the enriched Yoneda embedding 
 	\[\mathcal{D}\hookrightarrow \Psh_\Delta(\C)^{\mathcal{D}^\op}\]
@@ -1093,14 +1113,20 @@ We begin by constructing the Yoneda embedding relative to a cartesian presentati
 	which yields, by adjunction,
 	\[X\times X^\op \to \mathfrak{N}(\Psh_\Delta(\C)_\M^\circ).\]
 	We denote \(\mathfrak{N}(\Psh_\Delta(\C)_\M^\circ)\) simply by \(\M\), and finally, we obtain \emph{the Yoneda embedding} for \(\M\)-quasicategories:
-	\[X\to \M^{X^\op}.\]
+	\[y:X\to \M^{X^\op}.\]
 \end{defn}
 
 \begin{prop}
 	The Yoneda embedding is fully faithful.
 \end{prop}
-\begin{proof}
+\begin{proof} 
+	See \cite{htt}*{5.1.3.1}.
 \end{proof}
+%\begin{prop} Let \(X\) be a small \(\C\)-cellular set, let \(f:X\to \M\) be an object of \(\M^{X^{\op}\), and let \(F:\M^{X^{\op} \to \M^+,\) where \(\M^+\) denotes 
+%\end{prop}
+
+\section{Representability and weighted limits and colimits}
+
 \appendix
 \section{The corner tensor construction}\label{cornertensor} In this section, we define general corner tensors and apply them to define the corner-intertwiner and corner-product.
 %\begin{thm}\label{cocomplete} If \(\mathcal{V}\) is monoidal-biclosed and cocomplete, then the category \(\psh{Delta}\int\mathcal{V}\) is cocomplete.  
