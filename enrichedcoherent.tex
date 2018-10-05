@@ -241,15 +241,10 @@ In this section, we will consider a slightly more general definition of the wrea
 \begin{proof}    Notice that by the bicategorical Yoneda lemma there is a natural equivalence \[h_{\mathcal{V}_\bullet}\circ \iota_*(\Delta^n)\simeq \mathcal{V}_n,\] so \(\mathcal{V}_\bullet\) is naturally equivalent to the restriction of \(h_\mathcal{V}\circ \iota_*\) along the Yoneda embedding, so it follows that \(\Delta\int \mathcal{V} \to \Delta\) is equivalent to the pullback of \(\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}\) along a fully faithful embedding and therefore the evident map \[\Delta\int \mathcal{V} \to \psh{\Delta}\int \mathcal{V}\] is also fully faithful.
 \end{proof}
 
-%\begin{thm}\label{cocomplete} If \(\mathcal{V}\) is monoidal-biclosed and cocomplete, then the category \(\psh{Delta}\int\mathcal{V}\) is cocomplete.  
-%\end{thm}
-%\begin{proof} This follows from work done by B\'enabou, Par\'e, Schumacher, and Street, specifically, when \(\mathcal{V}\) is biclosed and cocomplete, the pseudofunctor we used to define the fibration has the property that evaluation on each object is cocomplete and the property that evaluation on any map of simplicial sets gives a left-adjoint, which follows from the fact that \(\mathcal{V}\) is biclosed.   
-%\end{proof}
-
 \begin{rem} If \(\mathcal{V}\) is braided monoidal, we expect that \(\psh{\Delta \int V}\) can also be equipped with a monoidal structure. To see this, consider the following example: \([2](v,v^\prime)\) and \([2](v^\prime,v)\).  The object assigned to the inner face on the first is \(v\otimes v^\prime\), while in the second, it is \(v^\prime\otimes v\).  The braiding allows these to glue together, so that when we do \([1](v)\boxtimes [1](v^\prime)\), the new object \((\Delta^1)^2\{v,v,v^\prime,v^\prime\}\) pastes along the common inner edge (obviously the indexing here is by the nondegenerate \(1\) cells lying only in the spines of higher nondegenerate simplices in the simplicial \(2\)-cube).  We intend to study this more general case in a future paper.
 \end{rem}
 
-For the purposes of this paper, we will not necessarily need this level of generality, but we expect it may be useful in the future. In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of presheaves of sets on a small Reedy category \(\C\) admitting a terminal object.  Then we give the following definition.
+For the purposes of this paper, we will not necessarily need this level of generality, but we expect it may be useful in the future. In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of presheaves of sets on a small regular skeletal Reedy category \(\C\) admitting a terminal object.  Then we give the following definition.
 
 \begin{defn} For any small regular skeletal Reedy category \(\C\) admitting a terminal object object, we define \(\Theta[\C]\subseteq \Delta \int \psh{\C}\) to be the full subcategory spanned by the objects of the form \([n](h_{c_1},\cdots, h_{c_n})\) for \(c_1,\cdots, c_n \in \C\), and where \(h_\bullet\) denotes the Yoneda embedding.
 \end{defn}
@@ -257,7 +252,23 @@ For the purposes of this paper, we will not necessarily need this level of gener
 \begin{rem} The requirement that \(\C\) have a terminal object is a technical condition that ensures that \(\Delta\) embeds fully and faithfully in \(\Theta[\C]\).  The condition that \(\C\) is regular skeletal Reedy is probably not necessary, but it will ensure later on that the generating cofibrations of the injective model structure on simplicial presheaves \(\Psh_\Delta(\C)\) admit a very simple description.
 \end{rem}
 
-\begin{rem} When \(\C\) has a terminal object, the inclusion \(\ast\to \C\) is a fully faithful right-adjoint.  The construction \(\Theta\) preserves fully faithful right-adjoints, so we have a right-adjoint functor \[\Delta=\Theta[\ast] \hookrightarrow \Theta[\C].\]  Passing to presheaf categories, this functor also extends to a colimit-preserving functor \[\mathscr{H}:\psh{\Delta} \hookrightarrow \cellset.\]  In particular, on representables we have that \[\mathscr{H}(\Delta^n)=[n](\ast,\dots,\ast).\]
+\begin{rem} 
+	When \(\C\) has a terminal object, the inclusion \(\ast\to \C\) is a fully faithful right-adjoint.  The construction \(\Theta\) preserves fully faithful right-adjoints, so we have a right-adjoint functor \[\Delta=\Theta[\ast] \hookrightarrow \Theta[\C].\]  Passing to presheaf categories, this functor also extends to a colimit-preserving functor 
+	\[\mathscr{H}:\psh{\Delta} \hookrightarrow \cellset\]
+	In particular, on representables we have that
+	\[\mathscr{H}(\Delta^n)=[n](\ast,\dots,\ast).\]
+	Therefore, we have an adjoint triple,
+	\begin{equation*}
+		\begin{tikzpicture}
+			\matrix (m) [matrix of math nodes, row sep=3em,column sep=3em]
+			{ \cellset & \psh{\Delta} \\};
+			\path[->, font=\scriptsize]
+			(m-1-1) edge[transform canvas={yshift=1.2em}]   node[auto]{\(\scriptstyle \pi\)} node[auto,swap,transform canvas={yshift=0.2em}]{\(\scriptstyle{\perp}\)} (m-1-2)
+			(m-1-2) edge node[auto,swap, transform canvas={yshift=-0.2em}]{\(\scriptstyle \mathscr{H}\)} (m-1-1)
+			(m-1-1) edge[transform canvas={yshift=-1.2em}]   node[auto, swap]{\(\scriptstyle \mathscr{N}\)} node[auto]{\(\scriptstyle{\perp}\)} (m-1-2);
+			\end{tikzpicture}
+	\end{equation*}
+
 \end{rem}
 
 \begin{defn} We define a special cosimplicial object in \(\cellset\) by the formula \[E^\bullet=\mathscr{H}(\operatorname{cosk}_0\Delta^\bullet).\]  This cosimplicial object will be a cosimplicial resolution of a point, once we define our model structures.
@@ -311,13 +322,13 @@ The other main kind of pathology, shared with the full subcategory \(\Delta \int
 \end{proof}
 
 \begin{prop}
-	The functor associated with the fibration \(\Theta[\C]\to \Delta\) induces an adjunction \[\pi:\cellset \rightleftarrows \psh{\Delta}:\tau.\] If \(X=S\square\Omega\) is sober, and \(f:S^\prime\to S\) is a map of simplicial sets, then the image of the cartesian lift \(\tilde{f}:(S^\prime, f^\ast(\Omega))\to (S,\Omega)\) under the intertwiner is exactly the pullback of \(\tau(f)\) along the component at \(X\) of the unit of the adjunction \(\mu_X:X\to \tau\pi X= \tau S\).
+	The functor associated with the fibration \(\Theta[\C]\to \Delta\) induces an adjunction 
+	\[\cellset \underset{\mathscr{H}}{\overset{\pi}{\rightleftarrows}} \psh{\Delta},\]
+	as we saw earlier. If \(X=S\square\Omega\) is sober, and \(f:S^\prime\to S\) is a map of simplicial sets, then the image of the cartesian lift \(\tilde{f}:(S^\prime, f^\ast(\Omega))\to (S,\Omega)\) under the intertwiner is exactly the pullback of \(\mathscr{H}(f)\) along the component at \(X\) of the unit of the adjunction \(\mu_X:X\to \mathscr{H}\pi X= \mathscr{H} S\).
 \end{prop}
 \begin{proof} By inspection of the definition of \(S\square\Omega\), we can see that \(\pi(S\square\Omega)=S\).
 
-	We can see that \(\tau\) factors as \(\square\circ \mathfrak{t}\), where \(\mathfrak{t}\) is the right-adjoint to the projection \(\psh{\Delta}\int \psh{\C}\), which exists by explicit computation as the functor sending the simplicial set \(S\) to the object \((S,\Omega_{\mathfrak{t}})\) where \(\Omega_{\mathfrak{t}}\) is the labeling sending all simplices of \(S\) to the terminal presheaf on \(\C\).   We can see that the pullback of \((S,\Omega)\) along \(f:S^\prime\to S\) satisfies the universal property of the fibre product of the unit map \((S,\Omega)\to \mathfrak{t}(S)\) with the map \(\mathfrak{t}(f)\), so such pullbacks exist in \(\psh{\Delta}\int \psh{\C}\) and are obviously preserved by \(\square\), which by construction preserves whatever limits exist.
-
-	The proposition follows immediately from these two observations.
+	We can see that \(\mathscr{H}\) factors as \(\square\circ \mathfrak{t}\), where \(\mathfrak{t}\) is the right-adjoint to the projection \(\psh{\Delta}\int \psh{\C}\to \psh{\Delta}\), which exists by explicit computation as the functor sending the simplicial set \(S\) to the object \((S,\Omega_{\mathfrak{t}})\) where \(\Omega_{\mathfrak{t}}\) is the labeling sending all simplices of \(S\) to the terminal presheaf on \(\C\).   We can see that the pullback of \((S,\Omega)\) along \(f:S^\prime\to S\) satisfies the universal property of the fibre product of the unit map \((S,\Omega)\to \mathfrak{t}(S)\) with the map \(\mathfrak{t}(f)\), so such pullbacks exist in \(\psh{\Delta}\int \psh{\C}\) and are obviously preserved by \(\square\), which by construction preserves whatever limits exist. The proposition follows immediately from these two observations.
 \end{proof}
 \section{The coherent realization for \(\Theta[\C]\)}
 There is an adjoint pair that should be familiar to those who have experience with \((\infty,1)\)-categories, namely the coherent realization and nerve pair, \[\psh{\Theta[\ast]}  \underset{\mathfrak{N}_\Delta}{\overset{\mathfrak{C}_\Delta}{\rightleftarrows}} \Cat_{\Psh_\Delta(\ast)},\] where we have obvious isomorphisms \(\Theta[\ast]\cong \Delta\) and \(\Psh_\Delta(\ast)\cong \psh{\Delta}\)
@@ -637,7 +648,9 @@ In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \under
 \end{proof}
 
 \begin{cor}\label{horizquillen}
-	The adjunction \[\cellset_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\] is a Quillen pair.
+	The adjunction 
+	\[\cellset_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\]
+	is a Quillen pair.
 \end{cor}
 \begin{proof}
 	If \(\mathfrak{C}\) takes cofibrations to cofibrations, and \(\mathfrak{N}\) takes fibrations between fibrant objects to fibrations between fibrant objects, then the adjunction is a Quillen pair, but this is exactly what we proved in this section.
@@ -653,7 +666,7 @@ The general theory of gadgets developed in \cite{ds1} is difficult to adapt to t
 			\matrix (b) [matrix of math nodes, row sep=3em,
 			column sep=3em]
 			{
-			\mathfrak{C}(G(c))(\alpha,\omega) & S_G^c & c^n \\
+			\mathfrak{C}(G(c))(\alpha,\omega) & S_G^c & c^n\\
 			\mathfrak{C}(G(d))(\alpha,\omega) & S_G^d & d^n\\
 			};
 			\path[->, font=\scriptsize]
@@ -734,9 +747,9 @@ These cosimplicial objects fit in a natural diagram
 	\begin{tikzpicture}
 		\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
 		{
-			C^\bullet_R(c) &                           &                           \\
-			                          & C^\bullet_{\mathrm{cyl}}(c) & C^\bullet_E(c) \\
-			C^\bullet_L(c) &                           &                           \\
+			C^\bullet_R(c) &                             &                \\
+			               & C^\bullet_{\mathrm{cyl}}(c) & C^\bullet_E(c) \\
+			C^\bullet_L(c) &                             &                \\
 		};
 		\path[->, font=\scriptsize]
 		(b-1-1) edge (b-2-2)
@@ -774,7 +787,9 @@ We define a slightly modified version for special maps.
 	Given a necklace gadget \(T\), the special mapping object \[\Map^\mathbf{sp}_T(\alpha,\omega)\] is contractible.
 \end{prop}
 \begin{proof}
-	Since \(T(c)\hookrightarrow \Delta[T](c)\) is a horizontal inner-anodyne and \(\Delta[T](c)\) is fibrant, we can compute \(\Map^\mathbf{sp}_{T(c)}(\alpha,\omega)\) by the formula \[\Map^\mathbf{sp}_T(\alpha,\omega)_{k,c} = \mathcal{G}(C_R^k(c),\Delta[T](c))\] but every map \(C^k_R(c)\to \Delta[T](c)\) factors through the map \(C^n_R(c)\to [1](c),\) and the only special map \([1](c)\to \Delta[T](c)\) is the one that maps \(c\) into \(c\times \dots \times c\) via the diagonal.
+	Since \(T(c)\hookrightarrow \Delta[T](c)\) is a horizontal inner-anodyne and \(\Delta[T](c)\) is fibrant, we can compute \(\Map^\mathbf{sp}_{T(c)}(\alpha,\omega)\) by the formula 
+	\[\Map^\mathbf{sp}_T(\alpha,\omega)_{k,c} = \mathcal{G}(C_R^k(c),\Delta[T](c))\]
+	but every map \(C^k_R(c)\to \Delta[T](c)\) factors through the map \(C^n_R(c)\to [1](c),\) and the only special map \([1](c)\to \Delta[T](c)\) is the one that maps \(c\) into \(c\times \dots \times c\) via the diagonal.
 \end{proof}
 
 \section{Comparing \(\mathfrak{C}(X)(x,y)\) with \(\Map_X(x,y)\)}
@@ -783,7 +798,9 @@ We begin by defining a special category of gadgets \(\mathcal{Y}\), which is the
 
 In particular, by Proposition \ref{goodgadgets}, we see that every necklace gadget belongs to this category, so it is indeed a category of gadgets.  We define a full subcategory \(\mathcal{Y}_{\mathrm{f}}\subseteq \mathcal{Y}\) to be the full subcategory of \(\mathcal{Y}\) spanned by the gadgets \(G\) such that \(G(c)\) is fibrant for all \(c\in \Ob \C\).
 
-Let \[C^\bullet(c) \xrightarrow{\sim} R^\bullet(c)\xrightarrow{\sim} [1](c)\] be a factorization into a Reedy trivial cofibration followed by a fibration, which is also a Reedy trivial fibration since we are factoring a Reedy equivalence.
+Let
+\[C^\bullet(c) \xrightarrow{\sim} R^\bullet(c)\xrightarrow{\sim} [1](c)\]
+be a factorization into a Reedy trivial cofibration followed by a fibration, which is also a Reedy trivial fibration since we are factoring a Reedy equivalence.
 
 The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 
@@ -1086,6 +1103,10 @@ We begin by constructing the Yoneda embedding relative to a cartesian presentati
 \end{proof}
 \appendix
 \section{The corner tensor construction}\label{cornertensor} In this section, we define general corner tensors and apply them to define the corner-intertwiner and corner-product.
+%\begin{thm}\label{cocomplete} If \(\mathcal{V}\) is monoidal-biclosed and cocomplete, then the category \(\psh{Delta}\int\mathcal{V}\) is cocomplete.  
+%\end{thm}
+%\begin{proof} This follows from work done by B\'enabou, Par\'e, Schumacher, and Street, specifically, when \(\mathcal{V}\) is biclosed and cocomplete, the pseudofunctor we used to define the fibration has the property that evaluation on each object is cocomplete and the property that evaluation on any map of simplicial sets gives a left-adjoint, which follows from the fact that \(\mathcal{V}\) is biclosed.   
+%\end{proof}
 \section{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
 In this section, we demonstrate that the class of horizontal inner anodynes is closed under corner products with monomorphisms.
 \section{Recognition of horizontal Joyal fibrations}\label{admissible}
