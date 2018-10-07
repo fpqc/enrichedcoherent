@@ -1033,7 +1033,7 @@ Recall that we had a number of functorial cosimplicial objects \[C_{(-)}^\bullet
 \end{proof}
 We can therefore, without any worry, denote \(\Sigma_{(-)}\) simply by \(\Sigma\).  Then we define the following model structure:
 \begin{defn}
-  If \(\M=(\C,\setS)\) is a Cartesian presentation, we define the model category \(\cellset_{\M}\) to be the left-Bousfield localization of \(\cellset_\mathrm{hJoyal}\) at the set \(\Sigma(\S)\), where we call the fibrant objects \emph{\(\M\)-enriched quasicategories} or simply \emph{\(\M\)-quasicategories}.
+  If \(\M=(\C,\setS)\) is a Cartesian presentation, we define the model category \(\cellset_{\M}\) to be the left-Bousfield localization of \(\cellset_\mathrm{hJoyal}\) at the set \(\Sigma(\setS)\), where we call the fibrant objects \emph{\(\M\)-enriched quasicategories} or simply \emph{\(\M\)-quasicategories}.
 \end{defn}
 
 \begin{prop} Let \(\mathscr{B}\) denote the set of simplicial boundary inclusions.  Then a formal \(\C\)-quasicategory is an \(\M\)-quasicategory if and only if it has the right lifting property with respect to \[\Sigma(\mathscr{B}\times^\lrcorner \setS).\]
@@ -1041,7 +1041,7 @@ We can therefore, without any worry, denote \(\Sigma_{(-)}\) simply by \(\Sigma\
 \begin{proof} 
   We know by the construction of the left-Bousfield localization of Cisinski model categories that a formal \(\C\)-quasicategory \(X\) is \(\Sigma(\setS)\)-local if and only if it has the right-lifting property with respect to \(E(\mathscr{B})\times^\lrcorner \Sigma(\setS)\), but this occurs only when for every \(s:A\to B\) in \(\setS\), the map \(X^{\Sigma(f)}:X^{\Sigma(B)} \to X^{\Sigma(A)}\) has the right lifting property with respect to \(E(\mathscr{B})\).  But since by adjunction, this happens when \(\mathscr{G}(X^{\Sigma(f)})\) is a trivial fibration, where \(\mathscr{G}\) is the functor sending a formal \(\C\)-quasicategory \(X\) to the Kan core of the underlying quasicategory \(\mathscr{N}(X)\).  Since all of the maps \(f \in \setS\) are monic, and since \(\Sigma\) preserves cofibrations, it follows that the \(X^{\Sigma(f)}\) are all horizontal Joyal fibrations, since the horizontal Joyal model structure is Cartesian.  Then, since \(\mathscr{N}\) sends horizontal Joyal fibrations between formal \(\C\)-quasicategories to Joyal fibrations of quasicategories, and since the Kan core of a Joyal fibration between quasicategories is a Kan fibration of Kan complexes, it suffices to show that the Kan fibration \(\mathscr{G}(X^f)\) is a trivial fibration. 
   
-  Notice that \(\mathscr{G}(X^{\bullet})\) is exactly the simplicial mapping space \(\operatorname{hMap}^\Delta(bullet,X)\).  For any two vertices \(x,y\) of \(X\), it suffices therefore to show that \(\operatorname{hMap}^\Delta_{\ast,\ast}(\Sigma(f),X_{x,y})\) is a trivial fibration, since a Kan fibration is a trivial fibration if and only if it has contractible fibres.  But \(\operatorname{hMap}_{\ast,\ast}(\Sigma(f),X_{x,y})\) is exactly \(\operatorname{hMap}(f,\Map_X(x,y)\), which is a trivial fibration if and only if \(\Map_X(x,y)\) has the right lifting property with respect to \(b \times^\lrcorner f\) where \(b\) is a simplicial boundary inclusion, which proves the claim.
+  Notice that \(\mathscr{G}(X^{\bullet})\) is exactly the simplicial mapping space \(\operatorname{hMap}^\Delta(\bullet,X)\).  For any two vertices \(x,y\) of \(X\), it suffices therefore to show that \(\operatorname{hMap}^\Delta_{\ast,\ast}(\Sigma(f),X_{x,y})\) is a trivial fibration, since a Kan fibration is a trivial fibration if and only if it has contractible fibres.  But \(\operatorname{hMap}_{\ast,\ast}(\Sigma(f),X_{x,y})\) is exactly \(\operatorname{hMap}(f,\Map_X(x,y))\), which is a trivial fibration if and only if \(\Map_X(x,y)\) has the right lifting property with respect to \(b \times^\lrcorner f\) where \(b\) is a simplicial boundary inclusion, which proves the claim.
 \end{proof}
 \begin{cor} A formal \(\C\)-quasicategory \(X\) is an \(\M\)-quasicategory if and only if \(\Map_X(x,y)\) is \(\setS\)-local for all pairs of vertices \(x,y\) in \(X\).  
 \end{cor}
@@ -1067,7 +1067,7 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
     \end{cases}. 
   \]
   For all \(n \geq 0\) and \(c \in \C\), there is a natural weak equivalence 
-  \[\mathfrak{C}(\Sigma(\Delta^n \times c))(\alpha,\omega) \cong Q^n \times c \xrightarrow{\sim} Delta^n \times c \cong \mathbf{2}(c\times \Delta^n)(0,1).\] 
+  \[\mathfrak{C}(\Sigma(\Delta^n \times c))(\alpha,\omega) \cong Q^n \times c \xrightarrow{\sim} \Delta^n \times c \cong \mathbf{2}(c\times \Delta^n)(0,1).\] 
   Following \cite{htt}*{Proposition 2.2.2.7}, We define a realization 
   \[\realiz{\bullet}_{Q}:\Psh_\Delta(\C)\to \Psh_\Delta(\C)\] 
   by left Kan extension of the functor \(\Delta^n\times c \mapsto Q^n \times c\) along the Yoneda embedding. Let \(\mathcal{A}\) denote the class of simplicial presheaves \(A\) on \(\C\) such that the map
@@ -1182,7 +1182,7 @@ We fix a Cartesian presentation \(\M=(\C,\setS)\).  Our presentation here follow
 \begin{defn}
 	Let \(D\) be a small \(\C\)-cellular set, that is, an object of \(\cellset\), and suppose we have a diagram \(f:D\to \M\) and a \emph{weight} \(W:D\to \M\).  If \(X\) is an \(\M\)-quasicategory and \(f:D\to X\) is a diagram, we define the map \(h_f: X^\op \to D\) to be the adjunct of the composite \[D\to X\xrightarrow{j} \M^{X^\op},\] and we define the \emph{weight representation} \(h^W:\M^D \to \M^+\) be the map co-representing \(W\) as an object of \(\M^D\).  Then if the composite \(h^W\circ h_f:X^\op \to \M^+\) is representable, we call its representing object \emph{the limit of \(f\) weighted by \(W\)}, denoted  by \(\limw^W f\).
 
-	Dually, coweights for colimits are diagrams \(D^\op \to \M\), and their coweighting functors are their associated corepresentable functors \(\M^{D^\op}\to \M^+\).  Given a diagram \(f:D\to X\), the \emph{emph colimit of \(f\) weighted by \(W\)} is defined to be an object of \(X\) that corepresents the weighted limit of \(f^\op\), which is denoted by \(\colim^W f\).  
+	Dually, coweights for colimits are diagrams \(D^\op \to \M\), and their coweighting functors are their associated corepresentable functors \(\M^{D^\op}\to \M^+\).  Given a diagram \(f:D\to X\), the \emph{colimit of \(f\) weighted by \(W\)} is defined to be an object of \(X\) that corepresents the weighted limit of \(f^\op\), which is denoted by \(\colim^W f\).  
 \end{defn}
 
 \begin{prop} The large \(\M\)-quasicategory \(\M\) has all small weighted limits and colimits.
