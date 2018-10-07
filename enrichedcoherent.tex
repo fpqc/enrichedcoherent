@@ -82,6 +82,7 @@
 \DeclareMathOperator{\Pb}{Pb}
 \DeclareMathOperator{\colim}{colim}
 \DeclareMathOperator*{\coliml}{colim}
+\DeclareMathOperator{\limw}{lim}
 \DeclareMathOperator{\Cok}{Cok}
 \DeclareMathOperator{\cok}{cok}
 \DeclareMathOperator{\Ker}{Ker}
@@ -152,6 +153,7 @@
 \newcommand{\C}{\ensuremath{\mathcal{C}}}
 \newcommand{\G}{\ensuremath{\mathbb{G}}}
 \newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\Pre}{\ensuremath{\mathcal{P}}}
 \newcommand{\setS}{\ensuremath{\mathscr{S}}}
 
 % topology
@@ -436,7 +438,23 @@ Following Dugger and Spivak, we define a construction as follows: Given a preshe
 			(b-1-2) edge (b-2-2);
 		\end{tikzpicture}.
 	\end{equation*}
-	The bottom horizontal equality is by definition, and the left vertical map is an isomorphism because \(E_{[t]}\cong \mathfrak{C}([t])\) for all representables, since they are all necklaces and therefore are terminal in their respective diagrams defining \(E\). It follows that the top horizontal map is injective, and it suffices therefore to show that it is surjective.  But the same argument as in \cite{ds1}*{Proposition 4.3} works with no change whatsoever.
+	The bottom horizontal equality is by definition, and the left vertical map is an isomorphism because \(E_{[t]}\cong \mathfrak{C}([t])\) for all representables, since they are all necklaces and therefore are terminal in their respective diagrams defining \(E\). It follows that the top horizontal map is injective, and it suffices therefore to show that it is surjective. Choose any representable \(\xi:\Delta^n \times c \to E_X(x,y)\). Since \(\Delta^n\times [c]\) is representable and \(E_X(x,y)\) is a colimit, it follows that the map \(\Delta^n\times c\to E_X(x,y)\) factors through some \[f:\mathfrak{C}(T)(\alpha,\omega) \to \mathfrak{C}(X)(x,y)\] and is represented therefore represented by the data of such a factorization.   Consider the commutative diagram diagram:
+	\begin{equation*}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+			{
+				\left( \coliml\limits_{[t]\in\overcat{\Theta[\C]}{T}} \mathfrak{C}([t])\right)(\alpha,\omega) & \mathfrak{C}(T)(\alpha,\omega) \\
+				\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{T}} E_{[t]}\right)(x,y) & E_T(\alpha,\omega)                \\
+				\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y) & E_X(x,y)                \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge[outer sep=2em] (b-1-2)
+			(b-2-1) edge (b-1-1) edge (b-2-2) edge node[auto,swap]{\(\scriptstyle{f_\ast}\)} (b-3-1)
+			(b-2-2) edge (b-1-2) edge node[auto,swap]{\(\scriptstyle{E_f}\)} (b-3-2)
+			(b-3-1) edge (b-3-2);
+		\end{tikzpicture}.
+	\end{equation*}
+	Therefore, it suffices to show that the middle horizontal map is surjective, since if this is the case, we can chase \(\xi\) back to an element of \(\left( \colim_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y)\), which proves surjectivity.  But the top horizontal map is an isomorphism by the definition of \(\mathfrak{C}\), and both top row vertical maps are isomorphisms, again because the diagrams over which \(E_{[t]}\) and \(E_T\) are colimits over have terminal objects, namely the necklaces \([t]\) and \(T\) themselves.
 \end{proof}
 
 This is not the end of the story.  This colimit is still very complicated, and we must simplify it further.  In particular, we will show that \(\mathfrak{C}(X)(x,y)_c\) can be represented as a colimit of contractible spaces functorially in \(c\).  This will play an important role in obtaining appropriate analogues of the other models for \(\mathfrak{C}\) from \cite{ds1}.  In order to continue down this road, we need the following definition:
@@ -1023,7 +1041,7 @@ We can therefore, without any worry, denote \(\Sigma_{(-)}\) simply by \(\Sigma\
 \begin{proof} 
   We know by the construction of the left-Bousfield localization of Cisinski model categories that a formal \(\C\)-quasicategory \(X\) is \(\Sigma(\setS)\)-local if and only if it has the right-lifting property with respect to \(E(\mathscr{B})\times^\lrcorner \Sigma(\setS)\), but this occurs only when for every \(s:A\to B\) in \(\setS\), the map \(X^{\Sigma(f)}:X^{\Sigma(B)} \to X^{\Sigma(A)}\) has the right lifting property with respect to \(E(\mathscr{B})\).  But since by adjunction, this happens when \(\mathscr{G}(X^{\Sigma(f)})\) is a trivial fibration, where \(\mathscr{G}\) is the functor sending a formal \(\C\)-quasicategory \(X\) to the Kan core of the underlying quasicategory \(\mathscr{N}(X)\).  Since all of the maps \(f \in \setS\) are monic, and since \(\Sigma\) preserves cofibrations, it follows that the \(X^{\Sigma(f)}\) are all horizontal Joyal fibrations, since the horizontal Joyal model structure is Cartesian.  Then, since \(\mathscr{N}\) sends horizontal Joyal fibrations between formal \(\C\)-quasicategories to Joyal fibrations of quasicategories, and since the Kan core of a Joyal fibration between quasicategories is a Kan fibration of Kan complexes, it suffices to show that the Kan fibration \(\mathscr{G}(X^f)\) is a trivial fibration. 
   
-  Notice that \(\mathscr{G}(X^{\bullet})\) is exactly the simplicial mapping space \(\operatorname{hMap}^\Delta(bullet,X)\).  For any two vertices \(x,y\) of \(X\), it suffices therefore to show that \(\operatorname{hMap}^\Delta_{\ast,\ast}(\Sigma(f),X)\) is a trivial fibration.  But \(\operatorname{hMap}_{\ast,\ast}(\Sigma(f),X_{x,y})\) is exactly \(\operatorname{hMap}(f,\Map_X(x,y)\), which is a trivial fibration if and only if \(\Map_X(x,y)\) has the right lifting property with respect to \(b \times^\lrcorner f\) where \(b\) is a simplicial boundary inclusion, which proves the claim.
+  Notice that \(\mathscr{G}(X^{\bullet})\) is exactly the simplicial mapping space \(\operatorname{hMap}^\Delta(bullet,X)\).  For any two vertices \(x,y\) of \(X\), it suffices therefore to show that \(\operatorname{hMap}^\Delta_{\ast,\ast}(\Sigma(f),X_{x,y})\) is a trivial fibration, since a Kan fibration is a trivial fibration if and only if it has contractible fibres.  But \(\operatorname{hMap}_{\ast,\ast}(\Sigma(f),X_{x,y})\) is exactly \(\operatorname{hMap}(f,\Map_X(x,y)\), which is a trivial fibration if and only if \(\Map_X(x,y)\) has the right lifting property with respect to \(b \times^\lrcorner f\) where \(b\) is a simplicial boundary inclusion, which proves the claim.
 \end{proof}
 \begin{cor} A formal \(\C\)-quasicategory \(X\) is an \(\M\)-quasicategory if and only if \(\Map_X(x,y)\) is \(\setS\)-local for all pairs of vertices \(x,y\) in \(X\).  
 \end{cor}
@@ -1080,6 +1098,12 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
 \begin{proof} It suffices to show that \(\mathfrak{C}\) is homotopy-conservative, so let \(f:X\to Y\) be a map in \(\cellset\) such that \(\mathfrak{C}(f)\) is an equivalence in \(\Cat_{\Psh_\Delta(\C)_{\M}}\). Using the same argument as in Section \ref{horizcomparison}, we reduce to the case where \(f:X\to Y\) is a map between \(\M\)-quasicategories.  Since \(\M\)-quasicategories are also formal \(\C\)-quasicategories, we can apply Corollary \ref{mapspacecomparison} to obtain a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\) for any pair of vertices \(x,y\) of \(X\).  By \(3\)-for-\(2\) and since \[\mathfrak{C}(X)(x,y) \to \mathfrak{C}(Y)(fx,fy)\] was assumed to be an \(\M\)-equivalence, we see that the map \(\Map_X(x,y)\to \Map_Y(fx,fy)\) must also be an \(\M\)-equivalence.  In fact, since both \(\Map_X(x,y)\) and \(\Map_Y(fx,fy)\) are local, this map is actually an equivalence for \(\Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\).  The argument showing that \(f\) is bijective on iso-components is the same as in the proof of Proposition \ref{conservativity} by using the homotopy category.  Therefore, it follows that \(f\) is a horizontal Dwyer-Kan equivalence, which concludes the proof.
 \end{proof}
 \section{The Yoneda embedding and Yoneda's theorem}
+We need the following lemma in the sequel:
+\begin{lemma} There is a natural isomorphism \(\mathfrak{C}(X^\op)\cong \mathfrak{C}(X)^\op\).  
+\end{lemma} 
+\begin{proof}
+	It suffices to check on representables, and this is left as an easy exercise to the reader.
+\end{proof}
 Before we give a construction of the Yoneda embedding and a proof of Yoneda's lemma for \(\M\)-quasicategories, we need two lemmas from \cite{htt}.   We fix a cartesian presentation \(\mathcal{M}=(\C,\setS)\) for the remainder of this section.
 
 \begin{prop}\cite{htt}*{4.2.4.4}\label{lurieprop1}
@@ -1097,42 +1121,82 @@ Before we give a construction of the Yoneda embedding and a proof of Yoneda's le
 		\item An equivalence between \(j\circ p\) and \(\mathfrak{N}(P)\) as objects of the \(\M\)-quasicategory \(\mathfrak{N}(\mathcal{D})^{\mathfrak{N}(\mathcal{I})}\).
 	\end{itemize}
 \end{prop}
-\begin{proof} No significant changes to the proof of \cite{htt}*{4.2.4.7}.
+\begin{proof} No change to the proof of \cite{htt}*{4.2.4.7} is needed.
 \end{proof}
 
 We begin by constructing the Yoneda embedding:
 \begin{defn}
-	Let \(X\) be a presheaf on \(\Theta[\C]\), and let \(f:\mathfrak{C}(X) \xrightarrow{\sim} \mathcal{D}\) be an \(\M\)-enriched fibrant replacement.  Since \(\mathcal{D}\) is fibrant, the enriched Yoneda embedding 
-	\[\mathcal{D}\hookrightarrow \Psh_\Delta(\C)^{\mathcal{D}^\op}\]
-	factors through the full subcategory \((\Psh_\Delta(\C)_\M^\circ)^{\mathcal{D}^\op}\) where \(\Psh_\Delta(\C)_\M^\circ\) is the full subcategory of \(\M\)-fibrant objects.  This factorization exists since all of the \(\Hom\)-objects of \(\mathcal{D}\) are \(\M\)-fibrant.  By adjointness, we obtain a map 
-	\[\mathcal{D} \times \mathcal{D}^\op \to \Psh_\Delta(\C)_\M^\circ.\]
-	We also have a natural map 
-	\[\mathfrak{C}(X\times X^\op) \xrightarrow{\mathfrak{C}(p_1) \times \mathfrak{C}(p_2)} \mathfrak{C}(X) \times \mathfrak{C}(X)^\op \xrightarrow{f \times f^\op} \mathcal{D}\times \mathcal{D}^\op,\]
-	and composing these maps together, we obtain a map 
-	\[\mathfrak{C}(X\times X^\op) \to \Psh_\Delta(\C)_\M^\circ,\]
-	which yields, by adjunction,
-	\[X\times X^\op \to \mathfrak{N}(\Psh_\Delta(\C)_\M^\circ).\]
-	We denote \(\mathfrak{N}(\Psh_\Delta(\C)_\M^\circ)\) simply by \(\M\), and finally, we obtain \emph{the Yoneda embedding} for \(\M\)-quasicategories:
-	\[y:X\to \M^{X^\op}.\]
+	Let \(X\) be a presheaf on \(\Theta[\C]\), and let \(\Phi:\mathfrak{C}(X) \xrightarrow{\sim} \mathcal{D}\) be an \(\M\)-enriched fibrant replacement.  Since \(\mathcal{D}\) is fibrant, the functor
+	\[\Hom_\mathcal{D}: \mathcal{D}\times \mathcal{D}^\op \to \Psh_\Delta(\C)\]
+	factors through the full subcategory \(\Psh_\Delta(\C)^\circ\).  By \cite{htt}*{Corollary A.3.4.14}, this gives rise up to homotopy to a universal map
+	\[J_\mathcal{D}:\mathcal{D}\to \left(\Psh_\Delta(\C)^{\mathcal{D}^\op}\right)_\mathrm{proj}^\circ\]
+	that is fully faithful up to homotopy, since it is homotopic to the enriched Yoneda embedding. 
+	Then we have a map
+	\[\mathfrak{C}(X\times X^\op) \xrightarrow{\mathfrak{C}(p_1) \times \mathfrak{C}(p_2)} \mathfrak{C}(X) \times \mathfrak{C}(X)^\op \xrightarrow{\Phi \times \Phi^\op} \mathcal{D}\times \mathcal{D}^\op \xrightarrow{\Hom_{\mathcal{D}}}, \Psh_\Delta(\C)_\setS^\circ)\]
+	which yields by adjunction
+	\[X \to \mathfrak{N}(\Psh_\Delta(\C)_\setS^\circ)^{X^\op}.\]
+	We denote \(\mathfrak{N}(\Psh_\Delta(\C)_\setS^\circ)\) simply by \(\M\), and finally, we obtain \emph{the Yoneda embedding} for \(\M\)-quasicategories:
+	\[j:X\to \M^{X^\op}.\]
 \end{defn}
 
-\begin{prop}
+Let \(\Pre(X)\) denote the large \(\M\)-quasicategory \(\M^{X^\op}\), and let \(\M^+\) denote the coherent nerve of the huge enriched category of not-necessarily-small \(\setS\)-local injectively fibrant simplicial presheaves on \(\C\).  
+
+\begin{defn} We say that a functor \(F:X^\op \to \M\) is \emph{representable} if the object it classifies belongs to the essential image of the Yoneda embedding \(j:X\to \Pre(X)\).  If \(x:\ast\to X\) is a vertex of \(X\), we denote the associated representable functor by \(h_x\).  
+\end{defn}
+
+\begin{prop}\cite{htt}*{5.1.3.1}
 	The Yoneda embedding is fully faithful.
 \end{prop}
 \begin{proof} 
-	See \cite{htt}*{5.1.3.1}.
+	First, let \(\Phi:\mathfrak{C}(X^\op)\xrightarrow{\sim} \mathcal{D}\) be a fibrant replacement.  We have an equivalence by Propisition \ref{lurieprop1} 
+	\[j^{\prime\prime}: \mathfrak{N}\left(\left((\Psh_\Delta(\C)_\setS)^\mathcal{D}_\mathrm{proj}\right)^\circ\right) \xrightarrow{\sim} \M^{\mathfrak{N}(\mathcal{D})}, \]
+	and since \(\M\) is fibrant and \(\Psi:X^\op \to \mathfrak{N}\mathcal{D}\), the adjunct of \(\Phi\) is an equivalence between cofibrant objects, it follows that the induced map \(\M^{\mathfrak{N}\mathcal{D}}\to \Pre(X)\) is an equivalence between fibrant objects, since the model structure is Cartesian.  Since \(X\) is cofibrant, it follows that there is a map \(h:X\to \M^{\mathfrak{N}\mathcal{D}}\) such that the composite
+	\[X \xrightarrow{h} \M^{\mathfrak{N}\mathcal{D}} \xrightarrow{\M^{\Psi}} \Pre(X)\]
+	is equivalent to \(j\), and again, since \(\mathfrak{N}\left(\left((\Psh_\Delta(\C)_\setS)^\mathcal{D}_\mathrm{proj}\right)^\circ\right)\) is fibrant and \(j^{\prime\prime}\) is a weak equivalence between fibrant objects, we can find a map 
+	\[j^\prime:X\to \mathfrak{N}\left(\left((\Psh_\Delta(\C)_\setS)^\mathcal{D}_\mathrm{proj}\right)^\circ\right)\]
+	such that the composite 
+	\[X\xrightarrow{j^\prime} \mathfrak{N}\left(\left((\Psh_\Delta(\C)_\setS)^\mathcal{D}_\mathrm{proj}\right)^\circ\right) \xrightarrow{j^{\prime\prime}} \M^{\mathfrak{N}\mathcal{D}} \xrightarrow{\sim} \Pre(X)\]
+	is equivalent to \(j\).
+	It suffices to show that the map \(j^\prime\) is fully faithful.  Let 
+	\[J:\mathfrak{C}(X) \to \left((\Psh_\Delta(\C)_\setS)^\mathcal{D}_\mathrm{proj}\right)^\circ\]
+	be the adjunct of \(j^\prime\).  Then we see that \(J\) is equivalent to the composite \(J_{\mathcal{D^\op}}\circ \Phi^\op\), where \(J_{\mathcal{D^\op}}\) is fully-faithful and \(\Phi^\op\) is an equivalence, which concludes the proof.	
 \end{proof}
-%\begin{prop} Let \(X\) be a small \(\C\)-cellular set, let \(f:X\to \M\) be an object of \(\M^{X^{\op}\), and let \(F:\M^{X^{\op} \to \M^+,\) where \(\M^+\) denotes 
-%\end{prop}
 
-\section{Representability and weighted limits and colimits}
+\begin{prop}\cite{htt}*{5.5.2.1}
+	Let \(X\) be a small presheaf on \(\Theta[\C]\), and let \(f: X^\op \to \M\) be an object of \(\Pre(X)\).  Then let \(F:\Pre(X)^\op \to \M^+\) be the functor represented by \(f\).  Then the composite \[X^\op\xrightarrow{j^\op_X} \Pre(X)^\op \xrightarrow{F} \M^+\] is equivalent to \(f\).
+\end{prop}
+\begin{proof}
+	By Proposition \ref{lurieprop2}, we can choose a small fibrant \(\M\)-enriched category \(\mathcal{D}\) and an equivalence \(\Phi:X^\op\to \mathfrak{N}(\mathcal{D})\) such that \(f\sim \mathfrak{N}(f^\prime) \circ \Phi\) for some \(f^\prime:\mathcal{D} \to \Psh_\Delta(\C)_\setS^\circ\).  Without loss of generality, we can assume that \(f^\prime\) is a projectively cofibrant diagram.  Using Proposition \ref{lurieprop1}, we have an equivalence of \(\M\)-quasicategories 
+	\[\Psi:\mathfrak{N}\left(\left((\Psh_\Delta(\C)_\setS)_\mathrm{proj}^\mathcal{D}\right)^\circ\right) \xrightarrow{\sim} \Pre(X).\] 
+	We observe that \(F\circ \Psi^\op\) can be identified with the coherent nerve of the the map 
+	\[G: \left(\left((\Psh_\Delta(\C)_\setS)_\mathrm{proj}^\mathcal{D}\right)^\circ\right)^\op \to \left(\Psh_\Delta(\C)^{+}_\setS\right)^\circ\] represented by \(f^\prime\).  The Yoneda embedding factors through \(\Psi\) by the adjunct of the composite 
+	\[j^\prime:\mathfrak{C}(X)\xrightarrow{\Phi^\op} \mathcal{D}^\op \hookrightarrow \left((\Psh_\Delta(\C)_\setS)_\mathrm{proj}^\mathcal{D}\right)^\circ,\]
+	so it follows that \(F\circ j^\op\) can be identified with the adjunct of 
+	\[\mathfrak{C}(X)^\op \xrightarrow{(j^\prime)^\op} \left(\left((\Psh_\Delta(\C)_\setS)_\mathrm{proj}^\mathcal{D}\right)^\circ\right)^\op \xrightarrow{G} \left(\Psh_\Delta(\C)^{+}_\setS\right)^\circ.\]
+	This composite is equal to the \(f^\prime\) we started with, so its simplicial nerve is equivalent to \(f\).
+\end{proof}
+
+\section{Weighted limits and colimits}
+We fix a Cartesian presentation \(\M=(\C,\setS)\).  Our presentation here follows the one given in \cite{nlabwlim}.
+
+\begin{defn}
+	Let \(D\) be a small \(\C\)-cellular set, that is, an object of \(\cellset\), and suppose we have a diagram \(f:D\to \M\) and a \emph{weight} \(W:D\to \M\).  If \(X\) is an \(\M\)-quasicategory and \(f:D\to X\) is a diagram, we define the map \(h_f: X^\op \to D\) to be the adjunct of the composite \[D\to X\xrightarrow{j} \M^{X^\op},\] and we define the \emph{weight representation} \(h^W:\M^D \to \M^+\) be the map co-representing \(W\) as an object of \(\M^D\).  Then if the composite \(h^W\circ h_f:X^\op \to \M^+\) is representable, we call its representing object \emph{the limit of \(f\) weighted by \(W\)}, denoted  by \(\limw^W f\).
+
+	Dually, coweights for colimits are diagrams \(D^\op \to \M\), and their coweighting functors are their associated corepresentable functors \(\M^{D^\op}\to \M^+\).  Given a diagram \(f:D\to X\), the \emph{emph colimit of \(f\) weighted by \(W\)} is defined to be an object of \(X\) that corepresents the weighted limit of \(f^\op\), which is denoted by \(\colim^W f\).  
+\end{defn}
+
+\begin{prop} The large \(\M\)-quasicategory \(\M\) has all small weighted limits and colimits.
+\end{prop}
+\begin{proof}  Given \(f:D\to \M\) and a weight \(W:D\to \M\), it is straightforward to see that a representing object for the weighted limit is exactly \[\Map_{\M^D}(W,f),\] by unwinding the definitions.
+\end{proof}
+
+For now, we don't have much to say for this particular application.  If other definitions are proposed for weighted limits and colimits, they should be equivalent to this one.  
+
+\section{Examples}
+The only examples we really care about are the cases where \(\C=\Theta_n\) for \(0\leq n\leq \omega\) and where \(\setS\) is the set of generating anodynes for the model structure on weak \(n\)-categories.  We invite anyone else to consider other applications.
 
 \appendix
 \section{The corner tensor construction}\label{cornertensor} In this section, we define general corner tensors and apply them to define the corner-intertwiner and corner-product.
-%\begin{thm}\label{cocomplete} If \(\mathcal{V}\) is monoidal-biclosed and cocomplete, then the category \(\psh{Delta}\int\mathcal{V}\) is cocomplete.  
-%\end{thm}
-%\begin{proof} This follows from work done by B\'enabou, Par\'e, Schumacher, and Street, specifically, when \(\mathcal{V}\) is biclosed and cocomplete, the pseudofunctor we used to define the fibration has the property that evaluation on each object is cocomplete and the property that evaluation on any map of simplicial sets gives a left-adjoint, which follows from the fact that \(\mathcal{V}\) is biclosed.   
-%\end{proof}
 \section{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
 In this section, we demonstrate that the class of horizontal inner anodynes is closed under corner products with monomorphisms.
 \section{Recognition of horizontal Joyal fibrations}\label{admissible}
@@ -1232,6 +1296,14 @@ In this section, we demonstrate that the three cosimplicial objects \(C^\bullet_
 		author={Lurie, Jacob},
 		date={2009},
 		publisher={Princeton University Press},
+		}
+
+		\bib{nlabwlim}{webpage}{
+		author={nLab authors},
+		title={Weighted Colimit},
+		url={http://ncatlab.org/nlab/show/weighted\%20limit},
+		note={\href{http://ncatlab.org/nlab/revision/weighted\%20limit/29}{Revision 29}},
+		date={2018},
 		}
 
 		\bib{oury}{thesis}{
