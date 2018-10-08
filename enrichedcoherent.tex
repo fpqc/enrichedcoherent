@@ -408,7 +408,7 @@ Necklaces were introduced by Dugger and Spivak in order to understand the mappin
 
 	Given a pre-necklace \(T\), we define the \emph{shape of \(T\)} to be its associated simplicial set \(\pi(T)\).
 
-	Suppose \(T\) is a pre-necklace such that its projection is the simplicial necklace \(\Delta^{m_1}\vee \dots \vee \Delta^{m_k}\). Then we say that \(T\) is a \emph{necklace} if the pullback of \(T\) along each bead inclusion \(\Delta^{m_i}\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is representable for each \(0\leq i \leq k\).
+	Suppose \(T\) is a pre-necklace such that its projection is the simplicial necklace \(\Delta^{m_1}\vee \dots \vee \Delta^{m_k}\). Then we say that \(T\) is a \emph{necklace} if the pullback of \(T\) along each bead inclusion \(\Delta^{m_i}\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is representable for each \(1\leq i \leq k\).
 
 	We consider every necklace \(T\) as bi-pointed by its initial and terminal vertex, which we will write as \(\alpha\) and \(\omega\) respectively.  A \emph{morphism of necklaces} is a morphism of \(f:T\to T^\prime\) of \(\cellset_{\ast,\ast}\) between necklaces such that \(f(\alpha_T)=\alpha_{T^\prime}\) and \(f(\omega_T)=\omega_{T^\prime}\). We define the category \(\Nec\) to be the full subcategory \(\cellset_{\ast,\ast}\) consisting of the necklaces and morphisms of necklaces between them.
 
@@ -528,11 +528,11 @@ In the case of \(\mathfrak{C}^\Hoc\), we can see immediately that there is a uni
 
 Then we need to show that \(E_{X,c}\) is a homotopy colimit:
 \begin{thm}\label{necthm}
-	The natural map \[\mathfrak{C}^\Hoc \to \mathfrak{C}\] is a natural weak equivalence.
+	The natural map \[\mathfrak{C}^\Hoc_c \to \mathfrak{C}_c\] is a natural weak equivalence.
 \end{thm}
 \begin{proof}
 	See \cite{ds1}*{4.4, 4.10, 5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \(\ell^\mathrm{th}\) row of the bisimplicial set of pairs 
-	\[(\sigma:[n]\to D; x \in F(\sigma(0))_\ell)\]
+	\[(\sigma:[n]\to \overcat{\Nec_c^\mathbf{sp}}{X_{x,y}}; \zeta \in \mathfrak{C}_\Delta(\pi\sigma(0))_\ell)\]
 	is homotopy-discrete, which means that the homotopy and ordinary colimit agree.  Our indexing category is just a disjoint union of copies of their indexing category, so if theirs is homotopy-discrete, so is ours.
 \end{proof}
 
@@ -969,7 +969,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 \end{proof}
 
 \begin{prop}\label{conservativity}
-	A map \(f:X\to Y\) of presheaves on \(\Theta[\C]\) is a horizontal Joyal equivalence if and only if \(\mathfrak{C}(f)\) is an weak equivalence of \(\Psh_\Delta (\C)_{\mathrm{inj}}\)-enriched categories.
+	A map \(f:X\to Y\) of presheaves on \(\Theta[\C]\) is a horizontal Joyal equivalence if and only if \(\mathfrak{C}(f)\) is a weak equivalence of \(\Psh_\Delta (\C)_{\mathrm{inj}}\)-enriched categories.
 \end{prop}
 \begin{proof}
 	We only need to check one direction, since the other direction is immediate by the fact that \(\mathfrak{C}\) is left-Quillen.  Assume \(f:X\to Y\) has the property that \(\mathfrak{C}(f)\) is an equivalence. Then as in the previous proposition, we can reduce to the case where \(X\) and \(Y\) are fibrant, but in this case, we know from Corollary \ref{mapspacecomparison} that \(\mathfrak{C}(X)(x,x^\prime)\) is connected by a natural zig-zag of weak equivalences to \(\Map_X(x,y)\), so if the map  \(\mathfrak{C}(X)(x,x^\prime)\to \mathfrak{C}(Y)(f(x),f(x^\prime))\) is a weak equivalence, it follows that the map \(\Map_X(x,x^\prime)\to \Map_Y(f(x),f(x^\prime))\) is also a weak equivalence.
