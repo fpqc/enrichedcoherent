@@ -205,7 +205,7 @@
 \begin{abstract}
 	We introduce, for \(\C\) a small regular Reedy category, a model structure on \(\Psh(\Theta[\C])\) whose fibrant objects are the formal \(\C\)-quasicategories.  This model structure is Quillen-biequivalent to the model category of Rezk on \(\Psh_\Delta(\Theta[\C])\) whose fibrant objects are formal \(\C\)-complete Segal spaces.  If \(\mathcal{M}=(\Psh_\Delta(\C),\mathscr{S})\) is a cartesian presentation in the sense of Rezk, then by Rezk's theorem, we obtain a  cartesian-closed left-Bousfield localization of the formal \(\C\)-complete Segal spaces whose fibrant objects are the \(\mathcal{M}\)-enriched complete Segal spaces.  These data also give a left-Bousfield localization of the formal \(\C\)-quasicategories whose fibrant objects are called the \(\mathcal{M}\)-enriched quasicategories that is again Quillen biequivalent to the \(\mathcal{M}\)-enriched complete Segal spaces.
 
-	We then construct an adjunction \(\mathfrak{C}:\Psh(\Theta[\C])\rightleftarrows \Cat_{\Psh_\Delta(\C)}:\mathfrak{N}\) that becomes a Quillen pair when both sides are considered with the appropriate model structures, and furthermore, we show that this adjunction is compatible with cartesian-closed left-Bousfield localizations of \(\Psh_\Delta(\C)\).  Then, following Dugger and Spivak, we develop a calculus of enriched necklaces and use this calculus to prove that the Quillen pair \((\mathfrak{C}, \mathfrak{N})\) is an equivalence.  Finally, we apply all of this machinery to construct a version of the Yoneda embedding for enriched quasicategories and demonstrate that it is fully faithful.
+	We then construct an adjunction \(\mathfrak{C}:\Psh(\Theta[\C])\rightleftarrows \Cat_{\Psh_\Delta(\C)}:\mathfrak{N}\) that becomes a Quillen pair when both sides are considered with the appropriate model structures, and furthermore, we show that this adjunction is compatible with cartesian-closed left-Bousfield localizations of \(\Psh_\Delta(\C)\).  Then, following Dugger and Spivak, we develop a calculus of enriched necklaces and use this calculus to prove that the Quillen pair \((\mathfrak{C}, \mathfrak{N})\) is an equivalence.  Finally, we apply all of this machinery to construct a version of the Yoneda embedding for enriched quasicategories and demonstrate that it is fully faithful.  We then make use of the Yoneda embedding to prove the enriched version of Yoneda's lemma.
 \end{abstract}
 
 %%% the title
@@ -246,12 +246,18 @@ In this section, we will consider a slightly more general definition of the wrea
 \begin{rem} If \(\mathcal{V}\) is braided monoidal, we expect that \(\psh{\Delta \int V}\) can also be equipped with a monoidal structure. To see this, consider the following example: \([2](v,v^\prime)\) and \([2](v^\prime,v)\).  The object assigned to the inner face on the first is \(v\otimes v^\prime\), while in the second, it is \(v^\prime\otimes v\).  The braiding allows these to glue together, so that when we do \([1](v)\boxtimes [1](v^\prime)\), the new object \((\Delta^1)^2\{v,v,v^\prime,v^\prime\}\) pastes along the common inner edge (obviously the indexing here is by the nondegenerate \(1\) cells lying only in the spines of higher nondegenerate simplices in the simplicial \(2\)-cube).  We intend to study this more general case in a future paper.
 \end{rem}
 
-For the purposes of this paper, we will not necessarily need this level of generality, but we expect it may be useful in the future. In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of presheaves of sets on a small regular skeletal Reedy category \(\C\) admitting a terminal object.  Then we give the following definition.
+\begin{defn} A small regular skeletal Reedy category \(\C\) (see \cite{cisinski-book}*{8.2.3}) is called a \emph{regular Cartesian Reedy category} if the product of two representables \(c_1 \times c_2\) in \(\psh{C}\) is regular in the sense of \cite{cisinski-book}*{8.2}.
+\end{defn}
+\begin{rem} We suspect that in fact, all regular skeletal Reedy categories are regular Cartesian, but the examples we care about all satisfy this stronger property, so we leave this question to another day.
+\end{rem}
+For the purposes of this paper, we will not necessarily need this level of generality, but we expect it may be useful in the future. In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of presheaves of sets on a small regular Cartesian Reedy category \(\C\) admitting a terminal object.  
 
-\begin{defn} For any small regular skeletal Reedy category \(\C\) admitting a terminal object object, we define \(\Theta[\C]\subseteq \Delta \int \psh{\C}\) to be the full subcategory spanned by the objects of the form \([n](h_{c_1},\cdots, h_{c_n})\) for \(c_1,\cdots, c_n \in \C\), and where \(h_\bullet\) denotes the Yoneda embedding.
+Then we give the following definition:
+
+\begin{defn} For any small regular Cartesian Reedy category \(\C\) admitting a terminal object object, we define \(\Theta[\C]\subseteq \Delta \int \psh{\C}\) to be the full subcategory spanned by the objects of the form \([n](h_{c_1},\cdots, h_{c_n})\) for \(c_1,\cdots, c_n \in \C\), and where \(h_\bullet\) denotes the Yoneda embedding.
 \end{defn}
 
-\begin{rem} The requirement that \(\C\) have a terminal object is a technical condition that ensures that \(\Delta\) embeds fully and faithfully in \(\Theta[\C]\).  The condition that \(\C\) is regular skeletal Reedy is probably not necessary, but it will ensure later on that the generating cofibrations of the injective model structure on simplicial presheaves \(\Psh_\Delta(\C)\) admit a very simple description.
+\begin{rem} The requirement that \(\C\) have a terminal object is a technical condition that ensures that \(\Delta\) embeds fully and faithfully in \(\Theta[\C]\).  The condition that \(\C\) is regular Cartesian Reedy is probably not necessary, but it will ensure later on that the generating cofibrations of the injective model structure on simplicial presheaves \(\Psh_\Delta(\C)\) admit a very simple description.
 \end{rem}
 
 \begin{rem} 
@@ -547,7 +553,7 @@ We define a Cisinski model structure on \(\cellset\) and state several results t
 	\[E^1=\mathscr{H}(\operatorname{cosk}_0 \Delta^1),\]
 	and the set of generating anodynes is given by
 	\[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n}) : 0<k<n \text{ and } c_1,\dots,c_n \in \Ob \C\},\]
-	where \(\lambda^n_k:\Lambda^n_k\hookrightarrow \Delta^n\) is the simplicial horn inclusion, and where \(\delta^c:\partial c \hookrightarrow c\) is the inclusion of the boundary of \(c\) (recall that \(\C\) was taken to be a regular skeletal Reedy category, so this makes sense).
+	where \(\lambda^n_k:\Lambda^n_k\hookrightarrow \Delta^n\) is the simplicial horn inclusion, and where \(\delta^c:\partial c \hookrightarrow c\) is the inclusion of the boundary of \(c\) (recall that \(\C\) was taken to be a regular Cartesian Reedy category, so this makes sense).
 
 	We call \(\operatorname{Cell}(\mathscr{J})\) the class of \emph{horizontal inner anodynes}, and we call \(\operatorname{rlp}(\mathscr{J})\) the class of \emph{horizontal inner fibrations}.
 \end{defn}
@@ -1077,7 +1083,7 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
   \[\realiz{\bullet}_{Q}:\Psh_\Delta(\C)\to \Psh_\Delta(\C)\] 
   by left Kan extension of the functor \(\Delta^n\times c \mapsto Q^n \times c\) along the Yoneda embedding. Let \(\mathcal{A}\) denote the class of simplicial presheaves \(A\) on \(\C\) such that the map
   \[\realiz{A}_Q \to A\]
-  is an injective equivalence.  This class is closed under filtered colimits, since injective weak equivalences are closed under filtered colimits, so it suffices to consider the case where \(A\) has finitely many nondegenerate representable cells \([n] \times c\).  Since \(\Delta\) and \(\C\) are regular skeletal Reedy, so is their product, and the boundary of a representable cell is given by the formula 
+  is an injective equivalence.  This class is closed under filtered colimits, since injective weak equivalences are closed under filtered colimits, so it suffices to consider the case where \(A\) has finitely many nondegenerate representable cells \([n] \times c\).  Since \(\Delta\) and \(\C\) are regular Cartesian Reedy, so is their product by \cite{cisinski-book}*{8.2.7}, and the boundary of a representable cell is given by the formula 
   \[\partial(\Delta^n\times c)=\partial\Delta^n \times c \cup \Delta^n \times \partial c.\]
   We work by induction on Reedy dimension and number of cells.
   If \(A=\emptyset\), we are done, since the map in question is the identity.
@@ -1100,10 +1106,10 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
 \begin{thm}\label{maintheorem2}
   The Quillen pair \(\cellset_\M \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_{\Delta}(\C)_{\setS}}\) is a Quillen equivalence.
 \end{thm}
-\begin{proof} It suffices to show that \(\mathfrak{C}\) is homotopy-conservative, so let \(f:X\to Y\) be a map in \(\cellset\) such that \(\mathfrak{C}(f)\) is an equivalence in \(\Cat_{\Psh_\Delta(\C)_{\M}}\). Using the same argument as in Section \ref{horizcomparison}, we reduce to the case where \(f:X\to Y\) is a map between \(\M\)-quasicategories.  Since \(\M\)-quasicategories are also formal \(\C\)-quasicategories, we can apply Corollary \ref{mapspacecomparison} to obtain a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\) for any pair of vertices \(x,y\) of \(X\).  By \(3\)-for-\(2\) and since \[\mathfrak{C}(X)(x,y) \to \mathfrak{C}(Y)(fx,fy)\] was assumed to be an \(\M\)-equivalence, we see that the map \(\Map_X(x,y)\to \Map_Y(fx,fy)\) must also be an \(\M\)-equivalence.  In fact, since both \(\Map_X(x,y)\) and \(\Map_Y(fx,fy)\) are local, this map is actually an equivalence for \(\Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\).  The argument showing that \(f\) is bijective on iso-components is the same as in the proof of Proposition \ref{conservativity} by using the homotopy category.  Therefore, it follows that \(f\) is a horizontal Dwyer-Kan equivalence, which concludes the proof.
+\begin{proof} It suffices to show that \(\mathfrak{C}\) is homotopy-conservative, so let \(f:X\to Y\) be a map in \(\cellset\) such that \(\mathfrak{C}(f)\) is an equivalence in \(\Cat_{\Psh_\Delta(\C)_{\M}}\). Using the same argument as in Section \ref{horizcomparison}, we reduce to the case where \(f:X\to Y\) is a map between \(\M\)-quasicategories.  Since \(\M\)-quasicategories are also formal \(\C\)-quasicategories, we can apply Corollary \ref{mapspacecomparison} to obtain a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\) for any pair of vertices \(x,y\) of \(X\).  By \(3\)-for-\(2\) and since \[\mathfrak{C}(X)(x,y) \to \mathfrak{C}(Y)(fx,fy)\] was assumed to be an \(\M\)-equivalence, we see that the map \(\Map_X(x,y)\to \Map_Y(fx,fy)\) must also be an \(\M\)-equivalence.  In fact, since both \(\Map_X(x,y)\) and \(\Map_Y(fx,fy)\) are local, this map is actually an equivalence for \(\Cat_{\Psh_\Delta(\C)_{\mathrm{inj}}}\).  The argument showing that \(f\) is bijective on iso-components is the same as in the proof of Proposition \ref{conservativity} by passing to the underlying quasicategory.  Therefore, it follows that \(f\) is a horizontal Dwyer-Kan equivalence, which concludes the proof.
 \end{proof}
-\section{The Yoneda embedding and Yoneda's theorem}
-We need the following lemma in the sequel:
+\section{The Yoneda embedding and Yoneda's lemma}
+We need the following easy lemma:
 \begin{lemma} There is a natural isomorphism \(\mathfrak{C}(X^\op)\cong \mathfrak{C}(X)^\op\).  
 \end{lemma} 
 \begin{proof}
@@ -1149,7 +1155,7 @@ Let \(\Pre(X)\) denote the large \(\M\)-quasicategory \(\M^{X^\op}\), and let \(
 \begin{defn} We say that a functor \(F:X^\op \to \M\) is \emph{representable} if the object it classifies belongs to the essential image of the Yoneda embedding \(j:X\to \Pre(X)\).  If \(x:\ast\to X\) is a vertex of \(X\), we denote the associated representable functor by \(h_x\).  
 \end{defn}
 
-\begin{prop}\cite{htt}*{5.1.3.1}
+\begin{prop}[Yoneda embedding]\cite{htt}*{5.1.3.1}
 	The Yoneda embedding is fully faithful.
 \end{prop}
 \begin{proof} 
@@ -1167,7 +1173,7 @@ Let \(\Pre(X)\) denote the large \(\M\)-quasicategory \(\M^{X^\op}\), and let \(
 	be the adjunct of \(j^\prime\).  Then we see that \(J\) is equivalent to the composite \(J_{\mathcal{D^\op}}\circ \Phi^\op\), where \(J_{\mathcal{D^\op}}\) is fully-faithful and \(\Phi^\op\) is an equivalence, which concludes the proof.	
 \end{proof}
 
-\begin{prop}\cite{htt}*{5.5.2.1}
+\begin{prop}[Yoneda's Lemma]\cite{htt}*{5.5.2.1}
 	Let \(X\) be a small \(\C\)-cellular set, and let \(f: X^\op \to \M\) be an object of \(\Pre(X)\).  Then let \(F:\Pre(X)^\op \to \M^+\) be the functor represented by \(f\).  Then the composite \[X^\op\xrightarrow{j^\op_X} \Pre(X)^\op \xrightarrow{F} \M^+\] is equivalent to \(f\).
 \end{prop}
 \begin{proof}
@@ -1204,9 +1210,33 @@ Also note that our definitions of weighted limits and colimits do not work for c
 
 
 \appendix
-\section{The corner tensor construction}\label{cornertensor} In this section, we define general corner tensors and apply them to define the corner-intertwiner and corner-product.
-\section{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
-In this section, we demonstrate that the class of horizontal inner anodynes is closed under corner products with monomorphisms.
+\section{The corner tensor construction}\label{cornertensor} 
+In this section, we define general corner tensors and apply them to define the corner-intertwiner and corner-product.
+
+\section{The boundary and anodyne theorems}\label{horizontal}
+In this section, we demonstrate that the class of monomorphisms is exactly the class of relative cell complexes for \(\mathscr{M}\), which we will show coincides with the set of boundary maps for the regular Reedy category \(\Theta[\C]\).  We will also show that the class of horizontal inner anodynes is closed under corner products with monomorphisms.  The content of this section is a relatively straightforward generalization of the content of \cite{oury}*{3.4.4}.
+
+\begin{prop} 
+	The category \(\Theta[\C]\) is a regular skeletal Reedy category whenever \(\C\) is a regular Cartesian Reedy category.  The dimension function of this Reedy category is given by 
+	\[\operatorname{dim}[n](c_1,\dots,c_n)\defeq n+\operatorname{dim}_\C c_1 + \dots + \operatorname{dim}_\C c_n,\]
+	and the boundary can be computed by the formula 
+	\[\partial [n](c_1,\dots,c_n)\defeq \operatorname{dom} \square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n}).\]
+\end{prop}
+\begin{proof} 
+	It follows by \cite{bergner-rezk-reedy}*{Proposition 4.4} that \(\Theta[\C]\) is normal skeletal Reedy. To prove that \(\Theta[\C]\) is regular, it suffices to show that the image of any map 
+	\[(\alpha,\mathbf{f}):[n](c_1,\dots,c_n) \to [m](d_1,\dots, d_m)\]
+	is representable.  It suffices by normality to show this in the case that the map is monic.  Since \(\C\) is cartesian, the image of any monomorphism \(c\to \prod_{i=j}^k d_i\) is representable, and since it is nondegenerate, and it follows immediately that the image of \(\alpha,\mathbf{f}\) is exactly \([n](c_1,\dots, c_n)\).  
+	To see that our formula for the boundary is correct, let 
+	\[(\alpha,\mathbf{f}):[n](c_1,\dots,c_n) \to [m](d_1,\dots, d_m)\]
+	be a codimension \(1\) coface.  Then it is clear immediately that either \(n=m\) or \(n=m-1\), and therefore either \(\alpha\) is the identity or a simplicial face map.  If \(n=m\), then clearly \(\alpha, \mathbf{f}\) lands in exactly one of the \(V[m](d_1, \dots, \partial d_i, \dots, d_m).\)  If \(\alpha\) is an inner face map obtained by removing the \(k^\mathrm{th}\) vertex, then \((\alpha,\mathbf{f})\) factors through the inclusion \[V[m](d_1,\dots,d_{k-1} \times d_k,\dots, d_m) \subseteq [m](d_1,\dots,d_m)\] by a monomorphism \(\operatorname{id}, \mathbf{g}\) where \(g_i\) is either the identity or the inclusion of a shuffle \(c\to d_{k-1} \times d_k\), which is representable by the fact that \(\C\) is regular Cartesian.   
+\end{proof}
+\begin{cor} 
+	The class \(\operatorname{Cell}(\mathscr{M})\) is exactly the the class of monomorphisms of \(\cellset\).  
+\end{cor}
+\begin{proof}
+	This is an immediate consequence of \cite{cisinski-book}*{Proposition 8.1.37}.
+\end{proof}
+
 \section{Recognition of horizontal Joyal fibrations}\label{admissible}
 In this section, we give a recognition theorem for horizontal Joyal fibrations between formal \(\C\)-quasicategories.  In particular, we prove that a morphism between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it is a horizontal inner fibration and has the right lifting property with respect to the single morphism \(\{0\}\hookrightarrow E^1\). In the course of the proof, we will also demonstrate that the formal \(\C\)-quasicategories are precisely the fibrant objects of the horizontal Joyal model structure.  We begin with a definition:
 
@@ -1227,16 +1257,22 @@ This definition is a bit trickier than the usual definition of left and right ho
 In what follows, fix the notation \(e:\{0\}\hookrightarrow E^1\) to be the obvious inclusion of the vertex.  The proof directly makes use of the filtration of \cite{ds2}{Proposition A.4}.
 
 \begin{prop} Given any representable \(\C\)-cellular set \([x]=[r](c_1,\dots,c_r)\) such that \(n>0\), the map
-	\[e \times^\lrcorner \square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_r})\]
+	\[e \times^\lrcorner \square^\lrcorner_r(\delta^r,\delta^{c_1},\dots,\delta^{c_r})\]
 	is special anodyne.
 \end{prop}
 \begin{proof}
-	Let \([x]=[r](c_1,\dots,c_n)\) be a representable \(\C\)-cellular set.  Then we begin by noting that \(E^1\times [x]\) is sober, since \(E^1\) is sober, representables are sober, and products of sober presheaves are sober. In particular, \(E^1\times [x]\) is a labeled simplicial set lying over \(E^1\times \Delta^n\).  We define the boundary of \([x]\) by \[\partial[x] = \operatorname{dom}\left(\square^\lrcorner_n(\delta^r, \delta^{c_1},\dots, \delta^{c_r})\right),\] that is, the domain of the corner-intertwiner.  Then the domain of the corner product can be written as \[M_0=\partial[x] \times E^1 \cup [x]\times \{0\}.\]  Let \(U_i[t]\) be the pullback of \(E^1\times [x]\) along the inclusion \(Y_i[t]\to E^1\times \Delta^r\) from \cite{ds2}*{Proposition A.4}.  Then set \[M_i[t]=U_i[t]\cup \left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\] From the proof of \cite{ds1}*{Proposition A.4}, we know that given any nondegenerate simplex of \(Y_i[t+1]\) its intersection with \(Y_i[t]\) is either an inner or special horn, so if we let \([z]=[t+1](z_1,\dots,z_{t+1}\) be the pullback of \(E^1\times [x]\), we see that its intersection with \(U_i[t]\) is exactly \(V_{\Lambda^{t+1}_k[z]}\), and all of the other necessary parts belong to \[\left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\]
+	Let \([x]=[r](c_1,\dots,c_n)\) be a representable \(\C\)-cellular set.  Then we begin by noting that \(E^1\times [x]\) is sober, since \(E^1\) is sober, representables are sober, and products of sober presheaves are sober. In particular, \(E^1\times [x]\) is a labeled simplicial set lying over \(E^1\times \Delta^n\).  We define the boundary of \([x]\) by \[\partial[x] = \operatorname{dom}\left(\square^\lrcorner_n(\delta^r, \delta^{c_1},\dots, \delta^{c_r})\right),\] that is, the domain of the corner-intertwiner.  Then the domain of the corner product can be written as \[M_0=\partial[x] \times E^1 \cup [x]\times \{0\}.\]  Let \(U_i[t]\) be the pullback of \(E^1\times [x]\) along the inclusion \(Y_i[t]\to E^1\times \Delta^r\) from \cite{ds2}*{Proposition A.4}.  Then set \[M_i[t]=U_i[t]\cup \left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\] 
+	
+	Suppose \(0<i<r\).  From the proof of \cite{ds1}*{Proposition A.4}, we know that given any nondegenerate simplex of \(Y_i[t+1] - Y_i[t]\), its intersection with \(Y_i[t]\) is an inner horn \(\Lambda^{t+1}_{k}\), so if we let \([z]=[t+1](z_1,\dots,z_{t+1})\) be the pullback of \([t+1]\to Y_i[t+1]\) to \(E^1\times [x]\), we see that its intersection with \(U_i[t]\) is exactly \(V_{\Lambda^{t+1}_k[z]}\). Therefore, its intersection with \(M_i[t]\) is exactly the domain of \[\square^\lrcorner_{t+1}(\lambda^{t+1}_k, \delta^{c_1},\dots, \delta^{c_{t+1}}).\]
 
-	Therefore, each of these attachments to \(M_i[t]\) is either a horizontal inner horn attachment or a special outer horn attachment, which proves the proposition.
+	When \(i=0\) (resp. \(i=r\)), the horn attachments of the filtration are special left (resp. special right) horn inclusions, and the same proof works.
+
+	Therefore, each of these attachments to \(M_i[t]\) is either a horizontal inner horn attachment or a special outer horn attachment, which proves the proposition, since \(M_{r+1}=E^1\times \) 
 \end{proof}
 
 With this messy part out of the way, it suffices to show that every horizontal inner fibration between formal \(\C\)-quasicategories has the right lifting property with respect to special inner horn inclusions.
+
+
 
 \section{Proof of cosimplicial resolutions}\label{cosimplicial}
 In this section, we demonstrate that the three cosimplicial objects \(C^\bullet_R(c),\) \(C^\bullet_L(c),\) and \(C^\bullet_{\mathrm{cyl}}(c)\) are cosimplicial resolutions of \([1](c)\).
@@ -1258,6 +1294,14 @@ In this section, we demonstrate that the three cosimplicial objects \(C^\bullet_
 			pages={230--270},
 			issn={0001-8708},
 			review={\MR {2331244 (2008f:55010)}},
+		}
+		\bib{bergner-rezk-reedy}{article}{
+			author={Bergner, J. E.},
+			author={Rezk, C.},
+			title={Reedy categories and the \(\Theta\)-Construction},
+			journal={Mathematische Zeitschrift},
+			date={2011},
+			number={1-2},
 		}
 
 		\bib{cisinski-book}{book}{
