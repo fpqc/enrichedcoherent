@@ -306,15 +306,21 @@ The other main kind of pathology, shared with the full subcategory \(\Delta \int
 	To see faithfulness, notice that the construction in the proof of fullness defines a left-inverse to the definition of the map on morphisms defined by the intertwiner.
 \end{proof}
 
-\begin{defn} We say that a presheaf \(X\) on \(\Theta[\C]\) is \emph{sober} if it is the image of a normalized object of \(\psh{\Delta}\int \psh{\C}\). If \(f:X\to Y\) is the image under the intertwiner of a cartesian map of normalized labeled simplicial sets, we call \(f\) \emph{cartesian}.
+\begin{defn} We call a presheaf of sets on \(\Theta[\C]\) a \emph{\(\C\)-cellular set}.
 \end{defn}
 
-\begin{prop} All representable presheaves on \(\Theta[\C]\) are sober.
+\begin{note} Although the case when \(\C=\Theta_{n-1}\) (respectively \(\C=\Theta=\Theta_\omega\)) are not strictly the focus of this paper, note that \(\Theta[\Theta_{n-1}]=\Theta_n\) (respectively \(\Theta[\Theta]=\Theta\)).  In these cases, we call presheaves of sets on \(\Theta[\C]\) \emph{\(n\)-cellular sets} (respectively, \emph{cellular sets}).  
+\end{note}
+
+\begin{defn} We say that a \(\C\)-cellular set \(X\) is \emph{sober} if it is the image of a normalized object of \(\psh{\Delta}\int \psh{\C}\). If \(f:X\to Y\) is the image under the intertwiner of a cartesian map of normalized labeled simplicial sets, we call \(f\) \emph{cartesian}.
+\end{defn}
+
+\begin{prop} All representable \(\C\)-cellular sets are sober.
 \end{prop}
 \begin{proof} By construction.
 \end{proof}
 
-\begin{prop} The class of sober presheaves is closed under cartesian product.
+\begin{prop} The class of sober \(\C\)-cellular sets is closed under cartesian product.
 \end{prop}
 \begin{proof} From the construction of the intertwiner, we see that if \(\psh{\Delta}\int \psh{\C}\) has all cartesian products, then the intertwiner preserves them, since
 	\[\Hom_{\psh{\Delta}\int\psh{\C}}(L(\cdot), (S,\Omega)\times (S^\prime,\Omega^\prime))=\Hom_{\psh{\Delta}\int\psh{\C}}(L(\cdot), (S,\Omega))\times \Hom_{\psh{\Delta}\int\psh{\C}}(L(\cdot), (S^\prime,\Omega^\prime)).\] Then we define the cartesian product of \((S,\Omega)\) and \((S^\prime,\Omega^\prime)\) by the formula \[S\times S^\prime \xrightarrow{\Omega \times \Omega^\prime} \psh{\C}_\bullet \times \psh{\C}_\bullet \xrightarrow{\times} \psh{\C}_\bullet.\]  It is clear that this satisfies the universal property of the product.
@@ -401,7 +407,7 @@ Finally, we come to the form of this functor that we will be using:
 Necklaces were introduced by Dugger and Spivak in order to understand the mapping objects \(\Hom_{\mathfrak{C}(X)}\) and give a much easier proof than Lurie's that the homotopy-coherent realization and nerve form a Quillen equivalence.  In this section, we will introduce an enriched version of necklaces that will serve the same purpose.
 
 \begin{defn}
-	A \emph{pre-necklace} is a sober presheaf on \(\Theta[\C]\) whose projection to \(\psh{\Delta}\) is a simplicial necklace in the sense of Dugger and Spivak.
+	A \emph{pre-necklace} is a sober \(\C\)-cellular set whose projection to \(\psh{\Delta}\) is a simplicial necklace in the sense of Dugger and Spivak.
 
 	Given a pre-necklace \(T\), we define the \emph{shape of \(T\)} to be its associated simplicial set \(\pi(T)\).
 
@@ -416,9 +422,9 @@ Necklaces were introduced by Dugger and Spivak in order to understand the mappin
 	Given \(a,b\in V_T\), there is a full simplicial subset \(\pi(T)(a,b)\subseteq \pi(T)\) consisting of the simplicial set of simplices \(\sigma\) of \(\pi(T)\) for which all vertices of \(\sigma\) lie in \(V_T(a,b)\). We define \(T(a,b)\) to be the pullback of \(T\) along the inclusion \(\pi(T)(a,b)\hookrightarrow \pi(T)\).  It is clear from this definition that \(V_T(a,b)=V_{T(a,b)}\) and \(J_T(a,b)=J_{T(a,b)}\).
 \end{defn}
 
-Following Dugger and Spivak, we define a construction as follows: Given a presheaf \(X\) on \(\Theta[\C]\) with two vertices \(x,y\in X_0\), we obtain a functor \[\mathcal{E}_X(x,y):\overcat{\Nec}{X_{x,y}} \to \Psh_\Delta(\C)\] defined by the rule \[(T\to X_{x,y})\mapsto \mathfrak{C}(T)(\alpha_T,\omega_T).\] We define \[E_X(x,y)=\colim(\mathcal{E}(x,y)),\] which by the universal property of colimits admits a universal map \[E_X(x,y)\to \mathfrak{C}(X)(x,y).\] We can see that there is an associative composition operation \[E_X(x,y)\times E_X(y,z)\to E_X(x,z)\] inherited from the operation of wedge-concatenation of necklaces \[\mathcal{E}_X(x,y)\times \mathcal{E}_X(y,z) \to \mathcal{E}_X(x,z).\] This makes \(E_X\) into a \(\Psh_\Delta(\C)\)-enriched category equipped with a functor \(E_X\to \mathfrak{C}(X)\).
+Following Dugger and Spivak, we define a construction as follows: Given a \(\C\)-cellular set \(X\) with two vertices \(x,y\in X_0\), we obtain a functor \[\mathcal{E}_X(x,y):\overcat{\Nec}{X_{x,y}} \to \Psh_\Delta(\C)\] defined by the rule \[(T\to X_{x,y})\mapsto \mathfrak{C}(T)(\alpha_T,\omega_T).\] We define \[E_X(x,y)=\colim(\mathcal{E}(x,y)),\] which by the universal property of colimits admits a universal map \[E_X(x,y)\to \mathfrak{C}(X)(x,y).\] We can see that there is an associative composition operation \[E_X(x,y)\times E_X(y,z)\to E_X(x,z)\] inherited from the operation of wedge-concatenation of necklaces \[\mathcal{E}_X(x,y)\times \mathcal{E}_X(y,z) \to \mathcal{E}_X(x,z).\] This makes \(E_X\) into a \(\Psh_\Delta(\C)\)-enriched category equipped with a functor \(E_X\to \mathfrak{C}(X)\).
 
-\begin{prop} For any presheaf \(X\) on \(\Theta[\C]\) the induced map \(E_X\to \mathfrak{C}(X)\) is an isomorphism.
+\begin{prop} For any \(\C\)-cellular set \(X\), the induced map \(E_X\to \mathfrak{C}(X)\) is an isomorphism.
 \end{prop}
 \begin{proof} Following along closely with the proof of \cite{ds1}*{Proposition 4.3}, we consider the following commutative diagram:
 	\begin{equation*}
@@ -457,14 +463,14 @@ Following Dugger and Spivak, we define a construction as follows: Given a preshe
 This is not the end of the story.  This colimit is still very complicated, and we must simplify it further.  In particular, we will show that \(\mathfrak{C}(X)(x,y)_c\) can be represented as a colimit of contractible spaces functorially in \(c\).  This will play an important role in obtaining appropriate analogues of the other models for \(\mathfrak{C}\) from \cite{ds1}.  In order to continue down this road, we need the following definition:
 
 \begin{defn}
-	We say that a necklace \(T\) is \emph{of uniform type \(c\in \C\)} if the pullback of \(T\) along each bead inclusion \(\Delta^{m_i}\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is the representable presheaf associated with \([m_i](c,\dots,c)\).  If \(T\) is any simplicial necklace, we denote by \(T\{c\}\) the necklace of type \(c\) of the same underlying simplicial shape. We define the category \(\Nec_c\) to be the full subcategory of the category \(\Nec\) spanned by the necklaces of uniform type \(c\).
+	We say that a necklace \(T\) is \emph{of uniform type \(c\in \C\)} if the pullback of \(T\) along each bead inclusion \(\Delta^{m_i}\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is the representable \(\C\)-cellular set associated with \([m_i](c,\dots,c)\).  If \(T\) is any simplicial necklace, we denote by \(T\{c\}\) the necklace of type \(c\) of the same underlying simplicial shape. We define the category \(\Nec_c\) to be the full subcategory of the category \(\Nec\) spanned by the necklaces of uniform type \(c\).
 \end{defn}
 
 \begin{defn}
 	We define the subcategory \[\Nec^\mathbf{sp}_c\subseteq \Nec_c\] to be the wide subcategory whose morphisms are are \emph{special}, which are maps that factor as the composite of a pure codegeneracy followed by a map whose restriction to each edge of the spine of the domain is a diagonal \(c\xrightarrow{id^k} c^k\) of the appropriate arity.
 \end{defn}
 
-We begin by giving the following construction: Given a presheaf \(X\) on \(\Theta[\C]\) together with two vertices \(x,y\in X_0\), we give a functor \[\mathcal{E}_{X,c}(x,y):\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\to \psh{\Delta}\] defined by the rule \[T\mapsto \mathfrak{C}_\Delta(\pi(T))(\alpha,\omega),\] where \(\mathfrak{C}_\Delta\) denotes the ordinary coherent realization of a simplicial set.
+We begin by giving the following construction: Given a \(\C\)-cellular set \(X\) together with two vertices \(x,y\in X_0\), we give a functor \[\mathcal{E}_{X,c}(x,y):\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\to \psh{\Delta}\] defined by the rule \[T\mapsto \mathfrak{C}_\Delta(\pi(T))(\alpha,\omega),\] where \(\mathfrak{C}_\Delta\) denotes the ordinary coherent realization of a simplicial set.
 
 We then define a simplicial set \[E_{X,c}(x,y)=\colim \mathcal{E}_{X,c}.\] We note that by concatenation of necklaces of uniform type \(c\), we obtain an associative composition law \[E_{X,c}(x,y)\times E_{X,c}(y,z)\to E_{X,c}(x,z).\]  We will see in what follows that \(E_{X,c}\) is naturally isomorphic to \(\mathfrak{C}(X)_c\).
 
@@ -485,7 +491,7 @@ We then define a simplicial set \[E_{X,c}(x,y)=\colim \mathcal{E}_{X,c}.\] We no
 
 These propositions give us what we need to prove the aforementioned reduction:
 
-\begin{prop} For any presheaf \(X\) on \(\Theta[\C]\), we have natural isomorphisms of \(\Psh_\Delta(\C)\)-enriched categories, \(E_{X,\bullet}\cong E_X \cong \mathfrak{C}(X).\)
+\begin{prop} For any \(\C\)-cellular set \(X\), we have natural isomorphisms of \(\Psh_\Delta(\C)\)-enriched categories, \(E_{X,\bullet}\cong E_X \cong \mathfrak{C}(X).\)
 \end{prop}
 \begin{proof} We begin by naming the natural inclusion
 	\[\iota_c:\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\hookrightarrow \overcat{\Nec}{X_{x,y}}\]
@@ -512,7 +518,7 @@ In their paper \cite{ds1}, Dugger and Spivak make use of another model for \(\ma
 We will define a version of \(\mathfrak{C}^\Nec\) for \(\Theta[\C]\)-sets and show that it too is related by a zig-zag of natural weak equivalences of \(\Psh_\Delta\)-enriched categories to \(\mathfrak{C}\). Following Dugger and Spivak, we also construct a third model \(\mathfrak{C}^{\operatorname{hoc}}\) modeled by taking the homotopy-colimit instead of the ordinary colimit that we showed defines \(\mathcal{C}\).
 
 \begin{defn}
-	The \emph{necklace realization} \(\mathfrak{C}^\Nec(X)\) of a presheaf \(X\) on \(\Theta[\C]\) is defined to be the \(\Psh_\Delta(\C)\)-enriched category whose set of objects is the set of vertices of \(X\) and whose mapping objects are simplicial presheaves on \(\C\) defined by the rule:
+	The \emph{necklace realization} \(\mathfrak{C}^\Nec(X)\) of a \(\C\)-cellular set \(X\) is defined to be the \(\Psh_\Delta(\C)\)-enriched category whose set of objects is the set of vertices of \(X\) and whose mapping objects are simplicial presheaves on \(\C\) defined by the rule:
 	\[c\mapsto \mathfrak{C}^\Nec(x,y)_c=N(\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}).\]
 	As usual, the composition \[\mathfrak{C}^\Nec(X)(x,y)\times \mathfrak{C}^\Nec(X)(y,z)\to \mathfrak{C}^\Nec(X)(x,z)\] is obtained by concatenation of uniform necklaces.
 
@@ -637,11 +643,11 @@ In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \under
 	The functor \(\mathfrak{C}\) sends monomorphisms to cofibrations and horizontal inner anodynes to trivial cofibrations.
 \end{prop}
 \begin{proof}
-	Let \[U:\Psh_\Delta(\C) \to \Cat_{\Psh_\Delta(\C)}\] be the functor sending a simplicial presheaf \(X\) to the enriched category with objects \(\{0,1\}\) with \(U(X)(0,0)=U(X)(1,1)=\ast\), \(U(X)(1,0)=\emptyset\), and \(U(X)(0,1)=X\).
+	Let \[\mathbf{2}:\Psh_\Delta(\C) \to \Cat_{\Psh_\Delta(\C)}\] be the functor sending a simplicial presheaf \(X\) to the enriched category with objects \(\{0,1\}\) with \(\mathbf{2}(X)(0,0)=\mathbf{2}(X)(1,1)=\ast\), \(\mathbf{2}(X)(1,0)=\emptyset\), and \(\mathbf{2}(X)(0,1)=X\).
 
-	When \(K=\emptyset\), \(\lambda^n_K=\delta^n\), so the lemma tells us that \[\mathfrak{C}(\square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\] is a pushout of the map \[U(\delta^{c_1}\times^\lrcorner \delta^1 \times^\lrcorner \dots \times^\lrcorner \delta^1 \times^\lrcorner \delta^{c_n}),\] which is a cofibration, which proves the claim.
+	When \(K=\emptyset\), \(\lambda^n_K=\delta^n\), so the lemma tells us that \[\mathfrak{C}(\square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\] is a pushout of the map \[\mathbf{2}(\delta^{c_1}\times^\lrcorner \delta^1 \times^\lrcorner \dots \times^\lrcorner \delta^1 \times^\lrcorner \delta^{c_n}),\] which is a cofibration, which proves the claim.
 
-	Similarly, when \(K\) is a singleton, \(\lambda^n_K=\lambda^n_k\) is the inclusion of an inner horn, so \[\mathfrak{C}(\square^\lrcorner_n(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n})\] is the pushout of the map \[U(\delta^{c_1}\times^\lrcorner h^1_k \times^\lrcorner \dots \times^\lrcorner h^{n-1}_k \times^\lrcorner \delta^{c_n}),\] where \(h^k_k=\lambda^1_1\).  This is a corner map where one factor is a trivial cofibration (because it is Kan anodyne), and therefore its image under \(U\) is a trivial cofibration.  Since the pushout of a trivial cofibration is a trivial cofibration, we are done.
+	Similarly, when \(K\) is a singleton, \(\lambda^n_K=\lambda^n_k\) is the inclusion of an inner horn, so \[\mathfrak{C}(\square^\lrcorner_n(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n})\] is the pushout of the map \[\mathbf{2}(\delta^{c_1}\times^\lrcorner h^1_k \times^\lrcorner \dots \times^\lrcorner h^{n-1}_k \times^\lrcorner \delta^{c_n}),\] where \(h^k_k=\lambda^1_1\).  This is a corner map where one factor is a trivial cofibration (because it is Kan anodyne), and therefore its image under \(\mathbf{2}\) is a trivial cofibration.  Since the pushout of a trivial cofibration is a trivial cofibration, we are done.
 \end{proof}
 
 \begin{cor}
@@ -720,14 +726,14 @@ Unlike in the simplicial case, we have seen that we cannot simply get away with 
 \end{defn}
 
 \begin{defn}
-	Given a presheaf \(X\) on \(\Theta[\C]\), two vertices \(x,y\) in \(X_0\) and a category of gadgets \(\mathcal{G}\), we define a simplicial presheaf on \(\C\) by the formula \[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_c\defeq N\overcat{\mathcal{G}_c}{X_{x,y}}.\]
+	Given a \(\C\)-cellular set \(X\), two vertices \(x,y\) in \(X_0\) and a category of gadgets \(\mathcal{G}\), we define a simplicial presheaf on \(\C\) by the formula \[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_c\defeq N\overcat{\mathcal{G}_c}{X_{x,y}}.\]
 
 	When \(\mathcal{G}\) is closed under wedges, we can define the \(\Psh_\Delta(\C)\)-enriched category \(\mathfrak{C}^{\mathcal{G}}(X)\) to be the category whose objects are the vertices of \(X\) and whose Hom-objects are
 	\[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_\cdot.\]
 	This defines an enriched category by taking the composition operation to be concatenation of gadgets, which works since \(\mathcal{G}\) is closed under wedges.
 \end{defn}
 \begin{prop}\label{gadgetlemma}
-	Given a presheaf \(X\) on \(\Theta[\C]\) and two vertices \(x,y\) of \(X\) and a category of gadgets \(\mathcal{G}\) the map \[N\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}} \hookrightarrow N\overcat{\mathcal{G}_c}{X_{x,y}}\] is a weak homotopy equivalence.
+	Given a \(\C\)-cellular set \(X\) and two vertices \(x,y\) of \(X\) and a category of gadgets \(\mathcal{G}\) the map \[N\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}} \hookrightarrow N\overcat{\mathcal{G}_c}{X_{x,y}}\] is a weak homotopy equivalence.
 \end{prop}
 \begin{proof}
 	By Quillen's theorem A, it suffices to look at the overcategories \(\overcat{\Nec^\mathbf{sp}_c}{G(c)}\) along the inclusion \(\Nec^\mathbf{sp}_c\hookrightarrow \mathcal{G}_c\) for all \(G\) in \(\mathcal{G}\) and show that their nerves are contractible, but these overcategories correspond on-the-nose to the subcategories classifying the diagonal component of \(\mathfrak{C}^\Nec(G)(\alpha,\omega)\), which is contractible because \(G\) is a gadget.
@@ -788,7 +794,7 @@ induced by the inclusions we described above.
 	is a weak equivalence, so we have the natural zig-zag we require.
 \end{proof}
 \begin{defn}
-	Given a bipointed presheaf \(X_{x,y}\) on \(\Theta[\C]\) we define the \emph{mapping object} from \(x\) to \(y\) to the simplicial presheaf obtained by taking homotopy function complexes
+	Given a bipointed \(\C\)-cellular set \(X_{x,y}\) we define the \emph{mapping object} from \(x\) to \(y\) to the simplicial presheaf obtained by taking homotopy function complexes
 	\[\Map_X(x,y)_c\defeq h\cellset_{\ast,\ast}([1](c), X).\]
 \end{defn}
 
@@ -1123,7 +1129,7 @@ Before we give a construction of the Yoneda embedding and a proof of Yoneda's le
 
 We begin by constructing the Yoneda embedding:
 \begin{defn}
-	Let \(X\) be a presheaf on \(\Theta[\C]\), and let \(\Phi:\mathfrak{C}(X) \xrightarrow{\sim} \mathcal{D}\) be an \(\M\)-enriched fibrant replacement.  Since \(\mathcal{D}\) is fibrant, the functor
+	Let \(X\) be a \(\C\)-cellular set, and let \(\Phi:\mathfrak{C}(X) \xrightarrow{\sim} \mathcal{D}\) be an \(\M\)-enriched fibrant replacement.  Since \(\mathcal{D}\) is fibrant, the functor
 	\[\Hom_\mathcal{D}: \mathcal{D}\times \mathcal{D}^\op \to \Psh_\Delta(\C)\]
 	factors through the full subcategory \(\Psh_\Delta(\C)^\circ\).  By \cite{htt}*{Corollary A.3.4.14}, this gives rise up to homotopy to a universal map
 	\[J_\mathcal{D}:\mathcal{D}\to \left(\Psh_\Delta(\C)^{\mathcal{D}^\op}\right)_\mathrm{proj}^\circ\]
@@ -1160,7 +1166,7 @@ Let \(\Pre(X)\) denote the large \(\M\)-quasicategory \(\M^{X^\op}\), and let \(
 \end{proof}
 
 \begin{prop}\cite{htt}*{5.5.2.1}
-	Let \(X\) be a small presheaf on \(\Theta[\C]\), and let \(f: X^\op \to \M\) be an object of \(\Pre(X)\).  Then let \(F:\Pre(X)^\op \to \M^+\) be the functor represented by \(f\).  Then the composite \[X^\op\xrightarrow{j^\op_X} \Pre(X)^\op \xrightarrow{F} \M^+\] is equivalent to \(f\).
+	Let \(X\) be a small \(\C\)-cellular set, and let \(f: X^\op \to \M\) be an object of \(\Pre(X)\).  Then let \(F:\Pre(X)^\op \to \M^+\) be the functor represented by \(f\).  Then the composite \[X^\op\xrightarrow{j^\op_X} \Pre(X)^\op \xrightarrow{F} \M^+\] is equivalent to \(f\).
 \end{prop}
 \begin{proof}
 	By Proposition \ref{lurieprop2}, we can choose a small fibrant \(\M\)-enriched category \(\mathcal{D}\) and an equivalence \(\Phi:X^\op\to \mathfrak{N}(\mathcal{D})\) such that \(f\sim \mathfrak{N}(f^\prime) \circ \Phi\) for some \(f^\prime:\mathcal{D} \to \Psh_\Delta(\C)_\setS^\circ\).  Without loss of generality, we can assume that \(f^\prime\) is a projectively cofibrant diagram.  Using Proposition \ref{lurieprop1}, we have an equivalence of \(\M\)-quasicategories 
@@ -1211,19 +1217,19 @@ In this section, we give a recognition theorem for horizontal Joyal fibrations b
 This definition is a bit trickier than the usual definition of left and right horn, but it is sufficient for our purposes. The reason why we require the condition \(c_1=\ast\) (resp. \(c_n=\ast\)) is to ensure that we only remove faces of codimension \(1\) from the horn.
 
 \begin{defn}
-	Let \(X\) be a presheaf on \(\Theta[\C]\), and let \(f:\Lambda^n_L[x]\to X\) be a map from a left horn.  Then we say that \(f\) is a \emph{special horizontal left horn} if the restriction of \(f\) along the inclusion \(\mathscr{H}\Delta^1=[1](c_1)\hookrightarrow [x]\) factors through \(E^1\), and dually for right horns.
+	Let \(X\) be a \(\C\)-cellular set, and let \(f:\Lambda^n_L[x]\to X\) be a map from a left horn.  Then we say that \(f\) is a \emph{special horizontal left horn} if the restriction of \(f\) along the inclusion \(\mathscr{H}\Delta^1=[1](c_1)\hookrightarrow [x]\) factors through \(E^1\), and dually for right horns.
 
 	We say that a map \(X\to Y\) is \emph{special anodyne} if it is the transfinite composition of pushouts along special horn inclusions and horizontal inner anodynes.
 \end{defn}
 
 In what follows, fix the notation \(e:\{0\}\hookrightarrow E^1\) to be the obvious inclusion of the vertex.  The proof directly makes use of the filtration of \cite{ds2}{Proposition A.4}.
 
-\begin{prop} Given any representable presheaf \([x]=[r](c_1,\dots,c_r)\) such that \(n>0\), the map
+\begin{prop} Given any representable \(\C\)-cellular set \([x]=[r](c_1,\dots,c_r)\) such that \(n>0\), the map
 	\[e \times^\lrcorner \square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_r})\]
 	is special anodyne.
 \end{prop}
 \begin{proof}
-	Let \([x]=[r](c_1,\dots,c_n)\) be a representable presheaf.  Then we begin by noting that \(E^1\times [x]\) is sober, since \(E^1\) is sober, representables are sober, and products of sober presheaves are sober. In particular, \(E^1\times [x]\) is a labeled simplicial set lying over \(E^1\times \Delta^n\).  We define the boundary of \([x]\) by \[\partial[x] = \operatorname{dom}\left(\square^\lrcorner_n(\delta^r, \delta^{c_1},\dots, \delta^{c_r})\right),\] that is, the domain of the corner-intertwiner.  Then the domain of the corner product can be written as \[M_0=\partial[x] \times E^1 \cup [x]\times \{0\}.\]  Let \(U_i[t]\) be the pullback of \(E^1\times [x]\) along the inclusion \(Y_i[t]\to E^1\times \Delta^r\) from \cite{ds2}*{Proposition A.4}.  Then set \[M_i[t]=U_i[t]\cup \left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\] From the proof of \cite{ds1}*{Proposition A.4}, we know that given any nondegenerate simplex of \(Y_i[t+1]\) its intersection with \(Y_i[t]\) is either an inner or special horn, so if we let \([z]=[t+1](z_1,\dots,z_{t+1}\) be the pullback of \(E^1\times [x]\), we see that its intersection with \(U_i[t]\) is exactly \(V_{\Lambda^{t+1}_k[z]}\), and all of the other necessary parts belong to \[\left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\]
+	Let \([x]=[r](c_1,\dots,c_n)\) be a representable \(\C\)-cellular set.  Then we begin by noting that \(E^1\times [x]\) is sober, since \(E^1\) is sober, representables are sober, and products of sober presheaves are sober. In particular, \(E^1\times [x]\) is a labeled simplicial set lying over \(E^1\times \Delta^n\).  We define the boundary of \([x]\) by \[\partial[x] = \operatorname{dom}\left(\square^\lrcorner_n(\delta^r, \delta^{c_1},\dots, \delta^{c_r})\right),\] that is, the domain of the corner-intertwiner.  Then the domain of the corner product can be written as \[M_0=\partial[x] \times E^1 \cup [x]\times \{0\}.\]  Let \(U_i[t]\) be the pullback of \(E^1\times [x]\) along the inclusion \(Y_i[t]\to E^1\times \Delta^r\) from \cite{ds2}*{Proposition A.4}.  Then set \[M_i[t]=U_i[t]\cup \left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\] From the proof of \cite{ds1}*{Proposition A.4}, we know that given any nondegenerate simplex of \(Y_i[t+1]\) its intersection with \(Y_i[t]\) is either an inner or special horn, so if we let \([z]=[t+1](z_1,\dots,z_{t+1}\) be the pullback of \(E^1\times [x]\), we see that its intersection with \(U_i[t]\) is exactly \(V_{\Lambda^{t+1}_k[z]}\), and all of the other necessary parts belong to \[\left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\]
 
 	Therefore, each of these attachments to \(M_i[t]\) is either a horizontal inner horn attachment or a special outer horn attachment, which proves the proposition.
 \end{proof}
