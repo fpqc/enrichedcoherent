@@ -3,12 +3,12 @@
 %\usepackage[notref,notcite]{showkeys}
 
 %Put numbers to the left of ``Theorem'', etc.
-\swapnumbers
+%\swapnumbers
 
 % Symbol Packages
 \usepackage{amssymb,empheq}
 % For convenience
-\usepackage{verbatim}
+\usepackage{verbatim,enumerate}
 % Fonts
 \usepackage[cal=euler,scr=rsfso]{mathalfa}
 % Bib
@@ -64,6 +64,7 @@
 \newtheorem{note}[subsection]{Note}   
 \newtheorem{example}[subsection]{Example}
 \newtheorem{ques}[subsection]{Question}
+\newtheorem{obs}[subsection]{Observation}
 \newtheorem{defn}[subsection]{Definition}
 \newtheorem{exer}[subsection]{Exercise}
 \newtheorem{warning}[subsection]{Warning}
@@ -113,7 +114,7 @@
 
 % category theory
 \newcommand{\cat}[1]{\ensuremath{\mathbf{#1}}}
-\newcommand{\overcat}[2]{{(#1\downarrow #2)}}
+\newcommand{\overcat}[2]{{\left(#1\downarrow #2\right)}}
 \newcommand{\bltri}{\blacktriangleleft}
 
 
@@ -203,7 +204,7 @@
 
 %%% abstract
 \begin{abstract}
-	We introduce, for \(\C\) a small regular Reedy category, a model structure on \(\Psh(\Theta[\C])\) whose fibrant objects are the formal \(\C\)-quasicategories.  This model structure is Quillen-biequivalent to the model category of Rezk on \(\Psh_\Delta(\Theta[\C])\) whose fibrant objects are formal \(\C\)-complete Segal spaces.  If \(\mathcal{M}=(\Psh_\Delta(\C),\mathscr{S})\) is a cartesian presentation in the sense of Rezk, then by Rezk's theorem, we obtain a  cartesian-closed left-Bousfield localization of the formal \(\C\)-complete Segal spaces whose fibrant objects are the \(\mathcal{M}\)-enriched complete Segal spaces.  These data also give a left-Bousfield localization of the formal \(\C\)-quasicategories whose fibrant objects are called the \(\mathcal{M}\)-enriched quasicategories that is again Quillen biequivalent to the \(\mathcal{M}\)-enriched complete Segal spaces.
+	We introduce, for \(\C\) a small regular Cartesian Reedy category, a model structure on \(\Psh(\Theta[\C])\) whose fibrant objects are the formal \(\C\)-quasicategories.  This model structure is Quillen-biequivalent to the model category of Rezk on \(\Psh_\Delta(\Theta[\C])\) whose fibrant objects are formal \(\C\)-complete Segal spaces.  If \(\mathcal{M}=(\Psh_\Delta(\C),\mathscr{S})\) is a cartesian presentation in the sense of Rezk, then by Rezk's theorem, we obtain a  cartesian-closed left-Bousfield localization of the formal \(\C\)-complete Segal spaces whose fibrant objects are the \(\mathcal{M}\)-enriched complete Segal spaces.  These data also give a left-Bousfield localization of the formal \(\C\)-quasicategories whose fibrant objects are called the \(\mathcal{M}\)-enriched quasicategories that is again Quillen biequivalent to the \(\mathcal{M}\)-enriched complete Segal spaces.
 
 	We then construct an adjunction \(\mathfrak{C}:\Psh(\Theta[\C])\rightleftarrows \Cat_{\Psh_\Delta(\C)}:\mathfrak{N}\) that becomes a Quillen pair when both sides are considered with the appropriate model structures, and furthermore, we show that this adjunction is compatible with cartesian-closed left-Bousfield localizations of \(\Psh_\Delta(\C)\).  Then, following Dugger and Spivak, we develop a calculus of enriched necklaces and use this calculus to prove that the Quillen pair \((\mathfrak{C}, \mathfrak{N})\) is an equivalence.  Finally, we apply all of this machinery to construct a version of the Yoneda embedding for enriched quasicategories and demonstrate that it is fully faithful.  We then make use of the Yoneda embedding to prove the enriched version of Yoneda's lemma.
 \end{abstract}
@@ -222,6 +223,8 @@ In his thesis, David Oury introduced machinery to give a novel proof that his co
 Bergner and Rezk also showed by means of a zig-zag of Quillen equivalences that \(\Theta_n\)-spaces model the same homotopy theory as \(\Psh_\Delta(\Theta_{n-1})\)-enriched categories.  Because the equivalence is indirect, however, many of the ideas from Lurie's work on \((\infty,1)\)-categories cannot be adapted in a straightforward manner.  In order to rectify this, we construct a generalized version of the coherent realization and nerve using \(\Theta_n\)-sets (or more generally \(\Theta[\C]\)-sets), and we demonstrate that this adjunction is a Quillen equivalence using an enriched version of Dugger and Spivak's calculus of necklaces. In fact, our result is strictly stronger than the result of Rezk and Bergner because it allows us to account for the cases \(\Theta=\Theta_\omega\) as well as prove the equivalence when \(\C\neq \Theta_n\), which the Rezk-Bergner approach could not handle, since one of the categories appearing in the zig-zag (the height-\(n\) analogue of Segal categories) does not make sense for general \(\C\).
 
 Taking all of these results together allows us to define suitably enriched versions of the Yoneda embedding, which is a significant result that as a corollary allows for substantial development of the theory of weak \(\omega\)-categories (that is, \((\infty,\infty)\)-categories). In particular, we can define weighted pseudolimits and pseudocolimits in terms of representability of presheaves, and these can be used to define the other universal constructions.
+
+We would like to thank Denis-Charles Cisinski for his help with axiomatizing the Eilenberg-Zilber shuffle decomposition \ref{cishelp}, Andrea Gagna for spending his time discussing these ideas with us over several long conversations as well as his crucial encouragement in writing it up. 
 
 %Unfortunately, it has not been proven that the (op)lax mapping objects \(\operatorname{Fun}_{\mathcal{L}}(X,Y)\) and \(\operatorname{Fun}_{\mathcal{R}}(X,Y)\) are homotopy-invariant, so although we could give a description of what we expect (op)lax weighted limits and colimits to be, it is not known if these definitions are homotopy-invariant and therefore well-defined. This is also a key gap in proving a higher-dimensional version of the straightening theorem.  We can actually construct the straightening and unstraightening pair, but due to serious combinatorial difficulties involving the (op)lax join and slice, as well as figuring out the precise lifting conditions for higher cartesian fibrations, we have been unable to prove even that the unmarked unstraightening functor sends projectively fibrant diagrams to cartesian fibrations.  The proof of this property (well-short of proving an equivalence of model categories, which probably also requires taking markings into account) can be reduced to showing that the natural projection of the lax slice over a vertex, \(X_{/^{\ell} x}\to X\) is always a cartesian fibration for \(X\) fibrant.   We encourage others interested in the field to take a serious look at this open problem.
 
@@ -246,15 +249,26 @@ In this section, we will consider a slightly more general definition of the wrea
 \begin{rem} If \(\mathcal{V}\) is braided monoidal, we expect that \(\psh{\Delta \int V}\) can also be equipped with a monoidal structure. To see this, consider the following example: \([2](v,v^\prime)\) and \([2](v^\prime,v)\).  The object assigned to the inner face on the first is \(v\otimes v^\prime\), while in the second, it is \(v^\prime\otimes v\).  The braiding allows these to glue together, so that when we do \([1](v)\boxtimes [1](v^\prime)\), the new object \((\Delta^1)^2\{v,v,v^\prime,v^\prime\}\) pastes along the common inner edge (obviously the indexing here is by the nondegenerate \(1\) cells lying only in the spines of higher nondegenerate simplices in the simplicial \(2\)-cube).  We intend to study this more general case in a future paper.
 \end{rem}
 
-\begin{defn} A small regular skeletal Reedy category \(\C\) (see \cite{cisinski-book}*{8.2.3}) is called a \emph{regular Cartesian Reedy category} if the product of two representables \(c_1 \times c_2\) in \(\psh{C}\) is regular in the sense of \cite{cisinski-book}*{8.2}.
+For the purposes of this paper, we will not necessarily need this level of generality, but we expect it may be useful in the future. 
+
+\begin{defn}\label{cishelp}
+	A small regular skeletal Reedy category \(\C\) (see \cite{cisinski-book}*{8.2.3}) is called a \emph{regular Cartesian Reedy category} if it satisfies two conditions:
+
+	\begin{enumerate}[\indent(CR1)]
+		\item The class of regular presheaves on \(\C\) (see \cite{cisinski-book}*{8.2}) is closed under finite products.
+		\item If \(I\) is a finite set and \(c\to \prod\limits_{i\in I }c_i \) is a nondegenerate section, then \(\dim c \leq \sum\limits_{i\in I}\dim c_i\).
+	\end{enumerate}
 \end{defn}
-\begin{rem} We suspect that in fact, all regular skeletal Reedy categories are regular Cartesian, but the examples we care about all satisfy this stronger property, so we leave this question to another day.
-\end{rem}
-For the purposes of this paper, we will not necessarily need this level of generality, but we expect it may be useful in the future. In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of presheaves of sets on a small regular Cartesian Reedy category \(\C\) admitting a terminal object.  
 
-Then we give the following definition:
+\begin{note}
+	The axioms for regular Cartesian Reedy categories imply that \(\C\) is a Reedy multicategory in the sense of \cite{bergner-rezk-reedy}.  It also asserts a weak form of the Eilenberg-Zilber shuffle decomposition. There may be a way to prove (CR2) from (CR1), but we were unable to do so.
+\end{note}
 
-\begin{defn} For any small regular Cartesian Reedy category \(\C\) admitting a terminal object object, we define \(\Theta[\C]\subseteq \Delta \int \psh{\C}\) to be the full subcategory spanned by the objects of the form \([n](h_{c_1},\cdots, h_{c_n})\) for \(c_1,\cdots, c_n \in \C\), and where \(h_\bullet\) denotes the Yoneda embedding.
+In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of presheaves of sets on a small regular Cartesian Reedy category \(\C\) admitting a terminal object.  Then we give the following definition:
+
+\begin{defn} For any small regular Cartesian Reedy category \(\C\) admitting a terminal object object, we define the category of \(\C\)-cells
+	\[\Theta[\C]\subseteq \Delta \int \psh{\C}\]
+	to be the full subcategory spanned by the objects of the form \([n](h_{c_1},\cdots, h_{c_n})\) for \(c_1,\cdots, c_n \in \C\), and where \(h_\bullet\) denotes the Yoneda embedding.
 \end{defn}
 
 \begin{rem} The requirement that \(\C\) have a terminal object is a technical condition that ensures that \(\Delta\) embeds fully and faithfully in \(\Theta[\C]\).  The condition that \(\C\) is regular Cartesian Reedy is probably not necessary, but it will ensure later on that the generating cofibrations of the injective model structure on simplicial presheaves \(\Psh_\Delta(\C)\) admit a very simple description.
@@ -332,12 +346,13 @@ The other main kind of pathology, shared with the full subcategory \(\Delta \int
 	\[\Hom_{\psh{\Delta}\int\psh{\C}}(L(\cdot), (S,\Omega)\times (S^\prime,\Omega^\prime))=\Hom_{\psh{\Delta}\int\psh{\C}}(L(\cdot), (S,\Omega))\times \Hom_{\psh{\Delta}\int\psh{\C}}(L(\cdot), (S^\prime,\Omega^\prime)).\] Then we define the cartesian product of \((S,\Omega)\) and \((S^\prime,\Omega^\prime)\) by the formula \[S\times S^\prime \xrightarrow{\Omega \times \Omega^\prime} \psh{\C}_\bullet \times \psh{\C}_\bullet \xrightarrow{\times} \psh{\C}_\bullet.\]  It is clear that this satisfies the universal property of the product.
 \end{proof}
 
-\begin{prop}
+\begin{prop}\label{pullbacksober}
 	The functor associated with the fibration \(\Theta[\C]\to \Delta\) induces an adjunction 
 	\[\cellset \underset{\mathscr{H}}{\overset{\pi}{\rightleftarrows}} \psh{\Delta},\]
 	as we saw earlier. If \(X=S\square\Omega\) is sober, and \(f:S^\prime\to S\) is a map of simplicial sets, then the image of the cartesian lift \(\tilde{f}:(S^\prime, f^\ast(\Omega))\to (S,\Omega)\) under the intertwiner is exactly the pullback of \(\mathscr{H}(f)\) along the component at \(X\) of the unit of the adjunction \(\mu_X:X\to \mathscr{H}\pi X= \mathscr{H} S\).
 \end{prop}
-\begin{proof} By inspection of the definition of \(S\square\Omega\), we can see that \(\pi(S\square\Omega)=S\).
+\begin{proof} 
+	By inspection of the definition of \(S\square\Omega\), we can see that \(\pi(S\square\Omega)=S\).
 
 	We can see that \(\mathscr{H}\) factors as \(\square\circ \mathfrak{t}\), where \(\mathfrak{t}\) is the right-adjoint to the projection \(\psh{\Delta}\int \psh{\C}\to \psh{\Delta}\), which exists by explicit computation as the functor sending the simplicial set \(S\) to the object \((S,\Omega_{\mathfrak{t}})\) where \(\Omega_{\mathfrak{t}}\) is the labeling sending all simplices of \(S\) to the terminal presheaf on \(\C\).   We can see that the pullback of \((S,\Omega)\) along \(f:S^\prime\to S\) satisfies the universal property of the fibre product of the unit map \((S,\Omega)\to \mathfrak{t}(S)\) with the map \(\mathfrak{t}(f)\), so such pullbacks exist in \(\psh{\Delta}\int \psh{\C}\) and are obviously preserved by \(\square\), which by construction preserves whatever limits exist. The proposition follows immediately from these two observations.
 \end{proof}
@@ -441,7 +456,7 @@ Following Dugger and Spivak, we define a construction as follows: Given a \(\C\)
 				\left( \coliml\limits_{[t]\in\overcat{\Theta[\C]}{X}} \mathfrak{C}([t])\right)(x,y) & \mathfrak{C}(X)(x,y) \\
 			};
 			\path[->, font=\scriptsize]
-			(b-1-1) edge[outer sep=2em] (b-1-2)
+			(b-1-1) edge (b-1-2)
 			edge node[auto,swap]{\(\scriptstyle \cong\)} (b-2-1)
 			(b-2-1) edge [-,double] (b-2-2)
 			(b-1-2) edge (b-2-2);
@@ -457,7 +472,7 @@ Following Dugger and Spivak, we define a construction as follows: Given a \(\C\)
 				\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y) & E_X(x,y)                \\
 			};
 			\path[->, font=\scriptsize]
-			(b-1-1) edge[outer sep=2em] (b-1-2)
+			(b-1-1) edge (b-1-2)
 			(b-2-1) edge (b-1-1) edge (b-2-2) edge node[auto,swap]{\(\scriptstyle{f_\ast}\)} (b-3-1)
 			(b-2-2) edge (b-1-2) edge node[auto,swap]{\(\scriptstyle{E_f}\)} (b-3-2)
 			(b-3-1) edge (b-3-2);
@@ -566,7 +581,7 @@ We define a Cisinski model structure on \(\cellset\) and state several results t
 	We call an object with the right lifting property with respect to \(\mathscr{J}\) a \emph{formal \(\C\)-quasicategory}.
 \end{defn}
 
-The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in the Appendices \ref{horizontal} and \ref{admissible}.
+The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in the Appendices \ref{reedy}, \ref{horizontal}, and \ref{admissible}.
 
 \begin{prop}
 	The class of all monomorphisms of \(\cellset\) is exactly \(\operatorname{Cell}(\mathscr{M}),\) where \[\mathscr{M}=\{\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) : n\geq 0 \text{ and } c_1,\dots,c_n \in \Ob \C\}.\]
@@ -1210,32 +1225,159 @@ Also note that our definitions of weighted limits and colimits do not work for c
 
 
 \appendix
+\renewcommand{\thesection}{A.\arabic{section}}
 \section{The corner tensor construction}\label{cornertensor} 
 In this section, we define general corner tensors and apply them to define the corner-intertwiner and corner-product.
 
-\section{The boundary and anodyne theorems}\label{horizontal}
-In this section, we demonstrate that the class of monomorphisms is exactly the class of relative cell complexes for \(\mathscr{M}\), which we will show coincides with the set of boundary maps for the regular Reedy category \(\Theta[\C]\).  We will also show that the class of horizontal inner anodynes is closed under corner products with monomorphisms.  The content of this section is a relatively straightforward generalization of the content of \cite{oury}*{3.4.4}.
+\section{The regular Reedy structure of \(\Theta[\C]\)}\label{reedy}
+In this section, we demonstrate that the class of monomorphisms is exactly the class of relative cell complexes for \(\mathscr{M}\), which we will show coincides with the set of boundary maps for the regular Reedy category \(\Theta[\C]\).  
 
 \begin{prop} 
-	The category \(\Theta[\C]\) is a regular skeletal Reedy category whenever \(\C\) is a regular Cartesian Reedy category.  The dimension function of this Reedy category is given by 
-	\[\operatorname{dim}[n](c_1,\dots,c_n)\defeq n+\operatorname{dim}_\C c_1 + \dots + \operatorname{dim}_\C c_n,\]
-	and the boundary can be computed by the formula 
-	\[\partial [n](c_1,\dots,c_n)\defeq \operatorname{dom} \square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n}).\]
+	The category \(\Theta[\C]\) is a regular skeletal Reedy category whenever \(\C\) is a regular Cartesian Reedy category.  The dimension function of this regular Reedy category is given by 
+	\[\dim[n](c_1,\dots,c_n)\defeq n+\dim_\C c_1 + \dots + \dim_\C c_n.\]
 \end{prop}
 \begin{proof} 
-	It follows by \cite{bergner-rezk-reedy}*{Proposition 4.4} that \(\Theta[\C]\) is normal skeletal Reedy. To prove that \(\Theta[\C]\) is regular, it suffices to show that the image of any map 
+	It follows by \cite{bergner-rezk-reedy}*{Proposition 4.4} that \(\Theta[\C]\) is normal skeletal Reedy with the desired dimension function (see \cite{cisinski-book}*{8.1}). To prove that \(\Theta[\C]\) is regular, it suffices to show that any nondegenerate section 
 	\[(\alpha,\mathbf{f}):[n](c_1,\dots,c_n) \to [m](d_1,\dots, d_m)\]
-	is representable.  It suffices by normality to show this in the case that the map is monic.  Since \(\C\) is cartesian, the image of any monomorphism \(c\to \prod_{i=j}^k d_i\) is representable, and since it is nondegenerate, and it follows immediately that the image of \(\alpha,\mathbf{f}\) is exactly \([n](c_1,\dots, c_n)\).  
-	To see that our formula for the boundary is correct, let 
-	\[(\alpha,\mathbf{f}):[n](c_1,\dots,c_n) \to [m](d_1,\dots, d_m)\]
-	be a codimension \(1\) coface.  Then it is clear immediately that either \(n=m\) or \(n=m-1\), and therefore either \(\alpha\) is the identity or a simplicial face map.  If \(n=m\), then clearly \(\alpha, \mathbf{f}\) lands in exactly one of the \(V[m](d_1, \dots, \partial d_i, \dots, d_m).\)  If \(\alpha\) is an inner face map obtained by removing the \(k^\mathrm{th}\) vertex, then \((\alpha,\mathbf{f})\) factors through the inclusion \[V[m](d_1,\dots,d_{k-1} \times d_k,\dots, d_m) \subseteq [m](d_1,\dots,d_m)\] by a monomorphism \(\operatorname{id}, \mathbf{g}\) where \(g_i\) is either the identity or the inclusion of a shuffle \(c\to d_{k-1} \times d_k\), which is representable by the fact that \(\C\) is regular Cartesian.   
+	is monic.  If \(n>m\), then the map \(\alpha\) is a simplicial degeneracy and therefore the map factors through \([m](c_{i_1},\dots,c_{i_m}\), which means that \((\alpha,\mathbf{f})\) cannot be nondegenerate.  
+	
+	Then we have two cases, when \(n=m\) or \(n<m\), and therefore either \(\alpha\) is the identity or a simplicial face map.  If \(n=m\), then clearly \(\alpha, \mathbf{f}\) is monic, since each nondegenerate section \(c_i\to d_i\) must be monic by the regularity of \(\C\).
+	
+	If \(\alpha\) is a composite of outer face maps, then \((\alpha,\mathbf{f})\) lands in \([n](d_1,\dots,d_n)\) or \([n](d_{m-n},\dots, d_m)\), and then from the previous case together with the fact that those inclusions are monic.  Otherwise, by induction on dimension, we can assume that \(\alpha\) is the inclusion of a codimension \(1\) inner face map obtained by removing the \(k^\mathrm{th}\) vertex. Then \((\alpha,\mathbf{f})\) factors through the inclusion \[V[n](d_1,\dots,d_{k-1} \times d_k,\dots, d_m) \subseteq [m](d_1,\dots,d_m)\] by a map \(\operatorname{id}, \mathbf{g}\) where each \(g_i\) is a nondegenerate section.  Then each \(g_i\) must be monic since for \(i\neq k\), \(g_i\) is a nondegenerate section of a representable, which is monic, and for \(i=k\), \(g_i\) is a nondegenerate section \(c\to d_{k-1} \times d_k\), which is monic by the fact that \(\C\) is regular Cartesian.
 \end{proof}
-\begin{cor} 
-	The class \(\operatorname{Cell}(\mathscr{M})\) is exactly the the class of monomorphisms of \(\cellset\).  
+\begin{cor} The boundary \(\partial[n](c_1,\dots,c_n)\) can be computed using the corner-intertwiner (see \ref{horizontal})
+	\[Q=\operatorname{dom} \square^\lrcorner_n(\delta^n, \delta^{c_1}, \dots, \delta^{c_n}).\]
 \end{cor}
 \begin{proof}
-	This is an immediate consequence of \cite{cisinski-book}*{Proposition 8.1.37}.
+	It is clear that \(Q\subseteq \partial [n](c_1,\dots,c_n)\).  The calculations in the proof of the proposition prove the converse.  
 \end{proof}
+\begin{cor} 
+	We define the set
+	\[\mathscr{M}=\{\partial[x] \to [x]| [x]\in \Ob(\Theta[\C])\}.\]  Then the class \(\operatorname{Cell}(\mathscr{M})\) is exactly the the class of monomorphisms of \(\cellset\).  
+\end{cor}
+\begin{proof}
+	This is an immediate consequence of \cite{cisinski-book}*{Proposition 8.1.37} or \cite{bergner-rezk-reedy}*{4.4}.
+\end{proof}
+
+\section{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
+In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the horizontal inner anodynes are closed under corner products with monomorphisms.  As a corollary of the analysis in this section, we will demonstrate that \(\Theta[\C]\) is regular Cartesian Reedy.  We make no claim to originality.
+
+\begin{lemma} Given a simplicial set \(S\), the category of labelings of \(S\) (that is, the fibre \((\psh{\Delta}\int \psh{\C})_S\)) is closed under finite Cartesian products. 
+\end{lemma}
+\begin{proof} The product of two \(S\)-labeled simplicial sets \((S,\Omega), (S,\Omega^\prime)\) can be given by the formula 
+	\[S\xrightarrow{\Delta} S\times S \xrightarrow{\Omega\times \Omega^\prime}  \psh{\C}_\bullet \times \psh{\C}_\bullet \xrightarrow{\times} \psh{\C}_\bullet.\]  We leave the verification to the reader.
+\end{proof}
+
+\begin{defn} Given a simplicial set \(S\) define the functor 
+	\[H_S: \overcat{\psh{\Delta}}{S} \times  \left(\psh{\Delta}\int \psh{\C}\right)_S \to \psh{\Delta}\int \psh{\C}\]
+	by the rule
+	\[\left(S^\prime \xrightarrow{f} S, (S,\Omega)\right) \mapsto (S^\prime,  \Omega\circ f),\]
+	and we define the \emph{relative intertwiner over \(S\)}
+	\[\square_S \defeq \square \circ H_S.\]
+	
+	Notice that when \(S=\Delta^n\), the fibre decomposes as \[\left(\psh{\Delta}\int \psh{\C}\right)_n\cong \psh{\C}^n.\] So we can write 
+	\[\square_n:\overcat{\psh{\Delta}}{\Delta^n} \times \psh{\C}^n \to \cellset.\]
+\end{defn}
+
+\begin{obs}\label{evaluationsquare}
+	Given a labeled simplicial set \((S,\Omega)\), a map of simplicial sets \(Y\to S\), and an object \([t]=[n](c_1,\dots,c_n)\) of \(\Theta[\C]\), we can compute \(\square_S(f,\Omega)_t\) as follows: For any \(n\)-simplex \(s\in S_n\), let \((W_{s,i})_{i=1^n}\) be the family of \(\C\)-sets obtained by evaluation of \(\Omega\) on \(s\). A map \([t] \to Y\square \Omega\circ f\) is by definition a map \([t]\to (Y,\Omega\circ f)\).  Such a map is determined by giving an \(n\)-simplex \(y\in Y_n\) together with a family of maps 
+	\[(c_i \xrightarrow{\zeta_i} W_{fy,i})_{i=1}^n.\] Then we can compute 
+	\[\square_S(f,\Omega)_t\cong \coprod_{y\in Y_n} \prod_{i=1}^n W_{fy,i,c_i}.\]
+\end{obs}
+
+\begin{defn}
+	Given a finite family of simplicial sets \(\mathbf{S}=(S_i)_{i=1}^n\), we define a functor:
+	\[H_{\mathbf{S}}: \overcat{\psh{\Delta}}{\prod_{i=1}^n S_i} \times  \prod_{i=1}^n\left(\psh{\Delta}\int \psh{\C}\right)_{S_i} \to \psh{\Delta}\int \psh{\C}\] by the rule:
+	\[\left(S \xrightarrow{\prod^n_{i=1} f_i} \prod_{i=1}^n S_i, (\Omega_i)_{i=1}^n\right)\mapsto \left(S,\prod_{i=1}^n (\Omega_i\circ f_i)\right).\]
+	As in the previous definition, we define the \emph{relative multi-intertwiner} by the formula
+	\[\square_{\mathbf{S}} \defeq \square \circ H_\mathbf{S}.\]
+\end{defn}
+
+\begin{rem} 
+	Notice that given a finite family of labeled simplicial sets \((\mathbf{S},\mathbf{\Omega})=(S_i,\Omega_i)_{i=1}^n\) and a family \(\mathbf{f}=\left(S\xrightarrow{f_i} S_i\right)^n_{i=1},\) 
+	\[H_{\mathbf{S}}(\mathbf{f},\mathbf{\Omega})\cong H_{S_1}(f_1, \Omega_1) \times^S \dots \times^S H_{S_n}(f_n,\Omega_n),\]
+	where \(\times^S\) denotes the product in \(\left(\psh{\Delta}\int \psh{\C}\right)_S\).
+\end{rem}
+
+\begin{obs}
+	Let \[(\mathbf{S},\mathbf{\Omega})=\left(\Delta^{m_i},\Omega_i\right)_{i=1}^n\] be a family of labeled simplices, and let \[\mathbf{f}=\left(\Delta^r\xrightarrow{f_i} \Delta^{m_i}\right)^n_{i=1},\] be a family of maps defining an \(r\)-simplex of the product.
+	We may identify the \(\Omega_i\) with families of \(\C\)-presheaves \((X_{i,\ell})^{m_i}_{\ell=1}\), so we compute \(H_{\Delta^{m_i}}(f_i,\Omega_i)\) as 
+	\[ \left(\prod_{k=f_i(j-1)+1}^{f_i(j)} X_{i,k} \right)_{j=1}^r,\]
+	and therefore, we can compute 
+	\(H_{\mathbf{S}}(\mathbf{f},\mathbf{\Omega})\) as 
+	\[ \left(\prod_{i=1}^n \left(\prod_{k=f_i(j-1)+1}^{f_i(j)} X_{i,k} \right)\right)_{j=1}^r.\]
+\end{obs}
+\begin{lemma}
+	The relative intertwiner \(\square_S\) preserves colimits in the first variable.
+\end{lemma}
+\begin{proof} 
+	Since colimits are computed objectwise in presheaves, it suffices to show that the functor \(\square_S(\bullet,\Omega)_t\) preserves colimits for all \([t]=[n](c_1,\dots,c_n) \in \Theta[\C]\) and all labels \(\Omega\) of \(S\).  Therefore, it suffices by Observation \ref{evaluationsquare} to show this in the case where \(\C\) is the terminal category, since we may fix the family of objects \((c_1,\dots,c_n)\). For each \(s\in S_n\) let \((W_{s,i})_{i=1}^n\) be the evaluation of \(\Omega\) on \(s\).  Then given \(f:Y\to S\), we have a cartesian square
+	\begin{equation*}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+			{
+				\coprod_{y\in Y_n} \prod_{i=1}^n W_{fy,i} & Y_n\\
+				\coprod_{s\in S_n} \prod_{i=1}^n W_{s,i} & S_n \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge (b-1-2) edge node[auto,swap]{\(\scriptstyle{\tau^*f}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{\tau}\)} (b-2-2)
+			(b-1-2) edge node[auto]{\(\scriptstyle{f}\)} (b-2-2);
+		\end{tikzpicture},
+	\end{equation*}
+	exhibiting \(\coprod_{y\in Y_n} \prod_{i=1}^n W_{fy,i}\) as the pullback of \(f\) along \(\tau\), but by the universality of colimits in the category of sets, we are done.  
+\end{proof}
+
+\begin{note} 
+	This is Oury's proof, but this statement can also be seen to follow immediately from \ref{pullbacksober}.
+\end{note}
+
+\begin{comment}\begin{obs} 
+	Given \(f:Y\to \Delta^n\), we can nail down the computation of \(\square_n(f, \Omega)\) using our previous computations because in this case, \(\Omega(\id_{\Delta^n})\) is determined by a choice of a family of \(\C\)-presheaves \((X_i)_{i=1}^n\).  Therefore, we have that for \([t]=[m](c_1,\dots,c_m)\),
+	\[\square_n(f,X_1,\dots,X_n)_t = \coprod_{y:\Delta^m\to Y} \prod_{i=1}^m \prod_{k=fy(i-1)+1}^{fy(i)} X_{k,c_i}.\]
+\end{obs}\end{comment}
+
+\begin{lemma}
+	The relative intertwiner \(\square_n\) preserves connected colimits in each variable.  
+\end{lemma}
+\begin{proof}
+	We saw from the previous lemma that it preserves colimits in the first variable, so representing \(Y\) as the colimit of its simplices, we immediately reduce to the case where \(Y\) is a simplex.  But we know in this case that any map \([p]\to [n]\) factors as a degeneracy followed by a face map.  In the case that \(f\) is a face map, we can compute the pullback of \(V[n](X_1,\dots,X_n)\) along \(f\) to be 
+	\[V[p]\left(\prod_{i=f(0)+1}^{f(1)}X_i,\dots, \prod_{i=f(p-1)}^{f(p)}X_i\right).\]  By universality of colimits in \(\psh{\C}\), we see that it suffices to show that \[V[p]\left(\bullet,\dots,\bullet)=\square_p(\id_{\Delta^p},\bullet,\dots,\bullet\right)\] preserves connected colimits in each variable.  In the case where \(f\) is a degeneracy map, we can compute the pullback over \([p]\) to be \[V[p](\ast, \dots, X_1, \dots, \ast, \dots, X_n, \dots \ast),\] where we fill in the terminal object of \(\psh{\C}\) in each argument \(i\) where \(f(i-1)=f(i)\).  In this case again, it again suffices to show that \(V[p]\) preserves connected colimits in each variable, but this is precisely the content of \cite{rezk-theta-n-spaces}*{Proposition 4.5}, where the proof proceeds by first showing that if we set \(X_k=\emptyset\), then
+	\[V[p+1+q](A_1,\dots, A_p, \emptyset, B_1 ,B_q) \cong V[p](A_1,\dots,A_p) \coprod V[q](B_1,\dots,B_q),\]
+	and then exhibiting the obvious parametric right adjoint
+	\[\overcat{\left(V[p](A_1,\dots,A_p) \coprod V[q](B_1,\dots,B_q)\right)}{\psh{\Theta[\C]}}\to \psh{\C}.\]
+\end{proof}
+\begin{note} 
+	This proof is substantially easier than Oury's proof, which relies on a long direct computation.
+\end{note}
+\begin{thm}[\cite{oury}*{3.78}]
+	The category \(\psh{\Delta}\int \psh{\C}\) is cocomplete.
+\end{thm}
+\begin{proof} 
+	This result is merely stated in Oury's paper and relies on a theorem in the theory of Grothendieck fibrations, where to check the cocompleteness of a fibration constructed from pseudofunctor \(T:\mathcal{D}^\op\to \mathbf{CAT}\), it suffices to show
+	\begin{enumerate}[\indent(1)]
+		\item The category \(\mathcal{D}\) is cocomplete
+		\item The category \(Td\) is cocomplete for each \(d\in \Ob\mathcal{D}\)
+		\item For each map \(f:d\to d^\prime\), the map \(Tf:Td^\prime Td\) admits a left adjoint.
+	\end{enumerate} 
+	In our case, \(\psh{\Delta}\) is evidently cocomplete. We show that the third condition holds for simplices.  If \([n]\to [n+1]\) is a codimension \(1\) inner face map omitting the vertex \(k\in [n+1]\), we know that the pullback functor is given by sending \((X_i)_{i=1}^{n+1}\) to the family \((Y_i)_{i=1}^n\) where 
+	\[
+		Y_i =
+		\begin{cases}
+			X_i & \text{ if } i<k\\
+			X_i \times X_{i+1}  & \text{ if } i=k\\
+			X_{i+1} &\text{ if } i>k
+		\end{cases}
+	\]
+	This functor is the right adjoint to the diagonal functor and therefore has an evident left-adjoint.  If \(f:[n]\to [n+1]\) is an outer face, say \(\partial^{n+1}\) omitting the vertex \(n+1\), then the pullback to \([n]\) is given by omitting the object \(X_{n+1}\).  The left adjoint in this case is given by sending \([n](X_1,\dots,X_n)\) to \([n](X_1,\dots,X_n,\emptyset)\), and similarly for the other outer face.
+	
+	Suppose then that the map \(f:[n+1]\to [n]\) is a codimension \(1\) degeneracy such that \(f(k-1)=f(k)\).  The left adjoint to the pullback is given by sending \([n+1](X_1,\dots,X_{n+1}\) to \([n](X_1,\dots,\widehat{X_k}, \dots, X_n)\).  
+
+	For a general simplicial set \(S\), 
+\end{proof}
+\begin{note}
+	The statement of the previous theorem has a typo.
+\end{note}
 
 \section{Recognition of horizontal Joyal fibrations}\label{admissible}
 In this section, we give a recognition theorem for horizontal Joyal fibrations between formal \(\C\)-quasicategories.  In particular, we prove that a morphism between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it is a horizontal inner fibration and has the right lifting property with respect to the single morphism \(\{0\}\hookrightarrow E^1\). In the course of the proof, we will also demonstrate that the formal \(\C\)-quasicategories are precisely the fibrant objects of the horizontal Joyal model structure.  We begin with a definition:
