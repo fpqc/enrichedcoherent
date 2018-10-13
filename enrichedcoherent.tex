@@ -1397,7 +1397,7 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 
 Following \cite{oury}*{3.85}, we begin with the following observations:
 
-\begin{obs}
+\begin{obs}\label{square1}
 	We saw from the definition of \(\square\) and the definition of products in \(\ssetlab\) that the diagram 
 	\begin{equation*}
 		\begin{tikzpicture}
@@ -1466,7 +1466,7 @@ Then by \ref{conncolims}, every functor appearing in this diagram preserves conn
 also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 \end{obs}
 
-\begin{obs}
+\begin{obs}\label{simplicialhorns}
 	Consider the corner product of a simplicial inner horn inclusion with a simplicial boundary inclusion  
 	\[\lambda^n_j\times^\lrcorner \delta^m: \Lambda^n_j \times \Delta^m \cup \Delta^n \times \partial \Delta^m \hookrightarrow \Delta^n\times \Delta^m.\]
 	Then it is a standard fact of quasicategory theory that we can factor this map as a sequence
@@ -1474,7 +1474,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 	where each inclusion \(X_{i-1}\hookrightarrow X_i\) is the pushout of an inner horn inclusion \(\Lambda^{r_i}_{\ell_i} \to \Delta^{r_i}\) along an inclusion \(\Lambda^{r_i}_{\ell_i}\hookrightarrow X_{i-1}\).  By the construction of the sequence, each \([r_i]\to X_i\to \Delta^n\times \Delta^m\) is nondegenerate and does not factor through \(X_{i-1}\), so in particular, it does not factor through \(X_0\), and therefore the maps \(\alpha_i:\Delta^{r_i} \to \Delta^n\) and \(\beta_i:[r_i]\to \Delta^m\) do not factor through \(\Lambda^n_j\) or \(\partial \Delta^m\).  In particular, the image of \(\alpha_i\) is either \(\partial_j\Delta^n\) or all of \(\Delta^n\), and the image of \(\beta_i\) must be all of \(\Delta^m\), so all three maps \(\alpha_i\), \(\beta_i\), and \(\alpha_i \times \beta_i\) send the initial and terminal vertices of \(\Delta^{r_i}\) to the initial and terminal vertices of \(\Delta^n\), \(\Delta^m\), and \(\Delta^n\times\Delta^m\) respectively.
 \end{obs}
 
-\begin{obs}
+\begin{obs}\label{square2}
 	Let \((\alpha\times \beta): \Delta^r \to \Delta^n\times \Delta^m\) be an injective map preserving initial and terminal elements.  Let \(\mathbf{A}=(A_i)^n_{i=1}\) and \(\mathbf{B}=(B_i)^m_{i=1}\) be objects of \(\psh{\C}^n\) and \(\psh{\C}^m\) respectively.  Let 
 	\[K_{\alpha,\beta}:\psh{\C}^n and \psh{\C}^m\to \psh{\C}^r\] be the functor defined by the rule
 	\[(\mathbf{U},\mathbf{V})\mapsto \alpha^\ast \mathbf{U} \times \beta^\ast \mathbf{V},\]
@@ -1503,12 +1503,12 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 	which demonstrates that the diagram commutes.
 	Let \((t_i)_{i=1}^r\) such that \(t_i=\alpha(i)-\alpha(i-1) +\beta(i) - \beta(i-1)\).  Note that the sum of the \(t_i\) is exactly \(n+m\), since \(\alpha\) and \(\beta\) preserve initial and terminal objects.  We define a functor 
 	\[\tau_i:\psh{\C}^n \times \psh{\C}^m \to \psh{\C}^{t_i}\] by the rule
-	\[(\mathbf{A},\mathbf{B})\mapsto (A_{\alpha(i-1)+1}, \dots, A_{\alpha(i)}, B_{\beta(i-1)+1},\dots B_{\beta(i)}).\]
+	\[(\mathbf{A},\mathbf{B})\mapsto (A_{\alpha(i-1)+1}, \dots, A_{\alpha(i)}, B_{\beta(i-1)+1},\dots, B_{\beta(i)}).\]
 	Then define \[\tau:\psh{\C}^n \times \psh{\C}^m \to \prod_{i=1}^r \psh{\C}^{t_i}.\]
 	It is clear that \(\tau\) is a permutation of variables and therefore an isomorphism.
 	Then let \[P_i: \psh{\C}^{t_i} \to \psh{\C}\] be the functor defined by the rule
 	\[(X_1,\dots,X_{t_i}) \mapsto X_1 \times \dots \times X_{t_i}\]
-	Then the \(P_i\) assemble to a map \(P_1\times \dots \times P_r\) such that \[P_1\times \dots \times P_r\circ \tau = K_{\alpha,\beta}.\]
+	Then the \(P_i\) assemble to a map \(P_1, \dots, P_r\) such that \[(P_1,\dots,P_r)\circ \tau = K_{\alpha,\beta}.\]
 	Then the diagram
 	\begin{equation*}
 		\begin{tikzpicture}
@@ -1521,7 +1521,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{H_{n,m}}\)} (b-2-3)
-			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times \prod_{i=1}^r P_i}\)} (b-1-3) 
+			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i)_{i=1}^r}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{H_r}\)} (b-2-3);
 		\end{tikzpicture}
 	\end{equation*}
@@ -1537,7 +1537,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square_{n,m}}\)} (b-2-3)
-			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times \prod_{i=1}^r P_i}\)} (b-1-3) 
+			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i)_{i=1}^r}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{\square_r}\)} (b-2-3);
 		\end{tikzpicture}.
 	\end{equation*}
@@ -1554,19 +1554,35 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-)^\lrcorner \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner_{n,m}}\)} (b-2-3)
-			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times \mathbf{P}^\lrcorner}\)} (b-1-3) 
+			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i^\lrcorner)_{i=1}^r}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{\square^\lrcorner_r}\)} (b-2-3);
-		\end{tikzpicture},
+		\end{tikzpicture}.
 	\end{equation*}
-where \(\mathbf{P}=\prod_{i=1}^r P_i\) and any other unexpected changes were done for typographical reasons.  
 \end{obs}
 
-Finally, we reach our destination.  As we mentioned before, this entire section is due entirely to David Oury \cite{oury}, and the following theorem is the main point of this entire Appendix:
+Finally, we reach our destination.  As we mentioned before, this entire section is due to David Oury \cite{oury}, and the following theorem is the crescendo:
 
 \begin{thm}[Anodyne Theorem \cite{oury}*{3.88}] The class of horizontal anodynes is closed under corner products with monomorphisms.  In particular, if we let \[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k, \delta^{c_1},\dots,\delta^{c_n})| \text{ for } n\geq 2, 0<k<n\}.\] Then we have
-	\[\mathscr{J}\times^\lrcorner \mathscr{M} \subseteq \operatorname{Cell}(\mathscr{J}).\]
+	\[\mathscr{M}\times^\lrcorner \mathscr{J} \subseteq \operatorname{Cell}(\mathscr{J}).\]
 \end{thm}
 \begin{proof}
+Let \(f_0:\partial\Delta^n \hookrightarrow \Delta^n\), and let \(\mathbf{f}=(f_i)_{i=1}^n\) be a family of boundary inclusions in \(\psh{\C}\).  Let \(g_0:\Lambda^m_k \hookrightarrow \Delta^n\) be an inner horn inclusion, and let \(\mathbf{g}=(g_i)_{i=1}^n\) be a family of boundary inclusions in \(\psh{\C}\).  By \ref{square1}, we have 
+\[\square^\lrcorner_n(f_0,\dots,f_n) \times^\lrcorner \square^\lrcorner_m(g_0,\dots,g_m) \cong \square^\lrcorner_{n,m}(f_0 \times^\lrcorner g_0, f_1,\dots,f_n,g_1,\dots,g_n).\]
+By \ref{simplicialhorns}, we know that \(f_0\times^\lrcorner g_0\) can be factored as a finite sequence of pushouts of inner horn inclusions.  By \ref{cornertensorcell}, it follows that
+\[\square^\lrcorner_{n,m}(f_0 \times^\lrcorner g_0, f_1,\dots,f_n,g_1,\dots,g_n)\]
+is a finite composites of pushouts of maps
+\[\square^\lrcorner_{n,m}(h_i, f_1,\dots,f_n,g_1,\dots,g_n)\] 
+where \((h_i:\Lambda_i \to \Delta^{r_i})_{i=1}^k\) are inner horn inclusions where \(h_i\) is a morphism over \(\Delta^n\times\Delta^m\).  Let \(h^\prime_i\) denote this morphism as map in simplicial sets over \(\Delta^{r_i}\), and let 
+\((\alpha_i,\beta_i):\Delta^r \to \Delta^m\times \Delta^n\) be initial and terminal vertex preserving as in \ref{simplicialhorns}.  Then by \ref{square2}, we see that 
+\[\square^\lrcorner_{n,m}(h_i,\mathbf{f},\mathbf{g}) \cong \square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner \circ \tau)(\mathbf{f},\mathbf{g})).\]
+But the value of the argument in position \(1\leq j \leq r_i\) is 
+\[P_j^\lrcorner\circ \tau_j(\mathbf{f},\mathbf{g})=f_{\alpha_i(j-1)+1}\times^\lrcorner \dots \times^\lrcorner f_{\alpha_i(j)} \times^\lrcorner g_{\beta_i(j-1)+1}\times \dots^\lrcorner \times^\lrcorner g_{\beta_i(j)},\]
+which belongs to \(\operatorname{Cell}(\mathscr{B})\), where \(\mathscr{B}\) is the set of boundary inclusions in \(\psh{\C}\).  So we see that
+\[\square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner \circ \tau)(\mathbf{f},\mathbf{g}))\] is in 
+\[\{\square^\lrcorner_{r_i}(\mathscr{L}, \operatorname{Cell}(\mathscr{B}), \dots, \operatorname{Cell}(\mathscr{B})\},\]
+where \(\mathscr{L}\) is the set of inner horn inclusions, which by \ref{cornertensorcell} is a subset of 
+\[\operatorname{Cell}(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}),\]
+which belongs to \(\operatorname{Cell}(\mathscr{J}),\) since \(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}\subseteq \mathscr{J}\).
 \end{proof}
 
 \section{Recognition of horizontal Joyal fibrations}\label{admissible}
