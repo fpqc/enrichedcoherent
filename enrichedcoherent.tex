@@ -204,9 +204,7 @@
 
 %%% abstract
 \begin{abstract}
-	We introduce, for \(\C\) a small regular Cartesian Reedy category, a model structure on \(\Psh(\Theta[\C])\) whose fibrant objects are the formal \(\C\)-quasicategories.  This model structure is Quillen-biequivalent to the model category of Rezk on \(\Psh_\Delta(\Theta[\C])\) whose fibrant objects are formal \(\C\)-complete Segal spaces.  If \(\mathcal{M}=(\spsh,\mathscr{S})\) is a cartesian presentation in the sense of Rezk, then by Rezk's theorem, we obtain a  cartesian-closed left-Bousfield localization of the formal \(\C\)-complete Segal spaces whose fibrant objects are the \(\mathcal{M}\)-enriched complete Segal spaces.  These data also give a left-Bousfield localization of the formal \(\C\)-quasicategories whose fibrant objects are called the \(\mathcal{M}\)-enriched quasicategories that is again Quillen biequivalent to the \(\mathcal{M}\)-enriched complete Segal spaces.
-
-	We then construct an adjunction \(\mathfrak{C}:\Psh(\Theta[\C])\rightleftarrows \Cat_{\spsh}:\mathfrak{N}\) that becomes a Quillen pair when both sides are considered with the appropriate model structures, and furthermore, we show that this adjunction is compatible with cartesian-closed left-Bousfield localizations of \(\spsh\).  Then, following Dugger and Spivak, we develop a calculus of enriched necklaces and use this calculus to prove that the Quillen pair \((\mathfrak{C}, \mathfrak{N})\) is an equivalence.  Finally, we apply all of this machinery to construct a version of the Yoneda embedding for enriched quasicategories and demonstrate that it is fully faithful.  We then make use of the Yoneda embedding to prove the enriched version of Yoneda's lemma.
+	We introduce, for \(\C\) a regular Cartesian Reedy category a model category whose fibrant objects are an analogue of quasicategories enriched in simplicial presheaves on \(C\).  We then develop a coherent realization and nerve for this model structure and demonstrate using an enriched version of the necklaces of Dugger and Spivak that our model category is Quillen-equivalent to the category of categories enriched in simplicial presheaves on \(\C\).  We then show that for any Cartesian-closed left-Bousfield localization of the category of simplicial presheaves on \(\C\), the coherent nerve and realization descend to a Quillen equivalence on the localizations of these model categories. As an application, we demonstrate a version of Yoneda's lemma for these enriched quasicategories.
 \end{abstract}
 
 %%% the title
@@ -217,14 +215,40 @@
 
 
 %%%%%
-\section{Introduction}
+\section*{Introduction}
 In his thesis, David Oury introduced machinery to give a novel proof that his constructed model structure on \(\Theta_2\)-sets is cartesian-monoidal closed. Charles Rezk constructed a model structure on \(\Theta_2\)-spaces that is known to be Quillen biequivalent to Oury's model structure.  However,  Rezk's construction allows for enrichment in a larger class of model categories, namely cartesian-closed model categories whose underlying categories are simplicial presheaves on a small category \(\C\) satisfying some tame restrictions.
 
 Bergner and Rezk also showed by means of a zig-zag of Quillen equivalences that \(\Theta_n\)-spaces model the same homotopy theory as \(\Psh_\Delta(\Theta_{n-1})\)-enriched categories.  Because the equivalence is indirect, however, many of the ideas from Lurie's work on \((\infty,1)\)-categories cannot be adapted in a straightforward manner.  In order to rectify this, we construct a generalized version of the coherent realization and nerve using \(\Theta_n\)-sets (or more generally \(\Theta[\C]\)-sets), and we demonstrate that this adjunction is a Quillen equivalence using an enriched version of Dugger and Spivak's calculus of necklaces. In fact, our result is strictly stronger than the result of Rezk and Bergner because it allows us to account for the cases \(\Theta=\Theta_\omega\) as well as prove the equivalence when \(\C\neq \Theta_n\), which the Rezk-Bergner approach could not handle, since one of the categories appearing in the zig-zag (the height-\(n\) analogue of Segal categories) does not make sense for general \(\C\).
 
 Taking all of these results together allows us to define suitably enriched versions of the Yoneda embedding, which is a significant result that as a corollary allows for substantial development of the theory of weak \(\omega\)-categories (that is, \((\infty,\infty)\)-categories). In particular, we can define weighted pseudolimits and pseudocolimits in terms of representability of presheaves, and these can be used to define the other universal constructions.
 
-We would like to thank Denis-Charles Cisinski for his help with axiomatizing the Eilenberg-Zilber shuffle decomposition \ref{cishelp}, Andrea Gagna for spending his time discussing these ideas with us over several long conversations as well as his crucial encouragement in writing it up. 
+In the first section, we apply a general construction to define what we call \emph{labeled simplicial sets} with respect to a monoidal category \(\mathcal{V}\).  We then specialize to the case where \(\mathcal{V}\) is the Cartesian-monoidal category of presheaves of sets on a small category \(\C\), which we additionally require to be a special kind of Reedy category that axiomatizes a form of the Eilenberg-Zilber shuffle decomposition for products of simplicial sets.  We then define \(\Theta[\C]\) to be the full subcategory of the labeled simplicial sets whose underlying simplicial sets are simplices and whose edges are all labeled by representable presheaves on \(\C\).  We define the category of \emph{\(\C\)-cellular sets} to be the category of presheaves of sets on this category.
+
+In the second section, we define an intertwining functor that allows us to work with an important class of objects in the category of \(\C\)-cellular sets, called \emph{sober} cellular sets.  The maps into these objects can be decomposed into maps on underlying simplicial sets together with compatible families of maps on labels. 
+
+In the third section, we give a construction of the homotopy-coherent realization for \(\C\)-cellular sets using the category of labeled simplices.  Interestingly, this functor takes values in the category of categories enriched in simplicial presheaves on \(\C\), and taking \(\C\) to be the terminal category, we recover the classical coherent realization.  The right adjoint of this functor is called the homotopy-coherent nerve.
+
+In the fourth section, we give a way to compute the \(\Hom\)-objects of the coherent realization of a \(\C\)-cellular set using a modified version of the calculus of necklaces following Dugger and Spivak \cite{ds1}.  Our version is somewhat more difficult to work with, but the proofs are largely the same.
+
+In the fifth section, we show that \(\Hom\)-objects of the coherent realization can be computed as the nerves of ordinary categories naturally for each \(c\) in \(\C\).
+
+In the sixth section, we introduce the Horizontal Joyal model structure on \(\C\)-cellular sets and state some important facts about it, though we defer the proofs to the appendices.
+
+In the seventh section, we give a combinatorial proof that the coherent realization of a horizontal inner anodyne is a trivial cofibration of categories enriched in simplicial presheaves on \(\C\).  We then show that the coherent nerve preserves fibrations between fibrant objects, thereby demonstrating that the adjunction is a Quillen adjunction.
+
+In the eighth section, we give a definition of an enriched version of a Dugger-Spivak gadget, and we demonstrate that such gadgets give another way to compute the \(\Hom\) objects for the coherent realization.  
+
+In the ninth section, we give another way to compute the \(\Hom\) objects, this time using cosimplicial resolutions of the objects \([1](c)\).  We introduce four distinguished such cosimplicial resolutions, which all have their own different uses.
+
+In the tenth section, we prove one of the main theorems of the paper, demonstrating that the counit of the coherent nerve-realization adjunction is a weak equivalence for all fibrant categories enriched in simplicial presheaves on \(\C\) and also demonstrate that for any horizontally fibrant \(C\)-cellular set, there is a natural zig-zag of weak equivalences between the different models of the mapping object between two objects. 
+
+In the eleventh section, we prove that the coherent realization and nerve in fact define a Quillen equivalence.  
+
+In the twelfth section, we introduce localizations on both sides of the Quillen equivalence with respect to a Cartesian-closed left-Bousfield localization of the category of simplicial presheaves on \(\C\).  We then demonstrate that the coherent realization and nerve remain a Quillen equivalence after these localizations. 
+
+In the thirteenth section, we prove that an enriched form of the Yoneda embedding and Yoneda's lemma hold. As an example, we demonstrate how representability can help us define weighted limits and colimits.
+
+We would like to thank Denis-Charles Cisinski for his help with axiomatizing the Eilenberg-Zilber shuffle decomposition \ref{cishelp}, Andrea Gagna for spending his time discussing these ideas with us over several long conversations as well as his crucial encouragement to put all of this down in writing. 
 
 %Unfortunately, it has not been proven that the (op)lax mapping objects \(\operatorname{Fun}_{\mathcal{L}}(X,Y)\) and \(\operatorname{Fun}_{\mathcal{R}}(X,Y)\) are homotopy-invariant, so although we could give a description of what we expect (op)lax weighted limits and colimits to be, it is not known if these definitions are homotopy-invariant and therefore well-defined. This is also a key gap in proving a higher-dimensional version of the straightening theorem.  We can actually construct the straightening and unstraightening pair, but due to serious combinatorial difficulties involving the (op)lax join and slice, as well as figuring out the precise lifting conditions for higher cartesian fibrations, we have been unable to prove even that the unmarked unstraightening functor sends projectively fibrant diagrams to cartesian fibrations.  The proof of this property (well-short of proving an equivalence of model categories, which probably also requires taking markings into account) can be reduced to showing that the natural projection of the lax slice over a vertex, \(X_{/^{\ell} x}\to X\) is always a cartesian fibration for \(X\) fibrant.   We encourage others interested in the field to take a serious look at this open problem.
 
@@ -246,10 +270,7 @@ In this section, we will consider a slightly more general definition of the wrea
 \begin{proof}    Notice that by the bicategorical Yoneda lemma there is a natural equivalence \[h_{\mathcal{V}_\bullet}\circ \iota_*(\Delta^n)\simeq \mathcal{V}_n,\] so \(\mathcal{V}_\bullet\) is naturally equivalent to the restriction of \(h_\mathcal{V}\circ \iota_*\) along the Yoneda embedding, so it follows that \(\Delta\int \mathcal{V} \to \Delta\) is equivalent to the pullback of \(\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}\) along a fully faithful embedding and therefore the evident map \[\Delta\int \mathcal{V} \to \psh{\Delta}\int \mathcal{V}\] is also fully faithful.
 \end{proof}
 
-\begin{rem} If \(\mathcal{V}\) is braided monoidal, we expect that \(\psh{\Delta \int V}\) can also be equipped with a monoidal structure. To see this, consider the following example: \([2](v,v^\prime)\) and \([2](v^\prime,v)\).  The object assigned to the inner face on the first is \(v\otimes v^\prime\), while in the second, it is \(v^\prime\otimes v\).  The braiding allows these to glue together, so that when we do \([1](v)\boxtimes [1](v^\prime)\), the new object \((\Delta^1)^2\{v,v,v^\prime,v^\prime\}\) pastes along the common inner edge (obviously the indexing here is by the nondegenerate \(1\) cells lying only in the spines of higher nondegenerate simplices in the simplicial \(2\)-cube).  We intend to study this more general case in a future paper.
-\end{rem}
-
-For the purposes of this paper, we will not necessarily need this level of generality, but we expect it may be useful in the future. 
+For the purposes of this paper, we do not need this level of generality.  We specialize as follows: 
 
 \begin{defn}\label{cishelp}
 	A small regular skeletal Reedy category \(\C\) (see \cite{cisinski-book}*{8.2.3}) is called a \emph{regular Cartesian Reedy category} if it satisfies two conditions:
@@ -266,7 +287,7 @@ For the purposes of this paper, we will not necessarily need this level of gener
 
 In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of presheaves of sets on a small regular Cartesian Reedy category \(\C\) admitting a terminal object.  Then we give the following definition:
 
-\begin{defn} For any small regular Cartesian Reedy category \(\C\) admitting a terminal object object, we define the category of \(\C\)-cells
+\begin{defn} For any regular Cartesian Reedy category \(\C\) admitting a terminal object, we define the category of \(\C\)-cells
 	\[\Theta[\C]\subseteq \Delta \int \psh{\C}\]
 	to be the full subcategory spanned by the objects of the form \([n](h_{c_1},\cdots, h_{c_n})\) for \(c_1,\cdots, c_n \in \C\), and where \(h_\bullet\) denotes the Yoneda embedding.
 \end{defn}
@@ -304,11 +325,11 @@ Rezk introduced an intertwining functor by means of an explicit construction, bu
 
 \begin{note} The restriction of the intertwiner to \(\Delta \int \psh{\C}\) is exactly the intertwiner of Rezk.  When we apply the intertwiner to an object belonging to the full subcategory \(\Delta\int \psh{\C}\), that is, \((S,\Omega)=[n](A_1,\dots, A_n)\), we will switch to Rezk's notation, namely \[V[n](A_1,\dots,A_n)\defeq S\square \Omega\]
 \end{note}
+\begin{comment}
+	The category \(\ssetlab\) is rather different from \(\cellset\).  For example, in \(\cellset\), we can take the quotient of the representable \([2](c,c')\) by killing the subobject \([1](c\times c')\), which is the inner face.  If we do this, the outer faces are merely connected together, and this object corepresents the situation in which a \(c\) cell is right inverse to a \(c^\prime\) cell.  But this object cannot be represented as the intertwiner of an object in \(\ssetlab\).  To see this, look at the fibre over the quotient \(X\) of \(\Delta^2\) by its inner face.  This simplicial set has a unique top-dimensional cell \(\sigma:\Delta^2\to X\), so giving a natural transformation \(X\to \psh{\C}_\bullet\) is totally determined by our choice of where to map it.  Then by the simplicial relations, we can see that whatever pair of objects \(c,c^\prime\) we pick in \(\psh{\C}_2=\psh{\C}^2\), \(\partial_1 \Omega(\sigma)\cong c\times c^\prime\) by pseudonaturality.  However, we also know that the inner face \(\partial_1 \sigma\) is degenerate and therefore must map to the terminal object in \(\psh{\C}\).  This relation forces us to choose \(c=c^\prime=\ast\).  Similar problems happen when attempting to glue together objects that aren't identical between a pair of vertices.
 
-The category \(\ssetlab\) is rather different from \(\cellset\).  For example, in \(\cellset\), we can take the quotient of the representable \([2](c,c')\) by killing the subobject \([1](c\times c')\), which is the inner face.  If we do this, the outer faces are merely connected together, and this object corepresents the situation in which a \(c\) cell is right inverse to a \(c^\prime\) cell.  But this object cannot be represented as the intertwiner of an object in \(\ssetlab\).  To see this, look at the fibre over the quotient \(X\) of \(\Delta^2\) by its inner face.  This simplicial set has a unique top-dimensional cell \(\sigma:\Delta^2\to X\), so giving a natural transformation \(X\to \psh{\C}_\bullet\) is totally determined by our choice of where to map it.  Then by the simplicial relations, we can see that whatever pair of objects \(c,c^\prime\) we pick in \(\psh{\C}_2=\psh{\C}^2\), \(\partial_1 \Omega(\sigma)\cong c\times c^\prime\) by pseudonaturality.  However, we also know that the inner face \(\partial_1 \sigma\) is degenerate and therefore must map to the terminal object in \(\psh{\C}\).  This relation forces us to choose \(c=c^\prime=\ast\).  Similar problems happen when attempting to glue together objects that aren't identical between a pair of vertices.
-
-The other main kind of pathology, shared with the full subcategory \(\Delta \int \psh{\C}\), is that it allows us to label simplices by the empty presheaf on \(\C\).  This is exactly the kind of pathology that is killed by the intertwiner.  For example, consider \([1](\emptyset)\).  Then \(V[1](\emptyset)=\ast \coprod \ast\), since the only object of \(\Theta[\C]\) admitting a map to \([1](\emptyset)\) is \([0]\).
-
+	The other main kind of pathology, shared with the full subcategory \(\Delta \int \psh{\C}\), is that it allows us to label simplices by the empty presheaf on \(\C\).  This is exactly the kind of pathology that is killed by the intertwiner.  For example, consider \([1](\emptyset)\).  Then \(V[1](\emptyset)=\ast \coprod \ast\), since the only object of \(\Theta[\C]\) admitting a map to \([1](\emptyset)\) is \([0]\).
+\end{comment}
 \begin{defn} An object \((S,\Omega)\) of \(\ssetlab\) is called \emph{normalized} if the image of \(\Omega_1\) does not contain the empty presheaf on \(\C\).
 \end{defn}
 
@@ -1039,7 +1060,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 	in which the indicated arrows are equivalences (for the bottom horizontal, this was by choice, and for the righthand vertical, it comes from Theorem \ref{counitthm}.  But if we precompose with the unit map \(\mathfrak{C}\eta_X:\mathfrak{C}(X)\to \mathfrak{C}\mathfrak{N}\mathfrak{C}(X)\), the lefthand arrow becomes the identity by the triangle identities, which proves the claim by \(3\)-for-\(2\).
 \end{proof}
 
-\section{The \((\C,S)\)-enriched model structure}\label{rezkvert}
+\section{The \((\C,setS)\)-enriched model structure}\label{rezkvert}
 While our presentation of the horizontal Joyal model structure comes mainly from David Oury's thesis \cite{oury}, what follows is independent, making use of the resolution technology we developed in the previous section to give a simple and satisfying story. Suppose \(\M=(\C,\setS)\) is a Cartesian presentation in the sense of Rezk, where \(\setS\) is a set of monomorphisms of \(\spsh\) such that the left-Bousfield localization of \(\spsh_\mathrm{inj}\) at \(\setS\) is a Cartesian model category.  
 
 Recall that we had a number of functorial cosimplicial objects \[C_{(-)}^\bullet(\bullet):\Delta \times \C \to \cellset_{\ast,\ast},\] such that \(C_{(-)}^\bullet(\bullet)\) was a cosimplicial resolution of \([1](\bullet)\), which is a Reedy cofibrant diagram \(\C\to \cellset_{\ast,\ast}\).  Since \(\cellset_{\ast,\ast}\) is cocomplete, \(C_{(-)}^\bullet(\bullet)\) extends to a cocontinuous functor \[\Sigma:\spsh\to \cellset_{\ast,\ast}.\]  
@@ -1620,12 +1641,158 @@ In what follows, fix the notation \(e:\{0\}\hookrightarrow E^1\) to be the obvio
 
 With this messy part out of the way, it suffices to show that every horizontal inner fibration between formal \(\C\)-quasicategories has the right lifting property with respect to special inner horn inclusions.
 
+\section{Comparison with Rezk's complete \(\Theta[\C]\)-spaces}\label{rezkcomparison}
+Since Rezk's complete Segal model structure on \(\Psh_\Delta(\Theta[\C])\) is Cartesian, and since \(\ast \hookrightarrow E\) is one of the generators of the localization (see \cite{rezk-theta-n-spaces}), and since \(\Theta[\C]\) is regular skeletal Reedy, it follows by several results of Cisinski \cite{cisinski-book}*{Proposition 8.2.9, Theorem 3.4.36, Proposition 2.3.30} that Rezk's localizer for complete \(\Theta[\C]\)-Segal spaces is the simplicial completion of a localizer on \(\Theta[\C]\).  
+\begin{obs}
+	To show that Rezk's localizer is the simplicial completion of the localizer generated by the horizontal inner anodynes, it suffices to show the following two properties hold:
+	\begin{enumerate}[\indent (i)] 
+		\item The maps 
+		\(\square_n^\lrcorner(\lambda^n_i,\delta^{c_1},\dots,\delta^{c_n})\times \Delta^0\) belong to the localizer for complete \(\Theta[\C]\)-Segal spaces for \(n\geq 2\) and \(0<i<n\).
+		\item The Segal maps \(\operatorname{Se}[n](c_1,\dots,c_n): \operatorname{Sp}[n](c_1,\dots,c_n) \hookrightarrow [n](c_1,\dots,c_n\) are horizontal inner anodyne.
+	\end{enumerate}
+\end{obs}
+We will make use of the following lemma:
+\begin{lemma} 
+	For any inner horn inclusion \(\Lambda^n_k\hookrightarrow \Delta^n,\) and any presheaves \(X_1,\dots,X_n\) on \(\C\), the map \(V_{\Lambda^n_k}(X_1,\dots,X_n)\times \Delta^0 \hookrightarrow V[n](X_1,\dots,X_n)\times \Delta^0\) belongs to the localizer for complete Segal-\(\Theta[\C]\)-spaces.
+\end{lemma}
+\begin{proof}
+	We will suppress the \(\times \Delta^0\) factor denoting discrete simplicial presheaves for the duration of this proof.  By \cite{rezk-theta-n-spaces}*{5.2}, we know that the maps \(\operatorname{Se}[n](X_1,\dots,X^n)\) are already weak equivalences.  Then we proceed following the argument of \cite{jtsegal}*{Lemma 3.5}.  Notice that trivial cofibrations have the right-cancellation property with respect to monomorphisms.  Then we show that since the class of trivial cofibrations contains the class of maps \(\operatorname{Se}[n](X_1,\dots,X_n)\), it also contains the class of maps 
+	\[V_{\partial_0 \Delta^n \cup \partial_n \Delta^n}(X_1,\dots,X_n)\hookrightarrow V[n](X_1,\dots,X_n)\] by induction on \(n\).  Notice first that the map
+	\[V_{\Lambda^2_1}(X_1,X_2)\hookrightarrow V[n](X_1,X_2)\]
+	is automatically a trivial cofibration, since \(\Lambda^2_1=\operatorname{Sp}[2]\).
+	For the case of \(n>2\), notice that by cancellation, it suffices to show that the maps
+	\[V_{\operatorname{Sp}[n]}(X_1,\dots, X_n) \xrightarrow{i_n} V_{\partial_0\Delta^n \cup \operatorname{Sp}[n]}(X_1,\dots, X_n) \xrightarrow{j_n} V_{\partial_0 \Delta^n \cup \partial_n \Delta^n}(X_1,\dots,X_n)\]
+	are trivial cofibrations.
+	Then notice that 
+	\[V_{\operatorname{Sp}[n]}(X_1,\dots,X_n) \xrightarrow{i_n} V_{\partial_0 \Delta^n\cup \operatorname{Sp}[n]}(X_1,\dots,X_n)\]
+	is a pushout of the map 
+	\[V_{\operatorname{Sp}[n-1]}(X_1,\dots,X_n) \hookrightarrow V_{\partial_0 \Delta^n}(X_1,\dots,X_n),\]
+	and is therefore a trivial cofibration.  
+	Notice that for \(d_0: [n-1] \to [n]\), \(d_0^{-1}(\operatorname{Sp}[n]) = \operatorname{Sp}[n-1]\) and \(d_0^{-1}(\partial_n\Delta^n) = \partial_{n-1}\Delta^{n-1}\).  Then the square
+	\begin{equation*}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+			{
+				V_{\operatorname{Sp}[n-1]\cup \partial_{n-1}\Delta^{n-1}}(X_1,\dots,X_n) & V_{\operatorname{Sp}[n-1]\cup \partial_n\Delta^n}(X_1,\dots,X_n)\\
+				V_{\partial_0\Delta^n}(X_1,\dots,X_n)				 &  V_{\partial_0\Delta^n\cup \partial_n \Delta^n}(X_1,\dots,X_n)           \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge (b-1-2) edge node[auto]{\(\scriptstyle{k_{n-1}}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{d^\prime_0}\)} (b-2-2)
+			(b-1-2) edge node[auto]{\(\scriptstyle{j_n}\)} (b-2-2);
+		\end{tikzpicture}
+	\end{equation*}
+	is cocartesian, and \(k_{n-1}\) is a trivial cofibration by using the cancellation property with the map \(j_{n-1}\).
+	Therefore, it follows that \(j_n\) is also a trivial cofibration. 
 
+	We now prove the lemma:  By the cancellation property, it suffices to show that
+	\[V_{\operatorname{Sp}[n]}(X_1,\dots,X_n) \hookrightarrow V_{\Lambda^n_k}(X_1,\dots,X_n)\]
+	is a trivial cofibration for \(n\geq 2\) and \(0<i<n\).  The case \(n=2\) is obvious, so it suffices to show for the case \(n>2\).  Given a set \(S\subseteq [n]\), let \[\Lambda^n_S=\bigcup_{i\notin S} \partial_i \Delta^n.\]  
+	We will show that for \(n>2\) and \(S\) a nonempty subset of \([1,\dots,n-1]\), the map 
+	\[V_{\operatorname{Sp}[n]}(X_1,\dots,X_n) \hookrightarrow V_{\Lambda^n_S}(X_1,\dots,X_n)\]
+	is a trivial cofibration.  We argue by induction on \(n\) and \(s=n-\operatorname{Card}(S)\).  If \(s=1\), \(\Lambda^n_S=\partial_0 \Delta^n \cup \partial_n \Delta^n\), in which case we are done by the previous argument.  If \(s>1\), let \(T=S\cup \{b\}\) for some \(b \in [1,\dots,n-1] \setminus S\).  Then by the inductive hypothesis,
+	\[V_{\operatorname{Sp}[n]}(X_1,\dots,X_n) \hookrightarrow V_{\Lambda^n_T}(X_1,\dots,X_n)\]
+	is a trivial cofibration.  Then it suffices to show that 
+	\[V_{\Lambda^n_T}(X_1,\dots,X_n) \hookrightarrow V_{\Lambda^n_S}(X_1,\dots,X_n)\]
+	is a trivial cofibration.   
+	We see that the diagram
+	\begin{equation*}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+			{
+				V_{\Lambda^n_T \cap \partial_b \Delta^n }(X_1,\dots,X_n) & V_{\Lambda^n_T}(X_1,\dots,X_n)\\
+				V_{\partial_b\Delta^n}(X_1,\dots,X_n)				 &  V_{\Lambda^n_S}(X_1,\dots,X_n)           \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge (b-1-2) edge  (b-2-1)
+			(b-2-1) edge  (b-2-2)
+			(b-1-2) edge  (b-2-2);
+		\end{tikzpicture}
+	\end{equation*}
+	is a pushout, and therefore, it suffices to show that 
+	\[V_{\Lambda^n_T \cap \partial_b \Delta^n }(X_1,\dots,X_n) \hookrightarrow V_{\partial_b\Delta^n}(X_1,\dots,X_n)\]
+	is a trivial cofibration.  But this is true by the inductive hypothesis on \(n\). Therefore, we are done. 
+\end{proof}
+
+\begin{prop} The map 
+	\[\square_n^\lrcorner(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n})\times \Delta^0\] is a trivial cofibration for the model structure on complete \(\Theta[\C]\)-Segal spaces.   
+\end{prop}
+\begin{proof} 
+	We again suppress the \(\times \Delta^0\) factor. Let \(Q=\square_n^\lrcorner(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n})\).  Evaluation of \(Q\) on \(0\) is the source and evaluation on \(1\) is the target. We must show that the monomorphism \(Q:Q(0)\hookrightarrow Q(1)\) is a trivial cofibration. Notice first that 
+	\[\square_n(\Lambda^n_k, c_1,\dots,c_n)\hookrightarrow Q(0) \hookrightarrow Q(1) = [n](c_1,\dots,c_n)\] is a weak equivalence by the lemma.  Then by right-cancellation, it suffices to show that 
+	\[\square_n(\Lambda^n_k, c_1,\dots,c_n)\hookrightarrow Q(0)\] is a trivial cofibration.
+	Let 
+	\[U(s,t)=\int^{u_0,\dots,u_n} \left([1](u_0,s) \times [1](u_1\wedge\dots\wedge u_n,t)\right)\cdot \square(\lambda^n_k(u_0),\delta^{c_1}(u_1),\dots, \delta^{c_n}(u_n)),\]
+	where evaluation on \(u_i\in [1]\) denotes taking the source or target.  
+	Then we see by coend reduction that
+	\[\int^{s,t} [1](s\wedge t,x) \times [1](u_0,s) \times [1](u_1\wedge\dots\wedge u_n,t) = [1](u_0 \wedge u_1 \wedge \dots\wedge u_n,x),\]
+	so by commutation of coends, we see that
+	\[Q(x)=\int^{s,t} [1](s\wedge t,x) U(s,t),\]
+	which proves that \[Q(0)=U(1,0) \coprod_{U(0,0)} U(0,1),\]
+	but \(U(0,1)=\square_n(\Lambda^n_k, c_1,\dots,c_n)\), so the map 
+	\[\square_n(\Lambda^n_k, c_1,\dots,c_n) \hookrightarrow Q(0)\] is a pushout of \(U(0,0)\to U(1,0)\), which we will show is a trivial cofibration.  Notice that in \(U(0,0)\), everything vanishes when \(u_0=1\), so we have that 
+	\[U(0,0)\cong\int^{u_1\dots,u_n} [1](u_1\wedge\dots\wedge u_n,0)\cdot \square(\lambda^n_k(0),\delta^{c_1}(u_1),\dots, \delta^{c_n}(u_n)).\]
+	Notice also that by cofinality, we have that 
+	\[U(1,0)=\int^{u_0,\dots,u_n} \left([1](u_0,1) \times [1](u_1\wedge\dots\wedge u_n,0)\right)\cdot \square(\lambda^n_k(u_0),\delta^{c_1}(u_1),\dots, \delta^{c_n}(u_n)),\]
+	is isomorphic to 
+	\[\int^{u_1,\dots,u_n} [1](u_1\wedge\dots\wedge u_n,t)\cdot \square(\lambda^n_k(1),\delta^{c_1}(u_1),\dots, \delta^{c_n}(u_n)).\]
+	Then the map \(U(0,0)\hookrightarrow U(1,0)\) is induced by the natural maps
+	\[\square(\lambda^n_k(0),\delta^{c_1}(u_1),\dots,\delta^{c_n}(u_n)) \hookrightarrow \square(\lambda^n_k(1),\delta^{c_1}(u_1),\dots,\delta^{c_n}(u_n)).\]
+	But \(\lambda^n_k(0)\hookrightarrow \lambda^n_k(1)\) is the inner horn inclusion \(\Lambda^n_k\hookrightarrow \Delta^n\), and therefore, by the lemma, these are all trivial cofibrations.  But \(U(0,0)\) and \(U(0,1)\) are clearly homotopy coends, and therefore, the map \(U(0,0)\hookrightarrow U(0,1)\) is a monic weak equivalence and therefore a trivial cofibration, which proves the proposition.
+\end{proof}
+This proves one direction of the theorem; now we prove the converse.
+\begin{prop} The maps \[\operatorname{Se}[n](c_1,\dots,c_n):\operatorname{Sp}[n](c_1,\dots,c_n) \hookrightarrow [n](c_1,\dots,c_n)\] are horizontal inner anodyne.
+\end{prop}
+\begin{proof} 
+	Since the map 
+	\[\lambda^n: \Lambda^n=\partial_0 \Delta^n \cup \partial_n\Delta^n \hookrightarrow \Delta^n\]
+	is inner anodyne, and since the empty maps \(e^{c_i}:\emptyset \hookrightarrow c_i\) are monic, it follows by \ref{cornertensorcell} that the corner-intertwiner 
+	\[\square^\lrcorner_n(\lambda^n,e^{c_1},\dots,e^{c_n})\]
+	is horizontal inner anodyne.  However, it is easy to see that this map is exactly \[\square_n(\Lambda^n,c_1,\dots,c_n) \hookrightarrow [n](c_1,\dots,c_n).\]  Therefore, it suffices to show that the map 
+	\[\square_n(\operatorname{Sp}[n],c_1,\dots,c_n) \hookrightarrow \square_n(\Lambda^n,c_1,\dots,c_n)\] is a horizontal inner anodyne.  We will first show that the map 
+	\[\square_n(\operatorname{Sp}[n]\cup \partial_0\Delta^n,c_1,\dots,c_n) \hookrightarrow \square_n(\Lambda^n,c_1,\dots,c_n)\] is horizontal inner anodyne.  
+	To see this, we proceed by induction on \(n\).  This is immediate for \(n\leq 2\). Suppose \(n>2\).  Then the map 
+	\[\square_n(\operatorname{Sp}[n]\cup \partial_0\Delta^n,c_1,\dots,c_n) \hookrightarrow \square_n(\Lambda^n,c_1,\dots,c_n)\] is horizontal inner anodyne, as it is a pushout of the map 
+	\[\square_n(\operatorname{Sp}[n-1]\cup \partial_0\Delta^{n-1},c_1,\dots,c_n) \hookrightarrow \square_n(\partial_n \Delta^n,c_1,\dots,c_n),\]
+	which is horizontal inner anodyne by the induction hypothesis.  Then it suffices to show that 
+	\[\square_n(\operatorname{Sp}[n],c_1,\dots,c_n) \hookrightarrow \square_n(\operatorname{Sp}[n]\cup \partial_0\Delta^n,c_1,\dots,c_n)\] is horizontal inner anodyne.  Again, we proceed by induction on \(n\) and notice that this is clear for \(n\leq 2\), but we see immediately that \[\square_n(\operatorname{Sp}[n],c_1,\dots,c_n) \hookrightarrow \square_n(\operatorname{Sp}[n]\cup \partial_0\Delta^n,c_1,\dots,c_n)\] is a pushout of 
+	\[\square_n(\operatorname{Sp}[n-1],c_1,\dots,c_n) \hookrightarrow \square_n(\partial_0 \Delta^n ,c_1,\dots,c_n),\]
+	which is horizontal inner anodyne by the induction hypothesis, which concludes the proof.
+\end{proof}
+\begin{cor}
+	The left Kan extension of the functor \[\id \times E^\bullet:\Theta[\C]\times \Delta \to \cellset\] defined by the rule 
+	\[[n](c_1,\dots,c_n)\times \Delta^m \mapsto [n](c_1,\dots,c_n) \times E^m\]
+	induces a Quillen equivalence
+	\[\Psh_\Delta(\Theta[\C])_{\mathrm{CSS}} \underset{\operatorname{Sing}_E}{\overset{\operatorname{Real}_E}{\rightleftarrows}} \cellset_{\mathrm{hJoyal}}\]
+	between the model structure for complete \(\Theta[\C]\)-Segal spaces and the horizontal Joyal model structure,
+	and the left Kan extension of the functor 
+	\[d:\Theta[\C] \to \Psh_\Delta(\Theta[\C])\]
+	defined by the rule
+	\[[n](c_1,\dots,c_n) \mapsto [n](c_1,\dots,c_n) \times \Delta^0\]
+	induces a Quillen equivalence
+	\[\cellset_{\mathrm{hJoyal}} \underset{d^\ast}{\overset{d_!}{\rightleftarrows}} \Psh_\Delta(\Theta[\C])_{\mathrm{CSS}}.\]
+	That is to say, the two model categories are Quillen bi-equivalent.
+\end{cor}
+\begin{proof} This is an immediate consequence of \cite{cisinski-book}*{Proposition 2.3.27}.
+\end{proof}
 
 \section{Proof of cosimplicial resolutions}\label{cosimplicial}
-In this section, we demonstrate that the three cosimplicial objects \(C^\bullet_R(c),\) \(C^\bullet_L(c),\) and \(C^\bullet_{\mathrm{cyl}}(c)\) are cosimplicial resolutions of \([1](c)\).
-\section{Comparisons with Rezk's complete \(\Theta[\C]\)-spaces}\label{rezkcomparison}
+In this section, we demonstrate that the cosimplicial objects \(C^\bullet_L(c)\) and \(C^\bullet_R(c)\) are cosimplicial resolutions of \([1](c)\). The proof for \(C^\bullet_{\mathrm{cyl}}(c)\) is similar and can be obtained by applying the scheme for \(C^\bullet_R(c)\) to the proof of that case in \cite{ds2}*{Proposition 9.4}.
 
+\begin{prop} 
+	The cosimplicial objects \(C^\bullet_L(c)\) and \(C^\bullet_R(c)\) are a cosimplicial resolutions of \([1](c)\).
+\end{prop}
+\begin{proof}
+	We follow the proof of \cite{ds2}*{Lemma 9.3}. We define a filtration on \(C^n_L(c)\) as follows: 
+	\begin{align*}
+		X_0 &= [0,1](c), \\
+		X_1 &= \bigcup_{1< i <\leq n} [0,1,i](c,\ast), \\
+		X_2 &= \bigcup_{1< i < j \leq n} [0,1,i,j](\ast,\ast,c),  
+	\end{align*}
+	and so on.  We see that \(X_{n-1}=C^n_L(c)\), so it suffices to show that each inclusion \(X_{k-1} \subseteq X_{k}\) is obtained by horizontal inner anodyne attachments.  Notice first of all that 
+	\[h^\ell_1:\square_\ell(\Lambda^\ell_1,c,\ast,\dots,\ast)\hookrightarrow \square_\ell(\Delta^\ell,c,\ast,\dots,\ast)\] is horizontal inner anodyne, since it is exactly \[\square^\lrcorner_k(\lambda^\ell_1,e^{c},e^\ast,\dots,e^\ast),\] where \(e^x\) denotes the empty map \(\emptyset \to x\).
+	Then choose \(1< i_1 < \dots < i_k \leq n\) in \(X_k\).  Then \(X_{k-1}\) contains all of the faces \([0,1,i_1,\dots, \hat{i}_{k_j},\dots,i_k](c,\ast,\dots,\ast)\), but it also contains the degenerate face \([1,i_1,\dots,i_k](\ast,\dots,\ast)\), so therefore the map \(X_{k-1} \subseteq X_k\) is obtained by pushing out along copies of \(h^{k+1}_1\), and therefore it is horizontal inner anodyne.  Therefore, the composite of the filtration \([1](c)=X_0 \subseteq \dots \subseteq X_{n-1}\) is horizontal inner anodyne, and by \(3\)-for-\(2\), we see that the retraction \(C^n_L(c) \to [1](c)\) is a horizontal Joyal equivalence.  The proof for \(C^\bullet_R\) follows by symmetry. 
+\end{proof}
 
 %%% bibliography
 \begin{bibdiv}
@@ -1697,6 +1864,16 @@ In this section, we demonstrate that the three cosimplicial objects \(C^\bullet_
 		author={Lurie, Jacob},
 		date={2009},
 		publisher={Princeton University Press},
+		}
+
+		\bib{jtsegal}{article}{
+			author={Joyal, A.},
+			author={Tierney, M.},
+			title={Quasi-categories vs Segal spaces},
+			journal={Contemporary Mathematics},
+			volume={431},
+			date={2007},
+			pages={277--326},
 		}
 
 		\bib{nlabwlim}{webpage}{
