@@ -21,18 +21,14 @@
 \usepackage{tikz}
 \usetikzlibrary{matrix,arrows}
 
-
-% Compile diagrams into seperate files.  (This is usually not worthwhile.)
-%\CompileMatrices
-
-\title[The Enriched Coherent Nerve]{Cartesian-Enriched Quasicategories and the Coherent Nerve}
+\title[The Enriched Coherent Nerve]{Rigidification and the Coherent Nerve for enriched Quasicategories}
 \author[H. Gindi]{Harry Gindi}
 \address{Department of Mathematics \\ University of Regensburg \\ Regensburg, Bavaria 93051}
 \email{harry.gindi@gmail.com}
 \date{\today}
 \subjclass{ 18A30, 18B40, 18C10, 18C30, 18C35, 18D05,
 18D50, 18E35, 18G50, 18G55, 55P10, 55P15, 55Q05, 55U35, 55U40}
-\keywords{enriched categories, higher category theory}
+\keywords{enriched categories, higher category theory, homotopy theory}
 
 
 % For temporary questions.  For example, \margnote{This is something
@@ -1242,9 +1238,9 @@ We fix a Cartesian presentation \(\M=(\C,\setS)\).  Our presentation here follow
 For now, we don't have much to say for this particular application.  If other definitions are proposed for weighted limits and colimits, they should be equivalent to this one.  
 
 \section{Examples}
-The only examples we really care about are the cases where \(\C=\Theta_n\) for \(0\leq n\leq \omega\) and where \(\setS\) is the set of generating anodynes for the model structure on weak \(n\)-categories.  We invite anyone else to consider other applications.  We expect that a simple application would be to consider the left-Bousfield localization of spaces at homology equivalences, but we aren't certain if this is a Cartesian model structure.
+The only examples we really care about are the cases where \(\C=\Theta_n\) for \(0\leq n\leq \omega\) and where \(\setS\) is the set of generating anodynes for the model structure on weak \(n\)-categories.  We invite the reader to consider other applications.  We expect that a simple application would be to consider the left-Bousfield localization of spaces at homology equivalences, but we aren't certain if this is a Cartesian model structure.
 
-Also note that our definitions of weighted limits and colimits do not work for computing lax and oplax weighted limits and colimits in weak \(\omega\)-categories (taking \(\C\) to be \(\Theta\) and \(\setS\) to be the union of all of the generating weak equivalences for the Rezk model structure).  The problem is that the lax Gray tensor product has not yet been shown to be homotopy-invariant (in particular, a left-Quillen bifunctor), so the function complexes of lax and oplax natural transformations are themselves not yet known to be homotopy invariant.  This is why we call weighted limits and colimits in these cases \emph{weighted pseudolimits} and \emph{weighted pseudocolimits} respectively.
+Also note that our definitions of weighted limits and colimits do not work for computing lax and oplax weighted limits and colimits in weak \(\omega\)-categories (taking \(\C\) to be \(\Theta=\Theta_\omega\) and \(\setS\) to be the union of all of the generating weak equivalences for the Rezk model structure).  The problem is that the lax Gray tensor product has not yet been shown to be homotopy-invariant (in particular, a left-Quillen bifunctor), so the function complexes of lax and oplax natural transformations are themselves not yet known to be homotopy invariant.  This is why we encourage people in the future to refer to weighted limits and colimits in these cases as \emph{weighted pseudolimits} and \emph{weighted pseudocolimits} respectively.
 
 
 \appendix
@@ -2021,7 +2017,7 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 	The formal \(\C\)-quasicategories are the fibrant objects of the horizontal Joyal model structure.
 \end{cor}
 \begin{proof}
-	Since the formal \(\C\)-quasicategories have the right lifting property with respect to all inner anodynes, it suffices to check that they have the right lifting property with respect to \(e:\Delta^0\hookrightarrow E^1\), but such a map always exists by choosing the obvious degenerate lift.
+	Since the formal \(\C\)-quasicategories have the right lifting property with respect to all inner anodynes, it suffices to check that they have the right lifting property with respect to \(e:\Delta^0\hookrightarrow E^1\), but such a lift always exists by choosing the obvious degenerate lift.
 \end{proof}
 
 \begin{comment}
