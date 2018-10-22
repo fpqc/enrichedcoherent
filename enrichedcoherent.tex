@@ -95,6 +95,8 @@
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Lan}{Lan}
+\DeclareMathOperator*{\join}{\star}
+\DeclareMathOperator*{\cjoin}{\star^\lrcorner}
 \newcommand{\op}{\ensuremath{\mathrm{op}}}
 \newcommand{\Nec}{\ensuremath{{\mathcal{N}ec}}}
 \newcommand{\Hoc}{\ensuremath{{\mathcal{H}oc}}}
@@ -1248,9 +1250,122 @@ Also note that our definitions of weighted limits and colimits do not work for c
 \appendix
 \renewcommand{\thesection}{A.\arabic{section}}
 \section{The corner tensor construction}\label{cornertensor} 
-In this section, we define general corner tensors and apply them to define the corner tensor functor.
-\label{cornertensorfunctoriality}
+The overwhelming majority of this section is due to Oury, although we had to redo some of the proofs, since they contained mistakes. Following \cite{oury}*{3.1} we define the corner tensor, a vast generalization of the corner product.
+\begin{defn}
+	Let \(\mathcal{V}\) be a cocomplete symmetric monoidal closed category, and let all categories, functors, and natural transformations in what follows to be \(\mathcal{V}\)-enriched.  Suppose we have a category \(\mathcal{T}\) and an \(n\)-ary functor \[\wedge:\mathcal{T}^{\otimes n} \to \mathcal{T}\] be a functor.  Let \((\mathcal{A}_i)_{i=1}^n\) and \(\mathcal{D}\) be categories admitting enough colimits such that all tensors with \(\Hom_T\) exist and coends over \(\mathcal{T}\) exist.  Let
+	\[\nabla_i: \mathcal{A}_i \otimes \mathcal{A}_i \to \mathcal{A_i}, \qquad \nabla:\mathcal{D}\otimes \mathcal{D} \to \mathcal{D}, \qquad \square:\mathcal{A}_1\otimes\dots \otimes \mathcal{A}_n \to \mathcal{D}\]
+	be functors.  Then we define the following functors:
+	\[\nabla^\lrcorner_i: \mathcal{A}^\mathcal{T}_i \otimes \mathcal{A}^\mathcal{T}_i \to \mathcal{A_i}^\mathcal{T}, \qquad \nabla^\lrcorner:\mathcal{D}^\mathcal{T}\otimes \mathcal{D}^\mathcal{T} \to \mathcal{D}^\mathcal{T}, \qquad \square^\lrcorner: \mathcal{A}_1^\mathcal{T}\otimes\dots \otimes \mathcal{A}_n^\mathcal{T} \to \mathcal{D}^\mathcal{T}\]
+	by the Day convolution, for example,
+	\[\square^\lrcorner(M_1,\dots,M_n)t = \int^{u_1,\dots,u_n} \mathcal{T}(\wedge(u_1,\dots,u_n),t) \otimes \square(M_1(u_1),\dots,M_n(u_n).\]
+\end{defn}
+\begin{lemma}
+	The functor \(\square^\lrcorner\) preserves all colimits preserved by \(\square\) in each variable and by \(\otimes\) in its second variable.  
+\end{lemma}
+\begin{proof} By coend manipulation.
+\end{proof}
+We specialize now to the case where \(\mathcal{V}\) is just the category of sets and where \(\mathcal{T}=[1]\) is the \(1\)-simplex.  The functor \(\wedge:[1]^n \to [1]\) is given by taking the infimum.   
+\begin{defn}
+	Given \(\square:\mathcal{A}_1\times \dots \times \mathcal{A}_n \to \mathcal{D}\), where each category appearing is cocomplete, we define the \emph{corner tensor} \(\square^\lrcorner:\mathcal{A}_1^{[1]}\times \dots \times \mathcal{A}_n^{[1]} \to \mathcal{D}^{[1]}\) by the formula
+	\[\square^\lrcorner(f_1,\dots,f_n)(t)=\int^{u_1,\dots,u_n} [1](u_1\wedge\dots\wedge u_n, t) \cdot \square(f_1(u_1),\dots,f_n(u_n)).\]
+	If \((g,h): f_i\to f^\prime_i\) is a commutative square, let 
+	\[(g^\lrcorner,h):\square^\lrcorner(f_1,\dots,f_i,\dots,f_n) \to \square^\lrcorner(f_1,\dots,f^\prime_i,\dots,f_n) \]
+	be the induced commutative square.  
+\end{defn}
+\begin{lemma}\label{corneridentities}
+	If any \(f_i:A_i\to B_i\) is an identity map, then \(\square^\lrcorner(f_1,\dots,f_n)=\id\)
+\end{lemma}
+\begin{proof}
+	Assume for simplicity that \(i=1\).  Then the result follows by setting 
+	\[U(s,t)=\int^{u_1,\dots,u_n} \left([1](u_1,s) \times [1](u_2\wedge\dots\wedge u_n,t)\right)\cdot \square(f_1(u_1),f_2(u_2),\dots, f_n(u_n)).\]
+	Notice that by Yoneda reduction,
+	\[\int^{s,t} [1](s\wedge t,x) \times [1](u_1,s) \times [1](u_2\wedge\dots\wedge u_n,t) = [1](u_1 \wedge u_2 \wedge \dots\wedge u_n,x),\]
+	so we have that 
+	\[\square^\lrcorner(f_1,\dots,f_n)x=\int^{s,t} [1](s\wedge t,x) U(s,t),\]
+	which exhibits 
+	\[\square^\lrcorner(f_1,\dots,f_n)0=U(0,1)\coprod_{U(0,0)} U(1,0),\]
+	but \(U(0,1)=\square(B_1,\dots,B_n)\), but the map \(U(0,0) \to (U(1,0)\) is the identity by cofinality, so the map \(U(0,1) \to \square^\lrcorner(f_1,\dots,f_n)0\) is the pushout of an identity map, and the map \(U(0,1)\to \square^\lrcorner(f_1,\dots,f_n)1\) is also the identity, so it follows that the map \(\square^\lrcorner(f_1,\dots,f_n)\) must also be the identity.
+\end{proof}
 
+\begin{lemma}
+	Suppose \(\square\) preserves pushouts in the first argument and \((g,h):f_1\to f_1^\prime\) is a pushout square in \(\mathcal{A}_1\), then the induced square 
+	\[(g^\lrcorner,h):\square^\lrcorner(f_1,\dots,f_n) \to \square^\lrcorner(f^\prime_1,\dots,\dots,f_n) \] is a pushout square.
+\end{lemma}
+\begin{proof} 
+	Let \(Q\) denote \(\square^\lrcorner(f_1,\dots,f_n)(0)\) and \(Q^\prime=\square^\lrcorner(f^\prime_1,\dots,f_n)\), with \(g^\lrcorner:Q\to Q^\prime\).  
+	Let \((\alpha,\alpha^\prime): \square(g,B_2,\dots,B_n) \to g^\lrcorner\) be the induced commutative square. Then we can factor the square 
+	\[\square(f_1,B_2,\dots,B_n),\square(f^\prime_1,B_2,\dots,B_n))=(g^\lrcorner,h)\circ (\alpha,\alpha^\prime),\]
+	where the outer square is a pushout square by the fact that \(\square\) preserves colimits in the first argument. Then to prove the lemma, it suffices to prove the claim that \((\alpha,\alpha^\prime)\) is a pushout square.
+	Then we define 
+	\[U(s,t)=\int^{u_1,\dots,u_n} \left([1](u_1,s) \times [1](u_2\wedge\dots\wedge u_n,t)\right)\cdot \square(f_1(u_1),f_2(u_2),\dots, f_n(u_n)).\]
+	and 
+	\[U^\prime(s,t)=\int^{u_1,\dots,u_n} \left([1](u_1,s) \times [1](u_2\wedge\dots\wedge u_n,t)\right)\cdot \square(f^\prime_1(u_1),f_2(u_2),\dots, f_n(u_n)).\]
+	Then notice that \(\alpha:\square(A_1,B_2,\dots,B_n) \to Q\) is the pushout of \(u:U(0,0)\to U(1,0)\) and \(\alpha^\prime:\square(A^\prime_1,B_2,\dots,B_n) \to Q\) is the pushout of \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\).  So we have a commutative cube 
+	\[u\to \alpha \to \alpha^\prime = u\to u^\prime \to \alpha^\prime,\] where \(u\to \alpha\) and \(u^\prime\to \alpha^\prime\) are pushouts.  Then by the pasting law for pushouts, it suffices to show that the map \(u\to u^\prime\) is a pushout.  
+	By cofinality, we can see that 
+	the map \(u: U(0,0) \to U(1,0)\) is induced by the natural family of maps 
+	\[\square(f_1,f_2(u_2),\dots, f_n(u_n)): \square(A_1,f_2(u_2),\dots, f_n(u_n))\to \square(B_1,f_2(u_2),\dots,f_n(u_n),\]
+	that \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\) is induced by the natural family of maps
+	\[\square(f^\prime_1,f_2(u_2),\dots, f_n(u_n)): \square(A^\prime_1,f_2(u_2),\dots, f_n(u_n))\to \square(B^\prime_1,f_2(u_2),\dots,f_n(u_n),\]
+	that \(U(0,0)\to U^\prime(0,0)\) is induced by the natural family of maps
+	\[\square(g,f_2(u_2),\dots, f_n(u_n)): \square(A_1,f_2(u_2),\dots, f_n(u_n))\to \square(A^\prime_1,f_2(u_2),\dots,f_n(u_n),\]
+	and that \(U(1,0) \to U^\prime(1,0)\) is induced by the natural family of maps
+	\[\square(h,f_2(u_2),\dots, f_n(u_n)): \square(B_1,f_2(u_2),\dots, f_n(u_n))\to \square(B^\prime_1,f_2(u_2),\dots,f_n(u_n).\]
+	But these form a natural pushout square, which implies that \(u\to u^\prime\) is a pushout because \(\square\) preserves colimits in the first argument and the pushout moves outside of the coend.  This proves the claim that \(\alpha\to \alpha^\prime\) is a pushout, which proves the lemma.
+\end{proof}
+\begin{note}
+	The above holds for \(i\neq 1\) as well, but for simplicity of notation, we proved it only in the case \(i=1\).  
+\end{note}
+\begin{cor}\label{cornerpushouts}
+	If \(\square\) preserves pushouts in the \(i^{\mathrm{th}}\) argument, then if \(f_i\) is a pushout of \(f_i^\prime\), it follows that \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\) is a pushout of \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\).
+\end{cor}
+\begin{lemma}
+	Suppose \((u,v):h\to g\) is a pushout square in \(\mathcal{A}^1\), and suppose that \((g,\id):p\to q\) is a commutative square.  Given family of maps \((\mathbf{f}=f_i \in \mathcal{A}_i^{[1]})_{i=2}^n\), let \(Q_{\bullet,\mathbf{f}}\) denote the evaluation of \(\square^\lrcorner(\bullet,\mathbf{f})\) at \(0\), that is, the domain.  \(g^\lrcorner: Q_{p,\mathbf{f}} \to Q_{q,\mathbf{f}}\) is a pushout of \(\square^\lrcorner(h,\mathbf{f})\).  
+\end{lemma}
+\begin{proof} The data give us commutative cube 
+	\[h \xrightarrow{(h,\id)} \id \xrightarrow{(v,qv)} q = h \xrightarrow{(u,qv)} p \xrightarrow{(g,\id)} q,\]
+	and we can see it is a pushout in \(\mathcal{A}_1^{[1]}\), since both its front and back faces are pushouts.  Then applying \(\square^\lrcorner(\bullet,\mathbf{f})\), its front and back faces remain pushouts, since \(\square^\lrcorner\) preserves all colimits in each argument preserved by \(\square\).  Then the map \(g^\lrcorner: Q_{p,\mathbf{f}} \to Q_{q,\mathbf{f}}\)  is a pushout of the map \(h^\lrcorner:Q_{h,\mathbf{f}} \to Q_{\id,\mathbf{f}}\), but by Lemma \ref{corneridentities}, we see that \(\square^\lrcorner(\id,\mathbf{f})=\id\), so by commutativity, it follows that \(h^\lrcorner = \square^\lrcorner(h,\mathbf{f})\), and therefore, \(g^\lrcorner\) is a pushout of \(\square^\lrcorner(h,\mathbf{f})\).  
+\end{proof}
+Assume in the sequel that \(\square\) preserves connected colimits in each argument.
+\begin{lemma}[\cite{oury}*{Lemma 3.10}]\label{cornertensorcell}
+	Let \((\mathscr{J}_i)_{i=1}^n\) be a family of sets of morphisms of each \(\mathcal{A}_i\). Then 
+	\[\square^\lrcorner(\mathscr{J}_1,\dots,\operatorname{Cell}(\mathscr{J}_i),\dots,\mathscr{J}_n) \subseteq \operatorname{Cell}(\square^\lrcorner(\mathscr{J}_1,\dots,\operatorname{Cell}(\mathscr{J}_i),\dots,\mathscr{J}_n)).\]
+\end{lemma}
+\begin{proof}
+	Fix some \(1\leq k\leq n\), and let \(f_i:X_i\to Y_i \in \mathscr{J}_i\) for each \(i\neq k\). 
+	Let \(f_k\) be a map in \(\mathcal{A}_k\) that belongs to \(\operatorname{Cell}(\mathscr{J}_k\).  Then this gives the data of a cocontinous diagram \(D:\alpha \to \mathcal{A}_k\) for an ordinal \(\alpha\) with colimit \(C\) and structure maps \(\phi_i: D(i)\to C\) such that \(f_k=\phi_0\).  Additionally, for any \(i <\alpha\), the maps \(g_i:D(i)\to D(i+1)\) are pushouts of maps belonging to \(\mathscr{J}_k\). Let \(D^+:\alpha+1\to \mathcal{A}_k\) be the extension of \(D\) sending \(\alpha\) to \(C\) and such that \(D^+(i\to \alpha)=\phi_i\) for \(i<\alpha\).  Define \(D^2: \alpha+1\to \mathcal{A}_k^{[1]}\) by the rule \(i\mapsto \phi_i\) for \(i<\alpha\) and \(\alpha\mapsto \id_C\) and sending \(i\to i+1\) to the commutative square \((g_i,\id_c):\phi_i\to \phi_i+1\) and sending the map \(i\to \alpha\) to the commutative square \((\phi_i,\id_C):\phi_i\to \id_C\).  Then the colimit of \(D^2\) is \(\id_C\).  
+
+	Denote \(\square^\lrcorner(f_1,\dots,\bullet,\dots, f_n)\) by \(\square(\mathbf{f},\bullet)\) and the domain by by \(Q_{\mathbf{f},\bullet}\).  Then since \(\square^\lrcorner\) preserves connected colimits, it follows that 
+	\[\colim\square^\lrcorner(\mathbf{f},D^2)=\square^\lrcorner(\mathbf{f},\id_C),\]
+	and so we have the structure maps of the colimiting cocone
+	\[\square^\lrcorner(\mathbf{f},(\phi_i,\id_C)): \square^\lrcorner(\mathbf{f},\phi_i) \to \square^\lrcorner(\mathbf{f},\id_C),\]
+	which exhibit \((\phi_0,\id_C)\) as the transfinite composite of the diagram \(\square^\lrcorner(\mathbf{f},D^2)\).  
+	Then notice that
+	\begin{align*}
+		\square^\lrcorner(f_1,\dots,f_{k-1},f_k,f_{k+1},\dots,f_n)&=\square^\lrcorner(f_1,\dots,f_{k-1},\phi_0,f_{k+1},\dots,f_n)\\
+		&=\square^\lrcorner(\mathbf{f},\operatorname{dom}(\phi_0,\id_C))\\
+		&=\operatorname{dom}\square^\lrcorner(\mathbf{f},(\phi_0,\id_C))\\
+		&=\square^\lrcorner(\mathbf{f},\phi_0)\\
+		&=\square^\lrcorner(\mathbf{f},\id_C)\circ \phi_0^\lrcorner,
+	\end{align*}
+	where \(\phi_0^\lrcorner:Q_{\mathbf{f},\phi_0}\to Q_{\mathbf{f},\id_C}\) is the transfinite composite of the maps \(g_i^\lrcorner: Q_{\mathbf{f},\phi_i} \to Q_{\mathbf{f},\phi_{i+1}}\).  By \ref{corneridentities}, \(\square^\lrcorner(\mathbf{f},\id_C)= \id\).  Then it suffices to show that the \(g_i^\lrcorner\) are pushouts of maps belonging to 
+	\[square^\lrcorner(\mathscr{J}_1,\dots, \mathscr{J}_k,\dots ,\mathscr{J}_n).\]
+	Since each \(g_i\) was a pushout of a morphism \(h_i \in \mathscr{J}_k\), and since we have a commutative square \((g_i,\id):\phi_i\to \phi_{i+1}\), we are in the situation of the previous lemma, which implies that each \(g_i^\lrcorner\) is a pushout of \(\square^\lrcorner(\mathbf{f},j_i)\), which proves the proposition.
+\end{proof}
+\begin{cor} 
+	There is an inclusion
+	\[\square^\lrcorner(\operatorname{Cell}(\mathscr{J}_1),\dots,\operatorname{Cell}(\mathscr{J}_n)) \subseteq \operatorname{Cell}(\square^\lrcorner(\mathscr{J}_1,\dots,\mathscr{J}_n).\]
+\end{cor}
+\begin{proof} 
+	Apply the previous lemma \(n\) times, using the fact that \(\operatorname{Cell}\) is idempotent, since it is a closure operator.
+\end{proof}
+
+\begin{defn} Let \(\mathrm{Rex}_c\) denote the symmetric sub-multi-category of \(\Cat\) whose objects are the categories admitting all finite colimits and whose \(k\)-morphisms are the \(k\)-fold functors that preserve finite connected colimits.
+\end{defn}
+\begin{obs}\label{cornertensorfunctoriality} The corner tensor construction, sending a multimorphism 
+	\[F:\mathcal{A}_1\times\dots\times \mathcal{A}_n \to \mathcal{D}\] to its corner tensor
+	\[F^\lrcorner:\mathcal{A}_1^{[1]}\times\dots\times \mathcal{A}_n^{[1]} \to \mathcal{D}^{[1]}\] is a morphism of multicategories from \(\mathrm{Rex}_c\) to itself.  In particular, it is functorial with respect to the composition in \(\mathrm{Rex}_c\).
+\end{obs}
 \section{The regular Reedy structure of \(\Theta[\C]\)}\label{reedy}
 In this section, we demonstrate that the class of monomorphisms is exactly the class of relative cell complexes for \(\mathscr{M}\), which we will show coincides with the set of boundary maps for the regular Reedy category \(\Theta[\C]\).  
 
@@ -1280,6 +1395,10 @@ In this section, we demonstrate that the class of monomorphisms is exactly the c
 \begin{proof}
 	This is an immediate consequence of \cite{cisinski-book}*{Proposition 8.1.37} or \cite{bergner-rezk-reedy}*{4.4}.
 \end{proof}
+\begin{lemma} The category \(\Theta[\C]\) is regular Cartesian Reedy when \(\C\) is.
+\end{lemma}
+\begin{proof}
+\end{proof}
 
 \section{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
 In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the horizontal inner anodynes are closed under corner products with monomorphisms.  As a corollary of the analysis in this section, we will demonstrate that \(\Theta[\C]\) is regular Cartesian Reedy.  We make no claim to originality.
@@ -1307,7 +1426,7 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 	\[\square_S(f,\Omega)_t\cong \coprod_{y\in Y_n} \prod_{i=1}^n W_{fy,i,c_i}.\]
 \end{obs}
 
-\begin{defn}
+\begin{defn}\label{productintertwiner}
 	Given a finite family of simplicial sets \(\mathbf{S}=(S_i)_{i=1}^n\), we define a functor:
 	\[H_{\mathbf{S}}: \overcat{\psh{\Delta}}{\prod_{i=1}^n S_i} \times  \prod_{i=1}^n\left(\ssetlab\right)_{S_i} \to \ssetlab\] by the rule:
 	\[\left(S \xrightarrow{\prod^n_{i=1} f_i} \prod_{i=1}^n S_i, (\Omega_i)_{i=1}^n\right)\mapsto \left(S,\prod_{i=1}^n (\Omega_i\circ f_i)\right).\]
@@ -1497,7 +1616,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 
 \begin{obs}\label{square2}
 	Let \((\alpha\times \beta): \Delta^r \to \Delta^n\times \Delta^m\) be an injective map preserving initial and terminal elements.  Let \(\mathbf{A}=(A_i)^n_{i=1}\) and \(\mathbf{B}=(B_i)^m_{i=1}\) be objects of \(\psh{\C}^n\) and \(\psh{\C}^m\) respectively.  Let 
-	\[K_{\alpha,\beta}:\psh{\C}^n and \psh{\C}^m\to \psh{\C}^r\] be the functor defined by the rule
+	\[K_{\alpha,\beta}:\psh{\C}^n \times \psh{\C}^m\to \psh{\C}^r\] be the functor defined by the rule
 	\[(\mathbf{U},\mathbf{V})\mapsto \alpha^\ast \mathbf{U} \times \beta^\ast \mathbf{V},\]
 	taking the product of the pullbacks to the fibre over \(\Delta^r\).  Then we have a diagram:
 	\begin{equation*}
@@ -1529,7 +1648,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 	It is clear that \(\tau\) is a permutation of variables and therefore an isomorphism.
 	Then let \[P_i: \psh{\C}^{t_i} \to \psh{\C}\] be the functor defined by the rule
 	\[(X_1,\dots,X_{t_i}) \mapsto X_1 \times \dots \times X_{t_i}\]
-	Then the \(P_i\) assemble to a map \(P_1, \dots, P_r\) such that \[(P_1,\dots,P_r)\circ \tau = K_{\alpha,\beta}.\]
+	Then the \(P_i\) assemble to a map \((P_1, \dots, P_r)\) such that \[(P_1,\dots,P_r)\circ \tau = K_{\alpha,\beta}.\]
 	Then the diagram
 	\begin{equation*}
 		\begin{tikzpicture}
@@ -1575,7 +1694,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-)^\lrcorner \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner_{n,m}}\)} (b-2-3)
-			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i^\lrcorner)_{i=1}^r}\)} (b-1-3) 
+			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i^\lrcorner)}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{\square^\lrcorner_r}\)} (b-2-3);
 		\end{tikzpicture}.
 	\end{equation*}
@@ -1583,19 +1702,19 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 
 Finally, we reach our destination.  As we mentioned before, this entire section is due to David Oury \cite{oury}, and the following theorem is the crescendo:
 
-\begin{thm}[Anodyne Theorem \cite{oury}*{3.88}] The class of horizontal anodynes is closed under corner products with monomorphisms.  In particular, if we let \[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k, \delta^{c_1},\dots,\delta^{c_n})| \text{ for } n\geq 2, 0<k<n\}.\] Then we have
+\begin{thm}[Anodyne Theorem \cite{oury}*{3.88}]\label{anodynethm} The class of horizontal anodynes is closed under corner products with monomorphisms.  In particular, if we let \[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k, \delta^{c_1},\dots,\delta^{c_n})| \text{ for } n\geq 2, 0<k<n\}.\] Then we have
 	\[\mathscr{M}\times^\lrcorner \mathscr{J} \subseteq \operatorname{Cell}(\mathscr{J}).\]
 \end{thm}
 \begin{proof}
 Let \(f_0:\partial\Delta^n \hookrightarrow \Delta^n\), and let \(\mathbf{f}=(f_i)_{i=1}^n\) be a family of boundary inclusions in \(\psh{\C}\).  Let \(g_0:\Lambda^m_k \hookrightarrow \Delta^n\) be an inner horn inclusion, and let \(\mathbf{g}=(g_i)_{i=1}^n\) be a family of boundary inclusions in \(\psh{\C}\).  By \ref{square1}, we have 
 \[\square^\lrcorner_n(f_0,\dots,f_n) \times^\lrcorner \square^\lrcorner_m(g_0,\dots,g_m) \cong \square^\lrcorner_{n,m}(f_0 \times^\lrcorner g_0, f_1,\dots,f_n,g_1,\dots,g_n).\]
-By \ref{simplicialhorns}, we know that \(f_0\times^\lrcorner g_0\) can be factored as a finite sequence of pushouts of inner horn inclusions.  By \ref{cornertensorcell}, it follows that
+By \ref{simplicialhorns}, we know that \(f_0\times^\lrcorner g_0\) can be factored as a finite sequence of pushouts of inner horn inclusions.  By \ref{cornerpushouts} and \ref{cornertensorcell}, it follows that
 \[\square^\lrcorner_{n,m}(f_0 \times^\lrcorner g_0, f_1,\dots,f_n,g_1,\dots,g_n)\]
 is a finite composites of pushouts of maps
 \[\square^\lrcorner_{n,m}(h_i, f_1,\dots,f_n,g_1,\dots,g_n)\] 
-where \((h_i:\Lambda_i \to \Delta^{r_i})_{i=1}^k\) are inner horn inclusions where \(h_i\) is a morphism over \(\Delta^n\times\Delta^m\).  Let \(h^\prime_i\) denote this morphism as map in simplicial sets over \(\Delta^{r_i}\), and let 
+where \((h_i:\Lambda^{r_i}_{\ell_i} \to \Delta^{r_i})_{i=1}^k\) are inner horn inclusions where \(h_i\) is a morphism over \(\Delta^n\times\Delta^m\).  Let \(h^\prime_i\) denote this morphism as map in simplicial sets over \(\Delta^{r_i}\), and let 
 \((\alpha_i,\beta_i):\Delta^r \to \Delta^m\times \Delta^n\) be initial and terminal vertex preserving as in \ref{simplicialhorns}.  Then by \ref{square2}, we see that 
-\[\square^\lrcorner_{n,m}(h_i,\mathbf{f},\mathbf{g}) \cong \square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner \circ \tau)(\mathbf{f},\mathbf{g})).\]
+\[\square^\lrcorner_{n,m}(h_i,\mathbf{f},\mathbf{g}) \cong \square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner) \circ \tau(\mathbf{f},\mathbf{g})).\]
 But the value of the argument in position \(1\leq j \leq r_i\) is 
 \[P_j^\lrcorner\circ \tau_j(\mathbf{f},\mathbf{g})=f_{\alpha_i(j-1)+1}\times^\lrcorner \dots \times^\lrcorner f_{\alpha_i(j)} \times^\lrcorner g_{\beta_i(j-1)+1}\times \dots^\lrcorner \times^\lrcorner g_{\beta_i(j)},\]
 which belongs to \(\operatorname{Cell}(\mathscr{B})\), where \(\mathscr{B}\) is the set of boundary inclusions in \(\psh{\C}\).  So we see that
@@ -1605,41 +1724,6 @@ where \(\mathscr{L}\) is the set of inner horn inclusions, which by \ref{cornert
 \[\operatorname{Cell}(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}),\]
 which belongs to \(\operatorname{Cell}(\mathscr{J}),\) since \(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}\subseteq \mathscr{J}\).
 \end{proof}
-
-\section{Recognition of horizontal Joyal fibrations}\label{admissible}
-In this section, we give a recognition theorem for horizontal Joyal fibrations between formal \(\C\)-quasicategories.  In particular, we prove that a morphism between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it is a horizontal inner fibration and has the right lifting property with respect to the single morphism \(\{0\}\hookrightarrow E^1\). In the course of the proof, we will also demonstrate that the formal \(\C\)-quasicategories are precisely the fibrant objects of the horizontal Joyal model structure.  We begin with a definition:
-
-\begin{defn}
-	For any representable \([x]=[n](c_1,\dots,c_n)\) with \(c_1=\ast\) (respectively with \(c_n=\ast\)), we define the \emph{horizontal left horn inclusion} (resp. \emph{horizontal right horn inclusion}) to be the map \[\square^\lrcorner_n(\lambda^n_0,\delta^{c_1}, \dots, \delta^{c_n})\] and respectively \[\square^\lrcorner_n(\lambda^n_n,\delta^{c_1}, \dots, \delta^{c_n}).\]
-
-	We call the domain of such a map the \emph{left horn} (resp. \emph{right horn}) and denote it by \(\Lambda^n_L[x]\) (respectively \(\Lambda^n_R[x]\)).
-\end{defn}
-
-This definition is a bit trickier than the usual definition of left and right horn, but it is sufficient for our purposes. The reason why we require the condition \(c_1=\ast\) (resp. \(c_n=\ast\)) is to ensure that we only remove faces of codimension \(1\) from the horn.
-
-\begin{defn}
-	Let \(X\) be a \(\C\)-cellular set, and let \(f:\Lambda^n_L[x]\to X\) be a map from a left horn.  Then we say that \(f\) is a \emph{special horizontal left horn} if the restriction of \(f\) along the inclusion \(\mathscr{H}\Delta^1=[1](c_1)\hookrightarrow [x]\) factors through \(E^1\), and dually for right horns.
-
-	We say that a map \(X\to Y\) is \emph{special anodyne} if it is the transfinite composition of pushouts along special horn inclusions and horizontal inner anodynes.
-\end{defn}
-
-In what follows, fix the notation \(e:\{0\}\hookrightarrow E^1\) to be the obvious inclusion of the vertex.  The proof directly makes use of the filtration of \cite{ds2}{Proposition A.4}.
-
-\begin{prop} Given any representable \(\C\)-cellular set \([x]=[r](c_1,\dots,c_r)\) such that \(n>0\), the map
-	\[e \times^\lrcorner \square^\lrcorner_r(\delta^r,\delta^{c_1},\dots,\delta^{c_r})\]
-	is special anodyne.
-\end{prop}
-\begin{proof}
-	Let \([x]=[r](c_1,\dots,c_n)\) be a representable \(\C\)-cellular set.  Then we begin by noting that \(E^1\times [x]\) is sober, since \(E^1\) is sober, representables are sober, and products of sober presheaves are sober. In particular, \(E^1\times [x]\) is a labeled simplicial set lying over \(E^1\times \Delta^n\).  We define the boundary of \([x]\) by \[\partial[x] = \operatorname{dom}\left(\square^\lrcorner_n(\delta^r, \delta^{c_1},\dots, \delta^{c_r})\right),\] that is, the domain of the corner-intertwiner.  Then the domain of the corner product can be written as \[M_0=\partial[x] \times E^1 \cup [x]\times \{0\}.\]  Let \(U_i[t]\) be the pullback of \(E^1\times [x]\) along the inclusion \(Y_i[t]\to E^1\times \Delta^r\) from \cite{ds2}*{Proposition A.4}.  Then set \[M_i[t]=U_i[t]\cup \left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\] 
-	
-	Suppose \(0<i<r\).  From the proof of \cite{ds1}*{Proposition A.4}, we know that given any nondegenerate simplex of \(Y_i[t+1] - Y_i[t]\), its intersection with \(Y_i[t]\) is an inner horn \(\Lambda^{t+1}_{k}\), so if we let \([z]=[t+1](z_1,\dots,z_{t+1})\) be the pullback of \([t+1]\to Y_i[t+1]\) to \(E^1\times [x]\), we see that its intersection with \(U_i[t]\) is exactly \(V_{\Lambda^{t+1}_k[z]}\). Therefore, its intersection with \(M_i[t]\) is exactly the domain of \[\square^\lrcorner_{t+1}(\lambda^{t+1}_k, \delta^{c_1},\dots, \delta^{c_{t+1}}).\]
-
-	When \(i=0\) (resp. \(i=r\)), the horn attachments of the filtration are special left (resp. special right) horn inclusions, and the same proof works.
-
-	Therefore, each of these attachments to \(M_i[t]\) is either a horizontal inner horn attachment or a special outer horn attachment, which proves the proposition, since \(M_{r+1}=E^1\times \) 
-\end{proof}
-
-With this messy part out of the way, it suffices to show that every horizontal inner fibration between formal \(\C\)-quasicategories has the right lifting property with respect to special inner horn inclusions.
 
 \section{Comparison with Rezk's complete \(\Theta[\C]\)-spaces}\label{rezkcomparison}
 Since Rezk's complete Segal model structure on \(\Psh_\Delta(\Theta[\C])\) is Cartesian, and since \(\ast \hookrightarrow E\) is one of the generators of the localization (see \cite{rezk-theta-n-spaces}), and since \(\Theta[\C]\) is regular skeletal Reedy, it follows by several results of Cisinski \cite{cisinski-book}*{Proposition 8.2.9, Theorem 3.4.36, Proposition 2.3.30} that Rezk's localizer for complete \(\Theta[\C]\)-Segal spaces is the simplicial completion of a localizer on \(\Theta[\C]\).  
@@ -1760,7 +1844,7 @@ This proves one direction of the theorem; now we prove the converse.
 	which is horizontal inner anodyne by the induction hypothesis, which concludes the proof.
 \end{proof}
 \begin{cor}
-	The left Kan extension of the functor \[\id \times E^\bullet:\Theta[\C]\times \Delta \to \cellset\] defined by the rule 
+	The left Kan extension of the functor \[Y \times E^\bullet:\Theta[\C]\times \Delta \to \cellset\] (where \(Y\) is the Yoneda embedding) defined by the rule 
 	\[[n](c_1,\dots,c_n)\times \Delta^m \mapsto [n](c_1,\dots,c_n) \times E^m\]
 	induces a Quillen equivalence
 	\[\Psh_\Delta(\Theta[\C])_{\mathrm{CSS}} \underset{\operatorname{Sing}_E}{\overset{\operatorname{Real}_E}{\rightleftarrows}} \cellset_{\mathrm{hJoyal}}\]
@@ -1793,7 +1877,257 @@ In this section, we demonstrate that the cosimplicial objects \(C^\bullet_L(c)\)
 	\[h^\ell_1:\square_\ell(\Lambda^\ell_1,c,\ast,\dots,\ast)\hookrightarrow \square_\ell(\Delta^\ell,c,\ast,\dots,\ast)\] is horizontal inner anodyne, since it is exactly \[\square^\lrcorner_k(\lambda^\ell_1,e^{c},e^\ast,\dots,e^\ast),\] where \(e^x\) denotes the empty map \(\emptyset \to x\).
 	Then choose \(1< i_1 < \dots < i_k \leq n\) in \(X_k\).  Then \(X_{k-1}\) contains all of the faces \([0,1,i_1,\dots, \hat{i}_{k_j},\dots,i_k](c,\ast,\dots,\ast)\), but it also contains the degenerate face \([1,i_1,\dots,i_k](\ast,\dots,\ast)\), so therefore the map \(X_{k-1} \subseteq X_k\) is obtained by pushing out along copies of \(h^{k+1}_1\), and therefore it is horizontal inner anodyne.  Therefore, the composite of the filtration \([1](c)=X_0 \subseteq \dots \subseteq X_{n-1}\) is horizontal inner anodyne, and by \(3\)-for-\(2\), we see that the retraction \(C^n_L(c) \to [1](c)\) is a horizontal Joyal equivalence.  The proof for \(C^\bullet_R\) follows by symmetry. 
 \end{proof}
+\section{Recognition of horizontal Joyal fibrations}\label{admissible}
+In this section, we will prove the anlogue of Joyal's pseudofibration theorem for the horizontal model structure on \(\Theta[\C]\).  We will need to set up some definitions.
 
+\begin{defn}
+	Recall from Definition \ref{productintertwiner}, we defined the functor \(H_\mathbf{S}\) for a finite family of simplicial sets \(\mathbf{S}\).  Consider the case of the functor \(H_{S,n}\), where the family is made up of two simplicial sets \(\Delta^n\) and some simplicial set \(S\).  Then we define the functor 
+	\[\mathcal{H}_{S,n}: \overcat{\psh{\Delta}}{S\times \Delta^n} \times  \left(\ssetlab\right)_{n} \to \ssetlab,\]
+	to be the restriction of \(H_{S,n}\) to the terminal labeling of \(S\), the unique labeling of \(S\) that sends all edges of \(S\) to the terminal object of \(\psh{\C}\).   Composing \(\square\) with \(\mathcal{H}_{S,n}\) is denoted by \(\square_{S,n}\).  For the remainder of this section, we also, by abuse of notation, define 
+	\[\square_S:\overcat{\psh{\Delta}}{S} \to \cellset\]
+	to be the composite of \(\square\) with the restriction of \(H_S\) to the terminal labeling of \(S\).  
+\end{defn}
+
+\begin{obs}\label{joyalsquare1}
+	Observe that from \ref{conncolims} the functor 
+	\[\square_{S,n}:\overcat{\psh{\Delta}}{\Delta^n\times S} \times\psh{\C}^n \to \cellset\]
+	preserves connected colimits in each argument and therefore can be corner tensored. By the same argument as \ref{square1}, given \(h:Y\to S\) a map of simplicial sets, we can compute 
+	\begin{align*}
+		\square^\lrcorner_n(f_0,\dots,f_n) \times^\lrcorner h &= \square^\lrcorner_n(f_0,\dots,f_n) \square_S^\lrcorner(h)\\
+		&= \square^\lrcorner_{S,n}(h\times^\lrcorner f_0,f_1,\dots,f_n).
+	\end{align*}
+\end{obs}
+
+In what follows, we will use some excellent new results of Danny Stevenson \cite{danny}.  Consider the case of the simplicial set \(E^1\) and the map \(e:\Delta^0 \hookrightarrow E^1\).  
+\begin{thm}[\cite{danny}*{Example 5.8}]\label{dannythm}
+	The map of simplicial sets
+	\[e\times^\lrcorner \delta^n: E^1\times \partial\Delta^n \cup \Delta^0 \times \Delta^n \hookrightarrow E\times \Delta^n,\]
+	is an inner anodyne for all \(n>0\).  
+\end{thm}
+It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite composition of pushouts of inner horn inclusions.
+\begin{obs}\label{joyalsquare2}
+	A simplex \((\alpha,\beta):\Delta^r \to E^1\times \Delta^n\) is determined by the destination of its vertices. We can assume that \(\beta\) is surjective, since otherwise, the simplex would factor through \(E^1\times \partial \Delta^n\).     We label the vertices by \((a,i)\) and \((b,i)\) for \(0\leq i \leq n\), where \(e\) is the inclusion of \(a in E^1\).  Given a simplex \((\alpha,\beta):\Delta^r\to E^1\times \Delta^n\), and a family of presheaves \(\mathbf{U}=(U_i)_{i=1}^n\) on \(\C\). 
+	\[K_{\beta}:\psh{\C}^n \to \psh{\C}^r\]
+	to be the functor sending
+	\[\mathbf{U} \mapsto \beta^\ast \mathbf{U}.\]
+	Similar to \ref{square2}, we have a diagram
+	\begin{equation*}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
+			{
+				\overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^n & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
+				\overcat{\psh{\Delta}}{E^1\times \Delta^n} \times \psh{\C}^n & \ssetlab \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times K_{\beta}}\)} (b-1-2) 
+					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{\mathcal{H}_{E^1,n}}\)} (b-2-2)
+			(b-1-2) edge node[auto]{\(\scriptstyle{H_r}\)} (b-2-2);
+		\end{tikzpicture},
+	\end{equation*}
+	and the diagram commutes by a direct computation.  
+	Set \((t_i=\beta(i) - \beta(i-1))_{i=1}^r\), and let 
+	\[\tau_i:\psh{\C}^n \to \psh{\C}^{t_i}\]
+	be the map defined by sending 
+	\[\mathbf{U}\mapsto (A_{\beta(i-1)+1},\dots,A_{\beta(i)}.\]
+	Then this family of maps defines a map 
+	\[\psh{\C}^n \to \prod_{i=1}^r\psh{\C}^{t_i}\]
+	which is a permutation and therefore an isomorphism. Then let
+	\[P_i:\psh{\C}^{t_i} \to \psh{\C}\]
+	be the map defined by the rule 
+	\[(X_1,\dots,X_{t_i})\mapsto X_1\times \dots \times X_{t_i}.\]
+	Then these \(P_i\) assemble to a map 
+	\[(P_1,\dots,P_r): \prod_{i=1}^r \psh{\C}^{t_i} \to \psh{\C}^r,\]
+	such that \((P_1,\dots,P_r)\circ \tau = K_\beta\).
+	Then we have a commutative diagram
+	\begin{equation*}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
+			{
+				\overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^n & \overcat{\psh{\Delta}}{\Delta^r} \times \prod_{i=1}^r \psh{\C}^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
+				\overcat{\psh{\Delta}}{E^1\times \Delta^n} \times \psh{\C}^n & & \ssetlab \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
+					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{H_{E^1,n}}\)} (b-2-3)
+			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i)_{i=1}^r}\)} (b-1-3) 
+			(b-1-3)	edge node[auto]{\(\scriptstyle{H_r}\)} (b-2-3);
+		\end{tikzpicture},
+	\end{equation*}
+	and therefore, composing the bottom horizontal and right vertical maps with \(\square\), we have another commutative diagram
+	\begin{equation*}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
+			{
+				\overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^n & \overcat{\psh{\Delta}}{\Delta^r} \times \prod_{i=1}^r \psh{\C}^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
+				\overcat{\psh{\Delta}}{E^1\times \Delta^n} \times \psh{\C}^n & & \cellset \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
+					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{\square_{E^1,n}}\)} (b-2-3)
+			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i)_{i=1}^r}\)} (b-1-3) 
+			(b-1-3)	edge node[auto]{\(\scriptstyle{\square_r}\)} (b-2-3);
+		\end{tikzpicture}.
+	\end{equation*}
+	We see that each of the arrows in this picture preserves connected colimits argument-by-argument, so applying the corner tensor functor, we obtain a commutative diagram
+	\begin{equation*}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=2em]
+			{
+				\overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \left(\psh{\C}^{[1]}\right)^n & \overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \prod_{i=1}^r \left(\psh{\C}^{[1]}\right)^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \left(\psh{\C}^{[1]}\right)^r\\
+				\overcat{\psh{\Delta}}{E^1\times \Delta^n}^{[1]} \times \left(\psh{\C}^{[1]}\right)^{n} & & \cellset^{[1]} \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
+					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-)^\lrcorner \times \id \times \id}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner_{E^1,n}}\)} (b-2-3)
+			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i^\lrcorner)}\)} (b-1-3) 
+			(b-1-3)	edge node[auto]{\(\scriptstyle{\square^\lrcorner_r}\)} (b-2-3);
+		\end{tikzpicture}.
+	\end{equation*}
+\end{obs}
+\begin{thm}
+	Set \(e:\Delta^0\to E^1\). Then for any boundary inclusion 
+	\[\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}),\]
+	with \(n>0\), the map 
+	\[e \times^\lrcorner \square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\]
+	is a horizontal inner anodyne.
+\end{thm}
+\begin{proof}
+	From \ref{joyalsquare1}, we see that 
+	\[e \times^\lrcorner \square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) \cong \square^\lrcorner_{E^1,n}(e\times^\lrcorner \delta^n, \delta^{c_1},\dots,\delta^{c_n},\]
+	and by \ref{dannythm}, we see that \(e\times^\lrcorner \delta^n\) can be factored as a transfinite composite of pushouts of inner horn inclusions.  By \ref{cornerpushouts} and \ref{cornertensorcell}, it follows that 
+	\[\square^\lrcorner_{E^1,n}(e\times^\lrcorner \delta^n, \delta^{c_1},\dots,\delta^{c_n})\]
+	is a transfinite composite of pushouts of maps
+	\[\square^\lrcorner_{E^1,n}(h_i, \delta^{c_1},\dots,\delta^{c_n}),\]
+	where the \(h_i:\Lambda^{r_i}_{\ell_i}\to \Delta^{r_i}\) are inner horn inclusions and the \(h_i\) are maps in \(\overcat{\psh{\Delta}}{E^1 \times \Delta^n}\).  Let \(h^\prime_i\) denote the same map in the category \(\overcat{\psh{\Delta}}{\Delta^{r_i}},\) and let \((\alpha,\beta)\) denote the map \(\Delta^{r_i} \to E^1 \times \Delta^n\), with \(\beta\) surjective as we saw above.  Then by \ref{joyalsquare2}, 
+	\[\square_{E^1,n}^\lrcorner(h_i, \delta^{c_1},\dots,\delta^{c_n}) \cong \square^\lrcorner_{r_i}(h^\prime_i,(P_1^\lrcorner,\dots, P_{r_i}^\lrcorner) \circ \tau(\delta^{c_1},\dots,\delta^{c_n})),\]
+	but we see that the \(P^\lrcorner_i\) are corner products of boundary inclusions as in \ref{anodynethm}, and therefore, the maps
+	\[\square^\lrcorner_{r_i}(h^\prime_i,(P_1^\lrcorner,\dots, P_{r_i}^\lrcorner) \circ \tau(\delta^{c_1},\dots,\delta^{c_n}))\] 
+	are all horizontal inner anodyne, demonstrating the claim that
+	\[e \times^\lrcorner \square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\]
+	is inner anodyne.
+\end{proof}
+
+\begin{cor}
+	The fibrations between fibrant objects in the horizontal Joyal model structure are horizontal inner fibrations having the right lifting property with respect to the map \(e:\Delta^0\hookrightarrow E^1\).
+\end{cor}
+\begin{proof} 
+	A fibration between fibrant objects must have the right lifting property with respect to all horizontal inner anodynes and all maps of the form \(e\times^\lrcorner  \square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\).  Since every inner fibration has the right lifting property with respect to all of those maps for \(n>0\), it follows that an inner fibration between fibrant objects need only have the right lifting property with respect to the case where \(n=0\), which is exactly the map \(e\).
+\end{proof}
+\begin{cor}
+	The formal \(\C\)-quasicategories are the fibrant objects of the horizontal Joyal model structure.
+\end{cor}
+\begin{proof}
+	Since the formal \(\C\)-quasicategories have the right lifting property with respect to all inner anodynes, it suffices to check that they have the right lifting property with respect to \(e:\Delta^0\hookrightarrow E^1\), but such a map always exists by choosing the obvious degenerate lift.
+\end{proof}
+
+\begin{comment}
+	\subsection{The indexed join}
+	As with simplicial sets, the join will naturally exist in the augmented category, so we introduce the following definition:
+	\begin{defn}
+	Let \(\Theta[\C]_+\) denote the category of augmented \(\C\)-cells, which can be obtained by adjoining a formal initial object to \(\Theta[\C]\) denoted by \([-1]\). The category of presheaves on this category, denoted by \(\cellset_+\) can be thought of as the category consisting of triples \(X\xrightarrow{\phi} E\), consisting of a \(\C\)-cellular set \(X\), a discrete \(\C\)-cellular set \(E\),  and a \(\C\)-cellular map \(\phi:X\to E\).  There is an obvious inclusion functor \(\iota: \Theta[\C]\to \Theta[\C]_+\), and this induces a functor \(\iota^\ast:\cellset_+ \to \cellset\) defined by the rule \(X\xrightarrow{\phi} E\mapsto X\).  The left-adjoint \(\iota_!\) sends a \(\C\)-cellular set \(X\) to the triple \(X\mapsto X \xrightarrow{p_X} \pi_0 X\), and the right adjoint \(\iota_\ast\) sends the \(\C\)-cellular set \(X\) to the terminal map \(X\mapsto X\xrightarrow{t_x} [0]\).  It is easy to see  from this description that \(\iota^\ast\) preserves all colimits and that \(\iota_\ast\) preserves connected colimits.  
+	\end{defn}
+	We then introduce the following functors
+	\begin{defn}
+	We define the \emph{indexed sum} 
+	\[\star: \Theta[\C]_+ \times \C \times \Theta[\C]_+\to \Theta[\C]_+\]
+	be the functor defined by the formula 
+	\[[n](c_1,\dots,c_n)\join_c [m](c^\prime_1,\dots,c^\prime_m) \defeq [n+1+m](c_1,\dots,c_n,c, c^\prime_1,\dots,c^\prime_m).\]
+	This functor extends by Day convolution to a functor, the augmented indexed join,
+	\[\star:\cellset_+ \times \psh{\C} \times \cellset_+ \to \cellset_+\]
+	defined by the coend formula
+	\[A \operatorname*{\odot}_X B ([z]) \defeq \int^{[x],c,[y]} \Theta[\C]([z],[x]\join_c [y]) \times A([x])\times \iota^\ast \left(V[1](X)\right)([1](c)) \times B([y]).\] 
+	We then define the \emph{indexed join}
+	\[\star:\cellset \times \psh{\C} \times \cellset \to \cellset\]
+	by the formula
+	\[A\join_X B \defeq \iota_\ast\left(\iota^\ast(A) \operatorname*{\odot}_X \iota^\ast(B)\right).\]
+	\end{defn}
+	\begin{note}
+	When \(X=\ast\) is the terminal object of \(\psh{\C}\), we simply denote the join relative to \(X\) by \(A\star B\). 
+	\end{note}
+
+	\begin{lemma}
+	The indexed join preserves connected colimits in each argument.
+	\end{lemma}
+	\begin{proof}
+	Since \(\iota_\ast\) preserves connected colimits, and \(\iota^\ast\) preserves all colimits, it suffices to show that \(A \operatorname*{\odot}_X B\) preserves connected colimits argument-by-argument. It is clear that it preserves all colimits in \(A\) and \(B\), and in the coend formula, we see that \(V[1](-)=\square_1(\id_{\Delta^1},-)\) preserves connected colimits in its argument.  Therefore, the coend preserves all colimits preserved in each of its factors since colimits in sets are universal.  
+	\end{proof}
+
+	\begin{defn}
+	The set of \emph{horizontal left horns} is given by the set of left cones over boundary maps \[[0]\star \square_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n}).\]  Similarly, the set of \emph{horizontal right horn inclusions} is given by the set of right cones under boundary maps, \[\square_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\star [0].\]
+	\end{defn}
+
+	By \ref{cornertensorfunctoriality}, since this functor preserves colimits argument-by-argument, we have an extension to a functor
+	\[\cjoin:\cellset^{[1]} \times {\psh{\C}}^{[1]} \times \cellset^{[1]} \to \cellset^{[1]},\]
+	and we will demonstrate that this functor has nice combinatorial properties:
+
+	\begin{lemma}
+	Given any family of maps \[(f_i:A_i\to B_i)_{i=1}^3\] in \(\psh{C}\) and any family of maps \[(g_i:X_i\to Y_i)_{i=0}^3\] in \(\cellset\), all ways to parenthesize 
+	\[g_0 \cjoin_{f_1} g_1 \cjoin_{f_2} g_2 \cjoin_{f_3} g_3\]
+	are coherently isomorphic.
+	\end{lemma}
+	\begin{proof}
+	By the functoriality of the corner tensor, this will follow by showing that the indexed join 
+	\end{proof}
+	\begin{cor}
+	Let \(\delta^0:\emptyset \to [0]\) denote the boundary map of the \(0\)-cell.  Then every boundary map 
+	\[\delta = \square_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\] can be factored by corner joins as
+	\[\delta^0\cjoin_{\delta^{c_1}} \delta^0 \cjoin_{\delta^{c_2}} \dots \cjoin_{\delta^{c_{n-1}}} \delta^0 \cjoin_{\delta^{c_n}} \delta^0.\]
+	\end{cor}
+	\begin{lemma}
+	Given two boundary inclusions \[\delta =\square_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) \qquad \text{and}\qquad \delta^\prime = \square_m(\delta^m,\delta^{d_1},\dots,\delta^{d_m})\] and a boundary inclusion \(\delta^c:\partial c\hookrightarrow c\), we have that the corner join \[\delta \cjoin_{\delta^c} \delta^\prime = \square_{n+1+m}(\delta^{n+1+m}, \delta^{c_1},\dots,\delta^{c_n},\delta^{c},\delta^{d_1},\dots,\delta^{d_m})\]
+	is a boundary inclusion.
+	\end{lemma}
+	\begin{proof}
+	\end{proof}
+	\begin{lemma}
+	If \(f:A\to A^\prime\), \(g:B\to B^\prime\) are maps, and \(\delta^c:\partial c\hookrightarrow  c\) is a boundary inclusion in \(\psh{\C}\), then the following hold:
+	\begin{itemize}
+		\item If \(f\) is horizontal right or inner horn inclusion, and \(g\) is a boundary inclusion, then \(f\cjoin_{\delta^c} g\) is a horizontal inner horn inclusion.
+		\item If \(g\) is horizontal left or inner horn inclusion, and \(f\) is a boundary inclusion, then \(f\cjoin_{\delta^c} g\) is horizontal inner anodyne.
+		\item If \(f\) is a horizontal left horn inclusion, and \(g\) is a boundary inclusion, then \(f\cjoin_{\delta^c} g\) is a horizontal left horn inclusion.
+		\item If \(g\) is a horizontal right horn inclusion, and \(f\) is a boundary inclusion, then \(f\cjoin_{\delta^c} g\) is a horizontal right horn inclusion.
+	\end{itemize}
+	\end{lemma}
+	\begin{proof}
+	\end{proof}
+	In this section, we give a recognition theorem for horizontal Joyal fibrations between formal \(\C\)-quasicategories.  In particular, we prove that a morphism between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it is a horizontal inner fibration and has the right lifting property with respect to the single morphism \(\{0\}\hookrightarrow E^1\). In the course of the proof, we will also demonstrate that the formal \(\C\)-quasicategories are precisely the fibrant objects of the horizontal Joyal model structure.  We begin with a definition:
+
+	\begin{defn}
+	For any representable \([x]=[n](c_1,\dots,c_n)\) with \(c_1=\ast\) (respectively with \(c_n=\ast\)), we define the \emph{horizontal left horn inclusion} (resp. \emph{horizontal right horn inclusion}) to be the map \[\square^\lrcorner_n(\lambda^n_0,\delta^{c_1}, \dots, \delta^{c_n})\] and respectively \[\square^\lrcorner_n(\lambda^n_n,\delta^{c_1}, \dots, \delta^{c_n}).\]
+
+	We call the domain of such a map the \emph{left horn} (resp. \emph{right horn}) and denote it by \(\Lambda^n_L[x]\) (respectively \(\Lambda^n_R[x]\)).
+	\end{defn}
+
+	This definition is a bit trickier than the usual definition of left and right horn, but it is sufficient for our purposes. The reason why we require the condition \(c_1=\ast\) (resp. \(c_n=\ast\)) is to ensure that we only remove faces of codimension \(1\) from the horn.
+
+	\begin{defn}
+	Let \(X\) be a \(\C\)-cellular set, and let \(f:\Lambda^n_L[x]\to X\) be a map from a left horn.  Then we say that \(f\) is a \emph{special horizontal left horn} if the restriction of \(f\) along the inclusion \(\mathscr{H}\Delta^1=[1](c_1)\hookrightarrow [x]\) factors through \(E^1\), and dually for right horns.
+
+	We say that a map \(X\to Y\) is \emph{special anodyne} if it is the transfinite composition of pushouts along special horn inclusions and horizontal inner anodynes.
+	\end{defn}
+
+	In what follows, fix the notation \(e:\{0\}\hookrightarrow E^1\) to be the obvious inclusion of the vertex.  The proof directly makes use of the filtration of \cite{ds2}{Proposition A.4}.
+
+	\begin{prop} Given any representable \(\C\)-cellular set \([x]=[r](c_1,\dots,c_r)\) such that \(n>0\), the map
+	\[e \times^\lrcorner \square^\lrcorner_r(\delta^r,\delta^{c_1},\dots,\delta^{c_r})\]
+	is special anodyne.
+	\end{prop}
+	\begin{proof}
+	Let \([x]=[r](c_1,\dots,c_n)\) be a representable \(\C\)-cellular set.  Then we begin by noting that \(E^1\times [x]\) is sober, since \(E^1\) is sober, representables are sober, and products of sober presheaves are sober. In particular, \(E^1\times [x]\) is a labeled simplicial set lying over \(E^1\times \Delta^n\).  We define the boundary of \([x]\) by \[\partial[x] = \operatorname{dom}\left(\square^\lrcorner_n(\delta^r, \delta^{c_1},\dots, \delta^{c_r})\right),\] that is, the domain of the corner-intertwiner.  Then the domain of the corner product can be written as \[M_0=\partial[x] \times E^1 \cup [x]\times \{0\}.\]  Let \(U_i[t]\) be the pullback of \(E^1\times [x]\) along the inclusion \(Y_i[t]\to E^1\times \Delta^r\) from \cite{ds2}*{Proposition A.4}.  Then set \[M_i[t]=U_i[t]\cup \left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\] 
+	
+	Suppose \(0<i<r\).  From the proof of \cite{ds1}*{Proposition A.4}, we know that given any nondegenerate simplex of \(Y_i[t+1] - Y_i[t]\), its intersection with \(Y_i[t]\) is an inner horn \(\Lambda^{t+1}_{k}\), so if we let \([z]=[t+1](z_1,\dots,z_{t+1})\) be the pullback of \([t+1]\to Y_i[t+1]\) to \(E^1\times [x]\), we see that its intersection with \(U_i[t]\) is exactly \(V_{\Lambda^{t+1}_k[z]}\). Therefore, its intersection with \(M_i[t]\) is exactly the domain of \[\square^\lrcorner_{t+1}(\lambda^{t+1}_k, \delta^{c_1},\dots, \delta^{c_{t+1}}).\]
+
+	When \(i=0\) (resp. \(i=r\)), the horn attachments of the filtration are special left (resp. special right) horn inclusions, and the same proof works.
+
+	Therefore, each of these attachments to \(M_i[t]\) is either a horizontal inner horn attachment or a special outer horn attachment, which proves the proposition, since \(M_{r+1}=E^1\times \) 
+	\end{proof}
+
+	With this messy part out of the way, it suffices to show that every horizontal inner fibration between formal \(\C\)-quasicategories has the right lifting property with respect to special inner horn inclusions.
+\end{comment}
 %%% bibliography
 \begin{bibdiv}
 	\begin{biblist}
@@ -1860,10 +2194,10 @@ In this section, we demonstrate that the cosimplicial objects \(C^\bullet_L(c)\)
 		}
 
 		\bib{htt}{book}{
-		title={Higher Topos Theory},
-		author={Lurie, Jacob},
-		date={2009},
-		publisher={Princeton University Press},
+			title={Higher Topos Theory},
+			author={Lurie, Jacob},
+			date={2009},
+			publisher={Princeton University Press},
 		}
 
 		\bib{jtsegal}{article}{
@@ -1877,11 +2211,11 @@ In this section, we demonstrate that the cosimplicial objects \(C^\bullet_L(c)\)
 		}
 
 		\bib{nlabwlim}{webpage}{
-		author={nLab authors},
-		title={Weighted Colimit},
-		url={http://ncatlab.org/nlab/show/weighted\%20limit},
-		note={\href{http://ncatlab.org/nlab/revision/weighted\%20limit/29}{Revision 29}},
-		date={2018},
+			author={nLab authors},
+			title={Weighted Colimit},
+			url={http://ncatlab.org/nlab/show/weighted\%20limit},
+			note={\href{http://ncatlab.org/nlab/revision/weighted\%20limit/29}{Revision 29}},
+			date={2018},
 		}
 
 		\bib{oury}{thesis}{
@@ -1904,14 +2238,11 @@ In this section, we demonstrate that the cosimplicial objects \(C^\bullet_L(c)\)
 			doi={10.2140/gt.2010.14.521},
 		}
 
-		\bib{steiner-2004}{article}{
-			author={Steiner, R.},
-			title={Omega-categories and chain complexes},
-			journal={Homology, Homotopy, Appl},
-			volume={6},
-			date={2004},
-			number={1},
-			pages={175-200},
+		\bib{danny}{article}{
+			author={Stevenson, D.},
+			title={Notes on the Joyal model structure},
+			eprint={arXiv:1810.05233},
+			pages={45},
 		}
 
 		\bib{steiner-2007}{article}{
