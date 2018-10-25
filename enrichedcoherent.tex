@@ -248,7 +248,7 @@ In the thirteenth section, we prove that an enriched form of the Yoneda embeddin
 
 In the appendices, we prove or recount a number of important technical results.  
 
-We would like to thank Denis-Charles Cisinski for his help with axiomatizing the Eilenberg-Zilber shuffle decomposition \ref{cishelp}, Andrea Gagna for spending his time discussing these ideas with us over several long conversations as well as his crucial encouragement to put all of this down in writing. We would also like to thank Eric Peterson for his sage advice and friendship over the years.
+We would like to thank Denis-Charles Cisinski for his help with axiomatizing the Eilenberg-Zilber shuffle decomposition \ref{cishelp} and George Raptis for several suggested corrections and additions.  We would also like to give special thanks to Andrea Gagna for spending his time discussing these ideas with us over several long conversations as well as his crucial encouragement to put all of this down in writing as well as Eric Peterson for his sage advice and friendship over the years.
 
 %Unfortunately, it has not been proven that the (op)lax mapping objects \(\operatorname{Fun}_{\mathcal{L}}(X,Y)\) and \(\operatorname{Fun}_{\mathcal{R}}(X,Y)\) are homotopy-invariant, so although we could give a description of what we expect (op)lax weighted limits and colimits to be, it is not known if these definitions are homotopy-invariant and therefore well-defined. This is also a key gap in proving a higher-dimensional version of the straightening theorem.  We can actually construct the straightening and unstraightening pair, but due to serious combinatorial difficulties involving the (op)lax join and slice, as well as figuring out the precise lifting conditions for higher cartesian fibrations, we have been unable to prove even that the unmarked unstraightening functor sends projectively fibrant diagrams to cartesian fibrations.  The proof of this property (well-short of proving an equivalence of model categories, which probably also requires taking markings into account) can be reduced to showing that the natural projection of the lax slice over a vertex, \(X_{/^{\ell} x}\to X\) is always a cartesian fibration for \(X\) fibrant.   We encourage others interested in the field to take a serious look at this open problem.
 
@@ -394,10 +394,10 @@ We will extensively abuse notation in what follows by identifying a simplicial s
 			      \begin{cases}
 				      \emptyset                                                & \text{ for } i>j \\
 				      c\Delta^0                                                & \text{ for } i=j \\
-				      X_{i+1} \times \Delta^1 \times \dots \times \Delta^1 X_j & \text{ for } i<j
+				      X_{i+1} \times \Delta^1 \times \dots \times \Delta^1 \times X_j & \text{ for } i<j
 			      \end{cases}
 		      \]
-		\item The associative composition law, \(\Hom(i,j)\times \Hom(j,k)\to \Hom(j,k)\) which is the inclusion on the bottom face with respect to \(j\):
+		\item The associative composition law, \(\Hom(i,j)\times \Hom(j,k)\to \Hom(i,k)\) which is the inclusion on the bottom face with respect to \(j\):
 		      \begin{align*}
 			      X_{i+1}\times \Delta^1\times\dots\times\Delta^1\times X_j \times & \{1\}\times X_{j+1} \times \Delta^1\times\dots\times\Delta^1\times X_k    \\
 			                                                                       & \downarrow                                                                \\
@@ -445,11 +445,15 @@ Finally, we come to the form of this functor that we will be using:
 \begin{defn} Let \(\mathfrak{C}\) be the composite \[\Theta[\C]\hookrightarrow\Delta\int \psh{\C} \xrightarrow{Q} \Cat_{\spsh}.\] Since \(\Cat_{\spsh}\) is cocomplete, there exists a colimit-preserving extension to \(\cellset\), the \emph{homotopy-coherent realization}, which by abuse of notation, we also call \(\mathfrak{C}\).  It is the left adjoint in an adjunction \[\mathfrak{C}:\cellset\rightleftarrows \Cat_{\spsh}:\mathfrak{N},\]  wherein the right adjoint is called the \emph{homotopy-coherent nerve}.
 \end{defn}
 
+\begin{note}
+	It is easy to see that if we substitute the terminal category for \(\C\), this specializes precisely to the usual coherent realization \(\mathfrak{C}_{\Delta} = \mathfrak{C}_{\Theta[\ast]}\).  
+\end{note}
+
 \section{Enriched necklaces and the coherent realization}
 Necklaces were introduced by Dugger and Spivak in order to understand the mapping objects \(\Hom_{\mathfrak{C}(X)}\) and give a much easier proof than Lurie's that the homotopy-coherent realization and nerve form a Quillen equivalence.  In this section, we will introduce an enriched version of necklaces that will serve the same purpose.
 
 \begin{defn}
-	A \emph{pre-necklace} is a sober \(\C\)-cellular set whose projection to \(\psh{\Delta}\) is a simplicial necklace in the sense of Dugger and Spivak.
+	A \emph{pre-necklace} is a sober \(\C\)-cellular set whose projection to \(\psh{\Delta}\) (i.e. image under the functor \(\pi: \cellset \to \psh{\Delta}\)) is a simplicial necklace in the sense of Dugger and Spivak.
 
 	Given a pre-necklace \(T\), we define the \emph{shape of \(T\)} to be its associated simplicial set \(\pi(T)\).
 
@@ -509,7 +513,7 @@ This is not the end of the story.  This colimit is still very complicated, and w
 \end{defn}
 
 \begin{defn}
-	We define the subcategory \[\Nec^\mathbf{sp}_c\subseteq \Nec_c\] to be the wide subcategory whose morphisms are are \emph{special}, which are maps that factor as the composite of a pure codegeneracy followed by a map whose restriction to each edge of the spine of the domain is a diagonal \(c\xrightarrow{id^k} c^k\) of the appropriate arity.
+	We define the subcategory \[\Nec^\mathbf{sp}_c\subseteq \Nec_c\] to be the wide subcategory whose morphisms are \emph{special}, which are maps that factor as the composite of a pure codegeneracy followed by a map whose restriction to each edge of the spine of the domain is a diagonal \(c\xrightarrow{id^k} c^k\) of the appropriate arity.
 \end{defn}
 
 We begin by giving the following construction: Given a \(\C\)-cellular set \(X\) together with two vertices \(x,y\in X_0\), we give a functor \[\mathcal{E}_{X,c}(x,y):\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\to \psh{\Delta}\] defined by the rule \[T\mapsto \mathfrak{C}_\Delta(\pi(T))(\alpha,\omega),\] where \(\mathfrak{C}_\Delta\) denotes the ordinary coherent realization of a simplicial set.
@@ -573,7 +577,7 @@ In the case of \(\mathfrak{C}^\Hoc\), we can see immediately that there is a uni
 
 Then we need to show that \(E_{X,c}\) is a homotopy colimit:
 \begin{thm}\label{necthm}
-	The natural map \[\mathfrak{C}^\Hoc_c \to \mathfrak{C}_c\] is a natural weak equivalence.
+	The natural map \[\mathfrak{C}^\Hoc_c \to \mathfrak{C}_c\] is a pointwise weak equivalence.
 \end{thm}
 \begin{proof}
 	See \cite{ds1}*{4.4, 4.10, 5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \(\ell^\mathrm{th}\) row of the bisimplicial set of pairs 
@@ -601,6 +605,10 @@ We define a Cisinski model structure on \(\cellset\) and state several results t
 \begin{defn}
 	We call an object with the right lifting property with respect to \(\mathscr{J}\) a \emph{formal \(\C\)-quasicategory}.
 \end{defn}
+
+\begin{note} 
+	In the case where \(\C\) is the terminal category, these are precisely the quasicategories, since the horns in the definition above become exactly the simplicial inner horn inclusions.
+\end{note}
 
 The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in the Appendices \ref{reedy}, \ref{horizontal}, and \ref{admissible}.
 
@@ -2184,13 +2192,6 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 			review={\MR{2764043}},
 		}
 
-		\bib{lmw}{article}{
-			author={Lafont, Y. AND Metayer, F. AND Worytkiewicz, K.},
-			title={A folk model structure on omega-cat},
-			journal={Preprint},
-			date={2007},
-		}
-
 		\bib{htt}{book}{
 			title={Higher Topos Theory},
 			author={Lurie, Jacob},
@@ -2242,17 +2243,6 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 			eprint={arXiv:1810.05233},
 			pages={45},
 		}
-
-		\bib{steiner-2007}{article}{
-			author={Steiner, R.},
-			title={Simple omega-categories and chain complexes},
-			journal={Homology, Homotopy, Appl},
-			volume={9},
-			date={2007},
-			number={1},
-			pages={175-200},
-		}
-
 
 	\end{biblist}
 \end{bibdiv}
