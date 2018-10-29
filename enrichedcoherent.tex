@@ -19,15 +19,14 @@
 
 % TikZ settings
 \usepackage{tikz}
-\usetikzlibrary{matrix,arrows}
+\usetikzlibrary{matrix,arrows,cd}
 
 \title[The Enriched Coherent Nerve]{Rigidification and the Coherent Nerve for enriched Quasicategories}
 \author[H. Gindi]{Harry Gindi}
 \address{Department of Mathematics \\ University of Regensburg \\ Regensburg, Bavaria 93051}
 \email{harry.gindi@gmail.com}
 \date{\today}
-\subjclass{ 18A30, 18B40, 18C10, 18C30, 18C35, 18D05,
-18D50, 18E35, 18G50, 18G55, 55P10, 55P15, 55Q05, 55U35, 55U40}
+\subjclass[2010]{18A30, 18D05, 18E35, 18G55, 55P10, 55U35}
 \keywords{enriched categories, higher category theory, homotopy theory}
 
 
@@ -202,7 +201,7 @@
 
 %%% abstract
 \begin{abstract}
-	We introduce, for \(\C\) a regular Cartesian Reedy category a model category whose fibrant objects are an analogue of quasicategories enriched in simplicial presheaves on \(C\).  We then develop a coherent realization and nerve for this model structure and demonstrate using an enriched version of the necklaces of Dugger and Spivak that our model category is Quillen-equivalent to the category of categories enriched in simplicial presheaves on \(\C\).  We then show that for any Cartesian-closed left-Bousfield localization of the category of simplicial presheaves on \(\C\), the coherent nerve and realization descend to a Quillen equivalence on the localizations of these model categories. As an application, we demonstrate a version of Yoneda's lemma for these enriched quasicategories.
+	We introduce, for \(\C\) a regular Cartesian Reedy category a model category whose fibrant objects are an analogue of quasicategories enriched in simplicial presheaves on \(\C\).  We then develop a coherent realization and nerve for this model structure and demonstrate using an enriched version of the necklaces of Dugger and Spivak that our model category is Quillen-equivalent to the category of categories enriched in simplicial presheaves on \(\C\).  We then show that for any Cartesian-closed left-Bousfield localization of the category of simplicial presheaves on \(\C\), the coherent nerve and realization descend to a Quillen equivalence on the localizations of these model categories. As an application, we demonstrate a version of Yoneda's lemma for these enriched quasicategories.
 \end{abstract}
 
 %%% the title
@@ -216,7 +215,7 @@
 \section*{Introduction}
 In his thesis, David Oury introduced machinery to give a novel proof that his constructed model structure on \(\Theta_2\)-sets is cartesian-monoidal closed. Charles Rezk constructed a model structure on \(\Theta_2\)-spaces that is known to be Quillen biequivalent to Oury's model structure.  However,  Rezk's construction allows for enrichment in a larger class of model categories, namely cartesian-closed model categories whose underlying categories are simplicial presheaves on a small category \(\C\) satisfying some tame restrictions.
 
-Bergner and Rezk also showed by means of a zig-zag of Quillen equivalences that \(\Theta_n\)-spaces model the same homotopy theory as \(\Psh_\Delta(\Theta_{n-1})\)-enriched categories.  Because the equivalence is indirect, however, many of the ideas from Lurie's work on \((\infty,1)\)-categories cannot be adapted in a straightforward manner.  In order to rectify this, we construct a generalized version of the coherent realization and nerve using \(\Theta_n\)-sets (or more generally \(\Theta[\C]\)-sets), and we demonstrate that this adjunction is a Quillen equivalence using an enriched version of Dugger and Spivak's calculus of necklaces. In fact, our result is strictly stronger than the result of Rezk and Bergner because it allows us to account for the cases \(\Theta=\Theta_\omega\) as well as prove the equivalence when \(\C\neq \Theta_n\), which the Rezk-Bergner approach could not handle, since one of the categories appearing in the zig-zag (the height-\(n\) analogue of Segal categories) does not make sense for general \(\C\).
+Bergner and Rezk also showed by means of a zig-zag of Quillen equivalences that \(\Theta_n\)-spaces model the same homotopy theory as \(\Psh_\Delta(\Theta_{n-1})\)-enriched categories.  Because the equivalence is indirect, however, many of the ideas from Lurie's work on \((\infty,1)\)-categories cannot be adapted in a straightforward manner.  In order to rectify this, we construct a generalized version of the coherent realization and nerve using \(\Theta_n\)-sets (or more generally \(\Theta[\C]\)-sets), and we demonstrate that this adjunction is a Quillen equivalence using an enriched version of Dugger and Spivak's calculus of necklaces. In fact, our result is strictly stronger than the result of Rezk and Bergner because it allows us to account at the very least for the new case \(\Theta=\Theta_\omega\), which is regular Cartesian Reedy by \cite{berger-iterated-wreath}, which the Rezk-Bergner approach could not handle, since one of the categories appearing in the zig-zag (the height-\(n\) analogue of Segal categories) does not make sense for \(\C\neq \Theta_n\) for \(n\) finite.  
 
 Taking all of these results together allows us to define suitably enriched versions of the Yoneda embedding, which is a significant result that as a corollary allows for substantial development of the theory of weak \(\omega\)-categories (that is, \((\infty,\infty)\)-categories). In particular, we can define weighted pseudolimits and pseudocolimits in terms of representability of presheaves, and these can be used to define the other universal constructions.
 
@@ -301,7 +300,7 @@ In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of preshe
 	In particular, on representables we have that
 	\[\mathscr{H}(\Delta^n)=[n](\ast,\dots,\ast).\]
 	Therefore, we have an adjoint triple,
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (m) [matrix of math nodes, row sep=3em,column sep=3em]
 			{ \cellset & \psh{\Delta} \\};
@@ -310,8 +309,7 @@ In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of preshe
 			(m-1-2) edge node[auto,swap, transform canvas={yshift=-0.2em}]{\(\scriptstyle \mathscr{H}\)} (m-1-1)
 			(m-1-1) edge[transform canvas={yshift=-1.2em}]   node[auto, swap]{\(\scriptstyle \mathscr{N}\)} node[auto]{\(\scriptstyle{\perp}\)} (m-1-2);
 			\end{tikzpicture}
-	\end{equation*}
-
+	\end{center}
 \end{rem}
 
 \begin{defn} We define a special cosimplicial object in \(\cellset\) by the formula \[E^\bullet=\mathscr{H}(\operatorname{cosk}_0\Delta^\bullet).\]  This cosimplicial object will be a cosimplicial resolution of a point, once we define our model structures.
@@ -473,7 +471,7 @@ Following Dugger and Spivak, we define a construction as follows: Given a \(\C\)
 \begin{prop} For any \(\C\)-cellular set \(X\), the induced map \(E_X\to \mathfrak{C}(X)\) is an isomorphism.
 \end{prop}
 \begin{proof} Following along closely with the proof of \cite{ds1}*{Proposition 4.3}, we consider the following commutative diagram:
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
 			{
@@ -486,9 +484,9 @@ Following Dugger and Spivak, we define a construction as follows: Given a \(\C\)
 			(b-2-1) edge [-,double] (b-2-2)
 			(b-1-2) edge (b-2-2);
 		\end{tikzpicture}.
-	\end{equation*}
+	\end{center}
 	The bottom horizontal equality is by definition, and the left vertical map is an isomorphism because \(E_{[t]}\cong \mathfrak{C}([t])\) for all representables, since they are all necklaces and therefore are terminal in their respective diagrams defining \(E\). It follows that the top horizontal map is injective, and it suffices therefore to show that it is surjective. Choose any representable \(\xi:\Delta^n \times c \to E_X(x,y)\). Since \(\Delta^n\times [c]\) is representable and \(E_X(x,y)\) is a colimit, it follows that the map \(\Delta^n\times c\to E_X(x,y)\) factors through some \[f:\mathfrak{C}(T)(\alpha,\omega) \to \mathfrak{C}(X)(x,y)\] and is represented therefore represented by the data of such a factorization.   Consider the commutative diagram diagram:
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
 			{
@@ -502,7 +500,7 @@ Following Dugger and Spivak, we define a construction as follows: Given a \(\C\)
 			(b-2-2) edge (b-1-2) edge node[auto,swap]{\(\scriptstyle{E_f}\)} (b-3-2)
 			(b-3-1) edge (b-3-2);
 		\end{tikzpicture}.
-	\end{equation*}
+	\end{center}
 	Therefore, it suffices to show that the middle horizontal map is surjective, since if this is the case, we can chase \(\xi\) back to an element of \(\left( \colim_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y)\), which proves surjectivity.  But the top horizontal map is an isomorphism by the definition of \(\mathfrak{C}\), and both top row vertical maps are isomorphisms, again because the diagrams over which \(E_{[t]}\) and \(E_T\) are colimits over have terminal objects, namely the necklaces \([t]\) and \(T\) themselves.
 \end{proof}
 
@@ -732,7 +730,7 @@ The general theory of gadgets developed in \cite{ds1} is difficult to adapt to t
 
 \begin{defn}
 	A \emph{gadget} of rank \(n\) is a functor \[G: \C \to \cellset_{\ast,\ast}\] such that there exists a \(c\)-indexed simplicial presheaf \(S_G^\bullet\) and a natural zig-zag of weak homotopy equivalences of simplicial presheaves \[\mathfrak{C}(G(c))(\alpha,\omega) \xleftarrow{\sim} S_G^c \xrightarrow{\sim} c^n\] for all \(c\in \C\) (where \(c^n\) denotes the \(n^\mathrm{th}\) cartesian power of the representable), where naturality implies that for any \(f:c\to d\) in \(\C\), the diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em,
 			column sep=3em]
@@ -749,7 +747,7 @@ The general theory of gadgets developed in \cite{ds1} is difficult to adapt to t
 			(b-2-2) edge (b-2-3)
 			(b-1-3) edge node[auto,swap]{\(\scriptstyle{f^n}\)} (b-2-3);
 		\end{tikzpicture}.
-	\end{equation*}
+	\end{center}
 	commutes.
 \end{defn}
 
@@ -814,7 +812,7 @@ Then we define the following four cosimplicial objects:
 \[C^\bullet_{L}(c)\defeq \colim \left( \ast \leftarrow \Delta^\bullet \xrightarrow{\partial^0} (\bullet)^\triangleleft(c)\right).\]
 
 These cosimplicial objects fit in a natural diagram
-\begin{equation*}
+\begin{center}
 	\begin{tikzpicture}
 		\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
 		{
@@ -827,7 +825,7 @@ These cosimplicial objects fit in a natural diagram
 		(b-3-1) edge (b-2-2)
 		(b-2-2) edge (b-2-3);
 	\end{tikzpicture}.
-\end{equation*}
+\end{center}
 induced by the inclusions we described above.
 \begin{prop}
 	Each of the cosimplicial objects described above is a Reedy-cofibrant object of bipointed presheaves on \(\Theta[\C]\), and each is objectwise horizontal-Joyal equivalent to the constant cosimplicial object \([1](c)\).  That is to say, each of these cosimplicial objects is a cosimplicial resolution of \([1](c)\) in \(\cellset_{\ast,\ast}\).
@@ -877,7 +875,7 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 
 \begin{prop} 
   If \(X\) is formal \(\C\)-quasicategory,  and \(x,y\) are two vertices of \(x\), there is a commutative diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
 			{
@@ -891,7 +889,7 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 			edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
 			(b-2-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-2);
 		\end{tikzpicture}.
-	\end{equation*}
+	\end{center}
 	in which all of the maps are weak equivalences.
 \end{prop}
 \begin{proof}
@@ -934,7 +932,7 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 \end{thm}
 \begin{proof}
 	Let \(\C^\bullet=C^\bullet_R\).  Then consider the following commutative diagram:
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em,
 				column sep=2em]
@@ -955,10 +953,10 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 			(b-4-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-2)
 			(b-4-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)} (b-4-2);
 		\end{tikzpicture}
-	\end{equation*}
+	\end{center}
 
 	The two horizontal maps in the bottom row are weak equivalences by the previous proposition and the fact that \(\mathfrak{N}\) takes fibrant objects to fibrant objects.  The indicated vertical maps are also weak equivalences because \(\pi\) takes gadgets to simplicial gadgets, which have the property that \(\mathfrak{C}_\Delta(G)(\alpha,\omega)\) is weakly contractible.  By \(3\)-for-\(2\), it follows that the horizontal maps in the third row are all weak equivalences.  We reduce this diagram to a smaller diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em,
 				column sep=2em]
@@ -971,7 +969,7 @@ The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 			(b-2-2) edge (b-1-2)
 			(b-2-3) edge node[auto,swap]{\(\scriptstyle{\gamma_c}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\sim}\)} (b-2-2);
 		\end{tikzpicture},
-	\end{equation*}
+	\end{center}
 	in which the left vertical map is a weak equivalence by Theorem \ref{necthm}. By \(3\)-for-\(2\), we can see that it suffices to show that the map
 	\[\gamma_c: \hocoliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \to \coliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega)\to \mathcal{D}(x,y),c\]
 	is a weak equivalence.
@@ -1052,7 +1050,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 	is a weak equivalence for all presheaves \(X\) on \(\Theta[\C]\), where \(\mathfrak{C}(X) \to \mathcal{D}\) is a weak equivalence and \(\mathcal{D}\) is fibrant.  However, by the previous proposition, we see that it suffices to show that the map
 	\[\mathfrak{C}(X)\to \mathfrak{C}\mathfrak{N}\mathfrak{C}(X) \to \mathfrak{C}\mathfrak{N}\mathcal{D}\]
 	is a weak equivalence.  We obtain a naturality square from the counit
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=2em]
 			{
@@ -1064,11 +1062,11 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 			(b-1-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2);
 		\end{tikzpicture},
-	\end{equation*}
+	\end{center}
 	in which the indicated arrows are equivalences (for the bottom horizontal, this was by choice, and for the righthand vertical, it comes from Theorem \ref{counitthm}.  But if we precompose with the unit map \(\mathfrak{C}\eta_X:\mathfrak{C}(X)\to \mathfrak{C}\mathfrak{N}\mathfrak{C}(X)\), the lefthand arrow becomes the identity by the triangle identities, which proves the claim by \(3\)-for-\(2\).
 \end{proof}
 
-\section{The \((\C,setS)\)-enriched model structure}\label{rezkvert}
+\section{The \((\C,\setS)\)-enriched model structure}\label{rezkvert}
 While our presentation of the horizontal Joyal model structure comes mainly from David Oury's thesis \cite{oury}, what follows is independent, making use of the resolution technology we developed in the previous section to give a simple and satisfying story. Suppose \(\M=(\C,\setS)\) is a Cartesian presentation in the sense of Rezk, where \(\setS\) is a set of monomorphisms of \(\spsh\) such that the left-Bousfield localization of \(\spsh_\mathrm{inj}\) at \(\setS\) is a Cartesian model category.  
 
 Recall that we had a number of functorial cosimplicial objects \[C_{(-)}^\bullet(\bullet):\Delta \times \C \to \cellset_{\ast,\ast},\] such that \(C_{(-)}^\bullet(\bullet)\) was a cosimplicial resolution of \([1](\bullet)\), which is a Reedy cofibrant diagram \(\C\to \cellset_{\ast,\ast}\).  Since \(\cellset_{\ast,\ast}\) is cocomplete, \(C_{(-)}^\bullet(\bullet)\) extends to a cocontinuous functor \[\Sigma:\spsh\to \cellset_{\ast,\ast}.\]  
@@ -1459,7 +1457,7 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 \end{lemma}
 \begin{proof} 
 	Since colimits are computed objectwise in presheaves, it suffices to show that the functor \(\square_S(\bullet,\Omega)_t\) preserves colimits for all \([t]=[n](c_1,\dots,c_n) \in \Theta[\C]\) and all labels \(\Omega\) of \(S\).  Therefore, it suffices by Observation \ref{evaluationsquare} to show this in the case where \(\C\) is the terminal category, since we may fix the family of objects \((c_1,\dots,c_n)\). For each \(s\in S_n\) let \((W_{s,i})_{i=1}^n\) be the evaluation of \(\Omega\) on \(s\).  Then given \(f:Y\to S\), we have a cartesian square
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
 			{
@@ -1471,7 +1469,7 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 			(b-2-1) edge node[auto]{\(\scriptstyle{\tau}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{f}\)} (b-2-2);
 		\end{tikzpicture},
-	\end{equation*}
+	\end{center}
 	exhibiting \(\coprod_{y\in Y_n} \prod_{i=1}^n W_{fy,i}\) as the pullback of \(f\) along \(\tau\), but by the universality of colimits in the category of sets, we are done.  
 \end{proof}
 
@@ -1545,7 +1543,7 @@ Following \cite{oury}*{3.85}, we begin with the following observations:
 
 \begin{obs}\label{square1}
 	We saw from the definition of \(\square\) and the definition of products in \(\ssetlab\) that the diagram 
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
 			{
@@ -1557,9 +1555,9 @@ Following \cite{oury}*{3.85}, we begin with the following observations:
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\times}\)} (b-2-2);
 		\end{tikzpicture}
-	\end{equation*}
+	\end{center}
 	commutes.  We also computed that the diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
 			{
@@ -1573,9 +1571,9 @@ Following \cite{oury}*{3.85}, we begin with the following observations:
 			(b-1-2) edge node[auto]{\(\scriptstyle{\times}\)} (b-3-2)
 			(b-3-1) edge node[auto]{\(\scriptstyle{H_{n,m}}\)} (b-3-2);
 		\end{tikzpicture}
-	\end{equation*}
+	\end{center}
 	commutes as well where \(\varsigma\) permutes the factors and \(P\) is the functor sending a pair of labeled simplicial sets \(f:S\to \Delta^n,\Omega\) and \(g:S^\prime\to \Delta^m,\Omega^\prime\) over \(\Delta^n\) and \(\Delta^m\) respectively to the labeled simplicial set \[f\times g:S\times S^\prime \to \Delta^n\times \Delta^m,\Omega\times \Omega^\prime\] over the product.  Taking these two diagrams together, we see that the diagram 
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
 			{
@@ -1589,12 +1587,12 @@ Following \cite{oury}*{3.85}, we begin with the following observations:
 			(b-1-2) edge node[auto]{\(\scriptstyle{\times}\)} (b-3-2)
 			(b-3-1) edge node[auto]{\(\scriptstyle{\square_{n,m}}\)} (b-3-2);
 		\end{tikzpicture}
-	\end{equation*}
+	\end{center}
 	also commutes.
 
 
 Then by \ref{conncolims}, every functor appearing in this diagram preserves connected colimits in each argument, the intertwiners by the lemma, and the functors \(P\) and \(\times\), since they are products in presheaf categories and therefore preserve colimits in both arguments. Then by the functoriality of the corner tensor functor \ref{cornertensorfunctoriality}, we obtain a commutative diagram 
-\begin{equation*}
+\begin{center}
 	\begin{tikzpicture}
 		\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
 		{
@@ -1608,7 +1606,7 @@ Then by \ref{conncolims}, every functor appearing in this diagram preserves conn
 		(b-1-2) edge node[auto]{\(\scriptstyle{\times^\lrcorner}\)} (b-3-2)
 		(b-3-1) edge node[auto]{\(\scriptstyle{\square_{n,m}^\lrcorner}\)} (b-3-2);
 	\end{tikzpicture}
-\end{equation*}
+\end{center}
 also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 \end{obs}
 
@@ -1625,7 +1623,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 	\[K_{\alpha,\beta}:\psh{\C}^n \times \psh{\C}^m\to \psh{\C}^r\] be the functor defined by the rule
 	\[(\mathbf{U},\mathbf{V})\mapsto \alpha^\ast \mathbf{U} \times \beta^\ast \mathbf{V},\]
 	taking the product of the pullbacks to the fibre over \(\Delta^r\).  Then we have a diagram:
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
 			{
@@ -1638,7 +1636,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 			(b-2-1) edge node[auto]{\(\scriptstyle{H_{n,m}}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{H_r}\)} (b-2-2);
 		\end{tikzpicture}
-	\end{equation*}
+	\end{center}
 	To show that the diagram commutes, let \(p:X\to \Delta^r\) be a map.  Then evaluating \(H_r(p,K_{\alpha,\beta}(\mathbf{U},\mathbf{V})=H_r(p,\alpha^*\mathbf{U} \times \beta^*\mathbf{V})\) on a simplex \(x:\Delta^s\to X\) is 
 	\begin{align*}
 		(px)^\ast(\alpha^\ast\mathbf{U} \times \beta^\ast\mathbf{V}) &= (px)^\ast\alpha^\ast\mathbf{U} \times (px)^\ast\beta^\ast\mathbf{U}\\
@@ -1656,7 +1654,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 	\[(X_1,\dots,X_{t_i}) \mapsto X_1 \times \dots \times X_{t_i}\]
 	Then the \(P_i\) assemble to a map \((P_1, \dots, P_r)\) such that \[(P_1,\dots,P_r)\circ \tau = K_{\alpha,\beta}.\]
 	Then the diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
 			{
@@ -1670,9 +1668,9 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i)_{i=1}^r}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{H_r}\)} (b-2-3);
 		\end{tikzpicture}
-	\end{equation*}
+	\end{center}
 	commutes, and therefore, composing the bottom horizontal and right vertical maps with \(\square\), we have another commutative diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
 			{
@@ -1686,10 +1684,10 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i)_{i=1}^r}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{\square_r}\)} (b-2-3);
 		\end{tikzpicture}.
-	\end{equation*}
+	\end{center}
 	The bottom horizontal and right vertical maps preserve connected colimits, as we have seen.  The left vertical map preserves connected colimits because colimits are computed in the domain for comma categories.  The map \(\prod_{i=1}^r Pi\) preserves colimits in each argument because colimits are universal in toposes. 
 	Then applying the corner tensor functor, we have the commutative diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=2em]
 			{
@@ -1703,7 +1701,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i^\lrcorner)}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{\square^\lrcorner_r}\)} (b-2-3);
 		\end{tikzpicture}.
-	\end{equation*}
+	\end{center}
 \end{obs}
 
 Finally, we reach our destination.  As we mentioned before, this entire section is due to David Oury \cite{oury}, and the following theorem is the crescendo:
@@ -1759,7 +1757,7 @@ We will make use of the following lemma:
 	\[V_{\operatorname{Sp}[n-1]}(X_1,\dots,X_n) \hookrightarrow V_{\partial_0 \Delta^n}(X_1,\dots,X_n),\]
 	and is therefore a trivial cofibration.  
 	Notice that for \(d_0: [n-1] \to [n]\), \(d_0^{-1}(\operatorname{Sp}[n]) = \operatorname{Sp}[n-1]\) and \(d_0^{-1}(\partial_n\Delta^n) = \partial_{n-1}\Delta^{n-1}\).  Then the square
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
 			{
@@ -1771,7 +1769,7 @@ We will make use of the following lemma:
 			(b-2-1) edge node[auto]{\(\scriptstyle{d^\prime_0}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{j_n}\)} (b-2-2);
 		\end{tikzpicture}
-	\end{equation*}
+	\end{center}
 	is cocartesian, and \(k_{n-1}\) is a trivial cofibration by using the cancellation property with the map \(j_{n-1}\).
 	Therefore, it follows that \(j_n\) is also a trivial cofibration. 
 
@@ -1786,7 +1784,7 @@ We will make use of the following lemma:
 	\[V_{\Lambda^n_T}(X_1,\dots,X_n) \hookrightarrow V_{\Lambda^n_S}(X_1,\dots,X_n)\]
 	is a trivial cofibration.   
 	We see that the diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
 			{
@@ -1798,7 +1796,7 @@ We will make use of the following lemma:
 			(b-2-1) edge  (b-2-2)
 			(b-1-2) edge  (b-2-2);
 		\end{tikzpicture}
-	\end{equation*}
+	\end{center}
 	is a pushout, and therefore, it suffices to show that 
 	\[V_{\Lambda^n_T \cap \partial_b \Delta^n }(X_1,\dots,X_n) \hookrightarrow V_{\partial_b\Delta^n}(X_1,\dots,X_n)\]
 	is a trivial cofibration.  But this is true by the inductive hypothesis on \(n\). Therefore, we are done. 
@@ -1917,7 +1915,7 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 	to be the functor sending
 	\[\mathbf{U} \mapsto \beta^\ast \mathbf{U}.\]
 	Similar to \ref{square2}, we have a diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
 			{
@@ -1930,7 +1928,7 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 			(b-2-1) edge node[auto]{\(\scriptstyle{\mathcal{H}_{E^1,n}}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{H_r}\)} (b-2-2);
 		\end{tikzpicture},
-	\end{equation*}
+	\end{center}
 	and the diagram commutes by a direct computation.  
 	Set \((t_i=\beta(i) - \beta(i-1))_{i=1}^r\), and let 
 	\[\tau_i:\psh{\C}^n \to \psh{\C}^{t_i}\]
@@ -1946,7 +1944,7 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 	\[(P_1,\dots,P_r): \prod_{i=1}^r \psh{\C}^{t_i} \to \psh{\C}^r,\]
 	such that \((P_1,\dots,P_r)\circ \tau = K_\beta\).
 	Then we have a commutative diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
 			{
@@ -1960,9 +1958,9 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i)_{i=1}^r}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{H_r}\)} (b-2-3);
 		\end{tikzpicture},
-	\end{equation*}
+	\end{center}
 	and therefore, composing the bottom horizontal and right vertical maps with \(\square\), we have another commutative diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
 			{
@@ -1976,9 +1974,9 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i)_{i=1}^r}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{\square_r}\)} (b-2-3);
 		\end{tikzpicture}.
-	\end{equation*}
+	\end{center}
 	We see that each of the arrows in this picture preserves connected colimits argument-by-argument, so applying the corner tensor functor, we obtain a commutative diagram
-	\begin{equation*}
+	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=2em]
 			{
@@ -1992,7 +1990,7 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i^\lrcorner)}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{\square^\lrcorner_r}\)} (b-2-3);
 		\end{tikzpicture}.
-	\end{equation*}
+	\end{center}
 \end{obs}
 \begin{thm}
 	Set \(e:\Delta^0\to E^1\). Then for any boundary inclusion 
@@ -2211,7 +2209,7 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 
 		\bib{nlabwlim}{webpage}{
 			author={nLab authors},
-			title={Weighted Colimit},
+			title={Weighted Limit},
 			url={http://ncatlab.org/nlab/show/weighted\%20limit},
 			note={\href{http://ncatlab.org/nlab/revision/weighted\%20limit/29}{Revision 29}},
 			date={2018},
