@@ -257,16 +257,21 @@ In this section, we will consider a slightly more general definition of the wrea
 \begin{defn}
 	Suppose \(\mathcal{V}\) is a monoidal category.  Then we construct a Grothendieck fibration \[\Delta\int\mathcal{V}\to \Delta\] by applying the Grothendieck construction to the functor \[\mathcal{V}_\bullet:\Delta^\op\to \Cat\] classifying \(\mathcal{V}\). We call the total space of this fibration the \emph{wreath product} of \(\Delta\) with \(\mathcal{V}\).
 
-	Recall that the \(2\)-pseudofunctor \(\mathbf{CAT}(\Delta^\op, \Cat)(\cdot,\cdot)\) is defined by sending a pair of pseudofunctors \(F_\bullet,G_\bullet\) to the category whose objects are pseudonatural transformations \(F_\bullet\Rightarrow G_\bullet\) and whose morphisms are modifications. If \(G_\bullet\) is a pseudofunctor, we define the functor \[h_{G_\bullet}=\mathbf{CAT}(\Delta^\op, \Cat)(\cdot,G_\bullet):\mathbf{CAT}(\Delta^\op, \Cat)\to \mathbf{CAT}\]
+	Now, notice that since \(\Cat\) is complete, the functor \(\mathcal{V}_\bullet\) extends uniquely along the co-Yoneda embedding to a continuous functor 
+	\[\psh{\mathcal{V}^\op_\bullet}^\op: \psh{\Delta}^\op \to \Cat,\]
+	which is exactly the right Kan extension of \(\mathcal{V}_\bullet\) along the co-Yoneda embedding \(\Delta^\op \hookrightarrow \psh{\Delta}^\op\).  Applying the Grothendieck construction to the functor \(\psh{\mathcal{V}^\op_\bullet}^\op\), we define the Grothendieck fibration \[\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}.\] The total space of this fibration is called the category of \emph{\(\mathcal{V}\)-labeled simplicial sets}.
+	
+	%Recall that the \(2\)-pseudofunctor \(\mathbf{CAT}(\Delta^\op, \Cat)(\cdot,\cdot)\) is defined by sending a pair of pseudofunctors \(F_\bullet,G_\bullet\) to the category whose objects are pseudonatural transformations \(F_\bullet\Rightarrow G_\bullet\) and whose morphisms are modifications. If \(G_\bullet\) is a pseudofunctor, we define the functor \[h_{G_\bullet}=\mathbf{CAT}(\Delta^\op, \Cat)(\cdot,G_\bullet):\mathbf{CAT}(\Delta^\op, \Cat)\to \mathbf{CAT}\]
 
-	Recall also that there is a fully-faithful embedding \[\iota_*:\operatorname{Fun}(\Delta^\op,\operatorname{Set}) \hookrightarrow \operatorname{Fun}(\Delta^\op,\mathbf{CAT}),\] obtained from \(\iota:\operatorname{Set} \hookrightarrow \Cat\).
+	%Recall also that there is a fully-faithful embedding \[\iota_*:\operatorname{Fun}(\Delta^\op,\operatorname{Set}) \hookrightarrow \operatorname{Fun}(\Delta^\op,\mathbf{CAT}),\] obtained from \(\iota:\operatorname{Set} \hookrightarrow \Cat\).
 
-	Then by composition, we obtain a functor \[h_{\mathcal{V}_\bullet}\circ \iota_*: \psh{\Delta}^\op \to \mathbf{CAT}.\] Then we define the fibration \[\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}\] to be the Grothendieck construction of \(h_{\mathcal{V}_\bullet}\circ\iota_*\). The total space of this fibration is called the category of \emph{\(\mathcal{V}\)-labeled simplicial sets}.
+	%Then by composition, we obtain a functor \[h_{\mathcal{V}_\bullet}\circ \iota_*: \psh{\Delta}^\op \to \mathbf{CAT}.\] Then  to be the Grothendieck construction of \(h_{\mathcal{V}_\bullet}\circ\iota_*\). 
 \end{defn}
 
 \begin{prop} The pullback of the fibration \[\psh{\Delta}\int V \to \psh{\Delta}\] along the Yoneda embedding \(\Delta\hookrightarrow \psh{\Delta}\) is exactly the fibration \[\Delta\int\mathcal{V}\to \Delta,\] and therefore, the induced map \[\Delta\int\mathcal{V}\hookrightarrow \psh{\Delta}\int\mathcal{V}\] is a fully faithful embedding.
 \end{prop}
-\begin{proof}    Notice that by the bicategorical Yoneda lemma there is a natural equivalence \[h_{\mathcal{V}_\bullet}\circ \iota_*(\Delta^n)\simeq \mathcal{V}_n,\] so \(\mathcal{V}_\bullet\) is naturally equivalent to the restriction of \(h_\mathcal{V}\circ \iota_*\) along the Yoneda embedding, so it follows that \(\Delta\int \mathcal{V} \to \Delta\) is equivalent to the pullback of \(\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}\) along a fully faithful embedding and therefore the evident map \[\Delta\int \mathcal{V} \to \psh{\Delta}\int \mathcal{V}\] is also fully faithful.
+\begin{proof}  As the functor \(\mathcal{V}_\bullet\) factors as the composite 
+	\[\Delta^\op \hookrightarrow \psh{\Delta}^\op \xrightarrow{\psh{\mathcal{V}^\op_\bullet}^\op},\] where the first functor is fully faithful, it follows that \(\Delta\int \mathcal{V} \to \Delta\) is the pullback of the fibration \(\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}\) along the fully faithful Yoneda embedding.  Ergo, the map in question is fully faithful.  
 \end{proof}
 
 For the purposes of this paper, we do not need this level of generality.  We specialize as follows: 
