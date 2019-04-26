@@ -466,15 +466,27 @@ This description of the coherent realization is useful, but it also admits anoth
 	Induces a colimit-preserving functor \(k^\ast: \cellset \to \mathbf{PCat}(\C)\) called the \emph{associated precategory}.
 \end{defn}
 
-\begin{defn} 
+\begin{defn}\label{pointwisedefn}
 	The \emph{pointwise realization} functor \(\mathfrak{C}_{\Delta,\bullet}: \spsh \to \Cat_{\psh{\Delta}}^\C\) defined by the rule 
 	\[
-		X_c\mapsto \mathfrak{C}_\Delta(X_c)
+		\mathfrak{C}_{\Delta,\bullet}(X)_c \defeq \mathfrak{C}_{\Delta}(X_c)
 	\]
 		restricts to colimit preserving functor \(\mathfrak{C}_{\Delta,\bullet}: \mathbf{PCat}(\C) \to \Cat_{\spsh}\) in the obvious way, which by abuse of notation, we also refer to as the \emph{pointwise realization}.
 \end{defn}
 
-\begin{prop}
+\begin{note}
+	We specify the following abuse of notation: Given an ordered family of sets \(S_1,\dots, S_n\), we denote by
+	\[
+		[n](S_1,\dots,S_n)
+	\]
+	the nerve of the free category on the directed graph specified as follows:
+	\begin{itemize}
+		\item The set of vertices is \(\{0,\dots,n\}\), and
+		\item The set of arrows from the vertex \(i-1\) to \(i\) is \(S_i\).
+	\end{itemize}
+\end{note}
+
+\begin{prop}\label{pointwise}
 	The coherent realization \(\mathfrak{C}:\cellset \to \Cat_{\spsh}\) can be factored as the composite 
 	\[
 		\cellset \xrightarrow{k^\ast} \mathbf{PCat}(\C) \xrightarrow{\mathfrak{C}_{\Delta,\bullet}} \Cat_{\spsh}.
@@ -485,148 +497,393 @@ This description of the coherent realization is useful, but it also admits anoth
 	\[
 		\mathfrak{C}(X)(x, y) \to \mathfrak{C}_{\Delta,\bullet}( k^\ast(X))(x,y),
 	\] 
-	which amounts to the data of a natural (in \(c\) and \(n\)) bijection
+	which amounts to the data of a natural (in \(c\)) isomorphism of simplicial sets
 	\[
-		\mathfrak{C}(X)(x, y)_{c,n} \to \mathfrak{C}_{\Delta,\bullet}( k^\ast(X))(x,y)_{c,n}.
+		\mathfrak{C}(X)(x, y)_{c} \to \mathfrak{C}_{\Delta,\bullet}( k^\ast(X))(x,y)_{c}.
 	\] 
-	Since both functors are cocontinuous, we can reduce further to the case where \(X\) is a representable of the form \([n](c_1,\dots,c_n)\).  
+	Since both functors are cocontinuous, we can reduce further to the case where \(X\) is a representable of the form \([m](c_1,\dots,c_m)\). 
+	First, observe that specifying a simplex 
+	\[
+		\Delta^n \to \mathfrak{C}([m](c_1,\dots,c_m))(i, j)_{c}
+	\]
+	is equivalent to specifying a morphism 
+	\[
+		(\Delta^n, c)\to ((\Delta^1)^{j-i-1}, c_{i+1}\times \dots\times c_j),
+	\]
+	which is itself equivalent to specifying a simplex
+	\[
+		\Delta^n \to (\Delta^1)^{j-i-1} \times \Hom(c,c_{i+1}) \times \dots \times \Hom(c,c_j),
+	\]
+	so in particular, we may make the identification
+	\[
+		\mathfrak{C}([m](c_1,\dots,c_m))(i, j)_{c} \cong \mathfrak{C}_\Delta([m](\Hom(c,c_1),\dots,\Hom(c,c_m)))(i, j),
+	\]
+	and therefore it follows that we have an natural isomorphism, natural in \(c\):
+	\[
+		\mathfrak{C}([m](c_1,\dots,c_m))_{c} \cong \mathfrak{C}_\Delta([m](\Hom(c,c_1),\dots,\Hom(c,c_m))).
+	\]
+	It therefore suffices to demonstrate a natural isomorphism of simplicial sets
+	\[
+		k^\ast([m](c_1,\dots,c_m))_c\cong [m](\Hom(c,c_1),\dots,\Hom(c,c_m)),
+	\]
+	but it can be observed that specifying a simplex 
+	\[
+		\Delta^n \to k^\ast([m](c_1,\dots,c_m))_c
+	\]
+	corresponds to specifying a map
+	\[
+		[n](c,\dots,c) \to [m](c_1,\dots,c_m),
+	\]
+	which in turn is given by the data of a map
+	\[
+		\gamma:[n]\to [m]
+	\]
+	together with maps 
+	\[
+		c\to \prod_{k=\gamma(0)+1}^{\gamma(n)} c_k,
+	\]
+	or equivalently, a family
+	\[
+		(f_{\gamma(0)+1}, \dots, f_{\gamma(n)}) \in \prod_{k=\gamma(0)+1}^{\gamma(n)} \Hom(c,c_k),
+	\]
+	which specifies a unique simplex 
+	\[
+		\Delta^n \to [m](\Hom(c,c_1),\dots,\Hom(c,c_m)),
+	\]
+	which proves the claim.
 \end{proof}
 
-\section{Enriched necklaces and the coherent realization}
-Necklaces were introduced by Dugger and Spivak in order to understand the mapping objects \(\Hom_{\mathfrak{C}(X)}\) and give a much easier proof than Lurie's that the homotopy-coherent realization and nerve form a Quillen equivalence.  In this section, we will introduce an enriched version of necklaces that will serve the same purpose.
+\section{Necklaces and the coherent realization}
+Necklaces were introduced by Dugger and Spivak in \cite{ds1} in order to understand the mapping objects \(\mathfrak{C}_\Delta(X)(x,y)\).  They prove a useful theorem that allows one to compute the coherent realization up to homotopy as a simplicially-enriched category whose hom-objects are the nerves of ordinary categories.  We will demonstrate here how their theory generalizes to our setting. We begin by recalling the definition of a necklace:
 
 \begin{defn}
-	A \emph{pre-necklace} is a sober \(\C\)-cellular set whose projection to \(\psh{\Delta}\) (i.e. image under the functor \(\pi: \cellset \to \psh{\Delta}\)) is a simplicial necklace in the sense of Dugger and Spivak.
-
-	Given a pre-necklace \(T\), we define the \emph{shape of \(T\)} to be its associated simplicial set \(\pi(T)\).
-
-	Suppose \(T\) is a pre-necklace such that its projection is the simplicial necklace \(\Delta^{m_1}\vee \dots \vee \Delta^{m_k}\). Then we say that \(T\) is a \emph{necklace} if the pullback of \(T\) along each bead inclusion \(\Delta^{m_i}\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is representable for each \(1\leq i \leq k\).
-
-	We consider every necklace \(T\) as bi-pointed by its initial and terminal vertex, which we will write as \(\alpha\) and \(\omega\) respectively.  A \emph{morphism of necklaces} is a morphism of \(f:T\to T^\prime\) of \(\cellset_{\ast,\ast}\) between necklaces such that \(f(\alpha_T)=\alpha_{T^\prime}\) and \(f(\omega_T)=\omega_{T^\prime}\). We define the category \(\Nec\) to be the full subcategory \(\cellset_{\ast,\ast}\) consisting of the necklaces and morphisms of necklaces between them.
-
-	We define the sets \(V_T\) (resp. \(J_T\)) of \emph{vertices of \(T\)} (resp. \emph{joints of \(T\)}) to be the sets of vertices and joints of the underlying simplicial necklace.
-
-	Similarly, for a pair of vertices \(a,b\) of \(T\) with \(a\leq b\) we define \(V_T(a,b)\)to be the subset of all vertices \(i\) such that \(a\leq i\leq b\). We define \(J_T(a,b)\) to be \(\{a,b\}\cup (V_T(a,b)\cap J_T)\).
-
-	Given \(a,b\in V_T\), there is a full simplicial subset \(\pi(T)(a,b)\subseteq \pi(T)\) consisting of the simplicial set of simplices \(\sigma\) of \(\pi(T)\) for which all vertices of \(\sigma\) lie in \(V_T(a,b)\). We define \(T(a,b)\) to be the pullback of \(T\) along the inclusion \(\pi(T)(a,b)\hookrightarrow \pi(T)\).  It is clear from this definition that \(V_T(a,b)=V_{T(a,b)}\) and \(J_T(a,b)=J_{T(a,b)}\).
+	A \emph{necklace} is a bi-pointed simplicial set \((T,(\alpha,\omega))\) of the form
+	\[
+		\Delta^{m_1} \vee \dots \vee \Delta^{m_n},
+	\]
+	with specified vertices 
+	\[(\alpha,\omega):\Delta^0\coprod \Delta^0 \xrightarrow{\{0\}\coprod \{m_n\}} \Delta^{m_1} \coprod \Delta^{m_n}\xrightarrow{\iota_1\coprod \iota_n} S.\]
+	By abuse of notation, we will simply refer to such necklaces by their underlying simplicial sets.
 \end{defn}
 
-Following Dugger and Spivak, we define a construction as follows: Given a \(\C\)-cellular set \(X\) with two vertices \(x,y\in X_0\), we obtain a functor \[\mathcal{E}_X(x,y):\overcat{\Nec}{X_{x,y}} \to \spsh\] defined by the rule \[(T\to X_{x,y})\mapsto \mathfrak{C}(T)(\alpha_T,\omega_T).\] We define \[E_X(x,y)=\colim(\mathcal{E}(x,y)),\] which by the universal property of colimits admits a universal map \[E_X(x,y)\to \mathfrak{C}(X)(x,y).\] We can see that there is an associative composition operation \[E_X(x,y)\times E_X(y,z)\to E_X(x,z)\] inherited from the operation of wedge-concatenation of necklaces \[\mathcal{E}_X(x,y)\times \mathcal{E}_X(y,z) \to \mathcal{E}_X(x,z).\] This makes \(E_X\) into a \(\spsh\)-enriched category equipped with a functor \(E_X\to \mathfrak{C}(X)\).
+Dugger and Spivak construct a functor
+\[
+	\mathfrak{C}^{\Nec}_\Delta: \psh{\Delta}\to \Cat_{\psh{\Delta}}
+\]
+whose evaluation on a simplicial set \(X\) is given as follows:
+\begin{itemize}
+	\item The set of objects objects of \(\mathfrak{C}^{\Nec}_\Delta(X)\) is \(X_0\).
+	\item Given any two vertices \(x,x^\prime\in X_0\), the simplicial set of morphisms from \(x\) to \(x^\prime\) is given by the formula 
+	\[
+		\mathfrak{C}^{\Nec}_\Delta(X)(x,x^\prime)\defeq N\overcat{\Nec}{X_{x,x^\prime}},
+	\]
+	where \(\overcat{\Nec}{X_{x,x^\prime}}\) denotes the slice over the bi-pointed simplicial set \(X_{x,x^\prime}\) in the category of bi-pointed simplicial sets.  
+	\item The composition map is induced by concatenation of necklaces.  That is, given a pair of necklaces \(T\to X_{x,x^\prime}\) and \(T^\prime\to X_{x^\prime,x^{\prime\prime}}\), their composite is given by the necklace 
+	\[
+		T {}_{\omega_T}\vee_{\alpha_{T^\prime}} T^\prime \to X_{x,x^{\prime\prime}}.
+	\]
+\end{itemize}
 
-\begin{prop} For any \(\C\)-cellular set \(X\), the induced map \(E_X\to \mathfrak{C}(X)\) is an isomorphism.
-\end{prop}
-\begin{proof} Following along closely with the proof of \cite{ds1}*{Proposition 4.3}, we consider the following commutative diagram:
-	\begin{center}
-		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
-			{
-				\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y) & E_X(x,y)                \\
-				\left( \coliml\limits_{[t]\in\overcat{\Theta[\C]}{X}} \mathfrak{C}([t])\right)(x,y) & \mathfrak{C}(X)(x,y) \\
-			};
-			\path[->, font=\scriptsize]
-			(b-1-1) edge (b-1-2)
-			edge node[auto,swap]{\(\scriptstyle \cong\)} (b-2-1)
-			(b-2-1) edge [-,double] (b-2-2)
-			(b-1-2) edge (b-2-2);
-		\end{tikzpicture}.
-	\end{center}
-	The bottom horizontal equality is by definition, and the left vertical map is an isomorphism because \(E_{[t]}\cong \mathfrak{C}([t])\) for all representables, since they are all necklaces and therefore are terminal in their respective diagrams defining \(E\). It follows that the top horizontal map is injective, and it suffices therefore to show that it is surjective. Choose any representable \(\xi:\Delta^n \times c \to E_X(x,y)\). Since \(\Delta^n\times [c]\) is representable and \(E_X(x,y)\) is a colimit, it follows that the map \(\Delta^n\times c\to E_X(x,y)\) factors through some \[f:\mathfrak{C}(T)(\alpha,\omega) \to \mathfrak{C}(X)(x,y)\] and is represented therefore represented by the data of such a factorization.   Consider the commutative diagram diagram:
-	\begin{center}
-		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
-			{
-				\left( \coliml\limits_{[t]\in\overcat{\Theta[\C]}{T}} \mathfrak{C}([t])\right)(\alpha,\omega) & \mathfrak{C}(T)(\alpha,\omega) \\
-				\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{T}} E_{[t]}\right)(x,y) & E_T(\alpha,\omega)                \\
-				\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y) & E_X(x,y)                \\
-			};
-			\path[->, font=\scriptsize]
-			(b-1-1) edge (b-1-2)
-			(b-2-1) edge (b-1-1) edge (b-2-2) edge node[auto,swap]{\(\scriptstyle{f_\ast}\)} (b-3-1)
-			(b-2-2) edge (b-1-2) edge node[auto,swap]{\(\scriptstyle{E_f}\)} (b-3-2)
-			(b-3-1) edge (b-3-2);
-		\end{tikzpicture}.
-	\end{center}
-	Therefore, it suffices to show that the middle horizontal map is surjective, since if this is the case, we can chase \(\xi\) back to an element of \(\left( \colim_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y)\), which proves surjectivity.  But the top horizontal map is an isomorphism by the definition of \(\mathfrak{C}\), and both top row vertical maps are isomorphisms, again because the diagrams over which \(E_{[t]}\) and \(E_T\) are colimits over have terminal objects, namely the necklaces \([t]\) and \(T\) themselves.
-\end{proof}
+In order to compare \(\mathfrak{C}^{\Nec}_\Delta\) and \(\mathfrak{C}_\Delta\), Dugger and Spivak introduce an auxiliary functor \(\mathfrak{C}^{\Hoc}_\Delta\) that admits specified natural transformations to both.  This leads to the main theorem:
 
-This is not the end of the story.  This colimit is still very complicated, and we must simplify it further.  In particular, we will show that \(\mathfrak{C}(X)(x,y)_c\) can be represented as a colimit of contractible spaces functorially in \(c\).  This will play an important role in obtaining appropriate analogues of the other models for \(\mathfrak{C}\) from \cite{ds1}.  In order to continue down this road, we need the following definition:
-
-\begin{defn}
-	We say that a necklace \(T\) is \emph{of uniform type \(c\in \C\)} if the pullback of \(T\) along each bead inclusion \(\Delta^{m_i}\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is the representable \(\C\)-cellular set associated with \([m_i](c,\dots,c)\).  If \(T\) is any simplicial necklace, we denote by \(T\{c\}\) the necklace of type \(c\) of the same underlying simplicial shape. We define the category \(\Nec_c\) to be the full subcategory of the category \(\Nec\) spanned by the necklaces of uniform type \(c\).
-\end{defn}
-
-\begin{defn}
-	We define the subcategory \[\Nec^\mathbf{sp}_c\subseteq \Nec_c\] to be the wide subcategory whose morphisms are \emph{special}, which are maps that factor as the composite of a pure codegeneracy followed by a map whose restriction to each edge of the spine of the domain is a diagonal \(c\xrightarrow{id^k} c^k\) of the appropriate arity.
-\end{defn}
-
-We begin by giving the following construction: Given a \(\C\)-cellular set \(X\) together with two vertices \(x,y\in X_0\), we give a functor \[\mathcal{E}_{X,c}(x,y):\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\to \psh{\Delta}\] defined by the rule \[T\mapsto \mathfrak{C}_\Delta(\pi(T))(\alpha,\omega),\] where \(\mathfrak{C}_\Delta\) denotes the ordinary coherent realization of a simplicial set.
-
-We then define a simplicial set \[E_{X,c}(x,y)=\colim \mathcal{E}_{X,c}.\] We note that by concatenation of necklaces of uniform type \(c\), we obtain an associative composition law \[E_{X,c}(x,y)\times E_{X,c}(y,z)\to E_{X,c}(x,z).\]  We will see in what follows that \(E_{X,c}\) is naturally isomorphic to \(\mathfrak{C}(X)_c\).
-
-\begin{lemma}\label{replemma} If \(T\) is a necklace of uniform type \(c\) and \(T^\prime\) is any necklace, then every morphism of necklaces \(f:T\to T^\prime\) factors uniquely as the composite of a special map \(T\to T^\prime\{c\}\) and a map \(f_*:T^\prime\{c\}\to T^\prime\) that projects to the identity map in \(\psh{\Delta}\).
-\end{lemma}
-\begin{proof} We reduce immediately to the case where the map on underlying simplicial necklaces is injective, using the Eilenberg-Zilber property for necklaces.  We can also assume that \(T^\prime\) is representable of the form \([n](c_1,\dots,c_n)\), since given an injective map of simplicial necklaces \(\pi(T)\to \pi(T^\prime)\), every bead of \(\pi(T)\) lands in exactly one bead of \(\pi(T^\prime).\)
-
-	Then we look at the action of \(f\) on each edge \(e\) of the spine of \(T\). Notice that if \(f\) maps an edge \(e\) of the spine of \(\pi(T)\) to the edge \(i<j\), we obtain a map \[c\to \prod_{k=i+1}^j c_k,\] which by the universal property of the product, corresponds to a family of maps \((f_k:c\to c_k)_{k=i+1}^j\).  Since \(f\) must map the spine of \(\pi(T)\) to a directed path from \(0\to n\), taken together, we obtain maps \[(f_k:c\to c_k)_{k=1}^n.\] These data together with the identity map \(\id:[n]\to [n]\) specify precisely a map \[[n](c,\dots,c)\to [n](c_1,\dots,c_n).\]  We have the obvious map \(T\to [n](c,\dots,c)\) where each edge of the spine is assigned the appropriate diagonal map, and this composes with the new map \([n](c,\dots,c)\to [n](c_1,\dots,c_n)\) to give the original map. This factorization is clearly unique.
-\end{proof}
-
-\begin{prop} If \(T\) is a necklace, then \(E_{T,c}(\alpha,\omega)\) is canonically isomorphic to \(\mathfrak{C}(T)(\alpha,\omega)_c\)
-\end{prop}
-\begin{proof}
-	By the lemma, we see that there is a discrete full cofinal subcategory of \(\overcat{\Nec^\mathbf{sp}_c}{T}\) spanned by the maps \(T\{c\} \to T\), so it suffices to show that \(\mathfrak{C}(T)(\alpha,\omega)_c\) is a disjoint union of copies of \(\mathfrak{C}_\Delta(\pi(T\{c\}))(\alpha,\omega)\) indexed by the maps \(T\{c\}\to T\) that project to the identity, but this follows by an easy direct computation of \(\mathfrak{C}(T)(\alpha,\omega)_c\), which we give for the case \(T=[n](c_1,\dots,c_n)\) as 
-	\[\Hom(c,c_1) \times \Delta^1\times \dots \times \Delta^1 \times \Hom(c,c_n).\]
-	For a more general necklace of shape \(\Delta^{m_1}\vee \dots \vee \Delta^{m_k},\) it is the same, but omitting the appropriate \(\Delta^1\) terms.
-\end{proof}
-
-These propositions give us what we need to prove the aforementioned reduction:
-
-\begin{prop} For any \(\C\)-cellular set \(X\), we have natural isomorphisms of \(\spsh\)-enriched categories, \(E_{X,\bullet}\cong E_X \cong \mathfrak{C}(X).\)
-\end{prop}
-\begin{proof} We begin by naming the natural inclusion
-	\[\iota_c:\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\hookrightarrow \overcat{\Nec}{X_{x,y}}\]
-	Then we compute:
-	\begin{align*}
-		E_{X,c}(x,y) & = \colim_{\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}} \mathcal{E}_{X,c}(x,y)\\
-		             & = \Lan_{\pt} \mathcal{E}_{X,c}(x,y)
-		\intertext{where \(\pt\) denotes the terminal functor}
-		             & =\Lan_{\pt \circ \iota_c} \mathcal{E}_{X,c}(x,y)\\
-		             & \cong\Lan_{\pt}\left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y)\right)\\
-		             & = \colim_{\overcat{\Nec}{X_{x,y}}} \left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y) \right),
-		\intertext{but by the formula for pointwise Left Kan extensions,}
-		             & \cong \colim_{\overcat{\Nec}{X_{x,y}}} \left(\colim_{\overcat{\Nec^\mathbf{sp}_c}{T}}\mathcal{E}_{T,c}(\alpha,\omega)\right) \\
-		             & = \colim_{\overcat{\Nec}{X_{x,y}}} \mathfrak{C}(T)(\alpha,\omega)_c\\
-		             & = {E_X(x, y)}_c\\
-		             & \cong {\mathfrak{C}(X)(x,y)}_c,
-	\end{align*}
-	which proves the proposition.
-\end{proof}
-
-\section{Homotopical models for \(\mathfrak{C}\)}
-In their paper \cite{ds1}, Dugger and Spivak make use of another model for \(\mathfrak{C}_\Delta\), which they call \(\mathfrak{C}^\Nec\), but which we will denote by \(\mathfrak{C}_\Delta^\Nec\).  They show that this functor is related by a zig-zag of weak equivalences to \(\mathfrak{C}_\Delta\).  Although it is not a left-adjoint, it is highly computable and easy to understand because its mapping spaces are always just the nerves of ordinary categories.
-
-We will define a version of \(\mathfrak{C}^\Nec\) for \(\Theta[\C]\)-sets and show that it too is related by a zig-zag of natural weak equivalences of \(\Psh_\Delta\)-enriched categories to \(\mathfrak{C}\). Following Dugger and Spivak, we also construct a third model \(\mathfrak{C}^{\operatorname{hoc}}\) modeled by taking the homotopy-colimit instead of the ordinary colimit that we showed defines \(\mathcal{C}\).
-
-\begin{defn}
-	The \emph{necklace realization} \(\mathfrak{C}^\Nec(X)\) of a \(\C\)-cellular set \(X\) is defined to be the \(\spsh\)-enriched category whose set of objects is the set of vertices of \(X\) and whose mapping objects are simplicial presheaves on \(\C\) defined by the rule:
-	\[c\mapsto \mathfrak{C}^\Nec(x,y)_c=N(\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}).\]
-	As usual, the composition \[\mathfrak{C}^\Nec(X)(x,y)\times \mathfrak{C}^\Nec(X)(y,z)\to \mathfrak{C}^\Nec(X)(x,z)\] is obtained by concatenation of uniform necklaces.
-
-	The \emph{homotopy colimit realization} is defined similarly to the ordinary \(\mathfrak{C}\), but instead of an using an ordinary colimit, we define \[\mathfrak{C}^\Hoc(X)(x,y)_c=\hocolim\mathcal{E}_{X,c}(x,y).\]
-\end{defn}
-
-Dugger and Spivak use a very specific model of the homotopy colimit of a diagram in simplicial sets, and it works perfectly here as well.  By \cite{ds1}*{Remark 5.1}, we note that the homotopy colimit of a diagram \(F:D\to \psh{\Delta}\) can be modeled as the diagonal simplicial set of the bisimplicial set whose \(k,\ell\) simplices are given by pairs \[(\sigma:[n]\to D; x \in F(\sigma(0))_\ell).\]  Using this model we can see that the nerve of a category is isomorphic to this model of the homotopy colimit of the constant diagram at \(\Delta^0\).
-
-In the case of \(\mathfrak{C}^\Hoc\), we can see immediately that there is a unique natural transformation \[\mathcal{E}_{X,c}(x,y)\to \pt,\] and this induces a map on homotopy colimits.  Moreover, since \(\mathcal{E}_{X,c}(x,y)(T)=\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega)\) and since \(\pi(T)\) is a simplicial necklace,  \(\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega)\) is weakly contractible. Therefore, the induced map on homotopy-colimits is a weak equivalence of simplicial sets.  This shows that the natural map \[\mathfrak{C}^\Hoc \to \mathfrak{C}^\Nec\] is a weak equivalence.
-
-Then we need to show that \(E_{X,c}\) is a homotopy colimit:
-\begin{thm}\label{necthm}
-	The natural map \[\mathfrak{C}^\Hoc_c \to \mathfrak{C}_c\] is a pointwise weak equivalence.
+\begin{thm}[\cite{ds1},Theorem 5.2]
+	There is a specified natural zig-zag of weak equivalences of functors valued in simplicially-enriched categories:
+	\[
+		\mathfrak{C}^{\Nec}_\Delta \leftarrow \mathfrak{C}^{\Hoc}_\Delta \to \mathfrak{C}_\Delta.
+	\]
 \end{thm}
-\begin{proof}
-	See \cite{ds1}*{4.4, 4.10, 5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \(\ell^\mathrm{th}\) row of the bisimplicial set of pairs 
-	\[(\sigma:[n]\to \overcat{\Nec_c^\mathbf{sp}}{X_{x,y}}; \zeta \in \mathfrak{C}_\Delta(\pi\sigma(0))_\ell)\]
-	is homotopy-discrete, which means that the homotopy and ordinary colimit agree.  Our indexing category is just a disjoint union of copies of their indexing category, so if theirs is homotopy-discrete, so is ours.
-\end{proof}
+
+The functors \(\mathfrak{C}_\Delta^{\Nec}\) and \(\mathfrak{C}_\Delta^{\Nec}\), much like the functor \(\mathfrak{C}_\Delta\), send simplicial sets to simplicially enriched categories with set of objects equal to the set of \(0\)-simplices.  Ergo, they induce useful functor when applied pointwise to precategories.
+\begin{defn}
+	As in Definition \ref{pointwisedefn},  the \emph{pointwise necklace realization}
+	\[
+		\mathfrak{C}^{\Nec}_{\Delta,\bullet}:\mathbf{PCat}(\C) \to \Cat_{\spsh}
+	\] 
+	is defined by the rule
+	\[
+		\mathfrak{C}^{\Nec}_{\Delta,\bullet}(X)_c\defeq \mathfrak{C}^{\Nec}_{\Delta}(X_c).
+	\]
+	The \emph{pointwise homotopy colimit realization} \(\mathfrak{C}^{\Hoc}\) is defined similarly.  
+\end{defn}
+
+\begin{defn}
+	The \emph{necklace realization} functor \(\mathfrak{C}^{\Nec}:\cellset \to \Cat_{\spsh}\) is the composite
+	\[
+		\cellset \xrightarrow{k^\ast} \mathbf{PCat}(\C) \xrightarrow{\mathfrak{C}^{\Nec}_{\Delta,\bullet}} \Cat_{\spsh}.
+	\]
+	The \emph{homotopy colimit realization} functor \(\mathfrak{C}^{\Hoc}\) is defined similarly.
+\end{defn}
+
+From these definitions and the theorem above, as well as Proposition \ref{pointwise}, we deduce the following useful corollary.
+
+\begin{cor}\label{necthm}
+	There is a specified natural zig-zag of weak equivalences of functors valued in \(\Cat_{\spsh}\)
+	\[
+		\mathfrak{C}^{\Nec} \leftarrow \mathfrak{C}^{\Hoc} \to \mathfrak{C}
+	\]
+\end{cor}
+
+\begin{comment}
+	\section{Enriched necklaces and the coherent realization}
+
+
+	\begin{defn}
+		A \emph{pre-necklace} is a sober \(\C\)-cellular set whose projection to \(\psh{\Delta}\) (i.e. image under the functor \	(\pi: \cellset \to \psh{\Delta}\)) is a simplicial necklace in the sense of Dugger and Spivak.
+
+		Given a pre-necklace \(T\), we define the \emph{shape of \(T\)} to be its associated simplicial set \(\pi(T)\).
+
+		Suppose \(T\) is a pre-necklace such that its projection is the simplicial necklace \(\Delta^{m_1}\vee \dots \vee \Delta^	{m_k}\). Then we say that \(T\) is a \emph{necklace} if the pullback of \(T\) along each bead inclusion \(\Delta^{m_i}	\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is representable for each \(1\leq i \leq k\).
+
+		We consider every necklace \(T\) as bi-pointed by its initial and terminal vertex, which we will write as \(\alpha\) and \	(\omega\) respectively.  A \emph{morphism of necklaces} is a morphism of \(f:T\to T^\prime\) of \(\cellset_{\ast,\ast}\) 	between necklaces such that \(f(\alpha_T)=\alpha_{T^\prime}\) and \(f(\omega_T)=\omega_{T^\prime}\). We define the 	category \(\Nec\) to be the full subcategory \(\cellset_{\ast,\ast}\) consisting of the necklaces and morphisms of 	necklaces between them.
+
+		We define the sets \(V_T\) (resp. \(J_T\)) of \emph{vertices of \(T\)} (resp. \emph{joints of \(T\)}) to be the sets of 	vertices and joints of the underlying simplicial necklace.
+
+		Similarly, for a pair of vertices \(a,b\) of \(T\) with \(a\leq b\) we define \(V_T(a,b)\)to be the subset of all 	vertices \(i\) such that \(a\leq i\leq b\). We define \(J_T(a,b)\) to be \(\{a,b\}\cup (V_T(a,b)\cap J_T)\).
+
+		Given \(a,b\in V_T\), there is a full simplicial subset \(\pi(T)(a,b)\subseteq \pi(T)\) consisting of the simplicial set 	of simplices \(\sigma\) of \(\pi(T)\) for which all vertices of \(\sigma\) lie in \(V_T(a,b)\). We define \(T(a,b)\) to 	be the pullback of \(T\) along the inclusion \(\pi(T)(a,b)\hookrightarrow \pi(T)\).  It is clear from this definition 	that \(V_T(a,b)=V_{T(a,b)}\) and \(J_T(a,b)=J_{T(a,b)}\).
+	\end{defn}
+
+	Following Dugger and Spivak, we define a construction as follows: Given a \(\C\)-cellular set \(X\) with two vertices \(x,	y\in X_0\), we obtain a functor \[\mathcal{E}_X(x,y):\overcat{\Nec}{X_{x,y}} \to \spsh\] defined by the rule \[(T\to X_{x,y})	\mapsto \mathfrak{C}(T)(\alpha_T,\omega_T).\] We define \[E_X(x,y)=\colim(\mathcal{E}(x,y)),\] which by the universal 	property of colimits admits a universal map \[E_X(x,y)\to \mathfrak{C}(X)(x,y).\] We can see that there is an associative 	composition operation \[E_X(x,y)\times E_X(y,z)\to E_X(x,z)\] inherited from the operation of wedge-concatenation of 	necklaces \[\mathcal{E}_X(x,y)\times \mathcal{E}_X(y,z) \to \mathcal{E}_X(x,z).\] This makes \(E_X\) into a \(\spsh\)	-enriched category equipped with a functor \(E_X\to \mathfrak{C}(X)\).
+
+	\begin{prop} For any \(\C\)-cellular set \(X\), the induced map \(E_X\to \mathfrak{C}(X)\) is an isomorphism.
+	\end{prop}
+	\begin{proof} Following along closely with the proof of \cite{ds1}*{Proposition 4.3}, we consider the following commutative 	diagram:
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+				{
+					\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y) & E_X(x,y)                \\
+					\left( \coliml\limits_{[t]\in\overcat{\Theta[\C]}{X}} \mathfrak{C}([t])\right)(x,y) & \mathfrak{C}(X)(x,y) \\
+				};
+				\path[->, font=\scriptsize]
+				(b-1-1) edge (b-1-2)
+				edge node[auto,swap]{\(\scriptstyle \cong\)} (b-2-1)
+				(b-2-1) edge [-,double] (b-2-2)
+				(b-1-2) edge (b-2-2);
+			\end{tikzpicture}.
+		\end{center}
+		The bottom horizontal equality is by definition, and the left vertical map is an isomorphism because \(E_{[t]}\cong 	\mathfrak{C}([t])\) for all representables, since they are all necklaces and therefore are terminal in their respective 	diagrams defining \(E\). It follows that the top horizontal map is injective, and it suffices therefore to show that it 	is surjective. Choose any representable \(\xi:\Delta^n \times c \to E_X(x,y)\). Since \(\Delta^n\times [c]\) is 	representable and \(E_X(x,y)\) is a colimit, it follows that the map \(\Delta^n\times c\to E_X(x,y)\) factors through 	some \[f:\mathfrak{C}(T)(\alpha,\omega) \to \mathfrak{C}(X)(x,y)\] and is represented therefore represented by the data 	of such a factorization.   Consider the commutative diagram diagram:
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+				{
+					\left( \coliml\limits_{[t]\in\overcat{\Theta[\C]}{T}} \mathfrak{C}([t])\right)(\alpha,\omega) & \mathfrak{C}	(T)(\alpha,\omega) \\
+					\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{T}} E_{[t]}\right)(x,y) & E_T(\alpha,\omega)               	 \\
+					\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y) & E_X(x,y)                \\
+				};
+				\path[->, font=\scriptsize]
+				(b-1-1) edge (b-1-2)
+				(b-2-1) edge (b-1-1) edge (b-2-2) edge node[auto,swap]{\(\scriptstyle{f_\ast}\)} (b-3-1)
+				(b-2-2) edge (b-1-2) edge node[auto,swap]{\(\scriptstyle{E_f}\)} (b-3-2)
+				(b-3-1) edge (b-3-2);
+			\end{tikzpicture}.
+		\end{center}
+		Therefore, it suffices to show that the middle horizontal map is surjective, since if this is the case, we can chase \	(\xi\) back to an element of \(\left( \colim_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y)\), which proves 	surjectivity.  But the top horizontal map is an isomorphism by the definition of \(\mathfrak{C}\), and both top row 	vertical maps are isomorphisms, again because the diagrams over which \(E_{[t]}\) and \(E_T\) are colimits over have 	terminal objects, namely the necklaces \([t]\) and \(T\) themselves.
+	\end{proof}
+
+	This is not the end of the story.  This colimit is still very complicated, and we must simplify it further.  In particular, 	we will show that \(\mathfrak{C}(X)(x,y)_c\) can be represented as a colimit of contractible spaces functorially in \(c\).  	This will play an important role in obtaining appropriate analogues of the other models for \(\mathfrak{C}\) from \cite{ds1}. 	 In order to continue down this road, we need the following definition:
+
+	\begin{defn}
+		We say that a necklace \(T\) is \emph{of uniform type \(c\in \C\)} if the pullback of \(T\) along each bead inclusion \	(\Delta^{m_i}\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is the representable \(\C\)-cellular set 	associated with \([m_i](c,\dots,c)\).  If \(T\) is any simplicial necklace, we denote by \(T\{c\}\) the necklace of type \	(c\) of the same underlying simplicial shape. We define the category \(\Nec_c\) to be the full subcategory of the 	category \(\Nec\) spanned by the necklaces of uniform type \(c\).
+	\end{defn}
+
+	\begin{defn}
+		We define the subcategory \[\Nec^\mathbf{sp}_c\subseteq \Nec_c\] to be the wide subcategory whose morphisms are \emph	{special}, which are maps that factor as the composite of a pure codegeneracy followed by a map whose restriction to each 	edge of the spine of the domain is a diagonal \(c\xrightarrow{id^k} c^k\) of the appropriate arity.
+	\end{defn}
+
+	We begin by giving the following construction: Given a \(\C\)-cellular set \(X\) together with two vertices \(x,y\in X_0\), 	we give a functor \[\mathcal{E}_{X,c}(x,y):\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\to \psh{\Delta}\] defined by the rule \	[T\mapsto \mathfrak{C}_\Delta(\pi(T))(\alpha,\omega),\] where \(\mathfrak{C}_\Delta\) denotes the ordinary coherent 	realization of a simplicial set.
+
+	We then define a simplicial set \[E_{X,c}(x,y)=\colim \mathcal{E}_{X,c}.\] We note that by concatenation of necklaces of 	uniform type \(c\), we obtain an associative composition law \[E_{X,c}(x,y)\times E_{X,c}(y,z)\to E_{X,c}(x,z).\]  We will 	see in what follows that \(E_{X,c}\) is naturally isomorphic to \(\mathfrak{C}(X)_c\).
+
+	\begin{lemma}\label{replemma} If \(T\) is a necklace of uniform type \(c\) and \(T^\prime\) is any necklace, then every 	morphism of necklaces \(f:T\to T^\prime\) factors uniquely as the composite of a special map \(T\to T^\prime\{c\}\) and a map 	\(f_*:T^\prime\{c\}\to T^\prime\) that projects to the identity map in \(\psh{\Delta}\).
+	\end{lemma}
+	\begin{proof} We reduce immediately to the case where the map on underlying simplicial necklaces is injective, using the 	Eilenberg-Zilber property for necklaces.  We can also assume that \(T^\prime\) is representable of the form \([n](c_1,\dots,	c_n)\), since given an injective map of simplicial necklaces \(\pi(T)\to \pi(T^\prime)\), every bead of \(\pi(T)\) lands in 	exactly one bead of \(\pi(T^\prime).\)
+
+		Then we look at the action of \(f\) on each edge \(e\) of the spine of \(T\). Notice that if \(f\) maps an edge \(e\) of 	the spine of \(\pi(T)\) to the edge \(i<j\), we obtain a map \[c\to \prod_{k=i+1}^j c_k,\] which by the universal 	property of the product, corresponds to a family of maps \((f_k:c\to c_k)_{k=i+1}^j\).  Since \(f\) must map the spine of 	\(\pi(T)\) to a directed path from \(0\to n\), taken together, we obtain maps \[(f_k:c\to c_k)_{k=1}^n.\] These data 	together with the identity map \(\id:[n]\to [n]\) specify precisely a map \[[n](c,\dots,c)\to [n](c_1,\dots,c_n).\]  We 	have the obvious map \(T\to [n](c,\dots,c)\) where each edge of the spine is assigned the appropriate diagonal map, and 	this composes with the new map \([n](c,\dots,c)\to [n](c_1,\dots,c_n)\) to give the original map. This factorization is 	clearly unique.
+	\end{proof}
+
+	\begin{prop} If \(T\) is a necklace, then \(E_{T,c}(\alpha,\omega)\) is canonically isomorphic to \(\mathfrak{C}(T)(\alpha,	\omega)_c\)
+	\end{prop}
+	\begin{proof}
+		By the lemma, we see that there is a discrete full cofinal subcategory of \(\overcat{\Nec^\mathbf{sp}_c}{T}\) spanned by 	the maps \(T\{c\} \to T\), so it suffices to show that \(\mathfrak{C}(T)(\alpha,\omega)_c\) is a disjoint union of copies 	of \(\mathfrak{C}_\Delta(\pi(T\{c\}))(\alpha,\omega)\) indexed by the maps \(T\{c\}\to T\) that project to the identity, 	but this follows by an easy direct computation of \(\mathfrak{C}(T)(\alpha,\omega)_c\), which we give for the case \(T=[n]	(c_1,\dots,c_n)\) as 
+		\[\Hom(c,c_1) \times \Delta^1\times \dots \times \Delta^1 \times \Hom(c,c_n).\]
+		For a more general necklace of shape \(\Delta^{m_1}\vee \dots \vee \Delta^{m_k},\) it is the same, but omitting the 	appropriate \(\Delta^1\) terms.
+	\end{proof}
+
+	These propositions give us what we need to prove the aforementioned reduction:
+
+	\begin{prop} For any \(\C\)-cellular set \(X\), we have natural isomorphisms of \(\spsh\)-enriched categories, \(E_{X,\bullet}	\cong E_X \cong \mathfrak{C}(X).\)
+	\end{prop}
+	\begin{proof} We begin by naming the natural inclusion
+		\[\iota_c:\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\hookrightarrow \overcat{\Nec}{X_{x,y}}\]
+		Then we compute:
+		\begin{align*}
+			E_{X,c}(x,y) & = \colim_{\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}} \mathcal{E}_{X,c}(x,y)\\
+			             & = \Lan_{\pt} \mathcal{E}_{X,c}(x,y)
+			\intertext{where \(\pt\) denotes the terminal functor}
+			             & =\Lan_{\pt \circ \iota_c} \mathcal{E}_{X,c}(x,y)\\
+			             & \cong\Lan_{\pt}\left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y)\right)\\
+			             & = \colim_{\overcat{\Nec}{X_{x,y}}} \left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y) \right),
+			\intertext{but by the formula for pointwise Left Kan extensions,}
+			             & \cong \colim_{\overcat{\Nec}{X_{x,y}}} \left(\colim_{\overcat{\Nec^\mathbf{sp}_c}{T}}\mathcal{E}_{T,c}	(\alpha,\omega)\right) \\
+			             & = \colim_{\overcat{\Nec}{X_{x,y}}} \mathfrak{C}(T)(\alpha,\omega)_c\\
+			             & = {E_X(x, y)}_c\\
+			             & \cong {\mathfrak{C}(X)(x,y)}_c,
+		\end{align*}
+		which proves the proposition.
+	\end{proof}
+
+	\section{Homotopical models for \(\mathfrak{C}\)}
+	In their paper \cite{ds1}, Dugger and Spivak make use of another model for \(\mathfrak{C}_\Delta\), which they call \	(\mathfrak{C}^\Nec\), but which we will denote by \(\mathfrak{C}_\Delta^\Nec\).  They show that this functor is related by a 	zig-zag of weak equivalences to \(\mathfrak{C}_\Delta\).  Although it is not a left-adjoint, it is highly computable and easy 	to understand because its mapping spaces are always just the nerves of ordinary categories.
+
+	We will define a version of \(\mathfrak{C}^\Nec\) for \(\Theta[\C]\)-sets and show that it too is related by a zig-zag of 	natural weak equivalences of \(\Psh_\Delta\)-enriched categories to \(\mathfrak{C}\). Following Dugger and Spivak, we also 	construct a third model \(\mathfrak{C}^{\operatorname{hoc}}\) modeled by taking the homotopy-colimit instead of the ordinary 	colimit that we showed defines \(\mathcal{C}\).
+
+	\begin{defn}
+		The \emph{necklace realization} \(\mathfrak{C}^\Nec(X)\) of a \(\C\)-cellular set \(X\) is defined to be the \(\spsh\)	-enriched category whose set of objects is the set of vertices of \(X\) and whose mapping objects are simplicial 	presheaves on \(\C\) defined by the rule:
+		\[c\mapsto \mathfrak{C}^\Nec(x,y)_c=N(\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}).\]
+		As usual, the composition \[\mathfrak{C}^\Nec(X)(x,y)\times \mathfrak{C}^\Nec(X)(y,z)\to \mathfrak{C}^\Nec(X)(x,z)\] is 	obtained by concatenation of uniform necklaces.
+
+		The \emph{homotopy colimit realization} is defined similarly to the ordinary \(\mathfrak{C}\), but instead of an using an 	ordinary colimit, we define \[\mathfrak{C}^\Hoc(X)(x,y)_c=\hocolim\mathcal{E}_{X,c}(x,y).\]
+	\end{defn}
+
+	Dugger and Spivak use a very specific model of the homotopy colimit of a diagram in simplicial sets, and it works perfectly 	here as well.  By \cite{ds1}*{Remark 5.1}, we note that the homotopy colimit of a diagram \(F:D\to \psh{\Delta}\) can be 	modeled as the diagonal simplicial set of the bisimplicial set whose \(k,\ell\) simplices are given by pairs \[(\sigma:[n]\to 	D; x \in F(\sigma(0))_\ell).\]  Using this model we can see that the nerve of a category is isomorphic to this model of the 	homotopy colimit of the constant diagram at \(\Delta^0\).
+
+	In the case of \(\mathfrak{C}^\Hoc\), we can see immediately that there is a unique natural transformation \[\mathcal{E}_{X,c}	(x,y)\to \pt,\] and this induces a map on homotopy colimits.  Moreover, since \(\mathcal{E}_{X,c}(x,y)(T)=\mathfrak{C}_\Delta	(\pi(T))(\alpha,\omega)\) and since \(\pi(T)\) is a simplicial necklace,  \(\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega)\) is 	weakly contractible. Therefore, the induced map on homotopy-colimits is a weak equivalence of simplicial sets.  This shows 	that the natural map \[\mathfrak{C}^\Hoc \to \mathfrak{C}^\Nec\] is a weak equivalence.
+
+	Then we need to show that \(E_{X,c}\) is a homotopy colimit:
+	\begin{thm}\label{necthm}
+		The natural map \[\mathfrak{C}^\Hoc_c \to \mathfrak{C}_c\] is a pointwise weak equivalence.
+	\end{thm}
+	\begin{proof}
+		See \cite{ds1}*{4.4, 4.10, 5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \	(\ell^\mathrm{th}\) row of the bisimplicial set of pairs 
+		\[(\sigma:[n]\to \overcat{\Nec_c^\mathbf{sp}}{X_{x,y}}; \zeta \in \mathfrak{C}_\Delta(\pi\sigma(0))_\ell)\]
+		is homotopy-discrete, which means that the homotopy and ordinary colimit agree.  Our indexing category is just a disjoint 	union of copies of their indexing category, so if theirs is homotopy-discrete, so is ours.
+	\end{proof}
+\end{comment}
+
+\section{Gadgets}
+To prove the equivalence between quasicategories and simplicially-enriched categories, Dugger and Spivak make use of another intermediate construction called a category of Gadgets.  These are subcategories of bi-pointed simplicial sets that generalize necklaces while still retaining many of their useful properties. We begin by recalling the definition of a category of gadgets.
+
+\begin{defn}[\cite{ds1}]
+	A \emph{Category of Gadgets} is a subcategory \(\mathcal{G}\) of the category \(\psh{\Delta}_{\ast,\ast}\) satisfying the following properties:
+	\begin{itemize}
+		\item The category \(\mathcal{G}\) contains \(\Nec\).
+		\item For all \(G\in \mathcal{G}\) and all necklaces \(T\), there is an equality 
+		\[
+			\mathcal{G}(T,G) = \psh{\Delta}(T,G).
+		\]
+		\item For any \(G \in \mathcal{G}\), the simplicial set \(\mathfrak{C}(G)(\alpha,\omega)\) is contractible.
+	\end{itemize}
+	The category \(\mathcal{G}\) is moreover said to be \emph{closed under wedges} if
+	\begin{itemize}
+		\item For any \(G, G^\prime\) in \(\mathcal{G}\), the wedge \(G\vee G^\prime\) is as well.
+	\end{itemize}
+	For any bi-pointed simplicial set \(X_{x,x^\prime}\) and any category of gadgets \(\mathcal{G}\), we functorially define a simplicial set 
+	\[
+		\mathfrak{C}^{\mathcal{G}}_\Delta(X)(x,x^\prime)\defeq N\overcat{\mathcal{G}}{X_{x,x^\prime}}.
+	\]
+	Moreover, if \(\mathcal{G}\) is closed under wedges, the collection of simplicial sets 
+	\[
+		(\mathfrak{C}^{\mathcal{G}}_\Delta(X)(x,x^\prime))_{x,x^\prime \in X}
+	\]
+	assembles to a simplicially enriched category \(\mathfrak{C}^{\mathcal{G}}_\Delta(X)\) with composition induced by concatenation of gadgets.
+\end{defn}
+
+Dugger and Spivak then prove the following useful proposition:
+
+\begin{prop}[\cite{ds1}, Proposition 5.5]
+	For any category of gadgets \(\mathcal{G}\), the natural map
+	\[\mathfrak{C}^{\Nec}_\Delta(X)(x,x^\prime)\to \mathfrak{C}^{\mathcal{G}}_\Delta(X)(x,x^\prime)\]
+	induced by the inclusion \(\Nec \hookrightarrow \G\) is a weak homotopy equivalence.  Moreover, if \(\mathcal{G}\) is closed under wedges, the natural transformation of functors valued in simplicially-enriched categories
+	\[\mathfrak{C}^{\Nec}_\Delta\to \mathfrak{C}^{\mathcal{G}}_\Delta\]
+	is a weak equivalence.
+\end{prop}
+
+As in the previous section, given a category \(\mathcal{G}\) of gadgets, we can extend the realization functor to a functor
+\[
+	\mathfrak{C}^\mathcal{G}:\cellset_{\ast,\ast} \to \spsh,
+\]
+and when \(\mathcal{G}\) is closed under wedges these specify a functor
+\[
+	\mathfrak{C}^\mathcal{G}:\cellset \to \Cat_{\spsh},
+\]
+from which we obtain the following corollary:
+\begin{cor}\label{gadgetlemma}
+	The inclusion \(\Nec\hookrightarrow \mathcal{G}\) induces a natural equivalence of functors valued in \(\spsh\)
+	\[\mathfrak{C}^{\Nec}(X)(x,x^\prime)\to \mathfrak{C}^{\mathcal{G}}(X)(x,x^\prime),\]
+	and when \(\mathcal{G}\) is closed under wedges, these assemble to a natural equivalence of functors valued in \(\Cat_{\spsh}\):
+	\[\mathfrak{C}^{\Nec}\to \mathfrak{C}^{\mathcal{G}}.\]
+\end{cor}
+
+\begin{comment}
+	\section{Enriched gadgets}
+	The general theory of gadgets developed in \cite{ds1} is difficult to adapt to the enriched setting, and we give a 	less-than-ideal generalization in the sequel:
+
+	\begin{defn}
+		A \emph{gadget} of rank \(n\) is a functor \[G: \C \to \cellset_{\ast,\ast}\] such that there exists a \(c\)-indexed 	simplicial presheaf \(S_G^\bullet\) and a natural zig-zag of weak homotopy equivalences of simplicial presheaves \	[\mathfrak{C}(G(c))(\alpha,\omega) \xleftarrow{\sim} S_G^c \xrightarrow{\sim} c^n\] for all \(c\in \C\) (where \(c^n\) 	denotes the \(n^\mathrm{th}\) cartesian power of the representable), where naturality implies that for any \(f:c\to d\) 	in \(\C\), the diagram
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em,
+				column sep=3em]
+				{
+				\mathfrak{C}(G(c))(\alpha,\omega) & S_G^c & c^n\\
+				\mathfrak{C}(G(d))(\alpha,\omega) & S_G^d & d^n\\
+				};
+				\path[->, font=\scriptsize]
+				(b-1-2) edge (b-1-1)
+				edge (b-1-3)
+				edge node[auto,swap]{\(\scriptstyle{S^f_G}\)} (b-2-2)
+				(b-1-1) edge node[auto,swap]{\(\scriptstyle{\mathfrak{C}(G(f))(\alpha,\omega)} \)} (b-2-1)
+				(b-2-2) edge (b-2-1)
+				(b-2-2) edge (b-2-3)
+				(b-1-3) edge node[auto,swap]{\(\scriptstyle{f^n}\)} (b-2-3);
+			\end{tikzpicture}.
+		\end{center}
+		commutes.
+	\end{defn}
+
+	\begin{rem}
+		We can see from the definition that every simplicial necklace \(T\) defines a gadget sending \(c\) in \(\C\) to the 	uniform necklace \(T\{c\}\) of type \(c\).  In what follows, by abuse of notation, we will use \(T\) to denote both the 	underlying simplicial necklace as well as this gadget.
+	\end{rem}
+
+	Unlike in the simplicial case, we have seen that we cannot simply get away with looking at full subcategories, so we have to 	be careful about morphisms.
+
+	\begin{defn}
+		Let \(T\) be a simplicial necklace.  Then for a gadget \(G\) of rank \(n\), we define a \emph{special morphism} \(f:T\to 	G\) to be a natural transformation such that for each \(c\) in \(\C\), the image of the induced map \[\mathfrak{C}_\Delta	(\pi(T))(\alpha,\omega) \to \mathfrak{C}(G)(\alpha,\omega)_c\] lands in the connected component corresponding to the \	(n^\mathrm{th}\) diagonal \((\id_c)^n\).
+
+		More generally, given a pair of gadgets \(G,G^\prime\), we define a \emph{special morphism} \(\phi:G\to G^\prime\) to be 	a natural transformation such that given any simplicial necklace \(T\) and any special morphism \(f:T\to G\), the induced 	map \(\phi\circ f:T\to G^\prime\) is special.
+	\end{defn}
+
+	\begin{rem}
+		If \(T\) and \(T^\prime\) are two simplicial necklaces, the component at \(c\) of a special morphism \(T\to T^\prime\) is 	precisely a special map between uniform necklaces of type \(c\).
+	\end{rem}
+
+	\begin{defn}
+		We define \emph{a category of gadgets} \(\mathcal{G}\) to be a subcategory of the category of all gadgets and special 	maps containing all necklaces and all special morphisms \(T\to G\) where \(T\) is a necklace and \(G\) is in \(\mathcal{G}	\).  We say that the category of gadgets is \emph{closed under wedges} if it is closed under concatenation of gadgets.
+
+		We define \(\mathcal{G}_c\) to be the image of \(\mathcal{G}\) under evaluation at \(c\in \C\).
+	\end{defn}
+
+	\begin{defn}
+		Given a \(\C\)-cellular set \(X\), two vertices \(x,y\) in \(X_0\) and a category of gadgets \(\mathcal{G}\), we define a 	simplicial presheaf on \(\C\) by the formula \[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_c\defeq N\overcat{\mathcal{G}_c}{X_{x,y}	}.\]
+
+		When \(\mathcal{G}\) is closed under wedges, we can define the \(\spsh\)-enriched category \(\mathfrak{C}^{\mathcal{G}}(X)	\) to be the category whose objects are the vertices of \(X\) and whose Hom-objects are
+		\[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_\cdot.\]
+		This defines an enriched category by taking the composition operation to be concatenation of gadgets, which works since \	(\mathcal{G}\) is closed under wedges.
+	\end{defn}
+	\begin{prop}\label{gadgetlemma}
+		Given a \(\C\)-cellular set \(X\) and two vertices \(x,y\) of \(X\) and a category of gadgets \(\mathcal{G}\) the map \	[N\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}} \hookrightarrow N\overcat{\mathcal{G}_c}{X_{x,y}}\] is a weak homotopy 	equivalence.
+	\end{prop}
+	\begin{proof}
+		By Quillen's theorem A, it suffices to look at the overcategories \(\overcat{\Nec^\mathbf{sp}_c}{G(c)}\) along the 	inclusion \(\Nec^\mathbf{sp}_c\hookrightarrow \mathcal{G}_c\) for all \(G\) in \(\mathcal{G}\) and show that their nerves 	are contractible, but these overcategories correspond on-the-nose to the subcategories classifying the diagonal component 	of \(\mathfrak{C}^\Nec(G)(\alpha,\omega)\), which is contractible because \(G\) is a gadget.
+	\end{proof}
+	\begin{cor}
+		The constructions \(\mathfrak{C}^\Nec\) and \(\mathfrak{C}^\mathcal{G}\) are naturally weakly equivalent when \(\mathcal	{G}\) is closed under wedges.
+	\end{cor}
+	\begin{proof}
+		The map between the two constructions is the identity on objects and induces Hom-wise weak equivalences of simplicial 	presheaves.
+	\end{proof}
+\end{comment}
 
 \section{The horizontal Joyal model structure}
 We define a Cisinski model structure on \(\cellset\) and state several results that we will need in the sequel:
@@ -770,74 +1027,6 @@ In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \under
 	If \(\mathfrak{C}\) takes cofibrations to cofibrations, and \(\mathfrak{N}\) takes fibrations between fibrant objects to fibrations between fibrant objects, then the adjunction is a Quillen pair, but this is exactly what we proved in this section.
 \end{proof}
 
-\section{Enriched gadgets}
-The general theory of gadgets developed in \cite{ds1} is difficult to adapt to the enriched setting, and we give a less-than-ideal generalization in the sequel:
-
-\begin{defn}
-	A \emph{gadget} of rank \(n\) is a functor \[G: \C \to \cellset_{\ast,\ast}\] such that there exists a \(c\)-indexed simplicial presheaf \(S_G^\bullet\) and a natural zig-zag of weak homotopy equivalences of simplicial presheaves \[\mathfrak{C}(G(c))(\alpha,\omega) \xleftarrow{\sim} S_G^c \xrightarrow{\sim} c^n\] for all \(c\in \C\) (where \(c^n\) denotes the \(n^\mathrm{th}\) cartesian power of the representable), where naturality implies that for any \(f:c\to d\) in \(\C\), the diagram
-	\begin{center}
-		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=3em,
-			column sep=3em]
-			{
-			\mathfrak{C}(G(c))(\alpha,\omega) & S_G^c & c^n\\
-			\mathfrak{C}(G(d))(\alpha,\omega) & S_G^d & d^n\\
-			};
-			\path[->, font=\scriptsize]
-			(b-1-2) edge (b-1-1)
-			edge (b-1-3)
-			edge node[auto,swap]{\(\scriptstyle{S^f_G}\)} (b-2-2)
-			(b-1-1) edge node[auto,swap]{\(\scriptstyle{\mathfrak{C}(G(f))(\alpha,\omega)} \)} (b-2-1)
-			(b-2-2) edge (b-2-1)
-			(b-2-2) edge (b-2-3)
-			(b-1-3) edge node[auto,swap]{\(\scriptstyle{f^n}\)} (b-2-3);
-		\end{tikzpicture}.
-	\end{center}
-	commutes.
-\end{defn}
-
-\begin{rem}
-	We can see from the definition that every simplicial necklace \(T\) defines a gadget sending \(c\) in \(\C\) to the uniform necklace \(T\{c\}\) of type \(c\).  In what follows, by abuse of notation, we will use \(T\) to denote both the underlying simplicial necklace as well as this gadget.
-\end{rem}
-
-Unlike in the simplicial case, we have seen that we cannot simply get away with looking at full subcategories, so we have to be careful about morphisms.
-
-\begin{defn}
-	Let \(T\) be a simplicial necklace.  Then for a gadget \(G\) of rank \(n\), we define a \emph{special morphism} \(f:T\to G\) to be a natural transformation such that for each \(c\) in \(\C\), the image of the induced map \[\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega) \to \mathfrak{C}(G)(\alpha,\omega)_c\] lands in the connected component corresponding to the \(n^\mathrm{th}\) diagonal \((\id_c)^n\).
-
-	More generally, given a pair of gadgets \(G,G^\prime\), we define a \emph{special morphism} \(\phi:G\to G^\prime\) to be a natural transformation such that given any simplicial necklace \(T\) and any special morphism \(f:T\to G\), the induced map \(\phi\circ f:T\to G^\prime\) is special.
-\end{defn}
-
-\begin{rem}
-	If \(T\) and \(T^\prime\) are two simplicial necklaces, the component at \(c\) of a special morphism \(T\to T^\prime\) is precisely a special map between uniform necklaces of type \(c\).
-\end{rem}
-
-\begin{defn}
-	We define \emph{a category of gadgets} \(\mathcal{G}\) to be a subcategory of the category of all gadgets and special maps containing all necklaces and all special morphisms \(T\to G\) where \(T\) is a necklace and \(G\) is in \(\mathcal{G}\).  We say that the category of gadgets is \emph{closed under wedges} if it is closed under concatenation of gadgets.
-
-	We define \(\mathcal{G}_c\) to be the image of \(\mathcal{G}\) under evaluation at \(c\in \C\).
-\end{defn}
-
-\begin{defn}
-	Given a \(\C\)-cellular set \(X\), two vertices \(x,y\) in \(X_0\) and a category of gadgets \(\mathcal{G}\), we define a simplicial presheaf on \(\C\) by the formula \[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_c\defeq N\overcat{\mathcal{G}_c}{X_{x,y}}.\]
-
-	When \(\mathcal{G}\) is closed under wedges, we can define the \(\spsh\)-enriched category \(\mathfrak{C}^{\mathcal{G}}(X)\) to be the category whose objects are the vertices of \(X\) and whose Hom-objects are
-	\[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_\cdot.\]
-	This defines an enriched category by taking the composition operation to be concatenation of gadgets, which works since \(\mathcal{G}\) is closed under wedges.
-\end{defn}
-\begin{prop}\label{gadgetlemma}
-	Given a \(\C\)-cellular set \(X\) and two vertices \(x,y\) of \(X\) and a category of gadgets \(\mathcal{G}\) the map \[N\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}} \hookrightarrow N\overcat{\mathcal{G}_c}{X_{x,y}}\] is a weak homotopy equivalence.
-\end{prop}
-\begin{proof}
-	By Quillen's theorem A, it suffices to look at the overcategories \(\overcat{\Nec^\mathbf{sp}_c}{G(c)}\) along the inclusion \(\Nec^\mathbf{sp}_c\hookrightarrow \mathcal{G}_c\) for all \(G\) in \(\mathcal{G}\) and show that their nerves are contractible, but these overcategories correspond on-the-nose to the subcategories classifying the diagonal component of \(\mathfrak{C}^\Nec(G)(\alpha,\omega)\), which is contractible because \(G\) is a gadget.
-\end{proof}
-\begin{cor}
-	The constructions \(\mathfrak{C}^\Nec\) and \(\mathfrak{C}^\mathcal{G}\) are naturally weakly equivalent when \(\mathcal{G}\) is closed under wedges.
-\end{cor}
-\begin{proof}
-	The map between the two constructions is the identity on objects and induces Hom-wise weak equivalences of simplicial presheaves.
-\end{proof}
-
 \section{The \(\Hom\) by cosimplicial resolution}
 For every object \([1](c)\) in \(\Theta[\C]\), we introduce four canonical cosimplicial resolutions, which we can use to define simplicial presheaves that represent the mapping space between two vertices of a \(\Theta[C]\)-set.
 
@@ -908,7 +1097,7 @@ We define a slightly modified version for special maps.
 
 \section{Comparing \(\mathfrak{C}(X)(x,y)\) with \(\Map_X(x,y)\)}
 
-We begin by defining a special category of gadgets \(\mathcal{Y}\), which is the full subcategory of the category of all gadgets whose objects are those gadgets \(G\) such that \(\Map^\mathbf{sp}_G(\alpha,\omega)\) is contractible.
+We begin by defining a special category of gadgets \(\mathcal{Y}\), which is the full subcategory of the category of all gadgets whose objects are those gadgets \(G\) such that \(\Map_G(\alpha,\omega)\) is contractible.
 
 In particular, by Proposition \ref{goodgadgets}, we see that every necklace gadget belongs to this category, so it is indeed a category of gadgets.  We define a full subcategory \(\mathcal{Y}_{\mathrm{f}}\subseteq \mathcal{Y}\) to be the full subcategory of \(\mathcal{Y}\) spanned by the gadgets \(G\) such that \(G(c)\) is fibrant for all \(c\in \Ob \C\).
 
@@ -1152,7 +1341,7 @@ We can therefore, without any worry, denote \(\Sigma_{(-)}\) simply by \(\Sigma\
 
 In what follows, let \(\Sigma\) be \(\Sigma_R\).  
 
-\begin{prop} The pair \(\cellset_\M \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_{\Delta}(\C)_{\setS}}\) is a Quillen pair.
+\begin{prop} The pair \(\cellset_\M \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\spsh_{\setS}}\) is a Quillen pair.
 \end{prop}
 \begin{proof}
   It suffices to show that \(\mathfrak{N}\) preserves fibrant objects by the properties of the left-Bousfield localization.  Since the coherent nerve of any fibrant \(\spsh\)-enriched category \(\mathcal{D}\) is already a formal \(\C\)-quasicategory, it suffices to show that \(\mathfrak{N}\mathcal{D}\) has the right-lifting property with respect to \(\Sigma(\mathscr{B}\times^\lrcorner \setS)\).  This will be true so long as the maps \(\mathfrak{C}(\Sigma(\mathscr{B}\times^\lrcorner \setS))\) are all weak equivalences.  To see this, let \(\mathbf{2}(A)\) for any simplicial presheaf \(A\) on \(\C\) denote the \(\spsh\)-enriched category whose objects are \(\{0,1\}\) and where 
@@ -1948,10 +2137,10 @@ In this section, we will prove the anlogue of Joyal's pseudofibration theorem fo
 \end{obs}
 
 In what follows, we will use a very nice observation of Danny Stevenson \cite{danny}.  Consider the case of the simplicial set \(E^1\) and the map \(e:\Delta^0 \hookrightarrow E^1\).  
-\begin{thm}[\cite{danny}*{Example 5.8}]\label{dannythm}
+\begin{thm}[\cite{danny}*{Lemma 2.19}]\label{dannythm}
 	The map of simplicial sets
 	\[e\times^\lrcorner \delta^n: E^1\times \partial\Delta^n \cup \Delta^0 \times \Delta^n \hookrightarrow E\times \Delta^n,\]
-	is an inner anodyne for all \(n>0\).  
+	is inner anodyne for all \(n>0\).  
 \end{thm}
 It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite composition of pushouts of inner horn inclusions.
 \begin{obs}\label{joyalsquare2}
@@ -2282,9 +2471,9 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 
 		\bib{danny}{article}{
 			author={Stevenson, D.},
-			title={Notes on the Joyal model structure},
-			eprint={arXiv:1810.05233},
-			pages={45},
+			title={Model Structures for Correspondences and Bifibrations},
+			eprint={arXiv:1807.08226v1},
+			pages={41},
 		}
 
 	\end{biblist}
