@@ -10,7 +10,7 @@
 % For convenience
 \usepackage{verbatim,enumerate}
 % Fonts
-\usepackage[cal=euler,scr=rsfso]{mathalfa}
+\usepackage[cal=euler,scr=bickham]{mathalfa}
 % Bib
 \usepackage[alphabetic]{amsrefs}
 
@@ -247,7 +247,7 @@ In the thirteenth section, we prove that an enriched form of the Yoneda embeddin
 
 In the appendices, we prove or recount a number of important technical results.  
 
-We would like to thank Denis-Charles Cisinski for his help with axiomatizing the Eilenberg-Zilber shuffle decomposition \ref{cishelp} and George Raptis for several suggested corrections and additions.  We would also like to give special thanks to Andrea Gagna for spending his time discussing these ideas with us over several long conversations as well as his crucial encouragement to put all of this down in writing as well as Eric Peterson for his sage advice and friendship over the years.
+\subsection{Acknowledgements} We would like to thank Denis-Charles Cisinski for his help with axiomatizing the Eilenberg-Zilber shuffle decomposition \ref{cishelp} and George Raptis for several suggested corrections and additions.  We would also like to give special thanks to Andrea Gagna for spending his time discussing these ideas with us over several long conversations as well as his crucial encouragement to put all of this down in writing as well as Eric Peterson for his sage advice and friendship over the years.  We would also like to thank Alexander Campbell for his invaluable help in correcting the proof of Theorem \ref{joyalisothm}.
 
 %Unfortunately, it has not been proven that the (op)lax mapping objects \(\operatorname{Fun}_{\mathcal{L}}(X,Y)\) and \(\operatorname{Fun}_{\mathcal{R}}(X,Y)\) are homotopy-invariant, so although we could give a description of what we expect (op)lax weighted limits and colimits to be, it is not known if these definitions are homotopy-invariant and therefore well-defined. This is also a key gap in proving a higher-dimensional version of the straightening theorem.  We can actually construct the straightening and unstraightening pair, but due to serious combinatorial difficulties involving the (op)lax join and slice, as well as figuring out the precise lifting conditions for higher cartesian fibrations, we have been unable to prove even that the unmarked unstraightening functor sends projectively fibrant diagrams to cartesian fibrations.  The proof of this property (well-short of proving an equivalence of model categories, which probably also requires taking markings into account) can be reduced to showing that the natural projection of the lax slice over a vertex, \(X_{/^{\ell} x}\to X\) is always a cartesian fibration for \(X\) fibrant.   We encourage others interested in the field to take a serious look at this open problem.
 
@@ -271,7 +271,7 @@ In this section, we will consider a slightly more general definition of the wrea
 \begin{prop} The pullback of the fibration \[\psh{\Delta}\int V \to \psh{\Delta}\] along the Yoneda embedding \(\Delta\hookrightarrow \psh{\Delta}\) is exactly the fibration \[\Delta\int\mathcal{V}\to \Delta,\] and therefore, the induced map \[\Delta\int\mathcal{V}\hookrightarrow \psh{\Delta}\int\mathcal{V}\] is a fully faithful embedding.
 \end{prop}
 \begin{proof}  As the functor \(\mathcal{V}_\bullet\) factors as the composite 
-	\[\Delta^\op \hookrightarrow \psh{\Delta}^\op \xrightarrow{\psh{\mathcal{V}^\op_\bullet}^\op},\] where the first functor is fully faithful, it follows that \(\Delta\int \mathcal{V} \to \Delta\) is the pullback of the fibration \(\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}\) along the fully faithful Yoneda embedding.  Ergo, the map in question is fully faithful.  
+	\[\Delta^\op \hookrightarrow \psh{\Delta}^\op \xrightarrow{\psh{\mathcal{V}^\op_\bullet}^\op} \Cat,\] where the first functor is fully faithful, it follows that \(\Delta\int \mathcal{V} \to \Delta\) is the pullback of the fibration \(\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}\) along the fully faithful Yoneda embedding.  Ergo, the map in question is fully faithful.  
 \end{proof}
 
 For the purposes of this paper, we do not need this level of generality.  We specialize as follows: 
@@ -451,6 +451,46 @@ Finally, we come to the form of this functor that we will be using:
 \begin{note}
 	It is easy to see that if we substitute the terminal category for \(\C\), this specializes precisely to the usual coherent realization \(\mathfrak{C}_{\Delta} = \mathfrak{C}_{\Theta[\ast]}\).  
 \end{note}
+
+This description of the coherent realization is useful, but it also admits another useful characterization.
+
+\begin{defn} 
+	The category of \(\C\)-precategories is the full subcategory of \(\spsh(\C)\) spanned by the \emph{precategory objects}, namely those simplicial presheaves \(F\) on \(\C\) such that \(F_0\) is a constant presheaf on \(C\).  We denote this category by \(\mathbf{PCat}(\C)\). 
+\end{defn}
+
+\begin{defn}
+	The functor \(k: \Delta \times \C\to \Theta[C]\) defined by the rule 
+	\[
+		([n],c) \mapsto [n](c,\dots,c).
+	\]
+	Induces a colimit-preserving functor \(k^\ast: \cellset \to \mathbf{PCat}(\C)\) called the \emph{associated precategory}.
+\end{defn}
+
+\begin{defn} 
+	The \emph{pointwise realization} functor \(\mathfrak{C}_{\Delta,\bullet}: \spsh \to \Cat_{\psh{\Delta}}^\C\) defined by the rule 
+	\[
+		X_c\mapsto \mathfrak{C}_\Delta(X_c)
+	\]
+		restricts to colimit preserving functor \(\mathfrak{C}_{\Delta,\bullet}: \mathbf{PCat}(\C) \to \Cat_{\spsh}\) in the obvious way, which by abuse of notation, we also refer to as the \emph{pointwise realization}.
+\end{defn}
+
+\begin{prop}
+	The coherent realization \(\mathfrak{C}:\cellset \to \Cat_{\spsh}\) can be factored as the composite 
+	\[
+		\cellset \xrightarrow{k^\ast} \mathbf{PCat}(\C) \xrightarrow{\mathfrak{C}_{\Delta,\bullet}} \Cat_{\spsh}.
+	\] 
+\end{prop}
+\begin{proof} 
+	Since for any \(X\in \cellset\), the enriched categories \(\mathfrak{C}(X)\) and \(\mathfrak{C}_{\Delta,\bullet}( k^\ast(X))\) have object sets in natural bijection with the set of vertices \(X_0\) it suffices to produce, for each pair of vertices \(x, y \in X_0\) a natural isomorphism
+	\[
+		\mathfrak{C}(X)(x, y) \to \mathfrak{C}_{\Delta,\bullet}( k^\ast(X))(x,y),
+	\] 
+	which amounts to the data of a natural (in \(c\) and \(n\)) bijection
+	\[
+		\mathfrak{C}(X)(x, y)_{c,n} \to \mathfrak{C}_{\Delta,\bullet}( k^\ast(X))(x,y)_{c,n}.
+	\] 
+	Since both functors are cocontinuous, we can reduce further to the case where \(X\) is a representable of the form \([n](c_1,\dots,c_n)\).  
+\end{proof}
 
 \section{Enriched necklaces and the coherent realization}
 Necklaces were introduced by Dugger and Spivak in order to understand the mapping objects \(\Hom_{\mathfrak{C}(X)}\) and give a much easier proof than Lurie's that the homotopy-coherent realization and nerve form a Quillen equivalence.  In this section, we will introduce an enriched version of necklaces that will serve the same purpose.
@@ -1907,7 +1947,7 @@ In this section, we will prove the anlogue of Joyal's pseudofibration theorem fo
 	\end{align*}
 \end{obs}
 
-In what follows, we will use some excellent new results of Danny Stevenson \cite{danny}.  Consider the case of the simplicial set \(E^1\) and the map \(e:\Delta^0 \hookrightarrow E^1\).  
+In what follows, we will use a very nice observation of Danny Stevenson \cite{danny}.  Consider the case of the simplicial set \(E^1\) and the map \(e:\Delta^0 \hookrightarrow E^1\).  
 \begin{thm}[\cite{danny}*{Example 5.8}]\label{dannythm}
 	The map of simplicial sets
 	\[e\times^\lrcorner \delta^n: E^1\times \partial\Delta^n \cup \Delta^0 \times \Delta^n \hookrightarrow E\times \Delta^n,\]
@@ -1997,7 +2037,7 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 		\end{tikzpicture}.
 	\end{center}
 \end{obs}
-\begin{thm}
+\begin{thm}\label{joyalisothm}
 	Set \(e:\Delta^0\to E^1\). Then for any boundary inclusion 
 	\[\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}),\]
 	with \(n>0\), the map 
