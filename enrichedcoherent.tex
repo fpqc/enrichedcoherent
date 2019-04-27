@@ -1030,12 +1030,12 @@ In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \under
 The following lemma will be useful for later.
 \begin{lemma}\label{precatanodyne}
 	If \(A\hookrightarrow B\) is an inner anodyne map of simplicial sets, the induced map
-	\[k_!(A,c) \hookrightarrow k_!(B,c)\] is horizontal inner anodyne. Consequently, if \(X\) is a horizontal \(\C\)-quasicategory, each simplicial set \(k^\ast(X)_c\) is a quasicategory. 
+	\[k_!(A\times c) \hookrightarrow k_!(B\times c)\] is horizontal inner anodyne. Consequently, if \(X\) is a horizontal \(\C\)-quasicategory, each simplicial set \(k^\ast(X)_c\) is a quasicategory. 
 \end{lemma}
 \begin{proof}
 	This follows directly by Lemma \ref{precatproperty} applied to the maps
 	\[V_{\Lambda^n_i}(c,\dots,c) \hookrightarrow V_{\Delta^n}(c,\dots,c),\] as these maps are exactly the maps
-	\[k_!(\Lambda^n_i,c) \hookrightarrow k_!(\Delta^n,c).\]
+	\[k_!(\Lambda^n_i\times c) \hookrightarrow k_!(\Delta^n \times c).\]
 \end{proof}
 
 \section{The \(\Hom\) by cosimplicial resolutions for \(\C\)-precategories}
@@ -1111,14 +1111,14 @@ Unwinding the definitions, we note the following corollary:
 \begin{cor}\label{mapspacecor}
 	If \(X_{x,x^\prime}\) is a bi-pointed horizontal quasicategory, we have zig-zags of weak equivalences in \(\spsh\)
 	\begin{align*}
-		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Hom(k_!(C^\bullet_R,c), X_{x,x^\prime},
+		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Hom(k_!(C^\bullet_R\times c), X_{x,x^\prime},
 		\intertext{and}
-		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Hom(k_!(C^\bullet_L,c), X_{x,x^\prime}.
+		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Hom(k_!(C^\bullet_L\times c), X_{x,x^\prime}.
 	\end{align*}
 \end{cor}
 We also make note of one more useful fact:
 \begin{lemma}\label{resolutionlemma}
-	The cosimplicial bi-pointed \(\C\)-cellular sets \(k_!(C^\bullet_R,c)\) and \(k_!(C^\bullet_R,c)\) are Reedy-cofibrant cosimplicial resolutions of \([1](c)=k_!(\Delta^1,c)\) in \(\cellset_{\ast,\ast}\).  
+	The cosimplicial bi-pointed \(\C\)-cellular sets \(k_!(C^\bullet_R\times c)\) and \(k_!(C^\bullet_R\times c)\) are Reedy-cofibrant cosimplicial resolutions of \([1](c)=k_!(\Delta^1\times c)\) in \(\cellset_{\ast,\ast}\).  
 \end{lemma}
 \begin{proof}
 	From \cite{ds2}*{Proposition 9.4}, we see that the maps
@@ -1126,9 +1126,9 @@ We also make note of one more useful fact:
 	and
 	\[C^n_L\to \Delta^1\]
 	are retracts of inner anodynes.  It then follows immediately from Lemma \ref{precatanodyne} that the maps
-	\[k_!(C^n_R,c) \to k_!(\Delta^1,c)=[1](c)\]
+	\[k_!(C^n_R\times c) \to k_!(\Delta^1\times c)=[1](c)\]
 	and 
-	\[k_!(C^n_L,c) \to k_!(\Delta^1,c)=[1](c)\]
+	\[k_!(C^n_L\times c) \to k_!(\Delta^1\times c)=[1](c)\]
 	are retracts of horizontal inner anodynes and ergo equivalences.  Reedy cofibrancy is clear.
 \end{proof}
 
@@ -1266,9 +1266,64 @@ induced by the inclusions we described above.
   For any formal \(\C\)-quasicategory \(X\) and any pair of vertices \(x,y\), there is a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\).
 \end{prop}
 \begin{proof}
-	By Lemma \ref{resolutionlemma}, we see that we can equivalently compute \(\Map_X(x,y)\) using the cosimplicial resolutions \(k_!(C^\bullet_R,c)\)of \([1](c)\), from which the result follows by Corollary \ref{mapspacecor}.
+	By Lemma \ref{resolutionlemma}, we see that we can equivalently compute \(\Map_X(x,y)\) using the cosimplicial resolutions \(k_!(C^\bullet_R\times c)\)of \([1](c)\), from which the result follows by Corollary \ref{mapspacecor}.
 \end{proof}
 
+\begin{lemma}\label{dsrectangle1}
+	For any bi-pointed formal \(\C\)-quasicategory \(X_{x,y}\), the functor
+	\[\overcat{\Delta}{\cellset_{\ast,\ast}(C^\bullet_R(c), X_{x,y})} \to \overcat{\Delta}{\cellset_{\ast,\ast}(k_!(C^\bullet_R\times c), X_{x,y})}\]
+	induced by the map of cosimplicial resolutions of \([1](c)\)
+	\[k_!(C^\bullet_R\times c) \to C^\bullet_R(c)\]
+	induces a weak homotopy equivalence on nerves.  Moreover, as we have a natural isomorphism
+	\[\overcat{\Delta}{\cellset_{\ast,\ast}(k_!(C^\bullet_R\times c), X_{x,y})}\cong \overcat{\Delta}{\psh{\Delta}_{\ast,\ast}(C^\bullet_R, k^\ast(X_{x,y})_c)},\]
+	we have a commutative diagram in which the specified maps are weak homotopy equivalences
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em,
+				column sep=2em]
+			{
+				\coliml\limits_{[n],C^n_R\to k^\ast(X_{x,y})_c}\!\mathfrak{C}_\Delta(C^n_R)(\alpha,\omega)     & \coliml\limits_{[n],C^n_R(c)\to X_{x,y}}\!\mathfrak{C}_\Delta(C^n_R)(\alpha,\omega)                   \\
+				\hocoliml\limits_{[n],C^n_R\to k^\ast(X_{x,y})_c}\!\mathfrak{C}_\Delta(C^n_R)(\alpha,\omega)     & \hocoliml\limits_{[n],C^n_R(c)\to X_{x,y}}\!\mathfrak{C}_\Delta(C^n_R)(\alpha,\omega)                   \\
+				\hocoliml\limits_{[n],C^n_R\to k^\ast(X_{x,y})_c} \ast     & \hocoliml\limits_{[n],C^n_R(c)\to X_{x,y}} \ast   \\};
+			\path[->, font=\scriptsize]
+			(b-1-2) edge (b-1-1)
+			(b-3-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-3-1)
+			(b-2-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-3-2) edge (b-1-2)
+			(b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-3-1) edge (b-1-1);
+		\end{tikzpicture},
+	\end{center}
+\end{lemma}
+\begin{proof}
+	Any weak homotopy equivalence of simplicial sets induces a weak homotopy equivalence on nerves of their categories of elements.  As the map \(k_!(C^\bullet_R\times c)\to C^\bullet_R(c)\) is a map between Reedy-cofibrant resolutions of \([1](c)\), it follows that the induced map 
+	\[
+		\cellset_{\ast,\ast}(C^\bullet_R(c), X_{x,y}) \to \cellset_{\ast,\ast}(k_!(C^\bullet_R\times c), X_{x,y})
+	\]
+	is a weak homotopy equivalence whenever \(X_{x,y}\) is fibrant.  Taken together, these observations prove the first claim.  To obtain the diagram in the statement, notice that the vertical maps are equivalences as each of the simplicial sets \(\mathfrak{C}_\Delta(C^n_R)(\alpha,\omega)\) is weakly contractible and that the bottom horizontal map is an equivalence, since each of these homotopy colimits is naturally weakly equivalent to the nerve of the diagram category.  The fact that the middle horizontal map is a weak homotopy equivalence follows by \(3\)-for-\(2\).
+\end{proof}
+\begin{note}
+	In what follows, we will make use of a special category of gadgets denoted by \(\mathcal{Y}\).  It is the full subcategory of \(\psh{\Delta}_{\ast,\ast}\) spanned by those bi-pointed simplicial sets \(Y_{\alpha,\omega}\) such that \(\mathfrak{C}_\Delta(Y)(\alpha,\omega)\) is contractible.  The properties of this category of gadgets are spelled out in \cite{ds2}*{Section 5}.
+\end{note}
+\begin{lemma}\label{dssquare}
+	Given a \(\spsh\)-enriched category \(\mathcal{D}\) and any pair of objects \(x,y\in \mathcal{D}\), there is a natural commutative diagram
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em,
+				column sep=2em]
+			{
+				\mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c     & \mathcal{D}(x,y)_c                  \\
+				\coliml\limits_{T\in \overcat{\Nec}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c}}\!\mathfrak{C}_\Delta(T)(\alpha,\omega) & \coliml\limits_{Y\in \overcat{\mathcal{Y}}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c}}\!\mathfrak{C}_\Delta(Y)(\alpha,\omega)  \\};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge (b-1-2)
+			(b-2-1) edge node[auto]{\(\scriptstyle{\cong}\)} (b-1-1) edge  (b-2-2)
+			(b-2-2) edge (b-1-2);
+		\end{tikzpicture},
+	\end{center}
+	in which the specified map is an isomorphism.
+\end{lemma}
+\begin{proof}
+Recall that \(\mathfrak{N}=k_\ast \circ \mathfrak{N}_{\Delta,\bullet}\), so given a map \[f:Y\to k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c,\] we obtain the map \(\mathfrak{C}(Y)\to \mathcal{D}_c\) as the transpose of the composite of \(f\) with the whiskered counit of the adjunction \(k^\ast k_\ast \to \id\).   In particular, for each such map, we obtain a universal factorization \[\mathfrak{C}_\Delta(Y) \to \mathfrak{C}\mathfrak{N}\mathcal{D}_c\to \mathcal{D}_c.\] This determines the righthand vertical map after taking colimits.
+Upon restriction to \[\overcat{\Nec}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c},\] we see that this factorization gives rise to the lefthand vertical map, which is an isomorphism by \cite{ds1}*{Proposition 4.3}.  
+\end{proof}
 \begin{thm}\label{counitthm}
   For any fibrant \(\spsh_{\mathrm{inj}}\)-enriched category \(\mathcal{D}\), the counit map
 	\[\epsilon_\mathcal{D}:\mathfrak{C}(\mathfrak{N}\mathcal{D})\to \mathcal{D}\]
@@ -1282,9 +1337,11 @@ induced by the inclusions we described above.
 				column sep=2em]
 			{
 				\mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c                                                                & \mathcal{D}(x,y)_c                                                                &                                                                                            \\
-				\coliml\limits_{T(c)\to \mathfrak{\mathfrak{N}}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega)   & \coliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega)   & \coliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega)   \\
-				\hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega) & \hocoliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega) & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \\
-				\hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \ast                                                    & \hocoliml\limits_{Y\to \mathfrak{N}\mathcal{D}} \ast                                                    & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \ast                                                      \\
+				\coliml\limits_{T\to k^\ast(\mathfrak{N}\mathcal{D})_c}\! \mathfrak{C}_\Delta(T)(\alpha,\omega)   & \coliml\limits_{Y\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(Y)(\alpha,\omega)   & \coliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}}\!\mathfrak{C}_\Delta(C^n)(\alpha,\omega)   \\
+				\hocoliml\limits_{T\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(T)(\alpha,\omega) & \hocoliml\limits_{Y\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(Y)(\alpha,\omega) & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}}\!\mathfrak{C}_\Delta(C^n)(\alpha,\omega) \\
+				\hocoliml\limits_{T\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\ast &
+				\hocoliml\limits_{Y\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\ast &
+				\hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}}\!\ast   \\
 			};
 			\path[->, font=\scriptsize]
 			(b-1-1) edge (b-1-2)
@@ -1296,17 +1353,42 @@ induced by the inclusions we described above.
 			(b-3-3) edge (b-2-3) edge (b-3-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-3)
 			(b-4-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-2)
 			(b-4-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)} (b-4-2);
-		\end{tikzpicture}
+		\end{tikzpicture}.
 	\end{center}
-
-	The two horizontal maps in the bottom row are weak equivalences by the previous proposition and the fact that \(\mathfrak{N}\) takes fibrant objects to fibrant objects.  The indicated vertical maps are also weak equivalences because \(\pi\) takes gadgets to simplicial gadgets, which have the property that \(\mathfrak{C}_\Delta(G)(\alpha,\omega)\) is weakly contractible.  By \(3\)-for-\(2\), it follows that the horizontal maps in the third row are all weak equivalences.  We reduce this diagram to a smaller diagram
+	This diagram is obtained by composing the diagram from the previous lemma on the right with the diagram in the proof of \cite{ds2}*{Proposition 5.8}, which we reproduce here:
 	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em,
 				column sep=2em]
 			{
-				\mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c                                                                & \mathcal{D}(x,y)_c                                                                &                                                                                                                     \\
-				\hocoliml\limits_{T(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi T(c))(\alpha,\omega) & \hocoliml\limits_{Y(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi Y(c))(\alpha,\omega) & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \\};
+				\mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c                                                                & \mathcal{D}(x,y)_c                                                                &                                                                                            \\
+				\coliml\limits_{T\to k^\ast(\mathfrak{N}\mathcal{D})_c}\! \mathfrak{C}_\Delta(T)(\alpha,\omega)   & \coliml\limits_{Y\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(Y)(\alpha,\omega)   & \coliml\limits_{[n],C^n\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(C^n)(\alpha,\omega)   \\
+				\hocoliml\limits_{T\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(T)(\alpha,\omega) & \hocoliml\limits_{Y\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(Y)(\alpha,\omega) & \hocoliml\limits_{[n],C^n\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(C^n)(\alpha,\omega) \\
+				\hocoliml\limits_{T\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\ast &
+				\hocoliml\limits_{Y\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\ast &
+				\hocoliml\limits_{[n],C^n\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\ast   \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge (b-1-2)
+			(b-2-1) edge (b-1-1) edge (b-2-2)
+			(b-2-2) edge (b-1-2)
+			(b-2-3) edge (b-2-2) edge (b-1-2)
+			(b-3-1) edge (b-2-1) edge (b-3-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-1)
+			(b-3-2) edge (b-2-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-2)
+			(b-3-3) edge (b-2-3) edge (b-3-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-3)
+			(b-4-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-4-2)
+			(b-4-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)} (b-4-2);
+		\end{tikzpicture}.
+	\end{center}
+	The colimits in the left column are indexed over \(\overcat{\Nec}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c},\) the colimits in the middle column are indxed by \(\overcat{\mathcal{Y}}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c},\) and the colimits in the righthand column are indexed by \(\overcat{\Delta}{\psh{\Delta}_{\ast,\ast}(C^\bullet_R, k^\ast(X_{x,y})_c)}\).  
+	The two horizontal maps in the bottom row are weak equivalences by \cite{ds2}*{Proposition 5.8}, as are the indicated vertical maps, using the fact that \(k^\ast(\mathfrak{N}\mathcal{D})_c\) is a quasicategory. By \(3\)-for-\(2\), it follows that the horizontal maps in the third row are all weak equivalences.  We therefore reduce the composite diagram to a smaller diagram:
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em,
+				column sep=2em]
+			{
+				\mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c     & \mathcal{D}(x,y)_c     &               \\
+				\hocoliml\limits_{T\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(T)(\alpha,\omega) & \hocoliml\limits_{Y\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(Y)(\alpha,\omega) & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}}\!\mathfrak{C}_\Delta(C^n)(\alpha,\omega) \\};
 			\path[->, font=\scriptsize]
 			(b-1-1) edge (b-1-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
@@ -1314,16 +1396,16 @@ induced by the inclusions we described above.
 			(b-2-3) edge node[auto,swap]{\(\scriptstyle{\gamma_c}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\sim}\)} (b-2-2);
 		\end{tikzpicture},
 	\end{center}
-	in which the left vertical map is a weak equivalence by Theorem \ref{necthm}. By \(3\)-for-\(2\), we can see that it suffices to show that the map
-	\[\gamma_c: \hocoliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega) \to \coliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\pi C^n(c))(\alpha,\omega)\to \mathcal{D}(x,y),c\]
+	in which the left vertical map is a weak equivalence by Corollary \ref{necthm}. By \(3\)-for-\(2\), we can see that it suffices to show that the map
+	\[\gamma_c: \hocoliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(C^n)(\alpha,\omega) \to \coliml_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}} \mathfrak{C}_\Delta(\C^n)(\alpha,\omega)\to \mathcal{D}(x,y),c\]
 	is a weak equivalence.
 	To do this, notice that
 	\begin{align*}
-		\cellset_{\ast,\ast}(C^n(c), \mathfrak{N}\mathcal{D}_{x,y}) & \cong \overcat{\partial[1]}{\Cat_{\spsh}}(\mathfrak{C}(C^n(c)_{\alpha,\omega},\mathcal{D}_{x,y}) \\
-		& \cong \spsh(\mathfrak{C}(C^n(c))(\alpha,\omega), \mathcal{D}(x,y).
+		\cellset_{\ast,\ast}(C^n(c), \mathfrak{N}\mathcal{D}_{x,y}) & \cong \overcat{\partial[1]}{\Cat_{\spsh}}(\mathfrak{C}(C^n(c))_{\alpha,\omega},\mathcal{D}_{x,y}) \\
+		& \cong \spsh(\mathfrak{C}(C^n(c))(\alpha,\omega), \mathcal{D}(x,y)).
 	\end{align*}
 
-	As in the proof of \cite{ds2}*{Proposition 5.8}, we define the cosimplicial simplicial set \(Q^\bullet = \mathfrak{C}_\Delta (\pi C^\bullet)(\alpha,\omega)\), which is obviously isomorphic to the \(Q^\bullet\) defined in \cite{ds2}. Moreover, by direct computation, we see that
+	As in the proof of \cite{ds2}*{Proposition 5.8}, we define the cosimplicial simplicial set \(Q^\bullet = \mathfrak{C}_\Delta (C^\bullet)(\alpha,\omega)\), which is obviously isomorphic to the \(Q^\bullet\) defined in \cite{ds2}. Moreover, by direct computation, we see that
 	\[\mathfrak{C}(C^\bullet(c))(\alpha,\omega)\cong Q^\bullet \times c.\]
 	Then we see immediately that
 	\[\spsh(\mathfrak{C}(C^n(c))(\alpha,\omega), \mathcal{D}(x,y)) \cong \spsh(Q^n \times c, \mathcal{D}(x,y))\cong \psh{\Delta}(Q^n, \mathcal{D}(x,y)_c),\]
