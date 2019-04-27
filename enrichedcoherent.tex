@@ -586,7 +586,7 @@ whose evaluation on a simplicial set \(X\) is given as follows:
 
 In order to compare \(\mathfrak{C}^{\Nec}_\Delta\) and \(\mathfrak{C}_\Delta\), Dugger and Spivak introduce an auxiliary functor \(\mathfrak{C}^{\Hoc}_\Delta\) that admits specified natural transformations to both.  This leads to the main theorem:
 
-\begin{thm}[\cite{ds1},Theorem 5.2]
+\begin{thm}[\cite{ds1}*{Theorem 5.2}]
 	There is a specified natural zig-zag of weak equivalences of functors valued in simplicially-enriched categories:
 	\[
 		\mathfrak{C}^{\Nec}_\Delta \leftarrow \mathfrak{C}^{\Hoc}_\Delta \to \mathfrak{C}_\Delta.
@@ -791,10 +791,10 @@ To prove the equivalence between quasicategories and simplicially-enriched categ
 
 Dugger and Spivak then prove the following useful proposition:
 
-\begin{prop}[\cite{ds1}, Proposition 5.5]
+\begin{prop}[\cite{ds1}*{Proposition 5.5}]
 	For any category of gadgets \(\mathcal{G}\), the natural map
 	\[\mathfrak{C}^{\Nec}_\Delta(X)(x,x^\prime)\to \mathfrak{C}^{\mathcal{G}}_\Delta(X)(x,x^\prime)\]
-	induced by the inclusion \(\Nec \hookrightarrow \G\) is a weak homotopy equivalence.  Moreover, if \(\mathcal{G}\) is closed under wedges, the natural transformation of functors valued in simplicially-enriched categories
+	induced by the inclusion \(\Nec \hookrightarrow \mathcal{G}\) is a weak homotopy equivalence.  Moreover, if \(\mathcal{G}\) is closed under wedges, the natural transformation of functors valued in simplicially-enriched categories
 	\[\mathfrak{C}^{\Nec}_\Delta\to \mathfrak{C}^{\mathcal{G}}_\Delta\]
 	is a weak equivalence.
 \end{prop}
@@ -1027,6 +1027,111 @@ In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \under
 	If \(\mathfrak{C}\) takes cofibrations to cofibrations, and \(\mathfrak{N}\) takes fibrations between fibrant objects to fibrations between fibrant objects, then the adjunction is a Quillen pair, but this is exactly what we proved in this section.
 \end{proof}
 
+The following lemma will be useful for later.
+\begin{lemma}\label{precatanodyne}
+	If \(A\hookrightarrow B\) is an inner anodyne map of simplicial sets, the induced map
+	\[k_!(A,c) \hookrightarrow k_!(B,c)\] is horizontal inner anodyne. Consequently, if \(X\) is a horizontal \(\C\)-quasicategory, each simplicial set \(k^\ast(X)_c\) is a quasicategory. 
+\end{lemma}
+\begin{proof}
+	This follows directly by Lemma \ref{precatproperty} applied to the maps
+	\[V_{\Lambda^n_i}(c,\dots,c) \hookrightarrow V_{\Delta^n}(c,\dots,c),\] as these maps are exactly the maps
+	\[k_!(\Lambda^n_i,c) \hookrightarrow k_!(\Delta^n,c).\]
+\end{proof}
+
+\section{The \(\Hom\) by cosimplicial resolutions for \(\C\)-precategories}
+In this section, we show that if \(X\) is a \(\C\)-precategory such that \(X_c\) is a quasicategory for all \(c \in \C\), the simplicial presheaves \(\mathfrak{C}_{\Delta,\bullet}(X)(x,x^\prime)\) can be computed by resolutions.  To show this, we will make use of some helpful results in \cite{ds2}.
+
+We define the following four cosimplicial bi-pointed simplicial sets:
+\[C^\bullet_{\mathrm{cyl}}\defeq \colim \left( \partial\Delta^1 \leftarrow \Delta^\bullet \times \partial\Delta^1 \hookrightarrow \Delta^\bullet \times \Delta^1\right)\]
+\[C^\bullet_{E}\defeq \colim \left( \partial\Delta^1 \leftarrow \Delta^\bullet \times \partial\Delta^1 \hookrightarrow \Delta^\bullet \times E^1\right)\]
+\[C^\bullet_{R}\defeq \colim \left( \ast \leftarrow \Delta^\bullet \xrightarrow{\partial^{\bullet+1}} \Delta^{\bullet+1}\right)\]
+\[C^\bullet_{L}\defeq \colim \left( \ast \leftarrow \Delta^\bullet \xrightarrow{\partial^{0}} \Delta^{\bullet+1}\right).\]
+
+These cosimplicial bi-pointed simplicial sets fit in a natural diagram
+\begin{center}
+	\begin{tikzpicture}
+		\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+		{
+			C^\bullet_R &                             &                \\
+			               & C^\bullet_{\mathrm{cyl}} & C^\bullet_E \\
+			C^\bullet_L &                             &                \\
+		};
+		\path[->, font=\scriptsize]
+		(b-1-1) edge (b-2-2)
+		(b-3-1) edge (b-2-2)
+		(b-2-2) edge (b-2-3);
+	\end{tikzpicture}.
+\end{center}
+As these are cosimplicial objects in a cocomplete category, they induce adjunctions admit right adjoints
+\[
+	\operatorname{Map}^{(-)}: \psh{\Delta}_{\ast,\ast} \to \psh{\Delta},
+\]
+where
+\[
+	\operatorname{Map}^{(-)}_X(x,x^\prime)_n\defeq \Hom(C^n_{(-)},X_{x,x^\prime})
+\]
+\begin{lemma}[\cite{ds2}*{Proposition 9.4}]
+	Each of the cosimplicial bi-pointed simplicial sets above is a Reedy-cofibrant cosimplicial resolution of \(\Delta^1\) with respect to the bi-pointed Joyal model structure. 
+\end{lemma}
+The following corollary is immediate from the fact that quasicategories are the fibrant objects of the Joyal model structure together with the general theory of cosimplicial resolutions:
+\begin{cor}
+	If \(X_{x,x^\prime}\) is a bi-pointed quasicategory, then there is a natural isomorphism in the homotopy category
+	\[
+		\operatorname{Map}^{(-)}_X(x,x^\prime)\cong \operatorname{hMap}_X(x,x^\prime),
+	\]
+	where the \((-)\) on the lefthand side can take any of the values \(\mathrm{cyl},\) \(E\), \(R\) or \(L\), and where the righthand side denotes the homotopy function complex of maps of bi-pointed simplicial sets
+	\[
+		\Delta^1 \to X_{x,x^\prime}.
+	\]
+\end{cor}
+Since the choice of resolution doesn't matter, we abuse notation and let \(\Map\) and \(C^\bullet\) denote whichever choice of resolution and adjoint that is convenient.
+The following theorem is a key result in \cite{ds2}.  
+\begin{thm}[\cite{ds2}*{Corollary 5.3}]
+	There is a zig-zag, natural in \(X_{x,x^\prime}\)
+	\[
+		\mathfrak{C}_\Delta(X)(x,x^\prime) \leftrightsquigarrow \Map_X(x,x^\prime),
+	\]
+	which becomes a zig-zag of natural weak homotopy equivalences upon restriction to bi-pointed quasi-categories.
+\end{thm}
+From the naturality of this result, we obtain the following corollary:
+\begin{cor}
+	If \(X_{x,x^\prime}\) is a bi-pointed \(\C\)-precategory such that each \(X_c\) is a quasicategory, the component of the natural zig-zag of maps of simplicial presheaves on \(\C\) at \(X_{x,x^\prime}\) is a zig-zag of weak equivalences in \(\spsh\):
+	\[
+		\mathfrak{C}_{\Delta,\bullet}(X)(x,x^\prime)_c \leftrightsquigarrow \Map_{X_c}(x,x^\prime)
+	\]
+\end{cor}
+Combining this corollary with Lemma \ref{precatanodyne}, we obtain the following:
+\begin{cor}
+	Upon restriction to bi-pointed horizontal quasicategories, we have a natural zig-zag of weak equivalences in \(\spsh\)
+	\[
+		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Map_{k^*(X)_c}(x,x^\prime).
+	\]
+\end{cor}
+Unwinding the definitions, we note the following corollary:
+\begin{cor}\label{mapspacecor}
+	If \(X_{x,x^\prime}\) is a bi-pointed horizontal quasicategory, we have zig-zags of weak equivalences in \(\spsh\)
+	\begin{align*}
+		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Hom(k_!(C^\bullet_R,c), X_{x,x^\prime},
+		\intertext{and}
+		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Hom(k_!(C^\bullet_L,c), X_{x,x^\prime}.
+	\end{align*}
+\end{cor}
+We also make note of one more useful fact:
+\begin{lemma}\label{resolutionlemma}
+	The cosimplicial bi-pointed \(\C\)-cellular sets \(k_!(C^\bullet_R,c)\) and \(k_!(C^\bullet_R,c)\) are Reedy-cofibrant cosimplicial resolutions of \([1](c)=k_!(\Delta^1,c)\) in \(\cellset_{\ast,\ast}\).  
+\end{lemma}
+\begin{proof}
+	From \cite{ds2}*{Proposition 9.4}, we see that the maps
+	\[C^n_R\to \Delta^1\]
+	and
+	\[C^n_L\to \Delta^1\]
+	are retracts of inner anodynes.  It then follows immediately from Lemma \ref{precatanodyne} that the maps
+	\[k_!(C^n_R,c) \to k_!(\Delta^1,c)=[1](c)\]
+	and 
+	\[k_!(C^n_L,c) \to k_!(\Delta^1,c)=[1](c)\]
+	are retracts of horizontal inner anodynes and ergo equivalences.  Reedy cofibrancy is clear.
+\end{proof}
+
 \section{The \(\Hom\) by cosimplicial resolution}
 For every object \([1](c)\) in \(\Theta[\C]\), we introduce four canonical cosimplicial resolutions, which we can use to define simplicial presheaves that represent the mapping space between two vertices of a \(\Theta[C]\)-set.
 
@@ -1067,97 +1172,102 @@ induced by the inclusions we described above.
 \begin{proof}
 	That they are Reedy-cofibrant is obvious, and it is also obvious that \(C^\bullet_E(c)\) is objectwise horizontal-Joyal equivalent to \([1](c)\).  The proof that the others are horizontal-Joyal equivalent will be covered in Appendix \ref{cosimplicial} by showing that each of the projection maps admits a horizontal inner-anodyne section.
 \end{proof}
-\begin{cor}
-	Each of the functors \(C^n_\mathrm{cyl}(\bullet), C^n_R(\bullet), C^n_L(\bullet), C^n_E(\bullet)\) defines a rank-\(1\) gadget for each \(n\geq 0\).
-\end{cor}
-\begin{proof}
-	Since \(\mathfrak{C}\) is left-Quillen, it preserves weak equivalences between cofibrant objects in \(\cellset\).  It follows that since for each \(n\geq 0\) we have that \(C^n_{-}(\bullet)\to [1](\bullet)\) is a weak equivalence, then
-	\[\mathfrak{C}(C^n_{-}(\bullet))(\alpha,\omega) \to \mathfrak{C}([1](\bullet))(\alpha,\omega)=\bullet\]
-	is a weak equivalence, so we have the natural zig-zag we require.
-\end{proof}
+\begin{comment}
+	\begin{cor}
+		Each of the functors \(C^n_\mathrm{cyl}(\bullet), C^n_R(\bullet), C^n_L(\bullet), C^n_E(\bullet)\) defines a rank-\(1\) 	gadget for each \(n\geq 0\).
+	\end{cor}
+	\begin{proof}
+		Since \(\mathfrak{C}\) is left-Quillen, it preserves weak equivalences between cofibrant objects in \(\cellset\).  It 	follows that since for each \(n\geq 0\) we have that \(C^n_{-}(\bullet)\to [1](\bullet)\) is a weak equivalence, then
+		\[\mathfrak{C}(C^n_{-}(\bullet))(\alpha,\omega) \to \mathfrak{C}([1](\bullet))(\alpha,\omega)=\bullet\]
+		is a weak equivalence, so we have the natural zig-zag we require.
+	\end{proof}
+\end{comment}
 \begin{defn}
 	Given a bipointed \(\C\)-cellular set \(X_{x,y}\) we define the \emph{mapping object} from \(x\) to \(y\) to the simplicial presheaf obtained by taking homotopy function complexes
 	\[\Map_X(x,y)_c\defeq h\cellset_{\ast,\ast}([1](c), X).\]
 \end{defn}
+\begin{comment}
+	We define a slightly modified version for special maps.
 
-We define a slightly modified version for special maps.
+	\begin{defn}
+		If \(G\) is a gadget, let \(\mathcal{G}\) denote the category of all gadgets with special maps between them.  Then we 	define the \emph{special mapping object} to be \[\Map^\mathbf{sp}_G(\alpha,\omega)_c=\mathcal{G}(C^\bullet_R(c),G(c)).\]
+	\end{defn}
 
-\begin{defn}
-	If \(G\) is a gadget, let \(\mathcal{G}\) denote the category of all gadgets with special maps between them.  Then we define the \emph{special mapping object} to be \[\Map^\mathbf{sp}_G(\alpha,\omega)_c=\mathcal{G}(C^\bullet_R(c),G(c)).\]
-\end{defn}
+	\begin{prop}\label{goodgadgets}
+		Given a necklace gadget \(T\), the special mapping object \[\Map^\mathbf{sp}_T(\alpha,\omega)\] is contractible.
+	\end{prop}
+	\begin{proof}
+		Since \(T(c)\hookrightarrow \Delta[T](c)\) is a horizontal inner-anodyne and \(\Delta[T](c)\) is fibrant, we can compute \	(\Map^\mathbf{sp}_{T(c)}(\alpha,\omega)\) by the formula 
+		\[\Map^\mathbf{sp}_T(\alpha,\omega)_{k,c} = \mathcal{G}(C_R^k(c),\Delta[T](c))\]
+		but every map \(C^k_R(c)\to \Delta[T](c)\) factors through the map \(C^n_R(c)\to [1](c),\) and the only special map \([1]	(c)\to \Delta[T](c)\) is the one that maps \(c\) into \(c\times \dots \times c\) via the diagonal.
+	\end{proof}
 
-\begin{prop}\label{goodgadgets}
-	Given a necklace gadget \(T\), the special mapping object \[\Map^\mathbf{sp}_T(\alpha,\omega)\] is contractible.
-\end{prop}
-\begin{proof}
-	Since \(T(c)\hookrightarrow \Delta[T](c)\) is a horizontal inner-anodyne and \(\Delta[T](c)\) is fibrant, we can compute \(\Map^\mathbf{sp}_{T(c)}(\alpha,\omega)\) by the formula 
-	\[\Map^\mathbf{sp}_T(\alpha,\omega)_{k,c} = \mathcal{G}(C_R^k(c),\Delta[T](c))\]
-	but every map \(C^k_R(c)\to \Delta[T](c)\) factors through the map \(C^n_R(c)\to [1](c),\) and the only special map \([1](c)\to \Delta[T](c)\) is the one that maps \(c\) into \(c\times \dots \times c\) via the diagonal.
-\end{proof}
+	\section{Comparing \(\mathfrak{C}(X)(x,y)\) with \(\Map_X(x,y)\)}
 
-\section{Comparing \(\mathfrak{C}(X)(x,y)\) with \(\Map_X(x,y)\)}
+	We begin by defining a special category of gadgets \(\mathcal{Y}\), which is the full subcategory of the category of all 	gadgets whose objects are those gadgets \(G\) such that \(\Map_G(\alpha,\omega)\) is contractible.
 
-We begin by defining a special category of gadgets \(\mathcal{Y}\), which is the full subcategory of the category of all gadgets whose objects are those gadgets \(G\) such that \(\Map_G(\alpha,\omega)\) is contractible.
+	In particular, by Proposition \ref{goodgadgets}, we see that every necklace gadget belongs to this category, so it is indeed 	a category of gadgets.  We define a full subcategory \(\mathcal{Y}_{\mathrm{f}}\subseteq \mathcal{Y}\) to be the full 	subcategory of \(\mathcal{Y}\) spanned by the gadgets \(G\) such that \(G(c)\) is fibrant for all \(c\in \Ob \C\).
 
-In particular, by Proposition \ref{goodgadgets}, we see that every necklace gadget belongs to this category, so it is indeed a category of gadgets.  We define a full subcategory \(\mathcal{Y}_{\mathrm{f}}\subseteq \mathcal{Y}\) to be the full subcategory of \(\mathcal{Y}\) spanned by the gadgets \(G\) such that \(G(c)\) is fibrant for all \(c\in \Ob \C\).
+	Let
+	\[C^\bullet(c) \xrightarrow{\sim} R^\bullet(c)\xrightarrow{\sim} [1](c)\]
+	be a factorization into a Reedy trivial cofibration followed by a fibration, which is also a Reedy trivial fibration since we 	are factoring a Reedy equivalence.
 
-Let
-\[C^\bullet(c) \xrightarrow{\sim} R^\bullet(c)\xrightarrow{\sim} [1](c)\]
-be a factorization into a Reedy trivial cofibration followed by a fibration, which is also a Reedy trivial fibration since we are factoring a Reedy equivalence.
+	The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
 
-The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
+	\begin{prop} 
+	  If \(X\) is formal \(\C\)-quasicategory,  and \(x,y\) are two vertices of \(x\), there is a commutative diagram
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+				{
+				\mathfrak{C}^\Nec(X)(x,y)_c & \mathfrak{C}^\mathcal{Y}(X)(x,y)_c & \mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)	_c \\
+				& N\overcat{\Delta}{\cellset_{\ast,\ast}(C^\bullet(c),X_{x,y})} & N\overcat{\Delta}{\cellset_{\ast,\ast}(R^\bullet	(c),X_{x,y})} \\
+				};
+				\path[->, font=\scriptsize]
+				(b-1-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-2)
+				(b-1-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)}(b-1-2)
+				(b-2-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)}(b-1-3)
+				edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
+				(b-2-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-2);
+			\end{tikzpicture}.
+		\end{center}
+		in which all of the maps are weak equivalences.
+	\end{prop}
+	\begin{proof}
+		First, we already know that the map
+		\[\mathfrak{C}^\Nec(X)(x,y)_c \to \mathfrak{C}^\mathcal{Y}(X)(x,y)_c\]
+		is a weak equivalence by Proposition \ref{gadgetlemma}.  The map
+		\[\mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)_c \hookrightarrow \mathfrak{C}^{\mathcal{Y}}(X)(x,y)_c\]
+		is the image under the nerve of the functor
+		\[j:\overcat{\mathcal{Y}_f(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}(c)}{X_{x,y}}.\]
+		We will show that it is a weak homotopy equivalence as follows: Let \(Z\mapsto \mathscr{F}(Z)\) denote a functorial 	fibrant replacement of \(Z\) in the horizontal Joyal model structure. Then since \(X\) is fibrant, there exists a map \	(\mathscr{F}(X)\to X\) retracting the inclusion \(X\hookrightarrow \mathscr{F}(X)\).  Using this fact, we define a functor
+		\[F:\overcat{\mathcal{Y}(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\]
+		sending \[Y(c)\to X_{x,y} \mapsto \mathscr{F}Y(c)\to \mathscr{F}(X) \to X.\]
+		This works because
+		\[\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\to \Map^\mathbf{sp}_{\mathscr{F}(Y(c))}(\alpha,\omega)\]
+		and
+		\[\mathfrak{C}(Y(c))(\alpha,\omega)\to \mathfrak{C}(\mathscr{F}(Y(c)))(\alpha,\omega)\]
+		are weak equivalences, in the first instance because the formation of the special mapping space was homotopy-invariant, 	and in the second instance because \(\mathfrak{C}\) is left-Quillen. Then we see that \(Fj\) and \(jF\) both admit 	natural transformations back to the appropriate identity functors, which proves that they induce a weak homotopy 	equivalence on nerves.
 
-\begin{prop} 
-  If \(X\) is formal \(\C\)-quasicategory,  and \(x,y\) are two vertices of \(x\), there is a commutative diagram
-	\begin{center}
-		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
-			{
-			\mathfrak{C}^\Nec(X)(x,y)_c & \mathfrak{C}^\mathcal{Y}(X)(x,y)_c & \mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)_c \\
-			& N\overcat{\Delta}{\cellset_{\ast,\ast}(C^\bullet(c),X_{x,y})} & N\overcat{\Delta}{\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})} \\
-			};
-			\path[->, font=\scriptsize]
-			(b-1-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-2)
-			(b-1-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)}(b-1-2)
-			(b-2-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)}(b-1-3)
-			edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
-			(b-2-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-2);
-		\end{tikzpicture}.
-	\end{center}
-	in which all of the maps are weak equivalences.
-\end{prop}
-\begin{proof}
-	First, we already know that the map
-	\[\mathfrak{C}^\Nec(X)(x,y)_c \to \mathfrak{C}^\mathcal{Y}(X)(x,y)_c\]
-	is a weak equivalence by Proposition \ref{gadgetlemma}.  The map
-	\[\mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)_c \hookrightarrow \mathfrak{C}^{\mathcal{Y}}(X)(x,y)_c\]
-	is the image under the nerve of the functor
-	\[j:\overcat{\mathcal{Y}_f(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}(c)}{X_{x,y}}.\]
-	We will show that it is a weak homotopy equivalence as follows: Let \(Z\mapsto \mathscr{F}(Z)\) denote a functorial fibrant replacement of \(Z\) in the horizontal Joyal model structure. Then since \(X\) is fibrant, there exists a map \(\mathscr{F}(X)\to X\) retracting the inclusion \(X\hookrightarrow \mathscr{F}(X)\).  Using this fact, we define a functor
-	\[F:\overcat{\mathcal{Y}(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\]
-	sending \[Y(c)\to X_{x,y} \mapsto \mathscr{F}Y(c)\to \mathscr{F}(X) \to X.\]
-	This works because
-	\[\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\to \Map^\mathbf{sp}_{\mathscr{F}(Y(c))}(\alpha,\omega)\]
-	and
-	\[\mathfrak{C}(Y(c))(\alpha,\omega)\to \mathfrak{C}(\mathscr{F}(Y(c)))(\alpha,\omega)\]
-	are weak equivalences, in the first instance because the formation of the special mapping space was homotopy-invariant, and in the second instance because \(\mathfrak{C}\) is left-Quillen. Then we see that \(Fj\) and \(jF\) both admit natural transformations back to the appropriate identity functors, which proves that they induce a weak homotopy equivalence on nerves.
+		The righthand vertical map comes from applying the nerve to the functor
+		\[f:\overcat{\Delta}{\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})} \to \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\]
+		defined by the rule
+		\[([n],R^n(c) \to X_{x,y}) \mapsto (R^n(c), R^n(c)\to X_{x,y}).\]
+		To show that this functor induces a weak equivalence on nerves, we apply Quillen's theorem A.  Notice that for an object \	(y=(Y(c),Y(c)\to X_{x,y})\), the comma category \(\overcat{f}{y}\) is precisely
+		\[\overcat{\Delta}{\mathcal{G}(c)(R^\bullet(c),Y(c))}=\overcat{\Delta}{\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)}.\]
+		But by \cite{ds2}, the nerve of the category of elements of a simplicial set is weakly equivalent to that simplicial set, 	and since \(\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\) was assumed to be contractible, the result follows.
 
-	The righthand vertical map comes from applying the nerve to the functor
-	\[f:\overcat{\Delta}{\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})} \to \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\]
-	defined by the rule
-	\[([n],R^n(c) \to X_{x,y}) \mapsto (R^n(c), R^n(c)\to X_{x,y}).\]
-	To show that this functor induces a weak equivalence on nerves, we apply Quillen's theorem A.  Notice that for an object \(y=(Y(c),Y(c)\to X_{x,y})\), the comma category \(\overcat{f}{y}\) is precisely
-	\[\overcat{\Delta}{\mathcal{G}(c)(R^\bullet(c),Y(c))}=\overcat{\Delta}{\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)}.\]
-	But by \cite{ds2}, the nerve of the category of elements of a simplicial set is weakly equivalent to that simplicial set, and since \(\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\) was assumed to be contractible, the result follows.
-
-	To see that the bottom map is an equivalence, it follows simply because \(C^\bullet(c) \to R^\bullet(c)\) is a Reedy trivial cofibration, so
-	\[\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})  \to \cellset_{\ast,\ast}(C^\bullet(c),X_{x,y})\]
-	is a weak equivalence.  Therefore, again by \cite{ds2}, the nerve of the category of elements of simplicial sets preserves weak equivalences.
-\end{proof}
-
-\begin{cor}\label{mapspacecomparison}
+		To see that the bottom map is an equivalence, it follows simply because \(C^\bullet(c) \to R^\bullet(c)\) is a Reedy 	trivial cofibration, so
+		\[\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})  \to \cellset_{\ast,\ast}(C^\bullet(c),X_{x,y})\]
+		is a weak equivalence.  Therefore, again by \cite{ds2}, the nerve of the category of elements of simplicial sets 	preserves weak equivalences.
+	\end{proof}
+\end{comment}
+\begin{prop}\label{mapspacecomparison}
   For any formal \(\C\)-quasicategory \(X\) and any pair of vertices \(x,y\), there is a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\).
-\end{cor}
+\end{prop}
+\begin{proof}
+	By Lemma \ref{resolutionlemma}, we see that we can equivalently compute \(\Map_X(x,y)\) using the cosimplicial resolutions \(k_!(C^\bullet_R,c)\)of \([1](c)\), from which the result follows by Corollary \ref{mapspacecor}.
+\end{proof}
 
 \begin{thm}\label{counitthm}
   For any fibrant \(\spsh_{\mathrm{inj}}\)-enriched category \(\mathcal{D}\), the counit map
@@ -1257,7 +1367,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 	A map \(f:X\to Y\) of presheaves on \(\Theta[\C]\) is a horizontal Joyal equivalence if and only if \(\mathfrak{C}(f)\) is a weak equivalence of \(\Psh_\Delta (\C)_{\mathrm{inj}}\)-enriched categories.
 \end{prop}
 \begin{proof}
-	We only need to check one direction, since the other direction is immediate by the fact that \(\mathfrak{C}\) is left-Quillen.  Assume \(f:X\to Y\) has the property that \(\mathfrak{C}(f)\) is an equivalence. Then as in the previous proposition, we can reduce to the case where \(X\) and \(Y\) are fibrant, but in this case, we know from Corollary \ref{mapspacecomparison} that \(\mathfrak{C}(X)(x,x^\prime)\) is connected by a natural zig-zag of weak equivalences to \(\Map_X(x,y)\), so if the map  \(\mathfrak{C}(X)(x,x^\prime)\to \mathfrak{C}(Y)(f(x),f(x^\prime))\) is a weak equivalence, it follows that the map \(\Map_X(x,x^\prime)\to \Map_Y(f(x),f(x^\prime))\) is also a weak equivalence.
+	We only need to check one direction, since the other direction is immediate by the fact that \(\mathfrak{C}\) is left-Quillen.  Assume \(f:X\to Y\) has the property that \(\mathfrak{C}(f)\) is an equivalence. Then as in the previous proposition, we can reduce to the case where \(X\) and \(Y\) are fibrant, but in this case, we know from Proposition \ref{mapspacecomparison} that \(\mathfrak{C}(X)(x,x^\prime)\) is connected by a natural zig-zag of weak equivalences to \(\Map_X(x,y)\), so if the map  \(\mathfrak{C}(X)(x,x^\prime)\to \mathfrak{C}(Y)(f(x),f(x^\prime))\) is a weak equivalence, it follows that the map \(\Map_X(x,x^\prime)\to \Map_Y(f(x),f(x^\prime))\) is also a weak equivalence.
 
 	Then it suffices to show that when \(\mathfrak{C}(f)\) is an equivalence, the induced map on sets of homotopy classes
 	\[[\ast,X]_{E^1} \to [\ast,Y]_{E^1}\]
@@ -1382,7 +1492,7 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
 \begin{thm}\label{maintheorem2}
   The Quillen pair \(\cellset_\M \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_{\Delta}(\C)_{\setS}}\) is a Quillen equivalence.
 \end{thm}
-\begin{proof} It suffices to show that \(\mathfrak{C}\) is homotopy-conservative, so let \(f:X\to Y\) be a map in \(\cellset\) such that \(\mathfrak{C}(f)\) is an equivalence in \(\Cat_{\spsh_{\M}}\). Using the same argument as in Section \ref{horizcomparison}, we reduce to the case where \(f:X\to Y\) is a map between \(\M\)-quasicategories.  Since \(\M\)-quasicategories are also formal \(\C\)-quasicategories, we can apply Corollary \ref{mapspacecomparison} to obtain a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\) for any pair of vertices \(x,y\) of \(X\).  By \(3\)-for-\(2\) and since \[\mathfrak{C}(X)(x,y) \to \mathfrak{C}(Y)(fx,fy)\] was assumed to be an \(\M\)-equivalence, we see that the map \(\Map_X(x,y)\to \Map_Y(fx,fy)\) must also be an \(\M\)-equivalence.  In fact, since both \(\Map_X(x,y)\) and \(\Map_Y(fx,fy)\) are local, this map is actually an equivalence for \(\Cat_{\spsh_{\mathrm{inj}}}\).  The argument showing that \(f\) is bijective on iso-components is the same as in the proof of Proposition \ref{conservativity} by passing to the underlying quasicategory.  Therefore, it follows that \(f\) is a horizontal Dwyer-Kan equivalence, which concludes the proof.
+\begin{proof} It suffices to show that \(\mathfrak{C}\) is homotopy-conservative, so let \(f:X\to Y\) be a map in \(\cellset\) such that \(\mathfrak{C}(f)\) is an equivalence in \(\Cat_{\spsh_{\M}}\). Using the same argument as in Section \ref{horizcomparison}, we reduce to the case where \(f:X\to Y\) is a map between \(\M\)-quasicategories.  Since \(\M\)-quasicategories are also formal \(\C\)-quasicategories, we can apply Proposition \ref{mapspacecomparison} to obtain a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\) for any pair of vertices \(x,y\) of \(X\).  By \(3\)-for-\(2\) and since \[\mathfrak{C}(X)(x,y) \to \mathfrak{C}(Y)(fx,fy)\] was assumed to be an \(\M\)-equivalence, we see that the map \(\Map_X(x,y)\to \Map_Y(fx,fy)\) must also be an \(\M\)-equivalence.  In fact, since both \(\Map_X(x,y)\) and \(\Map_Y(fx,fy)\) are local, this map is actually an equivalence for \(\Cat_{\spsh_{\mathrm{inj}}}\).  The argument showing that \(f\) is bijective on iso-components is the same as in the proof of Proposition \ref{conservativity} by passing to the underlying quasicategory.  Therefore, it follows that \(f\) is a horizontal Dwyer-Kan equivalence, which concludes the proof.
 \end{proof}
 \section{The Yoneda embedding and Yoneda's lemma}
 We need the following easy lemma:
@@ -1974,7 +2084,7 @@ Since Rezk's complete Segal model structure on \(\Psh_\Delta(\Theta[\C])\) is Ca
 	\end{enumerate}
 \end{obs}
 We will make use of the following lemma:
-\begin{lemma} 
+\begin{lemma}\label{precatproperty}
 	For any inner horn inclusion \(\Lambda^n_k\hookrightarrow \Delta^n,\) and any presheaves \(X_1,\dots,X_n\) on \(\C\), the map \(V_{\Lambda^n_k}(X_1,\dots,X_n)\times \Delta^0 \hookrightarrow V[n](X_1,\dots,X_n)\times \Delta^0\) belongs to the localizer for complete Segal-\(\Theta[\C]\)-spaces.
 \end{lemma}
 \begin{proof}
