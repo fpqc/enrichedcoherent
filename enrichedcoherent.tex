@@ -7,6 +7,7 @@
 
 % Symbol Packages
 \usepackage{amsmath,amsthm,amssymb,empheq,mathtools}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 % For convenience
 \usepackage{verbatim,enumerate}
 % Fonts
@@ -273,7 +274,6 @@ In this section, we will consider a slightly more general definition of the wrea
 
 	%Then by composition, we obtain a functor \[h_{\mathcal{V}_\bullet}\circ \iota_*: \psh{\Delta}^\op \to \mathbf{CAT}.\] Then  to be the Grothendieck construction of \(h_{\mathcal{V}_\bullet}\circ\iota_*\). 
 \end{defn}
-
 \begin{prop} The pullback of the fibration \[\psh{\Delta}\int V \to \psh{\Delta}\] along the Yoneda embedding \(\Delta\hookrightarrow \psh{\Delta}\) is exactly the fibration \[\Delta\int\mathcal{V}\to \Delta,\] and therefore, the induced map \[\Delta\int\mathcal{V}\hookrightarrow \psh{\Delta}\int\mathcal{V}\] is a fully faithful embedding.
 \end{prop}
 \begin{proof}  As the functor \(\mathcal{V}_\bullet\) factors as the composite 
@@ -413,7 +413,7 @@ We define a Cisinski model structure on \(\cellset\) and state several results t
 	In the case where \(\C\) is the terminal category, these are precisely the quasicategories, since the horns in the definition above become exactly the simplicial inner horn inclusions.
 \end{note}
 
-The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in the Appendices \ref{reedy}, \ref{horizontal}, and \ref{admissible}.
+The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in the sections \ref{reedy}, \ref{horizontal}, and \ref{admissible}.
 
 \begin{prop}
 	The class of all monomorphisms of \(\cellset\) is exactly \(\operatorname{Cell}(\mathscr{M}),\) where \[\mathscr{M}=\{\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) : n\geq 0 \text{ and } c_1,\dots,c_n \in \Ob \C\}.\]
@@ -1192,7 +1192,7 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 	Since the formal \(\C\)-quasicategories have the right lifting property with respect to all inner anodynes, it suffices to check that they have the right lifting property with respect to \(e:\Delta^0\hookrightarrow E^1\), but such a lift always exists by choosing the obvious degenerate lift.
 \end{proof}
 
-\section{The coherent nerve and realization}
+\section{The Coherent Nerve, Horizontal case}
 \subsection{The coherent realization for \(\Theta[\C]\)}
 There is an adjoint pair that should be familiar to those who have experience with \((\infty,1)\)-categories, namely the coherent realization and nerve pair, \[\psh{\Theta[\ast]}  \underset{\mathfrak{N}_\Delta}{\overset{\mathfrak{C}_\Delta}{\rightleftarrows}} \Cat_{\Psh_\Delta(\ast)},\] where we have obvious isomorphisms \(\Theta[\ast]\cong \Delta\) and \(\Psh_\Delta(\ast)\cong \psh{\Delta}\)
 
@@ -2269,6 +2269,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 	in which the indicated arrows are equivalences (for the bottom horizontal, this was by choice, and for the righthand vertical, it comes from Theorem \ref{counitthm}.  But if we precompose with the unit map \(\mathfrak{C}\eta_X:\mathfrak{C}(X)\to \mathfrak{C}\mathfrak{N}\mathfrak{C}(X)\), the lefthand arrow becomes the identity by the triangle identities, which proves the claim by \(3\)-for-\(2\).
 \end{proof}
 
+\section{The Coherent Nerve, Local case}
 \subsection{The \((\C,\setS)\)-enriched model structure}\label{rezkvert}
 While our presentation of the horizontal Joyal model structure comes mainly from David Oury's thesis \cite{oury}, what follows is independent, making use of the resolution technology we developed in the previous section to give a simple and satisfying story. Suppose \(\M=(\C,\setS)\) is a Cartesian presentation in the sense of Rezk, where \(\setS\) is a set of monomorphisms of \(\spsh\) such that the left-Bousfield localization of \(\spsh_\mathrm{inj}\) at \(\setS\) is a Cartesian model category.  
 
