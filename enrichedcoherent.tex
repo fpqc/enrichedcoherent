@@ -1072,9 +1072,12 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 	\[e\times^\lrcorner \delta^n: E^1\times \partial\Delta^n \cup \Delta^0 \times \Delta^n \hookrightarrow E\times \Delta^n,\]
 	is inner anodyne for all \(n>0\).  
 \end{thm}
-It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite composition of pushouts of inner horn inclusions.
+It follows from the small object argument that we can factor \(e\times^\lrcorner \delta^n\) as a composite
+\[
+	E^1 \times \partial \Delta^n \coprod_{\Delta^0 \times \partial \Delta^n} \Delta^0 \times \Delta^n \xrightarrow{\iota} E \xrightarrow{\varepsilon} E^1 \times \Delta^n,
+\] where \(\iota\) is a relative cell complex for the inner horn inclusions and where \(\varepsilon\) is an inner fibration between quasicategories. Since \(e\times^\lrcorner \delta^n\) is inner anodyne, it follows by the lifting property that it is a retract of \(\iota\).  
 \begin{obs}\label{joyalsquare2}
-	A simplex \((\alpha,\beta):\Delta^r \to E^1\times \Delta^n\) is determined by the destination of its vertices. We can assume that \(\beta\) is surjective, since otherwise, the simplex would factor through \(E^1\times \partial \Delta^n\).     We label the vertices by \((a,i)\) and \((b,i)\) for \(0\leq i \leq n\), where \(e\) is the inclusion of \(a in E^1\).  Given a simplex \((\alpha,\beta):\Delta^r\to E^1\times \Delta^n\), and a family of presheaves \(\mathbf{U}=(U_i)_{i=1}^n\) on \(\C\). 
+	A simplex \((\alpha,\beta):\Delta^r \to E^1\times \Delta^n\) is determined by the destination of its vertices. We can assume that \(\beta\) is surjective, since otherwise, the simplex would factor through \(E^1\times \partial \Delta^n\).     We label the vertices by \((a,i)\) and \((b,i)\) for \(0\leq i \leq n\), where \(e\) is the inclusion of \(a \in E^1\).  Given a simplex \((\alpha,\beta):\Delta^r\to E^1\times \Delta^n\), and a family of presheaves \(\mathbf{U}=(U_i)_{i=1}^n\) on \(\C\). 
 	\[K_{\beta}:\psh{\C}^n \to \psh{\C}^r\]
 	to be the functor sending
 	\[\mathbf{U} \mapsto \beta^\ast \mathbf{U}.\]
