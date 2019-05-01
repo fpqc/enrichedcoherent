@@ -7,7 +7,7 @@
 
 % Symbol Packages
 \usepackage{amsmath,amsthm,amssymb,empheq,mathtools}
-\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+\usepackage{microtype}
 % For convenience
 \usepackage{verbatim,enumerate}
 % Fonts
@@ -150,8 +150,8 @@
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
-\newcommand{\C}{\ensuremath{\mathcal{C}}}
-\newcommand{\G}{\ensuremath{\mathbb{G}}}
+\renewcommand{\C}{\ensuremath{\mathcal{C}}}
+\renewcommand{\G}{\ensuremath{\mathbb{G}}}
 \newcommand{\M}{\ensuremath{\mathcal{M}}}
 \newcommand{\Pre}{\ensuremath{\mathcal{P}}}
 \newcommand{\setS}{\ensuremath{\mathscr{S}}}
@@ -1178,19 +1178,19 @@ It follows that we can filter \(e\times^\lrcorner \delta^n\) as the transfinite 
 	\[e \times^\lrcorner \square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\]
 	is inner anodyne.
 \end{proof}
-
-\begin{cor}
-	The fibrations between fibrant objects in the horizontal Joyal model structure are horizontal inner fibrations having the right lifting property with respect to the map \(e:\Delta^0\hookrightarrow E^1\).
-\end{cor}
-\begin{proof} 
-	A fibration between fibrant objects must have the right lifting property with respect to all horizontal inner anodynes and all maps of the form \(e\times^\lrcorner  \square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\).  Since every inner fibration has the right lifting property with respect to all of those maps for \(n>0\), it follows that an inner fibration between fibrant objects need only have the right lifting property with respect to the case where \(n=0\), which is exactly the map \(e\).
-\end{proof}
 \begin{cor}
 	The formal \(\C\)-quasicategories are the fibrant objects of the horizontal Joyal model structure.
 \end{cor}
 \begin{proof}
 	Since the formal \(\C\)-quasicategories have the right lifting property with respect to all inner anodynes, it suffices to check that they have the right lifting property with respect to \(e:\Delta^0\hookrightarrow E^1\), but such a lift always exists by choosing the obvious degenerate lift.
 \end{proof}
+\begin{cor}
+	The fibrations between fibrant objects in the horizontal Joyal model structure are horizontal inner fibrations having the right lifting property with respect to the map \(e:\Delta^0\hookrightarrow E^1\).
+\end{cor}
+\begin{proof} 
+	A fibration between fibrant objects must have the right lifting property with respect to all horizontal inner anodynes and all maps of the form \(e\times^\lrcorner  \square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\).  Since every inner fibration has the right lifting property with respect to all of those maps for \(n>0\), it follows that an inner fibration between fibrant objects need only have the right lifting property with respect to the case where \(n=0\), which is exactly the map \(e\).
+\end{proof}
+
 
 \section{The Coherent Nerve, Horizontal case}
 \subsection{The coherent realization for \(\Theta[\C]\)}
@@ -1199,8 +1199,41 @@ There is an adjoint pair that should be familiar to those who have experience wi
 An important theorem early in \emph{Higher Topos Theory} tells us that this adjunction gives a Quillen equivalence when the lefthand side is equipped with the Joyal model structure and the righthand side is equipped with the Bergner model structure.  The goal of this section is to show that for any \(\C\) with the aforementioned properties, we can construct an analogous adjunction:
 \[\cellset \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\spsh}\]
 
-We will extensively abuse notation in what follows by identifying a simplicial set with its associated constant simplicial presheaf on \(\C\) and identifying a presheaf on \(\C\) with its associated discrete simplicial presheaf.
 
+\begin{defn} 
+	The category of \(\C\)-precategories is the full subcategory of \(\spsh\) spanned by the \emph{precategory objects}, namely those simplicial presheaves \(F\) on \(\C\) such that \(F_0\) is a constant presheaf on \(\C\).  We denote this category by \(\mathbf{PCat}(\C)\). 
+\end{defn}
+
+\begin{defn}
+	The functor \(k: \Delta \times \C\to \Theta[C]\) defined by the rule 
+	\[
+		([n],c) \mapsto [n](c,\dots,c).
+	\]
+	Induces a colimit-preserving functor \(k^\ast: \cellset \to \spsh\) that lands in \(\mathbf{PCat}(\C)\) called the \emph{associated precategory}.
+\end{defn}
+
+\begin{defn}\label{pointwisedefn}
+	The \emph{pointwise realization} functor \(\mathfrak{C}_{\Delta,\bullet}: \spsh \to \Cat_{\psh{\Delta}}^{\C^\op}\) defined by the rule 
+	\[
+		\mathfrak{C}_{\Delta,\bullet}(X)_c \defeq \mathfrak{C}_{\Delta}(X_c)
+	\]
+		restricts to colimit preserving functor \(\mathfrak{C}_{\Delta,\bullet}: \mathbf{PCat}(\C) \to \Cat_{\spsh}\) in the obvious way, which by abuse of notation, we also refer to as the \emph{pointwise realization}.
+\end{defn}
+
+\begin{defn}
+	The \emph{coherent realization} \(\mathfrak{C}_{\Theta[\C]}:\cellset \to \Cat_{\spsh},\) also denoted by \(\mathfrak{C}\) by abuse of notation when \(\C\) is fixed is defined as the composite: 
+	\[
+		\cellset \xrightarrow{k^\ast} \mathbf{PCat}(\C) \xrightarrow{\mathfrak{C}_{\Delta,\bullet}} \Cat_{\spsh}.
+	\] 
+\end{defn}
+\begin{note}
+	It is immediate from the cocontinuity of each functor in this composite that the functor \(\mathfrak{C}_{\Theta[\C]}\) is cocontinuous and therefore determined on representables. In what follows, we will give an explicit computation of its values on representables and in fact more generally on cellular sets of the form \(V[n](A_1,\dots,A_n)\).
+\end{note}
+\begin{rem}
+	It is easy to see that if we substitute the terminal category for \(\C\), this specializes precisely to the usual coherent realization \(\mathfrak{C}_{\Delta} = \mathfrak{C}_{\Theta[\ast]}\).  
+\end{rem}
+
+We will extensively abuse notation in what follows by identifying a simplicial set with its associated constant simplicial presheaf on \(\C\) and identifying a presheaf on \(\C\) with its associated discrete simplicial presheaf.
 \begin{defn}
 	We define a construction on objects \[Q:\Delta\int\psh{\C}\to \Cat_{\spsh}.\] Suppose \([n](X_1,\dots, X_n)\) is any object of \(\Delta\int\psh{\C}\). Then we define \(Q([n](X_1,\dots,X_n)\) as follows:
 	\begin{itemize}
@@ -1221,71 +1254,42 @@ We will extensively abuse notation in what follows by identifying a simplicial s
 		      \end{align*}
 	\end{itemize}
 \end{defn}
-
 \begin{prop} The construction \(Q\) is functorial.
 \end{prop}
 \begin{proof}
-	Recall that a map \[[n](X_1,\dots, X_n) \to [m](Y_1,\dots Y_m)\] in \(\Delta \int \psh{\C}\) is given by a pair \((\gamma,\mathbf{f})\), where \(\gamma:[n]\to [m]\) is a map of simplices together with a family of maps \[\mathbf{f}=\left(f_i: X_i \to \prod_{j=\gamma(i-1)}^{\gamma(i)}Y_j\right)_{i=1}^n.\]
+	Recall that a map \[[n](X_1,\dots, X_n) \to [m](Y_1,\dots Y_m)\] in \(\Delta \int \psh{\C}\) is given by a pair \((\gamma,	\mathbf{f})\), where \(\gamma:[n]\to [m]\) is a map of simplices together with a family of maps \[\mathbf{f}=\left(f_i: 	X_i \to \prod_{j=\gamma(i-1)}^{\gamma(i)}Y_j\right)_{i=1}^n.\]
+	If for \(0<i\leq n\), we have \(\gamma(i-1)=\gamma(i)\), we can see easily that \(\gamma\) factors through the 	codegeneracy map \[[n](X_1,\dots,X_n)\to [n-1](X_1,\dots,\psh{X_i},\dots,X_n).\]  Applying this factorization repeatedly, 	we factor \((\gamma,\mathbf{f})\) as a codegeneracy followed by a map \((\gamma^\prime,f^\prime)\) such that \(\gamma^\prime\) is the inclusion of a coface \([n^\prime]\hookrightarrow [m]\).
 
-	If for \(0<i\leq n\), we have \(\gamma(i-1)=\gamma(i)\), we can see easily that \(\gamma\) factors through the codegeneracy map \[[n](X_1,\dots,X_n)\to [n-1](X_1,\dots,\psh{X_i},\dots,X_n).\]  Applying this factorization repeatedly, we factor \((\gamma,\mathbf{f})\) as a codegeneracy followed by a map \((\gamma^\prime,f^\prime)\) such that \(\gamma^\prime\) is the inclusion of a coface \([n^\prime]\hookrightarrow [m]\).
-
-	Since \(\Delta\int \psh{\C}\) is fibred over \(\Delta\), we may take the cartesian lift of \(\gamma^\prime\), which is the map \[\overline{\gamma^\prime}=(\gamma^\prime,\mathbf{id}):[n']\left(\prod_{j=\gamma^\prime(0)}^{\gamma^\prime(1)}Y_j, \dots, \prod_{j=\gamma^\prime(n^\prime-1)}^{\gamma^\prime(n^\prime)} Y_j \right)\hookrightarrow [m](Y_1,\dots,Y_m).\]  By cartesianness, we have a unique factorization of \((\gamma^\prime,\mathbf{f^\prime})\) by this map, yielding a map \[(\id,\overline{f^\prime}):[n'](X^\prime_1,\dots,X^\prime_{n^\prime})\to [n']\left(\prod_{j=\gamma^\prime(0)}^{\gamma^\prime(1)}Y_j, \dots, \prod_{j=\gamma^\prime(n^\prime-1)}^{\gamma^\prime(n^\prime)} Y_j \right).\]
+	Since \(\Delta\int \psh{\C}\) is fibred over \(\Delta\), we may take the cartesian lift of \(\gamma^\prime\), which is 	the map \[\overline{\gamma^\prime}=(\gamma^\prime,\mathbf{id}):[n']\left(\prod_{j=\gamma^\prime(0)}^{\gamma^\prime(1)}Y_j,	 \dots, \prod_{j=\gamma^\prime(n^\prime-1)}^{\gamma^\prime(n^\prime)} Y_j \right)\hookrightarrow [m](Y_1,\dots,Y_m).\]  	By cartesianness, we have a unique factorization of \((\gamma^\prime,\mathbf{f^\prime})\) by this map, yielding a map \[	(\id,\overline{f^\prime}):[n'](X^\prime_1,\dots,X^\prime_{n^\prime})\to [n']\left(\prod_{j=\gamma^\prime(0)}^	{\gamma^\prime(1)}Y_j, \dots, \prod_{j=\gamma^\prime(n^\prime-1)}^{\gamma^\prime(n^\prime)} Y_j \right).\]
 
 	Then to prove the proposition, we need to show functoriality in three cases:
 	\begin{itemize}
-		\item If the map \((\gamma,\mathbf{f})\) is a codegeneracy of codimension \(1\), suppose \(\gamma=\sigma^i:[n+1]\to [n]\) for \(0\leq i\leq n\).  Then \(Q((\sigma^i,\mathbf{id}))_{ab}:\Hom(a,b)\to \Hom(\sigma^i(a),\sigma^i(b))\) is defined on the homs as follows:
+		\item If the map \((\gamma,\mathbf{f})\) is a codegeneracy of codimension \(1\), suppose \(\gamma=\sigma^i:[n+1]\to 	[n]\) for \(0\leq i\leq n\).  Then \(Q((\sigma^i,\mathbf{id}))_{ab}:\Hom(a,b)\to \Hom(\sigma^i(a),\sigma^i(b))\) is 	defined on the homs as follows:
 		      \[Q(\sigma^i)_{ab}=
 			      \begin{cases}
 				      \id\times \operatorname{min}\circ \tau_{X_{i}} \times \id & \text{ if } a <  i \leq b \\
 				      \id                                                       & \text{ otherwise }
 			      \end{cases}\]
-		      where \(\operatorname{min}:\Delta^1\times \Delta^1\to \Delta^1\) is induced by the map of posets sending \((x,y)\mapsto \operatorname{min}(x,y)\) and \(\tau_{X_{i}}\to \ast\) is the terminal map.  Specifically, in the case where \(a< i \leq b\), the map is given by the composite:
+		      where \(\operatorname{min}:\Delta^1\times \Delta^1\to \Delta^1\) is induced by the map of posets sending \((x,y)	\mapsto \operatorname{min}(x,y)\) and \(\tau_{X_{i}}\to \ast\) is the terminal map.  Specifically, in the case 	where \(a< i \leq b\), the map is given by the composite:
 		      \begin{align*}
-			      X_{a+1}\times \Delta^1\times\dots\times\Delta^1\times & X_{i} \times \Delta^1 \times \dots\times\Delta^1\times X_{b} \\
-			                                                            & \downarrow                                                   \\
-			      X_{a+1}\times \Delta^1\times\dots\times\Delta^1\times & \ast \times \Delta^1 \times \dots\times\Delta^1\times X_{b}  \\
-			                                                            & \parallel                                                    \\
-			      X_{a+1}\times \Delta^1\times\dots\times\Delta^1       & \times \Delta^1 \times \dots\times\Delta^1\times X_{b}       \\
-			                                                            & \downarrow                                                   \\
-			      X_{a+1}\times \Delta^1\times\dots\times               & \Delta^1 \times \dots\times\Delta^1\times X_{b}              \\
+			      X_{a+1}\times \Delta^1\times\dots\times\Delta^1\times & X_{i} \times \Delta^1 \times 	\dots\times\Delta^1\times X_{b} \\
+			                                                            & \downarrow                                          	         \\
+			      X_{a+1}\times \Delta^1\times\dots\times\Delta^1\times & \ast \times \Delta^1 \times 	\dots\times\Delta^1\times X_{b}  \\
+			                                                            & \parallel                                           	         \\
+			      X_{a+1}\times \Delta^1\times\dots\times\Delta^1       & \times \Delta^1 \times \dots\times\Delta^1\times X_	{b}       \\
+			                                                            & \downarrow                                          	         \\
+			      X_{a+1}\times \Delta^1\times\dots\times               & \Delta^1 \times \dots\times\Delta^1\times X_{b}     	         \\
 		      \end{align*}
 		      If \(i=0\) or \(i=n\), we consider \(\Delta^0=\ast\) to be \(\{0\}\).
-		\item If the map \((\gamma,\mathbf{f})\) is a pure coface of codimension \(1\), we have two subcases: If it is an outer coface, the map is just the obvious inclusion.  If it is an inner coface, it has a term that looks like \(X_{i}\times X_{i+1}\), and this is included in all of the \(\Hom\) objects as \(X_{i}\times \{0\} \times X_{i+1}\)
-		\item If the map \((\gamma,\mathbf{f})\) is such that \(\gamma=\id\), since each of the \(\Hom\) objects is given as a product of the \(X_i\) with \(\Delta^1\) of the same length, just map them by \(f_a\times\Delta^1\times \dots \times\Delta^1 \times f_{b-1}\) using the functoriality of the cartesian product.
+		\item If the map \((\gamma,\mathbf{f})\) is a pure coface of codimension \(1\), we have two subcases: If it is an 	outer coface, the map is just the obvious inclusion.  If it is an inner coface, it has a term that looks like \(X_{i}	\times X_{i+1}\), and this is included in all of the \(\Hom\) objects as \(X_{i}\times \{0\} \times X_{i+1}\)
+		\item If the map \((\gamma,\mathbf{f})\) is such that \(\gamma=\id\), since each of the \(\Hom\) objects is given as 	a product of the \(X_i\) with \(\Delta^1\) of the same length, just map them by \(f_a\times\Delta^1\times \dots 	\times\Delta^1 \times f_{b-1}\) using the functoriality of the cartesian product.
 	\end{itemize}
 	It is an easy exercise to see that this assignment is functorial and completely analogous to the un-enriched case.
 \end{proof}
-
-Finally, we come to the form of this functor that we will be using:
-
-\begin{defn} Let \(\mathfrak{C}\) be the composite \[\Theta[\C]\hookrightarrow\Delta\int \psh{\C} \xrightarrow{Q} \Cat_{\spsh}.\] Since \(\Cat_{\spsh}\) is cocomplete, there exists a colimit-preserving extension to \(\cellset\), the \emph{homotopy-coherent realization}, which by abuse of notation, we also call \(\mathfrak{C}\).  It is the left adjoint in an adjunction \[\mathfrak{C}:\cellset\rightleftarrows \Cat_{\spsh}:\mathfrak{N},\]  wherein the right adjoint is called the \emph{homotopy-coherent nerve}.
-\end{defn}
-
-\begin{note}
-	It is easy to see that if we substitute the terminal category for \(\C\), this specializes precisely to the usual coherent realization \(\mathfrak{C}_{\Delta} = \mathfrak{C}_{\Theta[\ast]}\).  
-\end{note}
-
-This description of the coherent realization is useful, but it also admits another useful characterization.
-
-\begin{defn} 
-	The category of \(\C\)-precategories is the full subcategory of \(\spsh(\C)\) spanned by the \emph{precategory objects}, namely those simplicial presheaves \(F\) on \(\C\) such that \(F_0\) is a constant presheaf on \(C\).  We denote this category by \(\mathbf{PCat}(\C)\). 
-\end{defn}
-
-\begin{defn}
-	The functor \(k: \Delta \times \C\to \Theta[C]\) defined by the rule 
-	\[
-		([n],c) \mapsto [n](c,\dots,c).
-	\]
-	Induces a colimit-preserving functor \(k^\ast: \cellset \to \mathbf{PCat}(\C)\) called the \emph{associated precategory}.
-\end{defn}
-
-\begin{defn}\label{pointwisedefn}
-	The \emph{pointwise realization} functor \(\mathfrak{C}_{\Delta,\bullet}: \spsh \to \Cat_{\psh{\Delta}}^\C\) defined by the rule 
-	\[
-		\mathfrak{C}_{\Delta,\bullet}(X)_c \defeq \mathfrak{C}_{\Delta}(X_c)
-	\]
-		restricts to colimit preserving functor \(\mathfrak{C}_{\Delta,\bullet}: \mathbf{PCat}(\C) \to \Cat_{\spsh}\) in the obvious way, which by abuse of notation, we also refer to as the \emph{pointwise realization}.
-\end{defn}
+\begin{comment}
+	\begin{defn} Let \(\mathfrak{C}\) be the composite \[\Theta[\C]\hookrightarrow\Delta\int \psh{\C} \xrightarrow{Q} \Cat_{\spsh}.\] Since \(\Cat_{\spsh}\) is cocomplete, there exists a colimit-preserving extension to \(\cellset\), the \emph{homotopy-coherent realization}, which by abuse of notation, we also call \(\mathfrak{C}\).  It is the left adjoint in an adjunction \[\mathfrak{C}:\cellset\rightleftarrows \Cat_{\spsh}:\mathfrak{N},\]  wherein the right adjoint is called the \emph{homotopy-coherent nerve}.
+	\end{defn}
+\end{comment}
 
 \begin{note}
 	We specify the following abuse of notation: Given an ordered family of sets \(S_1,\dots, S_n\), we denote by
@@ -1300,68 +1304,64 @@ This description of the coherent realization is useful, but it also admits anoth
 \end{note}
 
 \begin{prop}\label{pointwise}
-	The coherent realization \(\mathfrak{C}:\cellset \to \Cat_{\spsh}\) can be factored as the composite 
+	The functor \(Q:\Delta\int\psh{\C}\to \Cat_{\spsh}\) factors as the composite
 	\[
-		\cellset \xrightarrow{k^\ast} \mathbf{PCat}(\C) \xrightarrow{\mathfrak{C}_{\Delta,\bullet}} \Cat_{\spsh}.
-	\] 
+		\Delta\int\psh{\C} \xrightarrow{V} \cellset \xrightarrow{\mathfrak{C}} \Cat_{\spsh}
+	\]
 \end{prop}
 \begin{proof} 
-	Since for any \(X\in \cellset\), the enriched categories \(\mathfrak{C}(X)\) and \(\mathfrak{C}_{\Delta,\bullet}( k^\ast(X))\) have object sets in natural bijection with the set of vertices \(X_0\) it suffices to produce, for each pair of vertices \(x, y \in X_0\) a natural isomorphism
+	Since for any \([m](X_1,\dots,X_m) \in \Delta\int\psh{\C}\), the enriched categories \(Q([m](X_1,\dots,X_m))\) and \(\mathfrak{C}(V[m](X_1,\dots,X_m))\) have object sets in natural bijection with the set of vertices of \([m]\) it suffices to produce, for each pair of vertices \(i, j \in [m]\) a natural isomorphism
 	\[
-		\mathfrak{C}(X)(x, y) \to \mathfrak{C}_{\Delta,\bullet}( k^\ast(X))(x,y),
-	\] 
+		\mathfrak{C}(V[m](X_1,\dots,X_m))(i, j) \to Q([m](X_1,\dots,X_m))(i,j),
+	\]
 	which amounts to the data of a natural (in \(c\)) isomorphism of simplicial sets
 	\[
-		\mathfrak{C}(X)(x, y)_{c} \to \mathfrak{C}_{\Delta,\bullet}( k^\ast(X))(x,y)_{c}.
-	\] 
-	Since both functors are cocontinuous, we can reduce further to the case where \(X\) is a representable of the form \([m](c_1,\dots,c_m)\). 
-	First, observe that specifying a simplex 
-	\[
-		\Delta^n \to \mathfrak{C}([m](c_1,\dots,c_m))(i, j)_{c}
+		\mathfrak{C}(V[m](X_1,\dots,X_m))(x, y)_c \to Q([m](X_1,\dots,X_m))(x,y)_c.
 	\]
-	is equivalent to specifying a morphism 
+	First, observe that specifying a simplex
 	\[
-		(\Delta^n, c)\to ((\Delta^1)^{j-i-1}, c_{i+1}\times \dots\times c_j),
+		\Delta^n \to Q([m](X_1,\dots,X_m))(i, j)_{c}
 	\]
-	which is itself equivalent to specifying a simplex
-	\[
-		\Delta^n \to (\Delta^1)^{j-i-1} \times \Hom(c,c_{i+1}) \times \dots \times \Hom(c,c_j),
-	\]
+	is equivalent to specifying a morphism
+	\begin{align*}
+		(\Delta^n, c) &\to X_{i+1} \times \Delta^1 \times \dots \times \Delta^1 \times X_j\\ 
+		&=(\Delta^1)^{j-i-1} \times \prod_{k=i+1}^j X_k
+	\intertext{which is itself equivalent to specifying a simplex}
+		\Delta^n &\to (\Delta^1)^{j-i-1} \times \prod_{k=i+1}^j X_k(c),
+	\end{align*}
 	so in particular, we may make the identification
-	\[
-		\mathfrak{C}([m](c_1,\dots,c_m))(i, j)_{c} \cong \mathfrak{C}_\Delta([m](\Hom(c,c_1),\dots,\Hom(c,c_m)))(i, j),
-	\]
-	and therefore it follows that we have an natural isomorphism, natural in \(c\):
-	\[
-		\mathfrak{C}([m](c_1,\dots,c_m))_{c} \cong \mathfrak{C}_\Delta([m](\Hom(c,c_1),\dots,\Hom(c,c_m))).
-	\]
+	\begin{align*}
+		Q([m](X_1,\dots,X_m))(i, j)_{c} &\cong \mathfrak{C}_\Delta([m](X_1(c),\dots,X_m(c)))(i, j),
+	\intertext{and therefore it follows that we have an isomorphism, natural in \(c\):}
+		Q([m](X_1,\dots,X_m))_{c} &\cong \mathfrak{C}_\Delta([m](X_1(c),\dots,X_m(c))).
+	\end{align*}
 	It therefore suffices to demonstrate a natural isomorphism of simplicial sets
 	\[
-		k^\ast([m](c_1,\dots,c_m))_c\cong [m](\Hom(c,c_1),\dots,\Hom(c,c_m)),
+		k^\ast(V[m](X_1,\dots,X_m))_c\cong [m](X_1(c),\dots,X_m(c)),
 	\]
-	but it can be observed that specifying a simplex 
+	but it can be observed that specifying a simplex
 	\[
-		\Delta^n \to k^\ast([m](c_1,\dots,c_m))_c
+		\Delta^n \to k^\ast(V[m](X_1,\dots,X_m))_c
 	\]
 	corresponds to specifying a map
 	\[
-		[n](c,\dots,c) \to [m](c_1,\dots,c_m),
+		[n](c,\dots,c) \to V[m](X_1,\dots,X_m),
 	\]
 	which in turn is given by the data of a map
 	\[
 		\gamma:[n]\to [m]
 	\]
-	together with maps 
+	together with maps
 	\[
-		c\to \prod_{k=\gamma(0)+1}^{\gamma(n)} c_k,
+		c\to \prod_{k=\gamma(0)+1}^{\gamma(n)} X_k,
 	\]
 	or equivalently, a family
 	\[
-		(f_{\gamma(0)+1}, \dots, f_{\gamma(n)}) \in \prod_{k=\gamma(0)+1}^{\gamma(n)} \Hom(c,c_k),
+		(f_{\gamma(0)+1}, \dots, f_{\gamma(n)}) \in \prod_{k=\gamma(0)+1}^{\gamma(n)} X_k(c),
 	\]
-	which specifies a unique simplex 
+	which specifies a unique simplex
 	\[
-		\Delta^n \to [m](\Hom(c,c_1),\dots,\Hom(c,c_m)),
+		\Delta^n \to [m](X_1(c),\dots,X_m(c)),
 	\]
 	which proves the claim.
 \end{proof}
@@ -1427,7 +1427,7 @@ The functors \(\mathfrak{C}_\Delta^{\Nec}\) and \(\mathfrak{C}_\Delta^{\Nec}\), 
 	The \emph{homotopy colimit realization} functor \(\mathfrak{C}^{\Hoc}\) is defined similarly.
 \end{defn}
 
-From these definitions and the theorem above, as well as Proposition \ref{pointwise}, we deduce the following useful corollary.
+From these definitions and the theorem above, we deduce the following useful corollary.
 
 \begin{cor}\label{necthm}
 	There is a specified natural zig-zag of weak equivalences of functors valued in \(\Cat_{\spsh}\)
@@ -1700,7 +1700,7 @@ from which we obtain the following corollary:
 
 
 \subsection{Quillen functoriality}
-In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\spsh_{\mathrm{inj}}}\] is a Quillen pair. We begin with the following observation:
+In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\spsh_{\mathrm{inj}}}\] is a Quillen pair. We will extensively use the characterization of \(\mathfrak{C}\) given in Proposition \ref{pointwise}.  We begin with the following observation:
 
 \begin{prop}
 	For any \(n>0\), let \(K\subseteq \{1,\dots,n-1\}\) and define
