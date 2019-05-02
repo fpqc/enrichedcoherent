@@ -520,7 +520,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 	If \(\square\) preserves pushouts in the \(i^{\mathrm{th}}\) argument, then if \(f_i\) is a pushout of \(f_i^\prime\), it follows that \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\) is a pushout of \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\).
 \end{cor}
 \begin{lemma}
-	Suppose \((u,v):h\to g\) is a pushout square in \(\mathcal{A}^1\), and suppose that \((g,\id):p\to q\) is a commutative square.  Given family of maps \((\mathbf{f}=f_i \in \mathcal{A}_i^{[1]})_{i=2}^n\), let \(Q_{\bullet,\mathbf{f}}\) denote the evaluation of \(\square^\lrcorner(\bullet,\mathbf{f})\) at \(0\), that is, the domain.  \(g^\lrcorner: Q_{p,\mathbf{f}} \to Q_{q,\mathbf{f}}\) is a pushout of \(\square^\lrcorner(h,\mathbf{f})\).  
+	Suppose \((u,v):h\to g\) is a pushout square in \(\mathcal{A}^{[1]}\), and suppose that \((g,\id):p\to q\) is a commutative square.  Given family of maps \((\mathbf{f}=f_i \in \mathcal{A}_i^{[1]})_{i=2}^n\), let \(Q_{\bullet,\mathbf{f}}\) denote the evaluation of \(\square^\lrcorner(\bullet,\mathbf{f})\) at \(0\), that is, the domain.  \(g^\lrcorner: Q_{p,\mathbf{f}} \to Q_{q,\mathbf{f}}\) is a pushout of \(\square^\lrcorner(h,\mathbf{f})\).  
 \end{lemma}
 \begin{proof} The data give us commutative cube 
 	\[h \xrightarrow{(h,\id)} \id \xrightarrow{(v,qv)} q = h \xrightarrow{(u,qv)} p \xrightarrow{(g,\id)} q,\]
@@ -590,7 +590,7 @@ In this section, we demonstrate that the class of monomorphisms is exactly the c
 \end{proof}
 \begin{cor} 
 	We define the set
-	\[\mathscr{M}=\{\partial[x] \to [x]| [x]\in \Ob(\Theta[\C])\}.\]  Then the class \(\operatorname{Cell}(\mathscr{M})\) is exactly the the class of monomorphisms of \(\cellset\).  
+	\[\mathscr{M}=\{\partial c \to c \mid c \in \Ob(\Theta[\C])\}.\]  Then the class \(\operatorname{Cell}(\mathscr{M})\) is exactly the the class of monomorphisms of \(\cellset\).  
 \end{cor}
 \begin{proof}
 	This is an immediate consequence of \cite{cisinski-book}*{Proposition 8.1.37} or \cite{bergner-rezk-reedy}*{4.4}.
