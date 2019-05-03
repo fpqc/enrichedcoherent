@@ -219,7 +219,7 @@
 
 %%%%%
 \section*{Introduction}
-In his thesis, David Oury introduced machinery to give a novel proof that his constructed model structure on \(\Theta_2\)-sets is cartesian-monoidal closed. Charles Rezk constructed a model structure on \(\Theta_2\)-spaces that is known to be Quillen biequivalent to Oury's model structure.  However,  Rezk's construction allows for enrichment in a larger class of model categories, namely cartesian-closed model categories whose underlying categories are simplicial presheaves on a small category \(\C\) satisfying some tame restrictions.
+In his thesis, David Oury introduced machinery to give a novel proof that his constructed model structure on \(\Theta_2\)-sets is Cartesian-monoidal closed. Charles Rezk constructed a model structure on \(\Theta_2\)-spaces that is known to be Quillen biequivalent to Oury's model structure.  However,  Rezk's construction allows for enrichment in a larger class of model categories, namely Cartesian-closed model categories whose underlying categories are simplicial presheaves on a small category \(\C\) satisfying some tame restrictions.
 
 Bergner and Rezk also showed by means of a zig-zag of Quillen equivalences that \(\Theta_n\)-spaces model the same homotopy theory as \(\Psh_\Delta(\Theta_{n-1})\)-enriched categories.  Because the equivalence is indirect, however, many of the ideas from Lurie's work on \((\infty,1)\)-categories cannot be adapted in a straightforward manner.  In order to rectify this, we construct a generalized version of the coherent realization and nerve using \(\Theta_n\)-sets (or more generally \(\Theta[\C]\)-sets), and we demonstrate that this adjunction is a Quillen equivalence using an enriched version of Dugger and Spivak's calculus of necklaces. 
 
@@ -377,7 +377,7 @@ Rezk introduced an intertwining functor by means of an explicit construction, bu
 \begin{note} Although the case when \(\C=\Theta_{n-1}\) (respectively \(\C=\Theta=\Theta_\omega\)) are not strictly the focus of this paper, note that \(\Theta[\Theta_{n-1}]=\Theta_n\) (respectively \(\Theta[\Theta]=\Theta\)).  In these cases, we call presheaves of sets on \(\Theta[\C]\) \emph{\(n\)-cellular sets} (respectively, \emph{cellular sets}).  
 \end{note}
 
-\begin{defn} We say that a \(\C\)-cellular set \(X\) is \emph{sober} if it is the image of a normalized object of \(\ssetlab\). If \(f:X\to Y\) is the image under the intertwiner of a cartesian map of normalized labeled simplicial sets, we call \(f\) \emph{cartesian}.
+\begin{defn} We say that a \(\C\)-cellular set \(X\) is \emph{sober} if it is the image of a normalized object of \(\ssetlab\). If \(f:X\to Y\) is the image under the intertwiner of a Cartesian map of normalized labeled simplicial sets, we call \(f\) \emph{Cartesian}.
 \end{defn}
 
 \begin{prop} All representable \(\C\)-cellular sets are sober.
@@ -385,16 +385,16 @@ Rezk introduced an intertwining functor by means of an explicit construction, bu
 \begin{proof} By construction.
 \end{proof}
 
-\begin{prop} The class of sober \(\C\)-cellular sets is closed under cartesian product.
+\begin{prop} The class of sober \(\C\)-cellular sets is closed under Cartesian product.
 \end{prop}
-\begin{proof} From the construction of the intertwiner, we see that if \(\ssetlab\) has all cartesian products, then the intertwiner preserves them, since
-	\[\Hom_{\ssetlab}(L(\cdot), (S,\Omega)\times (S^\prime,\Omega^\prime))=\Hom_{\ssetlab}(L(\cdot), (S,\Omega))\times \Hom_{\ssetlab}(L(\cdot), (S^\prime,\Omega^\prime)).\] Then we define the cartesian product of \((S,\Omega)\) and \((S^\prime,\Omega^\prime)\) by the formula \[S\times S^\prime \xrightarrow{\Omega \times \Omega^\prime} \psh{\C}_\bullet \times \psh{\C}_\bullet \xrightarrow{\times} \psh{\C}_\bullet.\]  It is clear that this satisfies the universal property of the product.
+\begin{proof} From the construction of the intertwiner, we see that if \(\ssetlab\) has all Cartesian products, then the intertwiner preserves them, since
+	\[\Hom_{\ssetlab}(L(\cdot), (S,\Omega)\times (S^\prime,\Omega^\prime))=\Hom_{\ssetlab}(L(\cdot), (S,\Omega))\times \Hom_{\ssetlab}(L(\cdot), (S^\prime,\Omega^\prime)).\] Then we define the Cartesian product of \((S,\Omega)\) and \((S^\prime,\Omega^\prime)\) by the formula \[S\times S^\prime \xrightarrow{\Omega \times \Omega^\prime} \psh{\C}_\bullet \times \psh{\C}_\bullet \xrightarrow{\times} \psh{\C}_\bullet.\]  It is clear that this satisfies the universal property of the product.
 \end{proof}
 
 \begin{prop}\label{pullbacksober}
 	The functor associated with the fibration \(\Theta[\C]\to \Delta\) induces an adjunction 
 	\[\cellset \underset{\mathscr{H}}{\overset{\pi}{\rightleftarrows}} \psh{\Delta} ,\]
-	as we saw earlier. If \(X=S\square\Omega\) is sober, and \(f:S^\prime\to S\) is a map of simplicial sets, then the image of the cartesian lift \(\tilde{f}:(S^\prime, f^\ast(\Omega))\to (S,\Omega)\) under the intertwiner is exactly the pullback of \(\mathscr{H}(f)\) along the component at \(X\) of the unit of the adjunction \(\mu_X:X\to \mathscr{H}\pi X= \mathscr{H} S\).
+	as we saw earlier. If \(X=S\square\Omega\) is sober, and \(f:S^\prime\to S\) is a map of simplicial sets, then the image of the Cartesian lift \(\tilde{f}:(S^\prime, f^\ast(\Omega))\to (S,\Omega)\) under the intertwiner is exactly the pullback of \(\mathscr{H}(f)\) along the component at \(X\) of the unit of the adjunction \(\mu_X:X\to \mathscr{H}\pi X= \mathscr{H} S\).
 \end{prop}
 \begin{proof} 
 	By inspection of the definition of \(S\square\Omega\), we can see that \(\pi(S\square\Omega)=S\).
@@ -464,93 +464,325 @@ The overwhelming majority of this section is due to Oury, although we had to red
 \end{lemma}
 \begin{proof} By coend manipulation.
 \end{proof}
-We specialize now to the case where \(\mathcal{V}\) is just the category of sets and where \(\mathcal{T}=[1]\) is the \(1\)-simplex.  The functor \(\wedge:[1]^n \to [1]\) is given by taking the infimum.   
+We specialize now to the case where \(\mathcal{V}\) is just the category of sets and where \(\mathcal{T}=[1]\) is the categorical \(1\)-simplex.  The functor \(\wedge:[1]^n \to [1]\) is given by taking the infimum.   
+\begin{note}
+	We will often consider arrows in a category \(\mathcal{D}\) as functors \([1]\to \mathcal{D}\).  By abuse of notation, we will denote the functor \([1]\to \mathcal{D}\) classifying an arrow \(f:A\to B\) simply by \(f\).  We will denote the evaluation of this functor on the objects of \(x\in [1]\) by \(f(x)\), such that in the case of a map \(f:A\to B\),
+	\begin{eqnarray}
+		f(0) = A &\text{and}& f(1) = B
+	\end{eqnarray} 
+\end{note}
 \begin{defn}
 	Given \(\square:\mathcal{A}_1\times \dots \times \mathcal{A}_n \to \mathcal{D}\), where each category appearing is cocomplete, we define the \emph{corner tensor} \(\square^\lrcorner:\mathcal{A}_1^{[1]}\times \dots \times \mathcal{A}_n^{[1]} \to \mathcal{D}^{[1]}\) by the formula
 	\[\square^\lrcorner(f_1,\dots,f_n)(t)=\int^{u_1,\dots,u_n} [1](u_1\wedge\dots\wedge u_n, t) \cdot \square(f_1(u_1),\dots,f_n(u_n)).\]
 	If \((g,h): f_i\to f^\prime_i\) is a commutative square, let 
-	\[(g^\lrcorner,h):\square^\lrcorner(f_1,\dots,f_i,\dots,f_n) \to \square^\lrcorner(f_1,\dots,f^\prime_i,\dots,f_n) \]
+	\[
+		(g^\lrcorner,h^{-}):\square^\lrcorner(f_1,\dots,f_i,\dots,f_n) \to \square^\lrcorner(f_1,\dots,f^\prime_i,\dots,f_n)
+	\]
 	be the induced commutative square.  
 \end{defn}
+\begin{example}
+	If we take \(\square\) to be a bifunctor \(\mathcal{D}\times \mathcal{D} \to \mathcal{D}\) in an appropriately cocomplete category, then given \(f_1:A\to B\) and \(f_2:C\to D\), their corner tensor is the familiar corner product: 
+	\[
+		f_1 \square^\lrcorner f_2 = A\square D \coprod_{A\square C} B\square C \to  B\square D.
+	\]
+\end{example}
+\begin{rem}
+	The previous example is in some sense universal, and it will allow us to reduce certain questions about big corner tensors to binary ones. In particular, we will frequently use the observation that, in the situation of the example the map \(f_1(0) \square f_2(1) \to (f_1 \square^\lrcorner f_2)(0)\) is a pushout of the map \(f_1(0) \square f_2(0) \to f_1(1) \square f_2(0)\).
+\end{rem}
 \begin{lemma}\label{corneridentities}
-	If any \(f_i:A_i\to B_i\) is an identity map, then \(\square^\lrcorner(f_1,\dots,f_n)=\id\)
+	If for any \(i\in \{0,\dots,n\}\), the map \(f_i:A_i\to B_i\) is an identity map, then the corner tensor \(\square^\lrcorner(f_1,\dots,f_n)\) is an identity map.
 \end{lemma}
 \begin{proof}
-	Assume for simplicity that \(i=1\).  Then the result follows by setting 
-	\[U(s,t)=\int^{u_1,\dots,u_n} \left([1](u_1,s) \times [1](u_2\wedge\dots\wedge u_n,t)\right)\cdot \square(f_1(u_1),f_2(u_2),\dots, f_n(u_n)).\]
+	Assume for simplicity that \(i=1\), which is without loss of generality by reindexing.  Then the result follows by setting 
+	\[
+		U(s,t)=\int^{u_1,\dots,u_n} \left([1](u_1,s) \times [1](u_2\wedge\dots\wedge u_n,t)\right)\cdot \square(f_1(u_1),f_2(u_2),\dots, f_n(u_n)).
+	\]
 	Notice that by Yoneda reduction,
-	\[\int^{s,t} [1](s\wedge t,x) \times [1](u_1,s) \times [1](u_2\wedge\dots\wedge u_n,t) = [1](u_1 \wedge u_2 \wedge \dots\wedge u_n,x),\]
+	\[
+		\int^{s,t} [1](s\wedge t,x) \times [1](u_1,s) \times [1](u_2\wedge\dots\wedge u_n,t) = [1](u_1 \wedge u_2 \wedge \dots\wedge u_n,x),
+	\]
 	so we have that 
-	\[\square^\lrcorner(f_1,\dots,f_n)x=\int^{s,t} [1](s\wedge t,x) U(s,t),\]
+	\[
+		\square^\lrcorner(f_1,\dots,f_n)(x)=\int^{s,t} [1](s\wedge t,x) U(s,t),
+	\]
 	which exhibits 
-	\[\square^\lrcorner(f_1,\dots,f_n)0=U(0,1)\coprod_{U(0,0)} U(1,0),\]
-	but \(U(0,1)=\square(B_1,\dots,B_n)\), but the map \(U(0,0) \to (U(1,0)\) is the identity by cofinality, so the map \(U(0,1) \to \square^\lrcorner(f_1,\dots,f_n)0\) is the pushout of an identity map, and the map \(U(0,1)\to \square^\lrcorner(f_1,\dots,f_n)1\) is also the identity, so it follows that the map \(\square^\lrcorner(f_1,\dots,f_n)\) must also be the identity.
+	\[
+		\square^\lrcorner(f_1,\dots,f_n)(0)=U(0,1)\coprod_{U(0,0)} U(1,0),
+	\]
+	but \(U(0,1)=\square(B_1,\dots,B_n)\), which demonstrates that the map \(U(0,0) \to U(1,0)\) is the identity by cofinality. The map \(U(0,1) \to \square^\lrcorner(f_1,\dots,f_n)(0)\) is the pushout of an identity map, and the map \(U(0,1)\to \square^\lrcorner(f_1,\dots,f_n)(1)\) is also the identity, so it follows that the map \(\square^\lrcorner(f_1,\dots,f_n)\) must also be the identity.
 \end{proof}
 
 \begin{lemma}
-	Suppose \(\square\) preserves pushouts in the first argument and \((g,h):f_1\to f_1^\prime\) is a pushout square in \(\mathcal{A}_1\), then the induced square 
-	\[(g^\lrcorner,h):\square^\lrcorner(f_1,\dots,f_n) \to \square^\lrcorner(f^\prime_1,\dots,\dots,f_n) \] is a pushout square.
+	Suppose \(\square\) preserves pushouts in the first argument and 
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+			{
+				A_1 & A^\prime_1 \\
+				B_1 & B^\prime_1 \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto,swap]{\(\scriptstyle{g}\)} (b-1-2)  edge node[auto,swap]{\(\scriptstyle{f_1}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{h}\)} (b-2-2)
+			(b-1-2) edge node[auto]{\(\scriptstyle{f^\prime_1}\)} (b-2-2);
+		\end{tikzpicture},
+	\end{center}
+	is a pushout square in \(\mathcal{A}_1\), then the induced square 
+	\[(g^\lrcorner,h^-):\square^\lrcorner(f_1,\dots,f_n) \to \square^\lrcorner(f^\prime_1,\dots,f_n) \] is a pushout square.
 \end{lemma}
 \begin{proof} 
-	Let \(Q\) denote \(\square^\lrcorner(f_1,\dots,f_n)(0)\) and \(Q^\prime=\square^\lrcorner(f^\prime_1,\dots,f_n)\), with \(g^\lrcorner:Q\to Q^\prime\).  
-	Let \((\alpha,\alpha^\prime): \square(g,B_2,\dots,B_n) \to g^\lrcorner\) be the induced commutative square. Then we can factor the square 
-	\[\square(f_1,B_2,\dots,B_n),\square(f^\prime_1,B_2,\dots,B_n))=(g^\lrcorner,h)\circ (\alpha,\alpha^\prime),\]
+	Let \(Q\) denote \(\square^\lrcorner(f_1,\dots,f_n)(0)\) and \(Q^\prime=\square^\lrcorner(f^\prime_1,\dots,f_n)(0)\), with \(g^\lrcorner:Q\to Q^\prime\) being the induced map on the domains of corner tensors.  
+	Let \((\alpha,\alpha^\prime): \square(g,B_2,\dots,B_n) \to g^\lrcorner\) be the induced commutative square
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+			{
+				\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
+				Q & Q^\prime \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\alpha}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-2-2)
+			(b-1-2) edge node[auto]{\(\scriptstyle{\alpha^\prime}\)} (b-2-2);
+		\end{tikzpicture}.
+	\end{center}
+	Then we can factor the square 
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+			{
+				\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
+				\square(B_1,B_2,\dots,B_n) & \square(B^\prime_1,B_2,\dots,B_n) \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\square(f_1,B_2,\dots,B_n)}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{h^-}\)} (b-2-2)
+			(b-1-2) edge node[auto]{\(\scriptstyle{\square(f^\prime_1,B_2,\dots,B_n)}\)} (b-2-2);
+		\end{tikzpicture}
+	\end{center}
+	as the composite square
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+			{
+				\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
+				Q & Q^\prime \\
+				\square(B_1,B_2,\dots,B_n) & \square(B^\prime_1,B_2,\dots,B_n) \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\alpha}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-2-2)
+			(b-1-2) edge node[auto]{\(\scriptstyle{\alpha^\prime}\)} (b-2-2)
+			(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner(f_1,\dots,f_n)}\)} (b-3-1)
+			(b-2-2) edge node[auto]{\(\scriptstyle{\square^\lrcorner(f^\prime_1,\dots,f_n)}\)} (b-3-2)
+			(b-3-1) edge node[auto]{\(\scriptstyle{h^-}\)} (b-3-2);
+		\end{tikzpicture}.
+	\end{center}
 	where the outer square is a pushout square by the fact that \(\square\) preserves colimits in the first argument. Then to prove the lemma, it suffices to prove the claim that \((\alpha,\alpha^\prime)\) is a pushout square.
 	Then we define 
-	\[U(s,t)=\int^{u_1,\dots,u_n} \left([1](u_1,s) \times [1](u_2\wedge\dots\wedge u_n,t)\right)\cdot \square(f_1(u_1),f_2(u_2),\dots, f_n(u_n)).\]
+	\[
+		U(s,t)=\int^{e_1,\dots,e_n} \left([1](e_1,s) \times [1](e_2\wedge\dots\wedge e_n,t)\right)\cdot \square(f_1(e_1),f_2(e_2),\dots, f_n(e_n)).
+	\]
 	and 
-	\[U^\prime(s,t)=\int^{u_1,\dots,u_n} \left([1](u_1,s) \times [1](u_2\wedge\dots\wedge u_n,t)\right)\cdot \square(f^\prime_1(u_1),f_2(u_2),\dots, f_n(u_n)).\]
-	Then notice that \(\alpha:\square(A_1,B_2,\dots,B_n) \to Q\) is the pushout of \(u:U(0,0)\to U(1,0)\) and \(\alpha^\prime:\square(A^\prime_1,B_2,\dots,B_n) \to Q\) is the pushout of \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\).  So we have a commutative cube 
-	\[u\to \alpha \to \alpha^\prime = u\to u^\prime \to \alpha^\prime,\] where \(u\to \alpha\) and \(u^\prime\to \alpha^\prime\) are pushouts.  Then by the pasting law for pushouts, it suffices to show that the map \(u\to u^\prime\) is a pushout.  
+	\[
+		U^\prime(s,t)=\int^{e_1,\dots,e_n} \left([1](e_1,s) \times [1](e_2\wedge\dots\wedge e_n,t)\right)\cdot \square(f^\prime_1(e_1),f_2(e_2),\dots, f_n(e_n)).
+	\]
+	Then notice that 
+	\[
+		\alpha:\square(A_1,B_2,\dots,B_n) \to Q
+	\]
+	is the pushout of \(u:U(0,0)\to U(1,0)\) and 
+	\[
+		\alpha^\prime:\square(A^\prime_1,B_2,\dots,B_n) \to Q
+	\]
+	is the pushout of \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\).  So we have a commutative square (in which the vertices are arrows and the arrows are commutative squares)
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+			{
+				u & \alpha \\
+				u^\prime & \alpha^\prime \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge (b-1-2) edge (b-2-1)
+			(b-2-1) edge (b-2-2)
+			(b-1-2) edge (b-2-2);
+		\end{tikzpicture}.
+	\end{center}
+	 where \(u\to \alpha\) and \(u^\prime\to \alpha^\prime\) are coCartesian.  Then by the pasting law for pushouts, it suffices to show that the map \(u\to u^\prime\) is also coCartesian.  
 	By cofinality, we can see that 
 	the map \(u: U(0,0) \to U(1,0)\) is induced by the natural family of maps 
-	\[\square(f_1,f_2(u_2),\dots, f_n(u_n)): \square(A_1,f_2(u_2),\dots, f_n(u_n))\to \square(B_1,f_2(u_2),\dots,f_n(u_n),\]
+	\[
+		\square(f_1,f_2(e_2),\dots, f_n(e_n)): \square(A_1,f_2(e_2),\dots, f_n(e_n))\to \square(B_1,f_2(e_2),\dots,f_n(e_n)),
+	\]
 	that \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\) is induced by the natural family of maps
-	\[\square(f^\prime_1,f_2(u_2),\dots, f_n(u_n)): \square(A^\prime_1,f_2(u_2),\dots, f_n(u_n))\to \square(B^\prime_1,f_2(u_2),\dots,f_n(u_n),\]
+	\[\square(f^\prime_1,f_2(e_2),\dots, f_n(e_n)): \square(A^\prime_1,f_2(e_2),\dots, f_n(e_n))\to \square(B^\prime_1,f_2(e_2),\dots,f_n(e_n)),\]
 	that \(U(0,0)\to U^\prime(0,0)\) is induced by the natural family of maps
-	\[\square(g,f_2(u_2),\dots, f_n(u_n)): \square(A_1,f_2(u_2),\dots, f_n(u_n))\to \square(A^\prime_1,f_2(u_2),\dots,f_n(u_n),\]
+	\[\square(g,f_2(e_2),\dots, f_n(e_n)): \square(A_1,f_2(e_2),\dots, f_n(e_n))\to \square(A^\prime_1,f_2(e_2),\dots,f_n(e_n)),\]
 	and that \(U(1,0) \to U^\prime(1,0)\) is induced by the natural family of maps
-	\[\square(h,f_2(u_2),\dots, f_n(u_n)): \square(B_1,f_2(u_2),\dots, f_n(u_n))\to \square(B^\prime_1,f_2(u_2),\dots,f_n(u_n).\]
+	\[\square(h,f_2(e_2),\dots, f_n(e_n)): \square(B_1,f_2(e_2),\dots, f_n(e_n))\to \square(B^\prime_1,f_2(e_2),\dots,f_n(e_n)).\]
 	But these form a natural pushout square, which implies that \(u\to u^\prime\) is a pushout because \(\square\) preserves colimits in the first argument and the pushout moves outside of the coend.  This proves the claim that \(\alpha\to \alpha^\prime\) is a pushout, which proves the lemma.
 \end{proof}
 \begin{note}
-	The above holds for \(i\neq 1\) as well, but for simplicity of notation, we proved it only in the case \(i=1\).  
+	The above holds for any \(i\in \{1,\dots,n\}\) as well, but for simplicity of notation, we proved it only in the case \(i=1\).  
 \end{note}
 \begin{cor}\label{cornerpushouts}
-	If \(\square\) preserves pushouts in the \(i^{\mathrm{th}}\) argument, then if \(f_i\) is a pushout of \(f_i^\prime\), it follows that \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\) is a pushout of \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\).
+	If \(\square\) preserves pushouts in the \(i^{\mathrm{th}}\) argument, then if \(f_i\) is a pushout of \(f_i^\prime\), it follows that \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\) is a pushout of \(\square^\lrcorner(f_1,\dots,f^\prime_i,\dots,f_n)\).
 \end{cor}
-\begin{lemma}
-	Suppose \((u,v):h\to g\) is a pushout square in \(\mathcal{A}^{[1]}\), and suppose that \((g,\id):p\to q\) is a commutative square.  Given family of maps \((\mathbf{f}=f_i \in \mathcal{A}_i^{[1]})_{i=2}^n\), let \(Q_{\bullet,\mathbf{f}}\) denote the evaluation of \(\square^\lrcorner(\bullet,\mathbf{f})\) at \(0\), that is, the domain.  \(g^\lrcorner: Q_{p,\mathbf{f}} \to Q_{q,\mathbf{f}}\) is a pushout of \(\square^\lrcorner(h,\mathbf{f})\).  
+\begin{note}
+	The next few lemmata involve very complicated diagrams.  As such, we will leave the objects appearing in these diagrams as implicit.
+\end{note}
+\begin{lemma}\label{cornertwist}
+	Suppose again that \(\square\) preserves pushouts in its first argument, and suppose we have a coCartesian square in \(\mathcal{A}\)
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+			{
+				\cdot & \cdot \\
+				\cdot & \cdot \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{h}\)} (b-1-2) edge node[auto]{\(\scriptstyle{u}\)} (b-2-1)
+			(b-2-1) edge node[auto]{\(\scriptstyle{g}\)} (b-2-2)
+			(b-1-2) edge node[auto]{\(\scriptstyle{v}\)} (b-2-2);
+		\end{tikzpicture},
+	\end{center}
+	and suppose that we have a commutative square
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+			{
+				\cdot & \cdot \\
+				\cdot & \cdot \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{g}\)} (b-1-2) edge node[auto]{\(\scriptstyle{p}\)} (b-2-1)
+			(b-1-2) edge node[auto]{\(\scriptstyle{q}\)} (b-2-2)
+			(b-2-1) edge node[auto]{\(\scriptstyle{\id}\)} (b-2-2);
+		\end{tikzpicture}.
+	\end{center}
+	Given family of maps \(\mathbf{f}=(f_i \in \mathcal{A}_i^{[1]})_{i=2}^n\), let \(Q_{\bullet,\mathbf{f}}\) denote the evaluation of \(\square^\lrcorner(\bullet,\mathbf{f})\) at \(0\). Then \(g^\lrcorner: Q_{p,\mathbf{f}} \to Q_{q,\mathbf{f}}\) is a pushout of \(\square^\lrcorner(h,\mathbf{f})\).  
 \end{lemma}
-\begin{proof} The data give us commutative cube 
-	\[h \xrightarrow{(h,\id)} \id \xrightarrow{(v,qv)} q = h \xrightarrow{(u,qv)} p \xrightarrow{(g,\id)} q,\]
-	and we can see it is a pushout in \(\mathcal{A}_1^{[1]}\), since both its front and back faces are pushouts.  Then applying \(\square^\lrcorner(\bullet,\mathbf{f})\), its front and back faces remain pushouts, since \(\square^\lrcorner\) preserves all colimits in each argument preserved by \(\square\).  Then the map \(g^\lrcorner: Q_{p,\mathbf{f}} \to Q_{q,\mathbf{f}}\)  is a pushout of the map \(h^\lrcorner:Q_{h,\mathbf{f}} \to Q_{\id,\mathbf{f}}\), but by Lemma \ref{corneridentities}, we see that \(\square^\lrcorner(\id,\mathbf{f})=\id\), so by commutativity, it follows that \(h^\lrcorner = \square^\lrcorner(h,\mathbf{f})\), and therefore, \(g^\lrcorner\) is a pushout of \(\square^\lrcorner(h,\mathbf{f})\).  
+\begin{proof} The data allow us to construct a commutative cube 
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+			{
+				\cdot &&& \cdot\\
+				&\cdot & \cdot& \\
+				&\cdot & \cdot& \\
+				\cdot &&& \cdot\\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{\id}\)} (b-1-4) edge node[auto]{\(\scriptstyle{qv}\)} (b-4-1)
+			(b-1-4) edge node[auto]{\(\scriptstyle{qv}\)} (b-4-4)
+			(b-2-2) edge node[auto,swap]{\(\scriptstyle{h}\)} (b-1-1) edge node[auto]{\(\scriptstyle{h}\)} (b-2-3) edge node[auto]{\(\scriptstyle{u}\)} (b-3-2)
+			(b-2-3) edge node[auto]{\(\scriptstyle{\id}\)} (b-1-4) edge node[auto]{\(\scriptstyle{v}\)} (b-3-3)
+			(b-3-2) edge node[auto]{\(\scriptstyle{g}\)} (b-3-3) edge node[auto]{\(\scriptstyle{p}\)} (b-4-1)
+			(b-3-3) edge node[auto,swap]{\(\scriptstyle{q}\)} (b-4-4)
+			(b-4-1) edge node[auto]{\(\scriptstyle{\id}\)} (b-4-4);
+		\end{tikzpicture}.
+	\end{center}
+	Since the front and back faces of this cube are coCartesian, it gives a coCartesian square in \(\mathcal{A}^{[1]}\),
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=2em, column sep=3em]
+			{
+				h & \id \\
+				p & q \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{(h,\id)}\)} (b-1-2) edge node[auto]{\(\scriptstyle{(u,qv)}\)} (b-2-1)
+			(b-1-2) edge node[auto]{\(\scriptstyle{(v,qv)}\)} (b-2-2)
+			(b-2-1) edge node[auto]{\(\scriptstyle{(g,\id)}\)} (b-2-2);
+		\end{tikzpicture}.
+	\end{center}
+	Then applying \(\square^\lrcorner(\bullet,\mathbf{f})\), we have a commutative cube
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+			{
+				\cdot &&& \cdot\\
+				&Q_{h,\mathbf{f}} & Q_{\id,\mathbf{f}}& \\
+				&Q_{p,\mathbf{f}} & Q_{q,\mathbf{f}}& \\
+				\cdot &&& \cdot\\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{\id^-}=\id\)} (b-1-4) edge node[auto]{\(\scriptstyle{qv^-}\)} (b-4-1)
+			(b-1-4) edge node[auto]{\(\scriptstyle{qv^-}\)} (b-4-4)
+			(b-2-2) edge node[auto,swap]{\(\scriptstyle{\square^\lrcorner(h,\mathbf{f})}\)} (b-1-1) edge node[auto]{\(\scriptstyle{h^\lrcorner}\)} (b-2-3) edge node[auto]{\(\scriptstyle{u^\lrcorner}\)} (b-3-2)
+			(b-2-3) edge node[auto]{\(\scriptstyle{\square^\lrcorner(\id,\mathbf{f})}\)} (b-1-4) edge node[auto]{\(\scriptstyle{v^\lrcorner}\)} (b-3-3)
+			(b-3-2) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-3-3) edge node[auto]{\(\scriptstyle{\square^\lrcorner(p,\mathbf{f})}\)} (b-4-1)
+			(b-3-3) edge node[auto,swap]{\(\scriptstyle{\square^\lrcorner(q,\mathbf{f})}\)} (b-4-4)
+			(b-4-1) edge node[auto]{\(\scriptstyle{\id^-}\)} (b-4-4);
+		\end{tikzpicture}.
+	\end{center}	
+	its front and back faces remain pushouts, since \(\square^\lrcorner\) preserves all colimits in each argument preserved by \(\square\).  Then the map \(g^\lrcorner: Q_{p,\mathbf{f}} \to Q_{q,\mathbf{f}}\)  is a pushout of the map \(h^\lrcorner:Q_{h,\mathbf{f}} \to Q_{\id,\mathbf{f}}\), but by Lemma \ref{corneridentities}, we see that \(\square^\lrcorner(\id,\mathbf{f})=\id\), so by commutativity, it follows that \(h^\lrcorner = \square^\lrcorner(h,\mathbf{f})\), and therefore, \(g^\lrcorner\) is a pushout of \(\square^\lrcorner(h,\mathbf{f})\).  
 \end{proof}
 Assume in the sequel that \(\square\) preserves connected colimits in each argument.
 \begin{lemma}[\cite{oury}*{Lemma 3.10}]\label{cornertensorcell}
 	Let \((\mathscr{J}_i)_{i=1}^n\) be a family of sets of morphisms of each \(\mathcal{A}_i\). Then 
-	\[\square^\lrcorner(\mathscr{J}_1,\dots,\operatorname{Cell}(\mathscr{J}_i),\dots,\mathscr{J}_n) \subseteq \operatorname{Cell}(\square^\lrcorner(\mathscr{J}_1,\dots,\operatorname{Cell}(\mathscr{J}_i),\dots,\mathscr{J}_n)).\]
+	\[\square^\lrcorner(\mathscr{J}_1,\dots,\operatorname{Cell}(\mathscr{J}_k),\dots,\mathscr{J}_n) \subseteq \operatorname{Cell}(\square^\lrcorner(\mathscr{J}_1,\dots,\mathscr{J}_k,\dots,\mathscr{J}_n)).\]
 \end{lemma}
 \begin{proof}
-	Fix some \(1\leq k\leq n\), and let \(f_i:X_i\to Y_i \in \mathscr{J}_i\) for each \(i\neq k\). 
-	Let \(f_k\) be a map in \(\mathcal{A}_k\) that belongs to \(\operatorname{Cell}(\mathscr{J}_k)\).  Then this gives the data of a cocontinous diagram \(D:\alpha \to \mathcal{A}_k\) for an ordinal \(\alpha\) with colimit \(C\) and structure maps \(\phi_i: D(i)\to C\) such that \(f_k=\phi_0\).  Additionally, for any \(i <\alpha\), the maps \(g_i:D(i)\to D(i+1)\) are pushouts of maps belonging to \(\mathscr{J}_k\). Let \(D^+:\alpha+1\to \mathcal{A}_k\) be the extension of \(D\) sending \(\alpha\) to \(C\) and such that \(D^+(i\to \alpha)=\phi_i\) for \(i<\alpha\).  Define \(D^2: \alpha+1\to \mathcal{A}_k^{[1]}\) by the rule \(i\mapsto \phi_i\) for \(i<\alpha\) and \(\alpha\mapsto \id_C\) and sending \(i\to i+1\) to the commutative square \((g_i,\id_c):\phi_i\to \phi_i+1\) and sending the map \(i\to \alpha\) to the commutative square \((\phi_i,\id_C):\phi_i\to \id_C\).  Then the colimit of \(D^2\) is \(\id_C\).  
-
-	Denote \(\square^\lrcorner(f_1,\dots,\bullet,\dots, f_n)\) by \(\square(\mathbf{f},\bullet)\) and the domain by by \(Q_{\mathbf{f},\bullet}\).  Then since \(\square^\lrcorner\) preserves connected colimits, it follows that 
-	\[\colim\square^\lrcorner(\mathbf{f},D^2)=\square^\lrcorner(\mathbf{f},\id_C),\]
+	Again, by symmetry, it is enough to prove this for the case \(k=1\). 
+	Let \(f_1\) be a map in \(\mathcal{A}_1\) that belongs to \(\operatorname{Cell}(\mathscr{J}_1)\).  Then this gives the data of a cocontinous diagram \(D:\alpha \to \mathcal{A}_1\) for an ordinal \(\alpha\) with colimit \(C\) and structure maps \(\phi_i: D(i)\to C\) such that \(f_1=\phi_0\).  Additionally, for any \(i <\alpha\), the maps \(g_i:D(i)\to D(i+1)\) are pushouts of maps belonging to \(\mathscr{J}_1\).
+	Let \(D^+:\alpha^\triangleright \to \mathcal{A}_1\) be the extension of \(D\) sending \(\alpha\) to \(C\) and such that \(D^+(i\to \alpha)=\phi_i\) for \(i<\alpha\).  Define \(D^2: \alpha^\triangleright \to \mathcal{A}_1^{[1]}\) by the rule \(i\mapsto \phi_i\) for \(i<\alpha\) and \(\alpha\mapsto \id_C\) and sending \(i\to i+1\) to the commutative square \((g_i,\id_c):\phi_i\to \phi_i+1\) and sending the map \(i\to \alpha\) to the commutative square \((\phi_i,\id_C):\phi_i\to \id_C\).  Then the colimit of \(D^2\) is \(\id_C\) as pictured below.
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=2em, column sep=2em]
+			{
+				D(0) & D(1) & \cdots D(i) \cdots & C \\
+				C & C & \cdots C \cdots & C \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{g_0}\)} (b-1-2) edge node[auto]{\(\scriptstyle{\phi_0}\)} (b-2-1)
+			(b-1-2) edge node[auto]{\(\scriptstyle{\phi_1}\)} (b-2-2) edge node[auto]{\(\scriptstyle{g_1}\)} (b-1-3)
+			(b-1-3) edge node[auto]{\(\scriptstyle{\phi_i}\)} (b-2-3) edge (b-1-4)
+			(b-2-1) edge[-,double] (b-2-2)
+			(b-2-2) edge[-,double] (b-2-3)
+			(b-2-3) edge[-,double] (b-2-4)
+			(b-1-4) edge[-,double] (b-2-4);
+		\end{tikzpicture}.
+	\end{center}
+	Let \(f_j:X_i\to Y_j \in \mathscr{J}_j\) for each \(2\leq j\leq n\). Denote \(\square^\lrcorner(\bullet,f_2,\dots, f_n)\) by \(\square(\bullet,\mathbf{f})\) and the domain by by \(Q_{\bullet,\mathbf{f}}\).  Then since \(\square^\lrcorner\) preserves connected colimits argument by argument, it follows that 
+	\[
+		\colim\square^\lrcorner(D^2,\mathbf{f})=\square^\lrcorner(\id_C,\mathbf{f}),
+	\]
 	and so we have the structure maps of the colimiting cocone
-	\[\square^\lrcorner(\mathbf{f},(\phi_i,\id_C)): \square^\lrcorner(\mathbf{f},\phi_i) \to \square^\lrcorner(\mathbf{f},\id_C),\]
-	which exhibit \((\phi_0,\id_C)\) as the transfinite composite of the diagram \(\square^\lrcorner(\mathbf{f},D^2)\).  
-	Then notice that
-	\begin{align*}
-		\square^\lrcorner(f_1,\dots,f_{k-1},f_k,f_{k+1},\dots,f_n)&=\square^\lrcorner(f_1,\dots,f_{k-1},\phi_0,f_{k+1},\dots,f_n)\\
-		&=\square^\lrcorner(\mathbf{f},\operatorname{dom}(\phi_0,\id_C))\\
-		&=\operatorname{dom}\square^\lrcorner(\mathbf{f},(\phi_0,\id_C))\\
-		&=\square^\lrcorner(\mathbf{f},\phi_0)\\
-		&=\square^\lrcorner(\mathbf{f},\id_C)\circ \phi_0^\lrcorner,
-	\end{align*}
-	where \(\phi_0^\lrcorner:Q_{\mathbf{f},\phi_0}\to Q_{\mathbf{f},\id_C}\) is the transfinite composite of the maps \(g_i^\lrcorner: Q_{\mathbf{f},\phi_i} \to Q_{\mathbf{f},\phi_{i+1}}\).  By \ref{corneridentities}, \(\square^\lrcorner(\mathbf{f},\id_C)= \id\).  Then it suffices to show that the \(g_i^\lrcorner\) are pushouts of maps belonging to 
-	\[square^\lrcorner(\mathscr{J}_1,\dots, \mathscr{J}_k,\dots ,\mathscr{J}_n).\]
-	Since each \(g_i\) was a pushout of a morphism \(h_i \in \mathscr{J}_k\), and since we have a commutative square \((g_i,\id):\phi_i\to \phi_{i+1}\), we are in the situation of the previous lemma, which implies that each \(g_i^\lrcorner\) is a pushout of \(\square^\lrcorner(\mathbf{f},j_i)\), which proves the proposition.
+	\[
+		(\phi_i^\lrcorner,\id_C): \square^\lrcorner(\phi_i,\mathbf{f}) \to \square^\lrcorner(\id_C,\mathbf{f}).
+	\]
+	In particular, this demonstrates that the map
+	\[
+		(\phi_0^\lrcorner,\id_C):\square^\lrcorner(\phi_0,\mathbf{f}) \to \square^\lrcorner(\id_C,\mathbf{f})
+	\]
+	is the transfinite composite of the maps 
+	\[
+		(g_i^\lrcorner,\id_C):\square^\lrcorner(\phi_i,\mathbf{f}) \to \square^\lrcorner(\phi_{i+1},\mathbf{f})
+	\]
+	But by commutativity of the square
+	\begin{center}
+		\begin{tikzpicture}
+			\matrix (b) [matrix of math nodes, row sep=2em, column sep=3em]
+			{
+				Q_{\phi_0,\mathbf{f}} & Q_{\id_C,\mathbf{f}} \\
+				\square(C,\mathbf{Y}) & \square(C,\mathbf{Y}) \\
+			};
+			\path[->, font=\scriptsize]
+			(b-1-1) edge node[auto]{\(\scriptstyle{\phi_0^\lrcorner}\)} (b-1-2) edge node[auto]{\(\scriptstyle{\square^\lrcorner(\phi_0,\mathbf{f}})\)} (b-2-1)
+			(b-1-2) edge node[auto]{\(\scriptstyle{\square^\lrcorner(\id_C,\mathbf{f})}\)} (b-2-2)
+			(b-2-1) edge node[auto]{\(\scriptstyle{\id}\)} (b-2-2);
+		\end{tikzpicture},
+	\end{center}
+	we see that 
+	\[
+		\square^\lrcorner(\phi_0,\mathbf{f}) = \square^\lrcorner(\id_C,\mathbf{f}) \circ \phi^\lrcorner_0,
+	\] 
+	but from Lemma \ref{corneridentities}, we see \(\square^\lrcorner(\id_C,\mathbf{f})=\id\), so it immediately follows that \(\square^\lrcorner(\phi_0,\mathbf{f}) = \phi^\lrcorner_0\). This exhibits \(\square^\lrcorner(\phi_0,\mathbf{f})\) as a transfinite composite of the \(g^\lrcorner_i\).  
+	Then it suffices to show that the \(g_i^\lrcorner\) are pushouts of maps belonging to 
+	\[\square^\lrcorner(\mathscr{J}_1,,\dots ,\mathscr{J}_n).\]
+	Since each \(g_i\) was a pushout of a morphism \(h_i \in \mathscr{J}_1\), and since we have a commutative square \((g_i,\id):\phi_i\to \phi_{i+1}\), we are exactly in the situation of Lemma \ref{cornertwist}, which implies that each \(g_i^\lrcorner\) is a pushout of \(\square^\lrcorner(h_i,\mathbf{h})\), which proves the proposition.
 \end{proof}
 \begin{cor} 
 	There is an inclusion
@@ -652,7 +884,7 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 	The relative intertwiner \(\square_S\) preserves colimits in the first variable.
 \end{lemma}
 \begin{proof} 
-	Since colimits are computed objectwise in presheaves, it suffices to show that the functor \(\square_S(\bullet,\Omega)_t\) preserves colimits for all \([t]=[n](c_1,\dots,c_n) \in \Theta[\C]\) and all labels \(\Omega\) of \(S\).  Therefore, it suffices by Observation \ref{evaluationsquare} to show this in the case where \(\C\) is the terminal category, since we may fix the family of objects \((c_1,\dots,c_n)\). For each \(s\in S_n\) let \((W_{s,i})_{i=1}^n\) be the evaluation of \(\Omega\) on \(s\).  Then given \(f:Y\to S\), we have a cartesian square
+	Since colimits are computed objectwise in presheaves, it suffices to show that the functor \(\square_S(\bullet,\Omega)_t\) preserves colimits for all \([t]=[n](c_1,\dots,c_n) \in \Theta[\C]\) and all labels \(\Omega\) of \(S\).  Therefore, it suffices by Observation \ref{evaluationsquare} to show this in the case where \(\C\) is the terminal category, since we may fix the family of objects \((c_1,\dots,c_n)\). For each \(s\in S_n\) let \((W_{s,i})_{i=1}^n\) be the evaluation of \(\Omega\) on \(s\).  Then given \(f:Y\to S\), we have a Cartesian square
 	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
@@ -966,7 +1198,7 @@ We will make use of the following lemma:
 			(b-1-2) edge node[auto]{\(\scriptstyle{j_n}\)} (b-2-2);
 		\end{tikzpicture}
 	\end{center}
-	is cocartesian, and \(k_{n-1}\) is a trivial cofibration by using the cancellation property with the map \(j_{n-1}\).
+	is coCartesian, and \(k_{n-1}\) is a trivial cofibration by using the cancellation property with the map \(j_{n-1}\).
 	Therefore, it follows that \(j_n\) is also a trivial cofibration. 
 
 	We now prove the lemma:  By the cancellation property, it suffices to show that
@@ -1229,7 +1461,7 @@ An important theorem early in \emph{Higher Topos Theory} tells us that this adju
 \end{defn}
 
 \begin{defn}
-	The functor \(k: \Delta \times \C\to \Theta[C]\) defined by the rule 
+	The functor \(k: \Delta \times \C\to \Theta[\C]\) defined by the rule 
 	\[
 		([n],c) \mapsto [n](c,\dots,c).
 	\]
@@ -1259,7 +1491,7 @@ An important theorem early in \emph{Higher Topos Theory} tells us that this adju
 
 We will extensively abuse notation in what follows by identifying a simplicial set with its associated constant simplicial presheaf on \(\C\) and identifying a presheaf on \(\C\) with its associated discrete simplicial presheaf.
 \begin{defn}
-	We define a construction on objects \[Q:\Delta\int\psh{\C}\to \Cat_{\spsh}.\] Suppose \([n](X_1,\dots, X_n)\) is any object of \(\Delta\int\psh{\C}\). Then we define \(Q([n](X_1,\dots,X_n)\) as follows:
+	We define a construction on objects \[Q:\Delta\int\psh{\C}\to \Cat_{\spsh}.\] Suppose \([n](X_1,\dots, X_n)\) is any object of \(\Delta\int\psh{\C}\). Then we define \(Q([n](X_1,\dots,X_n))\) as follows:
 	\begin{itemize}
 		\item The objects are the vertices \(\{0,\dots,n\}\)
 		\item The Hom-object
@@ -1284,7 +1516,7 @@ We will extensively abuse notation in what follows by identifying a simplicial s
 	Recall that a map \[[n](X_1,\dots, X_n) \to [m](Y_1,\dots Y_m)\] in \(\Delta \int \psh{\C}\) is given by a pair \((\gamma,	\mathbf{f})\), where \(\gamma:[n]\to [m]\) is a map of simplices together with a family of maps \[\mathbf{f}=\left(f_i: 	X_i \to \prod_{j=\gamma(i-1)}^{\gamma(i)}Y_j\right)_{i=1}^n.\]
 	If for \(0<i\leq n\), we have \(\gamma(i-1)=\gamma(i)\), we can see easily that \(\gamma\) factors through the 	codegeneracy map \[[n](X_1,\dots,X_n)\to [n-1](X_1,\dots,\psh{X_i},\dots,X_n).\]  Applying this factorization repeatedly, 	we factor \((\gamma,\mathbf{f})\) as a codegeneracy followed by a map \((\gamma^\prime,f^\prime)\) such that \(\gamma^\prime\) is the inclusion of a coface \([n^\prime]\hookrightarrow [m]\).
 
-	Since \(\Delta\int \psh{\C}\) is fibred over \(\Delta\), we may take the cartesian lift of \(\gamma^\prime\), which is 	the map \[\overline{\gamma^\prime}=(\gamma^\prime,\mathbf{id}):[n']\left(\prod_{j=\gamma^\prime(0)}^{\gamma^\prime(1)}Y_j,	 \dots, \prod_{j=\gamma^\prime(n^\prime-1)}^{\gamma^\prime(n^\prime)} Y_j \right)\hookrightarrow [m](Y_1,\dots,Y_m).\]  	By cartesianness, we have a unique factorization of \((\gamma^\prime,\mathbf{f^\prime})\) by this map, yielding a map \[	(\id,\overline{f^\prime}):[n'](X^\prime_1,\dots,X^\prime_{n^\prime})\to [n']\left(\prod_{j=\gamma^\prime(0)}^	{\gamma^\prime(1)}Y_j, \dots, \prod_{j=\gamma^\prime(n^\prime-1)}^{\gamma^\prime(n^\prime)} Y_j \right).\]
+	Since \(\Delta\int \psh{\C}\) is fibred over \(\Delta\), we may take the Cartesian lift of \(\gamma^\prime\), which is 	the map \[\overline{\gamma^\prime}=(\gamma^\prime,\mathbf{id}):[n']\left(\prod_{j=\gamma^\prime(0)}^{\gamma^\prime(1)}Y_j,	 \dots, \prod_{j=\gamma^\prime(n^\prime-1)}^{\gamma^\prime(n^\prime)} Y_j \right)\hookrightarrow [m](Y_1,\dots,Y_m).\]  	By Cartesianness, we have a unique factorization of \((\gamma^\prime,\mathbf{f^\prime})\) by this map, yielding a map \[	(\id,\overline{f^\prime}):[n'](X^\prime_1,\dots,X^\prime_{n^\prime})\to [n']\left(\prod_{j=\gamma^\prime(0)}^	{\gamma^\prime(1)}Y_j, \dots, \prod_{j=\gamma^\prime(n^\prime-1)}^{\gamma^\prime(n^\prime)} Y_j \right).\]
 
 	Then to prove the proposition, we need to show functoriality in three cases:
 	\begin{itemize}
@@ -1306,7 +1538,7 @@ We will extensively abuse notation in what follows by identifying a simplicial s
 		      \end{align*}
 		      If \(i=0\) or \(i=n\), we consider \(\Delta^0=\ast\) to be \(\{0\}\).
 		\item If the map \((\gamma,\mathbf{f})\) is a pure coface of codimension \(1\), we have two subcases: If it is an 	outer coface, the map is just the obvious inclusion.  If it is an inner coface, it has a term that looks like \(X_{i}	\times X_{i+1}\), and this is included in all of the \(\Hom\) objects as \(X_{i}\times \{0\} \times X_{i+1}\)
-		\item If the map \((\gamma,\mathbf{f})\) is such that \(\gamma=\id\), since each of the \(\Hom\) objects is given as 	a product of the \(X_i\) with \(\Delta^1\) of the same length, just map them by \(f_a\times\Delta^1\times \dots 	\times\Delta^1 \times f_{b-1}\) using the functoriality of the cartesian product.
+		\item If the map \((\gamma,\mathbf{f})\) is such that \(\gamma=\id\), since each of the \(\Hom\) objects is given as 	a product of the \(X_i\) with \(\Delta^1\) of the same length, just map them by \(f_a\times\Delta^1\times \dots 	\times\Delta^1 \times f_{b-1}\) using the functoriality of the Cartesian product.
 	\end{itemize}
 	It is an easy exercise to see that this assignment is functorial and completely analogous to the un-enriched case.
 \end{proof}
@@ -1657,7 +1889,7 @@ from which we obtain the following corollary:
 	The general theory of gadgets developed in \cite{ds1} is difficult to adapt to the enriched setting, and we give a 	less-than-ideal generalization in the sequel:
 
 	\begin{defn}
-		A \emph{gadget} of rank \(n\) is a functor \[G: \C \to \cellset_{\ast,\ast}\] such that there exists a \(c\)-indexed 	simplicial presheaf \(S_G^\bullet\) and a natural zig-zag of weak homotopy equivalences of simplicial presheaves \	[\mathfrak{C}(G(c))(\alpha,\omega) \xleftarrow{\sim} S_G^c \xrightarrow{\sim} c^n\] for all \(c\in \C\) (where \(c^n\) 	denotes the \(n^\mathrm{th}\) cartesian power of the representable), where naturality implies that for any \(f:c\to d\) 	in \(\C\), the diagram
+		A \emph{gadget} of rank \(n\) is a functor \[G: \C \to \cellset_{\ast,\ast}\] such that there exists a \(c\)-indexed 	simplicial presheaf \(S_G^\bullet\) and a natural zig-zag of weak homotopy equivalences of simplicial presheaves \	[\mathfrak{C}(G(c))(\alpha,\omega) \xleftarrow{\sim} S_G^c \xrightarrow{\sim} c^n\] for all \(c\in \C\) (where \(c^n\) 	denotes the \(n^\mathrm{th}\) Cartesian power of the representable), where naturality implies that for any \(f:c\to d\) 	in \(\C\), the diagram
 		\begin{center}
 			\begin{tikzpicture}
 				\matrix (b) [matrix of math nodes, row sep=3em,
@@ -2219,7 +2451,7 @@ Upon restriction to \[\overcat{\Nec}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c},\]
 \end{proof}
 
 \begin{rem}
-	This result is even stronger than it first appears, because it implies that the counit map is a weak equivalence for fibrant categories enriched in any cartesian-closed left-Bousfield localization of \(\spsh_{inj}\).  It reduces proving comparison theorems for such localizations to showing that \(\mathfrak{C}\) is a left-Quillen functor (something we already know for the horizontal Joyal model structure by Corollary \ref{horizquillen}) and reflects weak equivalences.
+	This result is even stronger than it first appears, because it implies that the counit map is a weak equivalence for fibrant categories enriched in any Cartesian-closed left-Bousfield localization of \(\spsh_{inj}\).  It reduces proving comparison theorems for such localizations to showing that \(\mathfrak{C}\) is a left-Quillen functor (something we already know for the horizontal Joyal model structure by Corollary \ref{horizquillen}) and reflects weak equivalences.
 \end{rem}
 
 \subsection{The horizontal comparison theorem}\label{horizcomparison}
@@ -2344,7 +2576,7 @@ We can therefore, without any worry, denote \(\Sigma_{(-)}\) simply by \(\Sigma\
 \begin{cor} A formal \(\C\)-quasicategory \(X\) is an \(\M\)-quasicategory if and only if \(\Map_X(x,y)\) is \(\setS\)-local for all pairs of vertices \(x,y\) in \(X\).  
 \end{cor}
 
-\begin{thm} For any cartesian presentation \(\M=(\C,\setS)\), the model category \(\cellset_{\M}\) is Cartesian-closed.  
+\begin{thm} For any Cartesian presentation \(\M=(\C,\setS)\), the model category \(\cellset_{\M}\) is Cartesian-closed.  
 \end{thm}
 \begin{proof}
   This is exactly \cite{rezk-theta-n-spaces}*{Proposition 8.5}.
@@ -2379,7 +2611,7 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
   This is a homotopy pushout since \(\partial(\Delta^n \times c) \to \Delta^n\times c\) is an injective cofibration. Similarly, 
   \[\realiz{A}_Q=\realiz{A^\prime} \coprod_{\realiz{\partial(\Delta^n\times c)}_Q}  \realiz{\Delta^n\times c}\]
   is also a homotopy-pushout since \(\realiz{\bullet}_Q\) preserves monomorphisms.  Then we see that the map 
-  \[\realiz{\Delta^n \times c}_Q=Q^n \times c \to \Delta^n\times c\] is already a weak equivalence since \(Q^n\to \Delta^n\) is a weak equivalence and the injective model structure is cartesian.  The map 
+  \[\realiz{\Delta^n \times c}_Q=Q^n \times c \to \Delta^n\times c\] is already a weak equivalence since \(Q^n\to \Delta^n\) is a weak equivalence and the injective model structure is Cartesian.  The map 
   \[\realiz{\partial(\Delta^n \times c)}_Q \to \partial(\Delta^n \times c)\]
   is a weak equivalence by the induction hypothesis, since the Reedy dimension of \(\partial(\Delta^n \times c)\) is less than the dimension of \(\Delta^n \times c\). Finally, we see that 
   \[\realiz{A^\prime}_Q \to A^\prime\]
@@ -2402,7 +2634,7 @@ We need the following easy lemma:
 \begin{proof}
 	It suffices to check on representables, and this is left as an easy exercise to the reader.
 \end{proof}
-Before we give a construction of the Yoneda embedding and a proof of Yoneda's lemma for \(\M\)-quasicategories, we need two lemmas from \cite{htt}.   We fix a cartesian presentation \(\mathcal{M}=(\C,\setS)\) for the remainder of this section.
+Before we give a construction of the Yoneda embedding and a proof of Yoneda's lemma for \(\M\)-quasicategories, we need two lemmas from \cite{htt}.   We fix a Cartesian presentation \(\mathcal{M}=(\C,\setS)\) for the remainder of this section.
 
 \begin{prop}\cite{htt}*{4.2.4.4}\label{lurieprop1}
 	Let \(X\in \cellset\) be a cellular \(\C\)-set, \(\mathcal{D}\) a small \(\spsh\)-enriched category, and let \(\mathfrak{C}(X)\to \mathcal{D}\) be an equivalence of \(\spsh_{\setS}\)-enriched categories. Suppose \(\mathbf{A}\) is a \(\spsh_{\setS}\)-enriched model category, and let \(\mathcal{U}\) be \(\mathcal{D}\)-chunk (see \cite{htt}*{A.3.4.9} for the definition).  Then the induced map
