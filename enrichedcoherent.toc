@@ -1,22 +1,22 @@
-\contentsline {section}{\numberline {1}Formal \(\ensuremath {\mathcal {C}}\)-quasicategories}{4}{section.1}
-\contentsline {subsection}{\numberline {1.1}The wreath product with \(\Delta \)}{4}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}The generalized intertwiner and \(\ensuremath {\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle \Delta $}\mathaccent "0362{\Delta } \DOTSI \intop \ilimits@ \setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle \mathcal {C}$}\mathaccent "0362{\mathcal {C}}}\)}{6}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}The horizontal Joyal model structure}{8}{subsection.1.3}
-\contentsline {subsection}{\numberline {1.4}The corner tensor construction}{9}{subsection.1.4}
-\contentsline {subsection}{\numberline {1.5}The regular Reedy structure of \(\Theta [\ensuremath {\mathcal {C}}]\)}{16}{subsection.1.5}
-\contentsline {subsection}{\numberline {1.6}The anodyne theorem for horizontal inner anodynes}{18}{subsection.1.6}
-\contentsline {subsection}{\numberline {1.7}Comparison with Rezk's complete \(\Theta [\ensuremath {\mathcal {C}}]\)-spaces}{26}{subsection.1.7}
-\contentsline {subsection}{\numberline {1.8}Recognition of horizontal Joyal fibrations}{30}{subsection.1.8}
-\contentsline {section}{\numberline {2}The Coherent Nerve, Horizontal case}{34}{section.2}
-\contentsline {subsection}{\numberline {2.1}The coherent realization for \(\Theta [\ensuremath {\mathcal {C}}]\)}{34}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Necklaces and the coherent realization}{38}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Gadgets}{40}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Quillen functoriality}{41}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}The \(\Hom \) by cosimplicial resolutions for \(\ensuremath {\mathcal {C}}\)-precategories}{44}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}The \(\Hom \) by cosimplicial resolution}{46}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}The horizontal comparison theorem}{51}{subsection.2.7}
-\contentsline {section}{\numberline {3}The Coherent Nerve, Local case}{54}{section.3}
-\contentsline {subsection}{\numberline {3.1}The \((\ensuremath {\mathcal {C}},\ensuremath {\mathscr {S}})\)-enriched model structure}{54}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}The Yoneda embedding and Yoneda's lemma}{57}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Weighted limits and colimits}{59}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Examples}{60}{subsection.3.4}
+\contentsline {section}{\numberline {1}Formal \(\ensuremath {\mathcal {C}}\)-quasicategories}{4}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}The wreath product with \(\Delta \)}{4}{subsection.1.1}% 
+\contentsline {subsection}{\numberline {1.2}The generalized intertwiner and \(\ensuremath {\setbox \z@ \hbox {\mathsurround \z@ $\textstyle \Delta $}\mathaccent "0362{\Delta } \DOTSI \intop \ilimits@ \setbox \z@ \hbox {\mathsurround \z@ $\textstyle \mathcal {C}$}\mathaccent "0362{\mathcal {C}}}\)}{6}{subsection.1.2}% 
+\contentsline {subsection}{\numberline {1.3}The horizontal Joyal model structure}{8}{subsection.1.3}% 
+\contentsline {subsection}{\numberline {1.4}The corner tensor construction}{9}{subsection.1.4}% 
+\contentsline {subsection}{\numberline {1.5}The regular Reedy structure of \(\Theta [\ensuremath {\mathcal {C}}]\)}{16}{subsection.1.5}% 
+\contentsline {subsection}{\numberline {1.6}The anodyne theorem for horizontal inner anodynes}{18}{subsection.1.6}% 
+\contentsline {subsection}{\numberline {1.7}Comparison with Rezk's complete \(\Theta [\ensuremath {\mathcal {C}}]\)-spaces}{26}{subsection.1.7}% 
+\contentsline {subsection}{\numberline {1.8}Recognition of horizontal Joyal fibrations}{30}{subsection.1.8}% 
+\contentsline {section}{\numberline {2}The Coherent Nerve, Horizontal case}{34}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}The coherent realization for \(\Theta [\ensuremath {\mathcal {C}}]\)}{34}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Necklaces and the coherent realization}{38}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.3}Gadgets}{40}{subsection.2.3}% 
+\contentsline {subsection}{\numberline {2.4}Quillen functoriality}{41}{subsection.2.4}% 
+\contentsline {subsection}{\numberline {2.5}The \(\Hom \) by cosimplicial resolutions for \(\ensuremath {\mathcal {C}}\)-precategories}{44}{subsection.2.5}% 
+\contentsline {subsection}{\numberline {2.6}The \(\Hom \) by cosimplicial resolution}{46}{subsection.2.6}% 
+\contentsline {subsection}{\numberline {2.7}The horizontal comparison theorem}{51}{subsection.2.7}% 
+\contentsline {section}{\numberline {3}The Coherent Nerve, Local case}{54}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}The \((\ensuremath {\mathcal {C}},\ensuremath {\mathscr {S}})\)-enriched model structure}{54}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}The Yoneda embedding and Yoneda's lemma}{57}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Weighted limits and colimits}{59}{subsection.3.3}% 
+\contentsline {subsection}{\numberline {3.4}Examples}{60}{subsection.3.4}% 

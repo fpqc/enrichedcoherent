@@ -1,7 +1,4 @@
 \documentclass[leqno]{article}
-
-%\usepackage[notref,notcite]{showkeys}
-
 %Put numbers to the left of ``Theorem'', etc.
 %\swapnumbers
 
@@ -17,6 +14,10 @@
 
 % Hyperref
 \usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	allcolors=[rgb]{0.69,0,0}
+}
 
 % TikZ settings
 \usepackage{tikz}
@@ -150,7 +151,9 @@
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\providecommand{\C}{}
 \renewcommand{\C}{\ensuremath{\mathcal{C}}}
+\providecommand{\G}{}
 \renewcommand{\G}{\ensuremath{\mathbb{G}}}
 \newcommand{\M}{\ensuremath{\mathcal{M}}}
 \newcommand{\Pre}{\ensuremath{\mathcal{P}}}
@@ -330,7 +333,7 @@ In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of preshe
 		\begin{tikzpicture}
 			\matrix (m) [matrix of math nodes, row sep=3em,column sep=3em]
 			{ \cellset & \psh{\Delta} \\};
-			\path[->]
+			\path[->,font=\scriptsize]
 			(m-1-1) edge[transform canvas={yshift=1.2em}]   node[auto]{\(\scriptstyle \pi\)} node[auto,swap,transform canvas={yshift=0.2em}]{\(\scriptstyle{\perp}\)} (m-1-2)
 			(m-1-2) edge node[auto,swap, transform canvas={yshift=-0.2em}]{\(\scriptstyle \mathscr{H}\)} (m-1-1)
 			(m-1-1) edge[transform canvas={yshift=-1.2em}]   node[auto, swap]{\(\scriptstyle \mathscr{N}\)} node[auto]{\(\scriptstyle{\perp}\)} (m-1-2);
