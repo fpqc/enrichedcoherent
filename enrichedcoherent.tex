@@ -298,10 +298,10 @@ In this section, we will consider a slightly more general definition of the wrea
 For the purposes of this paper, we do not need this level of generality.  We specialize as follows: 
 
 \begin{defn}\label{cishelp}
-	A small regular skeletal Reedy category \(\C\) (see \cite{cisinski-book}*{8.2.3}) is called a \emph{regular Cartesian Reedy category} if it satisfies two conditions:
+	A small regular skeletal Reedy category (also called a regular skeletal category (see \cite{cisinski-book}*{8.2})) \(\C\) (see \cite{cisinski-book}*{8.2.3}) is called a \emph{regular Cartesian Reedy category} if it satisfies two conditions:
 
 	\begin{enumerate}[\indent(CR1)]
-		\item The class of regular presheaves on \(\C\) (see \cite{cisinski-book}*{8.2}) is closed under finite products.
+		\item Finite products of representable presheaves on \(\C\) are \emph{regular} (see \cite{cisinski-book}*{8.2}).
 		\item If \(I\) is a finite set and \(c\to \prod\limits_{i\in I }c_i \) is a nondegenerate section, then \(\dim c \leq \sum\limits_{i\in I}\dim c_i\).
 	\end{enumerate}
 \end{defn}
@@ -330,7 +330,7 @@ In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of preshe
 		\begin{tikzpicture}
 			\matrix (m) [matrix of math nodes, row sep=3em,column sep=3em]
 			{ \cellset & \psh{\Delta} \\};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(m-1-1) edge[transform canvas={yshift=1.2em}]   node[auto]{\(\scriptstyle \pi\)} node[auto,swap,transform canvas={yshift=0.2em}]{\(\scriptstyle{\perp}\)} (m-1-2)
 			(m-1-2) edge node[auto,swap, transform canvas={yshift=-0.2em}]{\(\scriptstyle \mathscr{H}\)} (m-1-1)
 			(m-1-1) edge[transform canvas={yshift=-1.2em}]   node[auto, swap]{\(\scriptstyle \mathscr{N}\)} node[auto]{\(\scriptstyle{\perp}\)} (m-1-2);
@@ -341,7 +341,7 @@ In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of preshe
 \begin{defn} We define a special cosimplicial object in \(\cellset\) by the formula \[E^\bullet=\mathscr{H}(\operatorname{cosk}_0\Delta^\bullet).\]  This cosimplicial object will be a cosimplicial resolution of a point, once we define our model structures.
 \end{defn}
 
-\subsection{The generalized intertwiner and \(\ssetlab\)}
+\subsection{The generalized intertwiner and \(\ssetlab\)}\label{sec:intertwiner}
 Rezk introduced an intertwining functor by means of an explicit construction, but Oury gave an even more powerful version, which we recall here:
 
 \begin{defn} Recall that we have a fully-faithful embedding \[L:\Theta[\C]\hookrightarrow \Delta\int\psh{\C}\hookrightarrow \ssetlab.\]  We define the \emph{intertwiner} to be the functor \[\square:\ssetlab \to \cellset\] by the formula \[(S,\Omega)\mapsto S\square\Omega=\Hom_{\ssetlab}(L(\cdot), (S,\Omega)).\]
@@ -512,7 +512,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 	but \(U(0,1)=\square(B_1,\dots,B_n)\), which demonstrates that the map \(U(0,0) \to U(1,0)\) is the identity by cofinality. The map \(U(0,1) \to \square^\lrcorner(f_1,\dots,f_n)(0)\) is the pushout of an identity map, and the map \(U(0,1)\to \square^\lrcorner(f_1,\dots,f_n)(1)\) is also the identity, so it follows that the map \(\square^\lrcorner(f_1,\dots,f_n)\) must also be the identity.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{cornerpushouts}
 	Suppose \(\square\) preserves pushouts in the first argument and 
 	\begin{center}
 		\begin{tikzpicture}
@@ -521,7 +521,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				A_1 & A^\prime_1 \\
 				B_1 & B^\prime_1 \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto,swap]{\(\scriptstyle{g}\)} (b-1-2)  edge node[auto,swap]{\(\scriptstyle{f_1}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{h}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{f^\prime_1}\)} (b-2-2);
@@ -540,7 +540,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
 				Q & Q^\prime \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\alpha}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\alpha^\prime}\)} (b-2-2);
@@ -554,7 +554,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
 				\square(B_1,B_2,\dots,B_n) & \square(B^\prime_1,B_2,\dots,B_n) \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\square(f_1,B_2,\dots,B_n)}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{h^-}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\square(f^\prime_1,B_2,\dots,B_n)}\)} (b-2-2);
@@ -569,7 +569,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				Q & Q^\prime \\
 				\square(B_1,B_2,\dots,B_n) & \square(B^\prime_1,B_2,\dots,B_n) \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\alpha}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\alpha^\prime}\)} (b-2-2)
@@ -603,7 +603,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				u & \alpha \\
 				u^\prime & \alpha^\prime \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge (b-1-2) edge (b-2-1)
 			(b-2-1) edge (b-2-2)
 			(b-1-2) edge (b-2-2);
@@ -626,9 +626,11 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 \begin{note}
 	The above holds for any \(i\in \{1,\dots,n\}\) as well, but for simplicity of notation, we proved it only in the case \(i=1\).  
 \end{note}
-\begin{cor}\label{cornerpushouts}
-	If \(\square\) preserves pushouts in the \(i^{\mathrm{th}}\) argument, then if \(f_i\) is a pushout of \(f_i^\prime\), it follows that \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\) is a pushout of \(\square^\lrcorner(f_1,\dots,f^\prime_i,\dots,f_n)\).
-\end{cor}
+\begin{comment}
+	\begin{cor}
+		If \(\square\) preserves pushouts in the \(i^{\mathrm{th}}\) argument, then if \(f_i\) is a pushout of \(f_i^\prime\), it 	follows that \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\) is a pushout of \(\square^\lrcorner(f_1,\dots,f^\prime_i,	\dots,f_n)\).
+	\end{cor}
+\end{comment}
 \begin{note}
 	The next few lemmata involve very complicated diagrams.  As such, we will leave the objects appearing in these diagrams as implicit.
 \end{note}
@@ -641,7 +643,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				\cdot & \cdot \\
 				\cdot & \cdot \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{h}\)} (b-1-2) edge node[auto]{\(\scriptstyle{u}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{g}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{v}\)} (b-2-2);
@@ -655,7 +657,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				\cdot & \cdot \\
 				\cdot & \cdot \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{g}\)} (b-1-2) edge node[auto]{\(\scriptstyle{p}\)} (b-2-1)
 			(b-1-2) edge node[auto]{\(\scriptstyle{q}\)} (b-2-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\id}\)} (b-2-2);
@@ -673,7 +675,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				&\cdot & \cdot& \\
 				\cdot &&& \cdot\\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id}\)} (b-1-4) edge node[auto]{\(\scriptstyle{qv}\)} (b-4-1)
 			(b-1-4) edge node[auto]{\(\scriptstyle{qv}\)} (b-4-4)
 			(b-2-2) edge node[auto,swap]{\(\scriptstyle{h}\)} (b-1-1) edge node[auto]{\(\scriptstyle{h}\)} (b-2-3) edge node[auto]{\(\scriptstyle{u}\)} (b-3-2)
@@ -691,7 +693,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				h & \id \\
 				p & q \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{(h,\id)}\)} (b-1-2) edge node[auto]{\(\scriptstyle{(u,qv)}\)} (b-2-1)
 			(b-1-2) edge node[auto]{\(\scriptstyle{(v,qv)}\)} (b-2-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{(g,\id)}\)} (b-2-2);
@@ -707,7 +709,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				&Q_{p,\mathbf{f}} & Q_{q,\mathbf{f}}& \\
 				\cdot &&& \cdot\\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id^-}=\id\)} (b-1-4) edge node[auto]{\(\scriptstyle{qv^-}\)} (b-4-1)
 			(b-1-4) edge node[auto]{\(\scriptstyle{qv^-}\)} (b-4-4)
 			(b-2-2) edge node[auto,swap]{\(\scriptstyle{\square^\lrcorner(h,\mathbf{f})}\)} (b-1-1) edge node[auto]{\(\scriptstyle{h^\lrcorner}\)} (b-2-3) edge node[auto]{\(\scriptstyle{u^\lrcorner}\)} (b-3-2)
@@ -730,12 +732,12 @@ Assume in the sequel that \(\square\) preserves connected colimits in each argum
 	Let \(D^+:\alpha^\triangleright \to \mathcal{A}_1\) be the extension of \(D\) sending \(\alpha\) to \(C\) and such that \(D^+(i\to \alpha)=\phi_i\) for \(i<\alpha\).  Define \(D^2: \alpha^\triangleright \to \mathcal{A}_1^{[1]}\) by the rule \(i\mapsto \phi_i\) for \(i<\alpha\) and \(\alpha\mapsto \id_C\) and sending \(i\to i+1\) to the commutative square \((g_i,\id_c):\phi_i\to \phi_i+1\) and sending the map \(i\to \alpha\) to the commutative square \((\phi_i,\id_C):\phi_i\to \id_C\).  Then the colimit of \(D^2\) is \(\id_C\) as pictured below.
 	\begin{center}
 		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=2em, column sep=2em]
+			\matrix (b) [matrix of math nodes, row sep=2em, column sep=2em, nodes={asymmetrical rectangle}]
 			{
-				D(0) & D(1) & \cdots D(i) \cdots & C \\
-				C & C & \cdots C \cdots & C \\
+				D(0) & D(1) & \cdots & C \\
+				C & C & \cdots & C \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{g_0}\)} (b-1-2) edge node[auto]{\(\scriptstyle{\phi_0}\)} (b-2-1)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\phi_1}\)} (b-2-2) edge node[auto]{\(\scriptstyle{g_1}\)} (b-1-3)
 			(b-1-3) edge node[auto]{\(\scriptstyle{\phi_i}\)} (b-2-3) edge (b-1-4)
@@ -769,7 +771,7 @@ Assume in the sequel that \(\square\) preserves connected colimits in each argum
 				Q_{\phi_0,\mathbf{f}} & Q_{\id_C,\mathbf{f}} \\
 				\square(C,\mathbf{Y}) & \square(C,\mathbf{Y}) \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\phi_0^\lrcorner}\)} (b-1-2) edge node[auto]{\(\scriptstyle{\square^\lrcorner(\phi_0,\mathbf{f}})\)} (b-2-1)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\square^\lrcorner(\id_C,\mathbf{f})}\)} (b-2-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\id}\)} (b-2-2);
@@ -799,7 +801,7 @@ Assume in the sequel that \(\square\) preserves connected colimits in each argum
 	\[F^\lrcorner:\mathcal{A}_1^{[1]}\times\dots\times \mathcal{A}_n^{[1]} \to \mathcal{D}^{[1]}\] is a morphism of multicategories from \(\mathrm{Rex}_c\) to itself.  In particular, it is functorial with respect to the composition in \(\mathrm{Rex}_c\).
 \end{obs}
 \subsection{The regular Reedy structure of \(\Theta[\C]\)}\label{reedy}
-In this section, we demonstrate that the class of monomorphisms is exactly the class of relative cell complexes for \(\mathscr{M}\), which we will show coincides with the set of boundary maps for the regular Reedy category \(\Theta[\C]\).  
+In this section, we will prove some useful and interesting properties about regular Cartesian Reedy categories (see Definition \ref{cishelp}). In particular, we demonstrate that the class of monomorphisms is exactly the class of relative cell complexes for a set of maps \(\mathscr{M}\), which we will show coincides with the set of boundary maps for the regular skeletal Reedy category \(\Theta[\C]\).  
 
 \begin{prop} 
 	The category \(\Theta[\C]\) is a regular skeletal Reedy category whenever \(\C\) is a regular Cartesian Reedy category.  The dimension function of this regular Reedy category is given by 
@@ -808,7 +810,7 @@ In this section, we demonstrate that the class of monomorphisms is exactly the c
 \begin{proof} 
 	It follows by \cite{bergner-rezk-reedy}*{Proposition 4.4} that \(\Theta[\C]\) is normal skeletal Reedy with the desired dimension function (see \cite{cisinski-book}*{8.1}). To prove that \(\Theta[\C]\) is regular, it suffices to show that any nondegenerate section 
 	\[(\alpha,\mathbf{f}):[n](c_1,\dots,c_n) \to [m](d_1,\dots, d_m)\]
-	is monic.  If \(n>m\), then the map \(\alpha\) is a simplicial degeneracy and therefore the map factors through \([m](c_{i_1},\dots,c_{i_m}\), which means that \((\alpha,\mathbf{f})\) cannot be nondegenerate.  
+	is monic.  If \(n>m\), then the map \(\alpha\) is a simplicial degeneracy and therefore the map factors through \([m](c_{i_1},\dots,c_{i_m})\), which means that \((\alpha,\mathbf{f}))\) cannot be nondegenerate.  
 	
 	Then we have two cases, when \(n=m\) or \(n<m\), and therefore either \(\alpha\) is the identity or a simplicial face map.  If \(n=m\), then clearly \(\alpha, \mathbf{f}\) is monic, since each nondegenerate section \(c_i\to d_i\) must be monic by the regularity of \(\C\).
 	
@@ -822,16 +824,55 @@ In this section, we demonstrate that the class of monomorphisms is exactly the c
 \end{proof}
 \begin{cor} 
 	We define the set
-	\[\mathscr{M}=\{\partial c \to c \mid c \in \Ob(\Theta[\C])\}.\]  Then the class \(\operatorname{Cell}(\mathscr{M})\) is exactly the the class of monomorphisms of \(\cellset\).  
+	\[\mathscr{M}=\{\partial t \to t \mid t \in \Ob(\Theta[\C])\}.\]  Then the class \(\operatorname{Cell}(\mathscr{M})\) is exactly the the class of monomorphisms of \(\cellset\).  
 \end{cor}
 \begin{proof}
 	This is an immediate consequence of \cite{cisinski-book}*{Proposition 8.1.37} or \cite{bergner-rezk-reedy}*{4.4}.
 \end{proof}
-\begin{lemma} The category \(\Theta[\C]\) is regular Cartesian Reedy when \(\C\) is.
-\end{lemma}
+\begin{prop}
+	The category \(\Theta[\C]\) is regular Cartesian Reedy when \(\C\) is.
+\end{prop}
 \begin{proof}
+	By our calculations in Section \ref{sec:intertwiner}, since all involved objects are sober, we see that for a section 
+	\[
+		(\alpha,\beta):[n](c^n_1,\dots,c^n_n) \to [m_1](c^{m_1}_1,\dots,c^{m_1}_{m_1})\times [m_2](c^{m_2}_1,\dots,c^{m_2}_{m_2})
+	\]
+	to be nondegenerate, the underlying map of simplicial sets \([n]\to [m_1]\times [m_2]\) is monic. The map \((\alpha,\beta)\) therefore factors through the pullback of the labeling on \([m_1](c^{m_1}_1,\dots,c^{m_1}_{m_1})\times [m_2](c^{m_2}_1,\dots,c^{m_2}_{m_2})\) to \([n]\), denoted by \(([n],(\alpha,\beta)^\ast \Omega)\).  The map  
+	\[
+		([n],(\alpha,\beta)^\ast \Omega) \to [m_1](c^{m_1}_1,\dots,c^{m_1}_{m_1})\times [m_1](c^{m_2}_1,\dots,c^{m_2}_{m_2})
+	\]
+	is monic, so it will be enough to show that the map
+	\[
+		\iota:[n](c^n_1,\dots,c^n_n)\to ([n],(\alpha,\beta)^\ast \Omega)
+	\]
+	must also be monic.  The section \(\iota\) is certainly nondegenerate, since if it were not, the map \((\alpha,\beta)\) could not be either.
+	
+	We will directly calculate \((\alpha,\beta)^\ast \Omega\) in \ref{square2}, and it will be shown that the labeling, determined by its restriction to each edge \((e_i)_{i=1}^n\) of the spine of \([n]\) is given by the formula
+	\[
+		e_i^\ast (\alpha,\beta)^\ast \Omega = \prod_{k_\alpha=\alpha(i-1)+1}^{\alpha(i)} c^{m_1}_{k_\alpha} \times \prod_{k_\beta=\beta(i-1)+1}^{\beta(i)} c^{m_2}_{k_\beta}.
+	\] 
+	Since the section \(\iota\) is nondegenerate and the underlying map on simplicial sets is an isomorphism,  we see that each of the sections 
+	\[
+		\iota_i:c^n_i \to \prod_{k_\alpha=\alpha(i-1)+1}^{\alpha(i)} c^{m_1}_{k_\alpha} \times \prod_{k_\beta=\beta(i-1)+1}^{\beta(i)} c^{m_2}_{k_\beta}
+	\] 
+	must be nondegenerate as well, and therefore since \(\C\) is regular Cartesian Reedy, it follows that each of the maps \(\iota_i\) is monic, which proves the first axiom, and that 
+	\[
+		\dim c^n_i \leq \sum_{k_\alpha=\alpha(i-1)+1}^{\alpha(i)} \dim c^{m_1}_{k_\alpha} + \sum_{k_\beta=\beta(i-1)+1}^{\beta(i)} \dim c^{m_2}_{k_\beta}.
+	\]
+	But it follows from this that 
+	\begin{align*}
+		\dim [n](c^n_1, \dots c^n_n) &= n + \sum_{i=1}^n \dim c^n_i\\
+		&\leq n+ \sum_{i=1}^n \left(\sum_{k_\alpha=\alpha(i-1)+1}^{\alpha(i)} \dim c^{m_1}_{k_\alpha} + \sum_{k_\beta=\beta(i-1)+1}^{\beta(i)} \dim c^{m_2}_{k_\beta}\right)\\
+		&\leq m_1 + \sum_{i=1}^{m_1} \dim c^{m_1}_i + m_2 + \sum_{j=1}^{m_2} \dim c^{m_2}_j\\
+		&=\dim [m_1](c^m_1,\dots,c^{m_1}_{m_1}) + \dim [m_2](c^m_1,\dots,c^{m_2}_{m_2}),
+	\end{align*}
+	which proves the second axiom.
 \end{proof}
-
+\begin{rem}
+	The proposition above gives us a way to construct new regular Cartesian Reedy categories from known examples by applying the functor \(\Theta[-]\), which we view as a kind of free-generation-under-suspension functor. Moreover, regular Cartesian Reedy categories are stable under certain kinds of filtered unions (at least filtered unions of fully faithful maps preserving the dimension grading). The list of such categories generated from the terminal category under the operation \(\Theta[-]\) is exactly the family of \(\Theta_n\) for \(0\leq n < \omega,\) and stabilizng under good-enough filtered unions, we also obtain the category \(\Theta=\Theta_\omega\).   These are ultimately the only examples we care about in this paper.
+	
+	Though we do not need it here, it can be also be shown that finite products of regular Cartesian Reedy categories are also regular Cartesian Reedy. Starting with the terminal category and taking finite products, \(\Theta[-]\), and good-enough filtered unions, we obtain a large supply of regular Cartesian Reedy categories.  We leave it as an open question as to whether or not these operations generate all examples. 
+\end{rem}
 \subsection{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
 In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the horizontal inner anodynes are closed under corner products with monomorphisms.  As a corollary of the analysis in this section, we will demonstrate that \(\Theta[\C]\) is regular Cartesian Reedy.  We make no claim to originality.
 
@@ -892,7 +933,7 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 				\coprod_{y\in Y_n} \prod_{i=1}^n W_{fy,i} & Y_n\\
 				\coprod_{s\in S_n} \prod_{i=1}^n W_{s,i} & S_n \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge (b-1-2) edge node[auto,swap]{\(\scriptstyle{\tau^*f}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\tau}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{f}\)} (b-2-2);
@@ -978,7 +1019,7 @@ Following \cite{oury}*{3.85}, we begin with the following observations:
 				\ssetlab \times \ssetlab & \cellset\times \cellset\\
 				\ssetlab 				 & \cellset               \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\square \times \square}\)} (b-1-2) edge node[auto]{\(\scriptstyle{\times}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\times}\)} (b-2-2);
@@ -993,14 +1034,14 @@ Following \cite{oury}*{3.85}, we begin with the following observations:
 				\overcat{\psh{\Delta}}{\Delta^n} \times \overcat{\psh{\Delta}}{\Delta^m} \times \psh{\C}^n \times \psh{\C}^m &\\
 				\overcat{\psh{\Delta}}{\Delta^n\times \Delta^m} \times \psh{\C}^n \times \psh{\C}^m & \ssetlab\\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{H_n \times H_m}\)} (b-1-2) edge node[auto]{\(\scriptstyle{\varsigma}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{P\times \id \times \id}\)} (b-3-1)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\times}\)} (b-3-2)
 			(b-3-1) edge node[auto]{\(\scriptstyle{H_{n,m}}\)} (b-3-2);
 		\end{tikzpicture}
 	\end{center}
-	commutes as well where \(\varsigma\) permutes the factors and \(P\) is the functor sending a pair of labeled simplicial sets \(f:S\to \Delta^n,\Omega\) and \(g:S^\prime\to \Delta^m,\Omega^\prime\) over \(\Delta^n\) and \(\Delta^m\) respectively to the labeled simplicial set \[f\times g:S\times S^\prime \to \Delta^n\times \Delta^m,\Omega\times \Omega^\prime\] over the product.  Taking these two diagrams together, we see that the diagram 
+	commutes as well where \(\varsigma\) permutes the factors and \(P\) is the functor sending a pair of labeled simplicial sets \(f:S\to (\Delta^n,\Omega)\) and \(g:S^\prime\to (\Delta^m,\Omega^\prime)\) over \(\Delta^n\) and \(\Delta^m\) respectively to the labeled simplicial set \[f\times g:S\times S^\prime \to (\Delta^n\times \Delta^m,\Omega\times \Omega^\prime)\] over the product.  Taking these two diagrams together, we see that the diagram 
 	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
@@ -1009,7 +1050,7 @@ Following \cite{oury}*{3.85}, we begin with the following observations:
 				\overcat{\psh{\Delta}}{\Delta^n} \times \overcat{\psh{\Delta}}{\Delta^m} \times \psh{\C}^n \times \psh{\C}^m &\\
 				\overcat{\psh{\Delta}}{\Delta^n\times \Delta^m} \times \psh{\C}^n \times \psh{\C}^m & \cellset\\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\square_n \times \square_m}\)} (b-1-2) edge node[auto]{\(\scriptstyle{\varsigma}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{P\times \id \times \id}\)} (b-3-1)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\times}\)} (b-3-2)
@@ -1028,7 +1069,7 @@ Then by \ref{conncolims}, every functor appearing in this diagram preserves conn
 			\overcat{\psh{\Delta}}{\Delta^n}^{[1]} \times \overcat{\psh{\Delta}}{\Delta^m}^{[1]} \times \left(\psh{\C}^{[1]}\right)^n \times \left(\psh{\C}^{[1]}\right)^m &\\
 			\overcat{\psh{\Delta}}{\Delta^n\times \Delta^m}^{[1]} \times \left(\psh{\C}^{[1]}\right)^n \times \left(\psh{\C}^{[1]}\right)^m  & \cellset^{[1]}\\
 		};
-		\path[->, font=\scriptsize]
+		\path[->]
 		(b-1-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner_n \times \square^\lrcorner_m}\)} (b-1-2) edge node[auto]{\(\scriptstyle{\varsigma}\)} (b-2-1)
 		(b-2-1) edge node[auto]{\(\scriptstyle{P^\lrcorner \times \id \times \id}\)} (b-3-1)
 		(b-1-2) edge node[auto]{\(\scriptstyle{\times^\lrcorner}\)} (b-3-2)
@@ -1058,7 +1099,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 				\overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^n \times \psh{\C}^m & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
 				\overcat{\psh{\Delta}}{\Delta^n\times \Delta^m} \times \psh{\C}^n \times \psh{\C}^m & \ssetlab \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times K_{\alpha,\beta}}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{H_{n,m}}\)} (b-2-2)
@@ -1089,7 +1130,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 				\overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^n \times \psh{\C}^m & \overcat{\psh{\Delta}}{\Delta^r} \times \prod_{i=1}^r \psh{\C}^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
 				\overcat{\psh{\Delta}}{\Delta^n\times \Delta^m} \times \psh{\C}^n \times \psh{\C}^m & & \ssetlab \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{H_{n,m}}\)} (b-2-3)
@@ -1105,7 +1146,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 				\overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^n \times \psh{\C}^m & \overcat{\psh{\Delta}}{\Delta^r} \times \prod_{i=1}^r \psh{\C}^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
 				\overcat{\psh{\Delta}}{\Delta^n\times \Delta^m} \times \psh{\C}^n \times \psh{\C}^m & & \cellset \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square_{n,m}}\)} (b-2-3)
@@ -1122,7 +1163,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 				\overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \left(\psh{\C}^{[1]}\right)^n \times \left(\psh{\C}^{[1]}\right)^m & \overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \prod_{i=1}^r \left(\psh{\C}^{[1]}\right)^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \left(\psh{\C}^{[1]}\right)^r\\
 				\overcat{\psh{\Delta}}{\Delta^n\times \Delta^m}^{[1]} \times \left(\psh{\C}^{[1]}\right)^{n+m} & & \cellset^{[1]} \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-)^\lrcorner \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner_{n,m}}\)} (b-2-3)
@@ -1151,20 +1192,20 @@ But the value of the argument in position \(1\leq j \leq r_i\) is
 \[P_j^\lrcorner\circ \tau_j(\mathbf{f},\mathbf{g})=f_{\alpha_i(j-1)+1}\times^\lrcorner \dots \times^\lrcorner f_{\alpha_i(j)} \times^\lrcorner g_{\beta_i(j-1)+1}\times \dots^\lrcorner \times^\lrcorner g_{\beta_i(j)},\]
 which belongs to \(\operatorname{Cell}(\mathscr{B})\), where \(\mathscr{B}\) is the set of boundary inclusions in \(\psh{\C}\).  So we see that
 \[\square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner \circ \tau)(\mathbf{f},\mathbf{g}))\] is in 
-\[\{\square^\lrcorner_{r_i}(\mathscr{L}, \operatorname{Cell}(\mathscr{B}), \dots, \operatorname{Cell}(\mathscr{B})\},\]
+\[\{\square^\lrcorner_{r_i}(\mathscr{L}, \operatorname{Cell}(\mathscr{B}), \dots, \operatorname{Cell}(\mathscr{B})\}),\]
 where \(\mathscr{L}\) is the set of inner horn inclusions, which by \ref{cornertensorcell} is a subset of 
 \[\operatorname{Cell}(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}),\]
 which belongs to \(\operatorname{Cell}(\mathscr{J}),\) since \(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}\subseteq \mathscr{J}\).
 \end{proof}
 
 \subsection{Comparison with Rezk's complete \(\Theta[\C]\)-spaces}\label{rezkcomparison}
-Since Rezk's complete Segal model structure on \(\Psh_\Delta(\Theta[\C])\) is Cartesian, and since \(\ast \hookrightarrow E\) is one of the generators of the localization (see \cite{rezk-theta-n-spaces}), and since \(\Theta[\C]\) is regular skeletal Reedy, it follows by several results of Cisinski \cite{cisinski-book}*{Proposition 8.2.9, Theorem 3.4.36, Proposition 2.3.30} that Rezk's localizer for complete \(\Theta[\C]\)-Segal spaces is the simplicial completion of a localizer on \(\Theta[\C]\).  
+Since Rezk's complete Segal model structure on \(\Psh_\Delta(\Theta[\C])\) is Cartesian, since \(\ast \hookrightarrow E\) is one of the generators of the localization (see \cite{rezk-theta-n-spaces}), and since \(\Theta[\C]\) is regular skeletal Reedy, it follows by several results of Cisinski \cite{cisinski-book}*{Proposition 8.2.9, Theorem 3.4.36, Proposition 2.3.30} that Rezk's localizer for complete \(\Theta[\C]\)-Segal spaces is the simplicial completion of a localizer on \(\Theta[\C]\).  
 \begin{obs}
 	To show that Rezk's localizer is the simplicial completion of the localizer generated by the horizontal inner anodynes, it suffices to show the following two properties hold:
 	\begin{enumerate}[\indent (i)] 
 		\item The maps 
 		\(\square_n^\lrcorner(\lambda^n_i,\delta^{c_1},\dots,\delta^{c_n})\times \Delta^0\) belong to the localizer for complete \(\Theta[\C]\)-Segal spaces for \(n\geq 2\) and \(0<i<n\).
-		\item The Segal maps \(\operatorname{Se}[n](c_1,\dots,c_n): \operatorname{Sp}[n](c_1,\dots,c_n) \hookrightarrow [n](c_1,\dots,c_n\) are horizontal inner anodyne.
+		\item The Segal maps \(\operatorname{Se}[n](c_1,\dots,c_n): \operatorname{Sp}[n](c_1,\dots,c_n) \hookrightarrow [n](c_1,\dots,c_n)\) are horizontal inner anodyne.
 	\end{enumerate}
 \end{obs}
 We will make use of the following lemma:
@@ -1192,7 +1233,7 @@ We will make use of the following lemma:
 				V_{\operatorname{Sp}[n-1]\cup \partial_{n-1}\Delta^{n-1}}(X_1,\dots,X_n) & V_{\operatorname{Sp}[n-1]\cup \partial_n\Delta^n}(X_1,\dots,X_n)\\
 				V_{\partial_0\Delta^n}(X_1,\dots,X_n)				 &  V_{\partial_0\Delta^n\cup \partial_n \Delta^n}(X_1,\dots,X_n)           \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge (b-1-2) edge node[auto]{\(\scriptstyle{k_{n-1}}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{d^\prime_0}\)} (b-2-2)
 			(b-1-2) edge node[auto]{\(\scriptstyle{j_n}\)} (b-2-2);
@@ -1219,7 +1260,7 @@ We will make use of the following lemma:
 				V_{\Lambda^n_T \cap \partial_b \Delta^n }(X_1,\dots,X_n) & V_{\Lambda^n_T}(X_1,\dots,X_n)\\
 				V_{\partial_b\Delta^n}(X_1,\dots,X_n)				 &  V_{\Lambda^n_S}(X_1,\dots,X_n)           \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge (b-1-2) edge  (b-2-1)
 			(b-2-1) edge  (b-2-2)
 			(b-1-2) edge  (b-2-2);
@@ -1289,7 +1330,7 @@ This proves one direction of the theorem; now we prove the converse.
 	\[\cellset_{\mathrm{hJoyal}} \underset{d^\ast}{\overset{d_!}{\rightleftarrows}} \Psh_\Delta(\Theta[\C])_{\mathrm{CSS}}.\]
 	That is to say, the two model categories are Quillen bi-equivalent.
 \end{cor}
-\begin{proof} This is an immediate consequence of \cite{cisinski-book}*{Proposition 2.3.27}.
+\begin{proof} This is an immediate consequence of the previous proposition together with \cite{cisinski-book}*{Proposition 2.3.27}.
 \end{proof}
 
 \subsection{Recognition of horizontal Joyal fibrations}\label{admissible}
@@ -1297,33 +1338,34 @@ In this section, we will prove the anlogue of Joyal's pseudofibration theorem fo
 
 \begin{defn}
 	Recall from Definition \ref{productintertwiner}, we defined the functor \(H_\mathbf{S}\) for a finite family of simplicial sets \(\mathbf{S}\).  Consider the case of the functor \(H_{S,n}\), where the family is made up of two simplicial sets \(\Delta^n\) and some simplicial set \(S\).  Then we define the functor 
-	\[\mathcal{H}_{S,n}: \overcat{\psh{\Delta}}{S\times \Delta^n} \times  \left(\ssetlab\right)_{n} \to \ssetlab,\]
-	to be the restriction of \(H_{S,n}\) to the terminal labeling of \(S\), the unique labeling of \(S\) that sends all edges of \(S\) to the terminal object of \(\psh{\C}\).   Composing \(\square\) with \(\mathcal{H}_{S,n}\) is denoted by \(\square_{S,n}\).  For the remainder of this section, we also, by abuse of notation, define 
+	\[H_{S,n}: \overcat{\psh{\Delta}}{(S\times \Delta^n)} \times  \left(\ssetlab\right)_{n} \to \ssetlab,\]
+	to be the restriction of \(H_{S,n}\) to the terminal labeling of \(S\), the unique labeling of \(S\) that sends all edges of \(S\) to the terminal object of \(\psh{\C}\).   Composing \(\square\) with \(H_{S,n}\) is denoted by \(\square_{S,n}\).  For the remainder of this section, we also, by abuse of notation, define 
 	\[\square_S:\overcat{\psh{\Delta}}{S} \to \cellset\]
 	to be the composite of \(\square\) with the restriction of \(H_S\) to the terminal labeling of \(S\).  
 \end{defn}
 
 \begin{obs}\label{joyalsquare1}
 	Observe that from \ref{conncolims} the functor 
-	\[\square_{S,n}:\overcat{\psh{\Delta}}{\Delta^n\times S} \times\psh{\C}^n \to \cellset\]
+	\[\square_{S,n}:\overcat{\psh{\Delta}}{(S\times\Delta^n)} \times\psh{\C}^n \to \cellset\]
 	preserves connected colimits in each argument and therefore can be corner tensored. By the same argument as \ref{square1}, given \(h:Y\to S\) a map of simplicial sets, we can compute 
 	\begin{align*}
-		\square^\lrcorner_n(f_0,\dots,f_n) \times^\lrcorner h &= \square^\lrcorner_n(f_0,\dots,f_n) \square_S^\lrcorner(h)\\
+		 h \times^\lrcorner \square^\lrcorner_n(f_0,\dots,f_n)  &= \square_S^\lrcorner(h)\times^\lrcorner \square^\lrcorner_n(f_0,\dots,f_n)\\
 		&= \square^\lrcorner_{S,n}(h\times^\lrcorner f_0,f_1,\dots,f_n).
 	\end{align*}
 \end{obs}
 
 In what follows, we will use a very nice observation of Danny Stevenson \cite{danny}.  Consider the case of the simplicial set \(E^1\) and the map \(e:\Delta^0 \hookrightarrow E^1\).  
-\begin{thm}[\cite{danny}*{Lemma 2.19}]\label{dannythm}
+\begin{lemma}[\cite{danny}*{Lemma 2.19}]\label{dannythm}
 	The map of simplicial sets
 	\[e\times^\lrcorner \delta^n: E^1\times \partial\Delta^n \cup \Delta^0 \times \Delta^n \hookrightarrow E\times \Delta^n,\]
 	is inner anodyne for all \(n>0\).  
-\end{thm}
+\end{lemma}
 \begin{obs}\label{retractjoyal}
 	It follows from the small object argument that we can factor \(e\times^\lrcorner \delta^n\) as a composite
-\[
+	\[
 	E^1 \times \partial \Delta^n \coprod_{\Delta^0 \times \partial \Delta^n} \Delta^0 \times \Delta^n \xrightarrow{\iota} E \xrightarrow{\varepsilon} E^1 \times \Delta^n,
-\] where \(\iota\) is a relative cell complex for the inner horn inclusions and where \(\varepsilon\) is an inner fibration between quasicategories. Since \(e\times^\lrcorner \delta^n\) is inner anodyne, it follows by the lifting property that it is a retract of \(\iota\).  
+	\] 
+	where \(\iota\) is a relative cell complex for the inner horn inclusions and where \(\varepsilon\) is an inner fibration between quasicategories. Since \(e\times^\lrcorner \delta^n\) is inner anodyne, it follows that we have a lift \(E^1\times \Delta^n \xrightarrow{\eta} E\) by the lifting property that exhibits \(e\times^\lrcorner \delta^n\) as a retract of \(\iota\).  
 \end{obs}
 \begin{obs}\label{joyalsquare2}
 	A simplex \((\alpha,\beta):\Delta^r \to E^1\times \Delta^n\) is determined by the destination of its vertices.  We label the vertices by \((a,i)\) and \((b,i)\) for \(0\leq i \leq n\), where \(e\) is the inclusion of \(a \in E^1\).  Given a simplex \((\alpha,\beta):\Delta^r\to E^1\times \Delta^n\), and a family of presheaves \(\mathbf{U}=(U_i)_{i=1}^n\) on \(\C\). 
@@ -1338,7 +1380,7 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 				\overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^n & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
 				\overcat{\psh{\Delta}}{E^1\times \Delta^n} \times \psh{\C}^n & \ssetlab \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times K_{\beta}}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{H_{E^1,n}}\)} (b-2-2)
@@ -1371,7 +1413,7 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 				\overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^n & \overcat{\psh{\Delta}}{\Delta^r} \times \prod_{i=0}^{r+1} \psh{\C}^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
 				\overcat{\psh{\Delta}}{E^1\times \Delta^n} \times \psh{\C}^n & & \ssetlab \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{H_{E^1,n}}\)} (b-2-3)
@@ -1387,7 +1429,7 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 				\overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^n & \overcat{\psh{\Delta}}{\Delta^r} \times \prod_{i=0}^{r+1} \psh{\C}^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
 				\overcat{\psh{\Delta}}{E^1\times \Delta^n} \times \psh{\C}^n & & \cellset \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square_{E^1,n}}\)} (b-2-3)
@@ -1403,7 +1445,7 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 				\overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \left(\psh{\C}^{[1]}\right)^n & \overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \prod_{i=0}^{r+1} \left(\psh{\C}^{[1]}\right)^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \left(\psh{\C}^{[1]}\right)^r\\
 				\overcat{\psh{\Delta}}{E^1\times \Delta^n}^{[1]} \times \left(\psh{\C}^{[1]}\right)^{n} & & \cellset^{[1]} \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
 					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-)^\lrcorner \times \id \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner_{E^1,n}}\)} (b-2-3)
@@ -1420,19 +1462,36 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 	is a horizontal inner anodyne.
 \end{thm}
 \begin{proof}
-	From \ref{joyalsquare1}, we see that 
-	\[e \times^\lrcorner \square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) \cong \square^\lrcorner_{E^1,n}(e\times^\lrcorner \delta^n, \delta^{c_1},\dots,\delta^{c_n}),\]
-	and by \ref{retractjoyal} we see that \(e\times^\lrcorner \delta^n\) can be factored as \(\varepsilon\circ \iota\) such that it is a retract of \(\iota\), which is a relative cell complex of inner horn inclusions.  By a similar argument to \ref{cornerpushouts} and \ref{cornertensorcell}, it follows that 
-	\[\square^\lrcorner_{E^1,n}(e\times^\lrcorner \delta^n, \delta^{c_1},\dots,\delta^{c_n})\]
-	is a retract of the transfinite composite of inner horn inclusions
-	\[\square^\lrcorner_{E^1,n}(h_i, \delta^{c_1},\dots,\delta^{c_n}),\]
-	where the \(h_i:\Lambda^{r_i}_{\ell_i}\to \Delta^{r_i}\) are inner horn inclusions and the \(h_i\) are maps in \(\overcat{\psh{\Delta}}{E^1 \times \Delta^n}\).  Let \(h^\prime_i\) denote the same map in the category \(\overcat{\psh{\Delta}}{\Delta^{r_i}},\) and let \((\alpha,\beta)\) denote the map \(\Delta^{r_i} \to E^1 \times \Delta^n\), with \(\beta\) surjective as we saw above.  Then by \ref{joyalsquare2}, 
-	\[\square_{E^1,n}^\lrcorner(h_i, \delta^{c_1},\dots,\delta^{c_n}) \cong \square^\lrcorner_{r_i}(h^\prime_i,(P_0^\lrcorner,\dots, P_{r_i+1}^\lrcorner) \circ \tau(\delta^{c_1},\dots,\delta^{c_n})),\]
+	By \ref{retractjoyal} we see that \(e\times^\lrcorner \delta^n\) can be factored as \(\varepsilon\circ \iota\) such that it is a retract of \(\iota\), which is a relative cell complex of inner horn inclusions.  By a similar argument to \ref{cornerpushouts} and \ref{cornertensorcell}, it follows that 
+	\[
+		\square^\lrcorner_{E^1,n}(\iota, \delta^{c_1},\dots,\delta^{c_n})
+	\]
+	is transfinite composite of inner horn inclusions
+	\[
+		\square^\lrcorner_{E^1,n}(h_i, \delta^{c_1},\dots,\delta^{c_n}),
+	\]
+	where the \(h_i:\Lambda^{r_i}_{\ell_i}\to \Delta^{r_i}\) are inner horn inclusions and the \(h_i\) are maps in \(\overcat{\psh{\Delta}}{E^1 \times \Delta^n}\).  Let \(h^\prime_i\) denote the same map in the category \(\overcat{\psh{\Delta}}{\Delta^{r_i}},\) and let \((\alpha,\beta)\) denote the map \(\Delta^{r_i} \to E^1 \times \Delta^n\), with \(\beta\).  Then by \ref{joyalsquare2}, 
+	\[
+		\square_{E^1,n}^\lrcorner(h_i, \delta^{c_1},\dots,\delta^{c_n}) \cong \square^\lrcorner_{r_i}(h^\prime_i,(P_0^\lrcorner,\dots, P_{r_i+1}^\lrcorner) \circ \tau(\delta^{c_1},\dots,\delta^{c_n})),
+	\]
 	but we see that the \(P^\lrcorner_i\) are corner products of boundary inclusions as in \ref{anodynethm}, and therefore, the maps
-	\[\square^\lrcorner_{r_i}(h^\prime_i,(P_1^\lrcorner,\dots, P_{r_i}^\lrcorner) \circ \tau(\delta^{c_1},\dots,\delta^{c_n}))\] 
-	are all horizontal inner anodyne, demonstrating the claim that
-	\[e \times^\lrcorner \square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\]
-	is inner anodyne.
+	\[
+		\square^\lrcorner_{r_i}(h^\prime_i,(P_0^\lrcorner,\dots, P_{r_i+1}^\lrcorner) \circ \tau(\delta^{c_1},\dots,\delta^{c_n}))
+	\] 
+	are all horizontal inner anodyne.
+	But the map
+	\[
+		\square^\lrcorner_{E^1,n}(e\times^\lrcorner \delta^n, \delta^{c_1},\dots,\delta^{c_n})
+	\]
+	is a retract of 
+	\[
+		\square^\lrcorner_{E^1,n}(\iota, \delta^{c_1},\dots,\delta^{c_n}),
+	\]
+	which we have just shown to be horizontal inner anodyne. Then from \ref{joyalsquare1}, we see that 
+	\[
+		\square^\lrcorner_{E^1,n}(e\times^\lrcorner \delta^n, \delta^{c_1},\dots,\delta^{c_n}) \cong e \times^\lrcorner \square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n}),
+	\]
+	which proves the theorem.
 \end{proof}
 \begin{cor}
 	The formal \(\C\)-quasicategories are the fibrant objects of the horizontal Joyal model structure.
@@ -1724,7 +1783,7 @@ From these definitions and the theorem above, we deduce the following useful cor
 					\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y) & E_X(x,y)                \\
 					\left( \coliml\limits_{[t]\in\overcat{\Theta[\C]}{X}} \mathfrak{C}([t])\right)(x,y) & \mathfrak{C}(X)(x,y) \\
 				};
-				\path[->, font=\scriptsize]
+				\path[->]
 				(b-1-1) edge (b-1-2)
 				edge node[auto,swap]{\(\scriptstyle \cong\)} (b-2-1)
 				(b-2-1) edge [-,double] (b-2-2)
@@ -1740,7 +1799,7 @@ From these definitions and the theorem above, we deduce the following useful cor
 					\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{T}} E_{[t]}\right)(x,y) & E_T(\alpha,\omega)               	 \\
 					\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y) & E_X(x,y)                \\
 				};
-				\path[->, font=\scriptsize]
+				\path[->]
 				(b-1-1) edge (b-1-2)
 				(b-2-1) edge (b-1-1) edge (b-2-2) edge node[auto,swap]{\(\scriptstyle{f_\ast}\)} (b-3-1)
 				(b-2-2) edge (b-1-2) edge node[auto,swap]{\(\scriptstyle{E_f}\)} (b-3-2)
@@ -1898,7 +1957,7 @@ from which we obtain the following corollary:
 				\mathfrak{C}(G(c))(\alpha,\omega) & S_G^c & c^n\\
 				\mathfrak{C}(G(d))(\alpha,\omega) & S_G^d & d^n\\
 				};
-				\path[->, font=\scriptsize]
+				\path[->]
 				(b-1-2) edge (b-1-1)
 				edge (b-1-3)
 				edge node[auto,swap]{\(\scriptstyle{S^f_G}\)} (b-2-2)
@@ -2080,7 +2139,7 @@ These cosimplicial bi-pointed simplicial sets fit in a natural diagram
 			               & C^\bullet_{\mathrm{cyl}} & C^\bullet_E \\
 			C^\bullet_L &                             &                \\
 		};
-		\path[->, font=\scriptsize]
+		\path[->]
 		(b-1-1) edge (b-2-2)
 		(b-3-1) edge (b-2-2)
 		(b-2-2) edge (b-2-3);
@@ -2186,7 +2245,7 @@ These cosimplicial objects fit in a natural diagram
 			               & C^\bullet_{\mathrm{cyl}}(c) & C^\bullet_E(c) \\
 			C^\bullet_L(c) &                             &                \\
 		};
-		\path[->, font=\scriptsize]
+		\path[->]
 		(b-1-1) edge (b-2-2)
 		(b-3-1) edge (b-2-2)
 		(b-2-2) edge (b-2-3);
@@ -2262,7 +2321,7 @@ induced by the inclusions we described above.
 				\mathfrak{C}^\Nec(X)(x,y)_c & \mathfrak{C}^\mathcal{Y}(X)(x,y)_c & \mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)	_c \\
 				& N\overcat{\Delta}{\cellset_{\ast,\ast}(C^\bullet(c),X_{x,y})} & N\overcat{\Delta}{\cellset_{\ast,\ast}(R^\bullet	(c),X_{x,y})} \\
 				};
-				\path[->, font=\scriptsize]
+				\path[->]
 				(b-1-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-2)
 				(b-1-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)}(b-1-2)
 				(b-2-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)}(b-1-3)
@@ -2324,7 +2383,7 @@ induced by the inclusions we described above.
 				\coliml\limits_{[n],C^n_R\to k^\ast(X_{x,y})_c}\!\mathfrak{C}_\Delta(C^n_R)(\alpha,\omega)     & \coliml\limits_{[n],C^n_R(c)\to X_{x,y}}\!\mathfrak{C}_\Delta(C^n_R)(\alpha,\omega)                   \\
 				\hocoliml\limits_{[n],C^n_R\to k^\ast(X_{x,y})_c}\!\mathfrak{C}_\Delta(C^n_R)(\alpha,\omega)     & \hocoliml\limits_{[n],C^n_R(c)\to X_{x,y}}\!\mathfrak{C}_\Delta(C^n_R)(\alpha,\omega)                   \\
 				\hocoliml\limits_{[n],C^n_R\to k^\ast(X_{x,y})_c} \ast     & \hocoliml\limits_{[n],C^n_R(c)\to X_{x,y}} \ast   \\};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-2) edge (b-1-1)
 			(b-3-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-3-1)
 			(b-2-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-3-2) edge (b-1-2)
@@ -2351,7 +2410,7 @@ induced by the inclusions we described above.
 			{
 				\mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c     & \mathcal{D}(x,y)_c                  \\
 				\coliml\limits_{T\in \overcat{\Nec}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c}}\!\mathfrak{C}_\Delta(T)(\alpha,\omega) & \coliml\limits_{Y\in \overcat{\mathcal{Y}}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c}}\!\mathfrak{C}_\Delta(Y)(\alpha,\omega)  \\};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge (b-1-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\cong}\)} (b-1-1) edge  (b-2-2)
 			(b-2-2) edge (b-1-2);
@@ -2382,7 +2441,7 @@ Upon restriction to \[\overcat{\Nec}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c},\]
 				\hocoliml\limits_{Y\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\ast &
 				\hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}}\!\ast   \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge (b-1-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\cong}\)} (b-1-1) edge (b-2-2)
 			(b-2-2) edge (b-1-2)
@@ -2406,7 +2465,7 @@ Upon restriction to \[\overcat{\Nec}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c},\]
 				\hocoliml\limits_{Y\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\ast &
 				\hocoliml\limits_{[n],C^n\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\ast   \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge (b-1-2)
 			(b-1-3) edge (b-1-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-1) edge (b-2-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-3-1)
@@ -2425,7 +2484,7 @@ Upon restriction to \[\overcat{\Nec}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c},\]
 			{
 				\mathfrak{C}(\mathfrak{N}\mathcal{D})(x,y)_c     & \mathcal{D}(x,y)_c     &               \\
 				\hocoliml\limits_{T\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(T)(\alpha,\omega) & \hocoliml\limits_{Y\to k^\ast(\mathfrak{N}\mathcal{D})_c}\!\mathfrak{C}_\Delta(Y)(\alpha,\omega) & \hocoliml\limits_{[n],C^n(c)\to \mathfrak{N}\mathcal{D}}\!\mathfrak{C}_\Delta(C^n)(\alpha,\omega) \\};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge (b-1-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
 			(b-2-2) edge (b-1-2)
@@ -2519,7 +2578,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 				\mathfrak{C}\mathfrak{N}\mathfrak{C}(X) & \mathfrak{C}\mathfrak{N}\mathcal{D} \\
 				\mathfrak{C}(X)                                               & \mathcal{D}                                               \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge (b-1-2) edge (b-2-1)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2);
@@ -2533,7 +2592,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 				\mathfrak{C}(X) &\mathfrak{C}\mathfrak{N}\mathfrak{C}(X) & \mathfrak{C}\mathfrak{N}\mathcal{D} \\
 				&\mathfrak{C}(X)                                               & \mathcal{D}                                               \\
 			};
-			\path[->, font=\scriptsize]
+			\path[->]
 			(b-1-1) edge (b-1-2) edge[-,double] (b-2-2)
 			(b-1-2) edge (b-1-3) edge (b-2-2)
 			(b-1-3) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-3)
