@@ -14,6 +14,7 @@
 
 % Hyperref
 \usepackage{hyperref}
+\usepackage{cleveref}
 \hypersetup{
 	colorlinks,
 	allcolors=[rgb]{0.69,0,0}
@@ -39,7 +40,7 @@
 
 
 % To get ``linear'' numbering of subsections and theorems.
-\setcounter{secnumdepth}{2}
+
 \numberwithin{equation}{subsection}
 
 % why does this work?
@@ -235,7 +236,7 @@ In the first chapter, we apply a general construction to define what we call \em
 
 We define the category of \emph{\(\C\)-cellular sets} to be the category of presheaves of sets on this category.  We then apply machinery of Cisinski and Oury to construct the \emph{horizontal Joyal model structure} on the category of \(\C\)-cellular sets that has many of the familiar nice properties of the Joyal model structure. We call the fibrant objects of this category the \emph{formal \(\C\)-quasicategories}.
 
-Among the important technical results proven in this chapter, we direct the attention of the reader to Theorem \ref{horizontal}, proving that the model structure is Cartesian-monoidal as well as \ref{rezkcomparison}, proving a useful equivalence with an analogous model structure constructed by Rezk.    
+Among the important technical results proven in this chapter, we direct the attention of the reader to \Cref{horizontal}, proving that the model structure is Cartesian-monoidal as well as \Cref{rezkcomparison}, proving a useful equivalence with an analogous model structure constructed by Rezk.    
 
 The chapter culminates with a key technical result that gives a characterization of the fibrant objects by a simple lifting property and the fibrations between them as the \emph{isofibrations}, namely the horizontal inner fibrations that have the right lifting property with respect to the inclusion of a vertex into a freestanding isomorphism, extending an important  theorem of Joyal to this setting.
 
@@ -267,9 +268,9 @@ We hope also that new approaches to dealing with coherence problems might be dis
 
 \subsection*{Acknowledgements} First and foremost, we would like to thank George Raptis for advising us in the writing of the version of this paper to be submitted as a Master's thesis at Universit\"at Regensburg.  His suggestions have been invaluable, and we are extremely grateful for the time he has spent reading this paper closely.
 
-We would also like to thank Denis-Charles Cisinski for his help with axiomatizing the Eilenberg-Zilber shuffle decomposition \ref{cishelp}, which is an important technical condition without which many of the constructions in this paper would not function.  
+We would also like to thank Denis-Charles Cisinski for his help with axiomatizing the Eilenberg-Zilber shuffle decomposition \Cref{cishelp}, which is an important technical condition without which many of the constructions in this paper would not function.  
 
-We would like to give a special thanks Alexander Campbell for his invaluable help in correcting the proof of Theorem \ref{joyalisothm}, which previously cited an incorrect result.
+We would like to give a special thanks Alexander Campbell for his invaluable help in correcting the proof of \Cref{joyalisothm}, which previously cited an incorrect result.
 
 Finally, we would like to acknowledge Andrea Gagna for spending his time discussing these ideas with us over several long conversations as well as Eric Peterson for his sage advice and friendship over the years.  
 
@@ -355,7 +356,7 @@ Rezk introduced an intertwining functor by means of an explicit construction, bu
 \begin{comment}
 	The category \(\ssetlab\) is rather different from \(\cellset\).  For example, in \(\cellset\), we can take the quotient of the representable \([2](c,c')\) by killing the subobject \([1](c\times c')\), which is the inner face.  If we do this, the outer faces are merely connected together, and this object corepresents the situation in which a \(c\) cell is right inverse to a \(c^\prime\) cell.  But this object cannot be represented as the intertwiner of an object in \(\ssetlab\).  To see this, look at the fibre over the quotient \(X\) of \(\Delta^2\) by its inner face.  This simplicial set has a unique top-dimensional cell \(\sigma:\Delta^2\to X\), so giving a natural transformation \(X\to \psh{\C}_\bullet\) is totally determined by our choice of where to map it.  Then by the simplicial relations, we can see that whatever pair of objects \(c,c^\prime\) we pick in \(\psh{\C}_2=\psh{\C}^2\), \(\partial_1 \Omega(\sigma)\cong c\times c^\prime\) by pseudonaturality.  However, we also know that the inner face \(\partial_1 \sigma\) is degenerate and therefore must map to the terminal object in \(\psh{\C}\).  This relation forces us to choose \(c=c^\prime=\ast\).  Similar problems happen when attempting to glue together objects that aren't identical between a pair of vertices.
 
-	The other main kind of pathology, shared with the full subcategory \(\Delta \int \psh{\C}\), is that it allows us to label simplices by the empty presheaf on \(\C\).  This is exactly the kind of pathology that is killed by the intertwiner.  For example, consider \([1](\emptyset)\).  Then \(V[1](\emptyset)=\ast \coprod \ast\), since the only object of \(\Theta[\C]\) admitting a map to \([1](\emptyset)\) is \([0]\).
+	The other main kind of pathology, shared with the full subcategory \(\Delta \int \psh{\C}\), is that it allows us to label simplices by the empty presheaf on \(\C\).  This is exactly the kind of pathology that is killed by the intertwiner.  For example, consider \([1](\varnothing)\).  Then \(V[1](\varnothing)=\ast \coprod \ast\), since the only object of \(\Theta[\C]\) admitting a map to \([1](\varnothing)\) is \([0]\).
 \end{comment}
 \begin{defn} An object \((S,\Omega)\) of \(\ssetlab\) is called \emph{normalized} if the image of \(\Omega_1\) does not contain the empty presheaf on \(\C\).
 \end{defn}
@@ -365,9 +366,9 @@ Rezk introduced an intertwining functor by means of an explicit construction, bu
 \begin{proof}
 	Recall before we begin that a map \((S,\Omega)\to (S^\prime,\Omega^\prime)\) is given by a morphism of simplicial sets \(f:S\to S^\prime\) and a natural modification \(\zeta:\Omega\to \Omega^\prime\circ f\).
 
-	In order to prove fullness, let \(\gamma:S\square\Omega\to S^\prime\square\Omega^\prime\) be a map in \(\cellset\). We notice that \(\Hom([n](\emptyset,\dots,\emptyset), (S,\Omega))\) is naturally isomorphic to \(S_n\), and proceed by diagram chase. Since by assumption \((S,\Omega)\) is normalized, every map \([n](\emptyset,\dots,\emptyset)\to (S,\Omega)\) factors uniquely through at least one map \([n](c_1,\dots,c_n)\to (S,\Omega)\).
+	In order to prove fullness, let \(\gamma:S\square\Omega\to S^\prime\square\Omega^\prime\) be a map in \(\cellset\). We notice that \(\Hom([n](\varnothing,\dots,\varnothing), (S,\Omega))\) is naturally isomorphic to \(S_n\), and proceed by diagram chase. Since by assumption \((S,\Omega)\) is normalized, every map \([n](\varnothing,\dots,\varnothing)\to (S,\Omega)\) factors uniquely through at least one map \([n](c_1,\dots,c_n)\to (S,\Omega)\).
 
-	Choosing such a factorization, the natural transformation \(\gamma\) sends this to a map \[[n](c_1,\dots,c_n)\to (S^\prime,\Omega^\prime),\] and finally, precomposing this map with the unique map \([n](\emptyset,\dots,\emptyset)\to [n](c_1,\dots,c_n)\), we obtain a map \([n](\emptyset,\dots,\emptyset)\to (S^\prime,\Omega^\prime)\). Taking these together gives a map \(S_n\to S^\prime_n\), naturally in \(n\).
+	Choosing such a factorization, the natural transformation \(\gamma\) sends this to a map \[[n](c_1,\dots,c_n)\to (S^\prime,\Omega^\prime),\] and finally, precomposing this map with the unique map \([n](\varnothing,\dots,\varnothing)\to [n](c_1,\dots,c_n)\), we obtain a map \([n](\varnothing,\dots,\varnothing)\to (S^\prime,\Omega^\prime)\). Taking these together gives a map \(S_n\to S^\prime_n\), naturally in \(n\).
 
 	Now assume that \(S^\prime=S\) and that the map induced by \(\gamma\) is the identity.  Then notice that a map \[[n](c_1,\dots,c_n)\to (S,\Omega)\] is completely determined by its action on the degree \(n\) part, but this amounts to picking an \(n\)-simplex of \(S\) together with its labeling \((A_1,\dots,A_n)\), and a map \((c_1,\dots,c_n)\to (A_1,\dots,A_n)\).  Then the natural transformation gives a natural map \(((A_1)_{c_1},\dots,(A_n)_{c_n})\to ((A^\prime_1)_{c_1},\dots,(A^\prime_n)_{c_n})\), taking the naturality in \(n\) and the \(c_i\), these together determine a natural modification \(\Omega\to \Omega^\prime\).
 
@@ -420,7 +421,7 @@ We define a Cisinski model structure on \(\cellset\) and state several results t
 \end{defn}
 
 \begin{rem}
-	The precise definition and construction of the corner-intertwiner \(\square^\lrcorner_n\) is deferred to Section \ref{cornertensor}, but in this particular case, we can compute it by hand in terms of the intertwiner to be \[V_{\Lambda^n_k}(c_1,\dots,c_n) \cup \left(\bigcup_{i=1}^n V[n](c_1,\dots,\partial c_i \dots, c_n) \right) \hookrightarrow [n](c_1,\dots,c_n),\] where \(V_{\Lambda^n_k}(c_1,\dots,c_n)\) is the pullback of \([n](c_1,\dots,c_n)\) by the inclusion \(\Lambda^n_k\hookrightarrow \Delta^n\) (whenever \(K\subseteq \Delta^n\), we can apply this formula to compute the corner tensor).
+	The precise definition and construction of the corner-intertwiner \(\square^\lrcorner_n\) is deferred to \Cref{cornertensor}, but in this particular case, we can compute it by hand in terms of the intertwiner to be \[V_{\Lambda^n_k}(c_1,\dots,c_n) \cup \left(\bigcup_{i=1}^n V[n](c_1,\dots,\partial c_i \dots, c_n) \right) \hookrightarrow [n](c_1,\dots,c_n),\] where \(V_{\Lambda^n_k}(c_1,\dots,c_n)\) is the pullback of \([n](c_1,\dots,c_n)\) by the inclusion \(\Lambda^n_k\hookrightarrow \Delta^n\) (whenever \(K\subseteq \Delta^n\), we can apply this formula to compute the corner tensor).
 \end{rem}
 
 \begin{defn}
@@ -431,7 +432,7 @@ We define a Cisinski model structure on \(\cellset\) and state several results t
 	In the case where \(\C\) is the terminal category, these are precisely the quasicategories, since the horns in the definition above become exactly the simplicial inner horn inclusions.
 \end{note}
 
-The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in the sections \ref{reedy}, \ref{horizontal}, and \ref{admissible}.
+The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in \Cref{reedy}, \Cref{horizontal}, and \Cref{admissible}.
 
 \begin{prop}
 	The class of all monomorphisms of \(\cellset\) is exactly \(\operatorname{Cell}(\mathscr{M}),\) where \[\mathscr{M}=\{\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) : n\geq 0 \text{ and } c_1,\dots,c_n \in \Ob \C\}.\]
@@ -447,10 +448,11 @@ The following results are stated here without proof.  All proofs are heavily ins
 \begin{thm}\label{isofibrations}
 	A horizontal inner fibration between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it has the right lifting property with respect to the map \(\Delta^0\hookrightarrow E^1\).  In particular, the formal \(\C\)-quasicategories are exactly the fibrant objects for the horizontal Joyal model structure.
 \end{thm}
-
-\begin{prop}
+\begin{comment}
+	\begin{prop}
 	Given a necklace \(T\), there is a unique embedding \(\iota_T:T\hookrightarrow \Delta[T]\), where \(\Delta[T]\) is the unique representable whose spine is exactly the spine of \(T\).  This map sends the spine of \(T\) isomorphically onto the spine of \(\Delta[T]\) and is a horizontal inner anodyne.
-\end{prop}
+	\end{prop}
+\end{comment}
 
 \subsection{The corner tensor construction}\label{cornertensor} 
 The overwhelming majority of this section is due to Oury, although we had to redo some of the proofs, since they contained mistakes. Following \cite{oury}*{3.1} we define the corner tensor, a vast generalization of the corner product.
@@ -486,7 +488,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 \begin{example}
 	If we take \(\square\) to be a bifunctor \(\mathcal{D}\times \mathcal{D} \to \mathcal{D}\) in an appropriately cocomplete category, then given \(f_1:A\to B\) and \(f_2:C\to D\), their corner tensor is the familiar corner product: 
 	\[
-		f_1 \square^\lrcorner f_2 = A\square D \coprod_{A\square C} B\square C \to  B\square D.
+		f_1 \square^\lrcorner f_2 = \left(A\square D \coprod_{A\square C} B\square C \to  B\square D\right).
 	\]
 \end{example}
 \begin{rem}
@@ -722,7 +724,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 			(b-4-1) edge node[auto]{\(\scriptstyle{\id^-}\)} (b-4-4);
 		\end{tikzpicture}.
 	\end{center}	
-	its front and back faces remain pushouts, since \(\square^\lrcorner\) preserves all colimits in each argument preserved by \(\square\).  Then the map \(g^\lrcorner: Q_{p,\mathbf{f}} \to Q_{q,\mathbf{f}}\)  is a pushout of the map \(h^\lrcorner:Q_{h,\mathbf{f}} \to Q_{\id,\mathbf{f}}\), but by Lemma \ref{corneridentities}, we see that \(\square^\lrcorner(\id,\mathbf{f})=\id\), so by commutativity, it follows that \(h^\lrcorner = \square^\lrcorner(h,\mathbf{f})\), and therefore, \(g^\lrcorner\) is a pushout of \(\square^\lrcorner(h,\mathbf{f})\).  
+	its front and back faces remain pushouts, since \(\square^\lrcorner\) preserves all colimits in each argument preserved by \(\square\).  Then the map \(g^\lrcorner: Q_{p,\mathbf{f}} \to Q_{q,\mathbf{f}}\)  is a pushout of the map \(h^\lrcorner:Q_{h,\mathbf{f}} \to Q_{\id,\mathbf{f}}\), but by \Cref{corneridentities}, we see that \(\square^\lrcorner(\id,\mathbf{f})=\id\), so by commutativity, it follows that \(h^\lrcorner = \square^\lrcorner(h,\mathbf{f})\), and therefore, \(g^\lrcorner\) is a pushout of \(\square^\lrcorner(h,\mathbf{f})\).  
 \end{proof}
 Assume in the sequel that \(\square\) preserves connected colimits in each argument.
 \begin{lemma}[\cite{oury}*{Lemma 3.10}]\label{cornertensorcell}
@@ -784,10 +786,10 @@ Assume in the sequel that \(\square\) preserves connected colimits in each argum
 	\[
 		\square^\lrcorner(\phi_0,\mathbf{f}) = \square^\lrcorner(\id_C,\mathbf{f}) \circ \phi^\lrcorner_0,
 	\] 
-	but from Lemma \ref{corneridentities}, we see \(\square^\lrcorner(\id_C,\mathbf{f})=\id\), so it immediately follows that \(\square^\lrcorner(\phi_0,\mathbf{f}) = \phi^\lrcorner_0\). This exhibits \(\square^\lrcorner(\phi_0,\mathbf{f})\) as a transfinite composite of the \(g^\lrcorner_i\).  
+	but from \Cref{corneridentities}, we see \(\square^\lrcorner(\id_C,\mathbf{f})=\id\), so it immediately follows that \(\square^\lrcorner(\phi_0,\mathbf{f}) = \phi^\lrcorner_0\). This exhibits \(\square^\lrcorner(\phi_0,\mathbf{f})\) as a transfinite composite of the \(g^\lrcorner_i\).  
 	Then it suffices to show that the \(g_i^\lrcorner\) are pushouts of maps belonging to 
 	\[\square^\lrcorner(\mathscr{J}_1,,\dots ,\mathscr{J}_n).\]
-	Since each \(g_i\) was a pushout of a morphism \(h_i \in \mathscr{J}_1\), and since we have a commutative square \((g_i,\id):\phi_i\to \phi_{i+1}\), we are exactly in the situation of Lemma \ref{cornertwist}, which implies that each \(g_i^\lrcorner\) is a pushout of \(\square^\lrcorner(h_i,\mathbf{h})\), which proves the proposition.
+	Since each \(g_i\) was a pushout of a morphism \(h_i \in \mathscr{J}_1\), and since we have a commutative square \((g_i,\id):\phi_i\to \phi_{i+1}\), we are exactly in the situation of \Cref{cornertwist}, which implies that each \(g_i^\lrcorner\) is a pushout of \(\square^\lrcorner(h_i,\mathbf{h})\), which proves the proposition.
 \end{proof}
 \begin{cor} 
 	There is an inclusion
@@ -804,7 +806,7 @@ Assume in the sequel that \(\square\) preserves connected colimits in each argum
 	\[F^\lrcorner:\mathcal{A}_1^{[1]}\times\dots\times \mathcal{A}_n^{[1]} \to \mathcal{D}^{[1]}\] is a morphism of multicategories from \(\mathrm{Rex}_c\) to itself.  In particular, it is functorial with respect to the composition in \(\mathrm{Rex}_c\).
 \end{obs}
 \subsection{The regular Reedy structure of \(\Theta[\C]\)}\label{reedy}
-In this section, we will prove some useful and interesting properties about regular Cartesian Reedy categories (see Definition \ref{cishelp}). In particular, we demonstrate that the class of monomorphisms is exactly the class of relative cell complexes for a set of maps \(\mathscr{M}\), which we will show coincides with the set of boundary maps for the regular skeletal Reedy category \(\Theta[\C]\).  
+In this section, we will prove some useful and interesting properties about regular Cartesian Reedy categories (see \Cref{cishelp}). In particular, we demonstrate that the class of monomorphisms is exactly the class of relative cell complexes for a set of maps \(\mathscr{M}\), which we will show coincides with the set of boundary maps for the regular skeletal Reedy category \(\Theta[\C]\).  
 
 \begin{prop} 
 	The category \(\Theta[\C]\) is a regular skeletal Reedy category whenever \(\C\) is a regular Cartesian Reedy category.  The dimension function of this regular Reedy category is given by 
@@ -836,7 +838,9 @@ In this section, we will prove some useful and interesting properties about regu
 	The category \(\Theta[\C]\) is regular Cartesian Reedy when \(\C\) is.
 \end{prop}
 \begin{proof}
-	By our calculations in Section \ref{sec:intertwiner}, since all involved objects are sober, we see that for a section 
+	We treat the case of binary products of representables.  The case of general finite products is similar, albeit more notation-heavy. We leave the details to the reader.
+
+	By our calculations in \Cref{sec:intertwiner}, since all involved objects are sober, we see that for a section 
 	\[
 		(\alpha,\beta):[n](c^n_1,\dots,c^n_n) \to [m_1](c^{m_1}_1,\dots,c^{m_1}_{m_1})\times [m_2](c^{m_2}_1,\dots,c^{m_2}_{m_2})
 	\]
@@ -928,7 +932,7 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 	The relative intertwiner \(\square_S\) preserves colimits in the first variable.
 \end{lemma}
 \begin{proof} 
-	Since colimits are computed objectwise in presheaves, it suffices to show that the functor \(\square_S(\bullet,\Omega)_t\) preserves colimits for all \([t]=[n](c_1,\dots,c_n) \in \Theta[\C]\) and all labels \(\Omega\) of \(S\).  Therefore, it suffices by Observation \ref{evaluationsquare} to show this in the case where \(\C\) is the terminal category, since we may fix the family of objects \((c_1,\dots,c_n)\). For each \(s\in S_n\) let \((W_{s,i})_{i=1}^n\) be the evaluation of \(\Omega\) on \(s\).  Then given \(f:Y\to S\), we have a Cartesian square
+	Since colimits are computed objectwise in presheaves, it suffices to show that the functor \(\square_S(\bullet,\Omega)_t\) preserves colimits for all \([t]=[n](c_1,\dots,c_n) \in \Theta[\C]\) and all labels \(\Omega\) of \(S\).  Therefore, it suffices by \ref{evaluationsquare} to show this in the case where \(\C\) is the terminal category, since we may fix the family of objects \((c_1,\dots,c_n)\). For each \(s\in S_n\) let \((W_{s,i})_{i=1}^n\) be the evaluation of \(\Omega\) on \(s\).  Then given \(f:Y\to S\), we have a Cartesian square
 	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
@@ -959,8 +963,8 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 \end{lemma}
 \begin{proof}
 	We saw from the previous lemma that it preserves colimits in the first variable, so representing \(Y\) as the colimit of its simplices, we immediately reduce to the case where \(Y\) is a simplex.  But we know in this case that any map \([p]\to [n]\) factors as a degeneracy followed by a face map.  In the case that \(f\) is a face map, we can compute the pullback of \(V[n](X_1,\dots,X_n)\) along \(f\) to be 
-	\[V[p]\left(\prod_{i=f(0)+1}^{f(1)}X_i,\dots, \prod_{i=f(p-1)}^{f(p)}X_i\right).\]  By universality of colimits in \(\psh{\C}\), we see that it suffices to show that \[V[p]\left(\bullet,\dots,\bullet)=\square_p(\id_{\Delta^p},\bullet,\dots,\bullet\right)\] preserves connected colimits in each variable.  In the case where \(f\) is a degeneracy map, we can compute the pullback over \([p]\) to be \[V[p](\ast, \dots, X_1, \dots, \ast, \dots, X_n, \dots \ast),\] where we fill in the terminal object of \(\psh{\C}\) in each argument \(i\) where \(f(i-1)=f(i)\).  In this case again, it again suffices to show that \(V[p]\) preserves connected colimits in each variable, but this is precisely the content of \cite{rezk-theta-n-spaces}*{Proposition 4.5}, where the proof proceeds by first showing that if we set \(X_k=\emptyset\), then
-	\[V[p+1+q](A_1,\dots, A_p, \emptyset, B_1 ,B_q) \cong V[p](A_1,\dots,A_p) \coprod V[q](B_1,\dots,B_q),\]
+	\[V[p]\left(\prod_{i=f(0)+1}^{f(1)}X_i,\dots, \prod_{i=f(p-1)}^{f(p)}X_i\right).\]  By universality of colimits in \(\psh{\C}\), we see that it suffices to show that \[V[p]\left(\bullet,\dots,\bullet)=\square_p(\id_{\Delta^p},\bullet,\dots,\bullet\right)\] preserves connected colimits in each variable.  In the case where \(f\) is a degeneracy map, we can compute the pullback over \([p]\) to be \[V[p](\ast, \dots, X_1, \dots, \ast, \dots, X_n, \dots \ast),\] where we fill in the terminal object of \(\psh{\C}\) in each argument \(i\) where \(f(i-1)=f(i)\).  In this case again, it again suffices to show that \(V[p]\) preserves connected colimits in each variable, but this is precisely the content of \cite{rezk-theta-n-spaces}*{Proposition 4.5}, where the proof proceeds by first showing that if we set \(X_k=\varnothing\), then
+	\[V[p+1+q](A_1,\dots, A_p, \varnothing, B_1,\dots ,B_q) \cong V[p](A_1,\dots,A_p) \coprod V[q](B_1,\dots,B_q),\]
 	and then exhibiting the obvious parametric right adjoint
 	\[\overcat{\left(V[p](A_1,\dots,A_p) \coprod V[q](B_1,\dots,B_q)\right)}{\psh{\Theta[\C]}}\to \psh{\C}.\]
 \end{proof}
@@ -987,7 +991,7 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 			X_{i+1} &\text{ if } i>k
 		\end{cases}
 	\]
-	This functor is the right adjoint to the diagonal functor and therefore has an evident left-adjoint.  If \(f:[n]\to [n+1]\) is an outer face, say \(\partial^{n+1}\) omitting the vertex \(n+1\), then the pullback to \([n]\) is given by omitting the object \(X_{n+1}\).  The left adjoint in this case is given by sending \([n](X_1,\dots,X_n)\) to \([n](X_1,\dots,X_n,\emptyset)\), and similarly for the other outer face.
+	This functor is the right adjoint to the diagonal functor and therefore has an evident left-adjoint.  If \(f:[n]\to [n+1]\) is an outer face, say \(\partial^{n+1}\) omitting the vertex \(n+1\), then the pullback to \([n]\) is given by omitting the object \(X_{n+1}\).  The left adjoint in this case is given by sending \([n](X_1,\dots,X_n)\) to \([n](X_1,\dots,X_n,\varnothing)\), and similarly for the other outer face.
 	
 	Suppose then that the map \(f:[n+1]\to [n]\) is a codimension \(1\) degeneracy such that \(f(k-1)=f(k)\).  The left adjoint to the pullback is given by sending \([n+1](X_1,\dots,X_{n+1}\) to \([n](X_1,\dots,\widehat{X_k}, \dots, X_n)\).  
 
@@ -1091,7 +1095,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 \end{obs}
 
 \begin{obs}\label{square2}
-	Let \((\alpha\times \beta): \Delta^r \to \Delta^n\times \Delta^m\) be an injective map preserving initial and terminal elements.  Let \(\mathbf{A}=(A_i)^n_{i=1}\) and \(\mathbf{B}=(B_i)^m_{i=1}\) be objects of \(\psh{\C}^n\) and \(\psh{\C}^m\) respectively.  Let 
+	Let \((\alpha, \beta): \Delta^r \to \Delta^n\times \Delta^m\) be an injective map preserving initial and terminal elements.  Let \(\mathbf{A}=(A_i)^n_{i=1}\) and \(\mathbf{B}=(B_i)^m_{i=1}\) be objects of \(\psh{\C}^n\) and \(\psh{\C}^m\) respectively.  Let 
 	\[K_{\alpha,\beta}:\psh{\C}^n \times \psh{\C}^m\to \psh{\C}^r\] be the functor defined by the rule
 	\[(\mathbf{U},\mathbf{V})\mapsto \alpha^\ast \mathbf{U} \times \beta^\ast \mathbf{V},\]
 	taking the product of the pullbacks to the fibre over \(\Delta^r\).  Then we have a diagram:
@@ -1146,7 +1150,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
 			{
-				\overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^n \times \psh{\C}^m & \overcat{\psh{\Delta}}{\Delta^r} \times \prod_{i=1}^r \psh{\C}^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
+				\overcat{\psh{\Delta}}{\Delta^r}\times \psh{\C}^n \times \psh{\C}^m & \overcat{\psh{\Delta}}{\Delta^r} \times \prod_{i=1}^r \psh{\C}^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \psh{\C}^r\\
 				\overcat{\psh{\Delta}}{\Delta^n\times \Delta^m} \times \psh{\C}^n \times \psh{\C}^m & & \cellset \\
 			};
 			\path[->]
@@ -1163,42 +1167,94 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=2em]
 			{
-				\overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \left(\psh{\C}^{[1]}\right)^n \times \left(\psh{\C}^{[1]}\right)^m & \overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \prod_{i=1}^r \left(\psh{\C}^{[1]}\right)^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \left(\psh{\C}^{[1]}\right)^r\\
-				\overcat{\psh{\Delta}}{\Delta^n\times \Delta^m}^{[1]} \times \left(\psh{\C}^{[1]}\right)^{n+m} & & \cellset^{[1]} \\
+				\overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \left(\psh{\C}^{[1]}\right)^n \times \left(\psh{\C}^{[1]}\right)^m & \overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \prod_{i=1}^r \left(\psh{\C}^{[1]}\right)^{t_i}\\
+				&\overcat{\psh{\Delta}}{\Delta^r} \times \left(\psh{\C}^{[1]}\right)^r\\
+				\overcat{\psh{\Delta}}{\Delta^n\times \Delta^m}^{[1]} \times \left(\psh{\C}^{[1]}\right)^n\times \left(\psh{\C}^{[1]}\right)^m & \cellset^{[1]} \\
 			};
 			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
-					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-)^\lrcorner \times \id \times \id}\)} (b-2-1)
-			(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner_{n,m}}\)} (b-2-3)
-			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i^\lrcorner)}\)} (b-1-3) 
-			(b-1-3)	edge node[auto]{\(\scriptstyle{\square^\lrcorner_r}\)} (b-2-3);
+					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-)^\lrcorner \times \id \times \id}\)} (b-3-1)
+			(b-3-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner_{n,m}}\)} (b-3-2)
+			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i^\lrcorner)_{i=1}^r}\)} (b-2-2) 
+			(b-2-2)	edge node[auto]{\(\scriptstyle{\square^\lrcorner_r}\)} (b-3-2);
 		\end{tikzpicture}.
 	\end{center}
 \end{obs}
-
-Finally, we reach our destination.  As we mentioned before, this entire section is due to David Oury \cite{oury}, and the following theorem is the crescendo:
-
-\begin{thm}[Anodyne Theorem \cite{oury}*{3.88}]\label{anodynethm} The class of horizontal anodynes is closed under corner products with monomorphisms.  In particular, if we let \[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k, \delta^{c_1},\dots,\delta^{c_n})| \text{ for } n\geq 2, 0<k<n\}.\] Then we have
+\begin{lemma}\label{anodynelemma}
+	Let \((\alpha,\beta): \Delta^r \to \Delta^n\times \Delta^m\) be a nondegenerate section with \(r\geq 2\) and such that \(\alpha\) and \(\beta\) preserve initial and terminal vertices. Let \(\mathbf{f}=\{f_i:\partial c_i \hookrightarrow c_i\}_{i=1}^n\) and \(\mathbf{g}=\{g_i:\partial d_i \hookrightarrow d_i\}_{i=1}^m\) be families of boundary inclusions for \(\C\).  Then for any inner horn inclusion \(\lambda^r_k: \Lambda^r_k\hookrightarrow \Delta^r\), the map
+	\[
+		\square^\lrcorner_{n,m}(\lambda^r_k, \mathbf{f},\mathbf{g})
+	\]
+	is horizontal inner anodyne.
+\end{lemma}
+\begin{proof}
+	By \ref{square2}, we see that 
+	\[
+		\square^\lrcorner_{n,m}(\lambda^r_k,\mathbf{f},\mathbf{g}) \cong \square^\lrcorner_r(\lambda^r_k, (P_1^\lrcorner,\dots, P_r^\lrcorner) \circ \tau(\mathbf{f},\mathbf{g})),
+	\]
+	But the value of the argument in position \(1\leq j \leq r\) is 
+	\[
+		P_j^\lrcorner\circ \tau_j(\mathbf{f},\mathbf{g})=f_{\alpha(j-1)+1}\times^\lrcorner \dots \times^\lrcorner f_{\alpha(j)} \times^\lrcorner g_{\beta(j-1)+1}\times \dots^\lrcorner \times^\lrcorner g_{\beta(j)},
+	\]
+	which belongs to the class \(\operatorname{Cell}(\mathscr{B})\). That is, the map 
+	\[
+		\square^\lrcorner_r(\lambda^r_k, (P_1^\lrcorner,\dots, P_r^\lrcorner) \circ \tau(\mathbf{f},\mathbf{g}))
+	\]
+	belongs to 
+	\[
+		\square^\lrcorner_{r}(\lambda^r_k, \operatorname{Cell}(\mathscr{B}), \dots, \operatorname{Cell}(\mathscr{B})),
+	\]
+	where \(\mathscr{B}\) denotes the set of boundary inclusions for \(\C\).  By \Cref{cornertensorcell}, it follows therefore that this map belongs to 
+	\[
+		\operatorname{Cell}(\square^\lrcorner_{r}(\lambda^r_k, \mathscr{B}, \dots, \mathscr{B})).
+	\]
+	But the set of maps
+	\[
+		\square^\lrcorner_{r}(\lambda^r_k, \mathscr{B}, \dots, \mathscr{B})
+	\]
+	is a subset of the generating horizontal inner anodynes, and therefore the map
+	\[
+		\square^\lrcorner_{n,m}(\lambda^r_k,\mathbf{f},\mathbf{g})\cong \square^\lrcorner_r(\lambda^r_k, (P_1^\lrcorner,\dots, P_r^\lrcorner) \circ \tau(\mathbf{f},\mathbf{g}))
+	\]
+	is horizontal inner anodyne.
+\end{proof}
+Finally, we reach our destination.
+\begin{thm}[Anodyne Theorem \cite{oury}*{3.88}]\label{anodynethm}
+	The class of horizontal anodynes is closed under corner products with monomorphisms.  In particular, if we let \[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k, \delta^{c_1},\dots,\delta^{c_n})| \text{ for } n\geq 2, 0<k<n\}.\] Then we have
 	\[\mathscr{M}\times^\lrcorner \mathscr{J} \subseteq \operatorname{Cell}(\mathscr{J}).\]
 \end{thm}
 \begin{proof}
-Let \(f_0:\partial\Delta^n \hookrightarrow \Delta^n\), and let \(\mathbf{f}=(f_i)_{i=1}^n\) be a family of boundary inclusions in \(\psh{\C}\).  Let \(g_0:\Lambda^m_k \hookrightarrow \Delta^n\) be an inner horn inclusion, and let \(\mathbf{g}=(g_i)_{i=1}^n\) be a family of boundary inclusions in \(\psh{\C}\).  By \ref{square1}, we have 
-\[\square^\lrcorner_n(f_0,\dots,f_n) \times^\lrcorner \square^\lrcorner_m(g_0,\dots,g_m) \cong \square^\lrcorner_{n,m}(f_0 \times^\lrcorner g_0, f_1,\dots,f_n,g_1,\dots,g_n).\]
-By \ref{simplicialhorns}, we know that \(f_0\times^\lrcorner g_0\) can be factored as a finite sequence of pushouts of inner horn inclusions.  By \ref{cornerpushouts} and \ref{cornertensorcell}, it follows that
-\[\square^\lrcorner_{n,m}(f_0 \times^\lrcorner g_0, f_1,\dots,f_n,g_1,\dots,g_n)\]
-is a finite composites of pushouts of maps
-\[\square^\lrcorner_{n,m}(h_i, f_1,\dots,f_n,g_1,\dots,g_n)\] 
-where \((h_i:\Lambda^{r_i}_{\ell_i} \to \Delta^{r_i})_{i=1}^k\) are inner horn inclusions where \(h_i\) is a morphism over \(\Delta^n\times\Delta^m\).  Let \(h^\prime_i\) denote this morphism as map in simplicial sets over \(\Delta^{r_i}\), and let 
-\((\alpha_i,\beta_i):\Delta^r \to \Delta^m\times \Delta^n\) be initial and terminal vertex preserving as in \ref{simplicialhorns}.  Then by \ref{square2}, we see that 
-\[\square^\lrcorner_{n,m}(h_i,\mathbf{f},\mathbf{g}) \cong \square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner) \circ \tau(\mathbf{f},\mathbf{g})).\]
-But the value of the argument in position \(1\leq j \leq r_i\) is 
-\[P_j^\lrcorner\circ \tau_j(\mathbf{f},\mathbf{g})=f_{\alpha_i(j-1)+1}\times^\lrcorner \dots \times^\lrcorner f_{\alpha_i(j)} \times^\lrcorner g_{\beta_i(j-1)+1}\times \dots^\lrcorner \times^\lrcorner g_{\beta_i(j)},\]
-which belongs to \(\operatorname{Cell}(\mathscr{B})\), where \(\mathscr{B}\) is the set of boundary inclusions in \(\psh{\C}\).  So we see that
-\[\square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner \circ \tau)(\mathbf{f},\mathbf{g}))\] is in 
-\[\{\square^\lrcorner_{r_i}(\mathscr{L}, \operatorname{Cell}(\mathscr{B}), \dots, \operatorname{Cell}(\mathscr{B})\}),\]
-where \(\mathscr{L}\) is the set of inner horn inclusions, which by \ref{cornertensorcell} is a subset of 
-\[\operatorname{Cell}(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}),\]
-which belongs to \(\operatorname{Cell}(\mathscr{J}),\) since \(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}\subseteq \mathscr{J}\).
+	Let \(f_0:\partial\Delta^n \hookrightarrow \Delta^n\), and let \(\mathbf{f}=(f_i)_{i=1}^n\) be a family of boundary inclusions in \(\psh{\C}\).  Let \(g_0:\Lambda^m_k \hookrightarrow \Delta^n\) be an inner horn inclusion, and let \(\mathbf{g}=(g_i)_{i=1}^n\) be a family of boundary inclusions in \(\psh{\C}\).  By \ref{square1}, we have 
+	\[
+		\square^\lrcorner_n(f_0,\dots,f_n) \times^\lrcorner \square^\lrcorner_m(g_0,\dots,g_m) \cong \square^\lrcorner_{n,m}(f_0 \times^\lrcorner g_0, f_1,\dots,f_n,g_1,\dots,g_n).
+	\]
+	By \ref{simplicialhorns}, we know that \(f_0\times^\lrcorner g_0\) can be factored as a finite sequence of pushouts of inner horn inclusions.  By \ref{cornertensorcell}, it follows that
+	\[
+		\square^\lrcorner_{n,m}(f_0 \times^\lrcorner g_0, f_1,\dots,f_n,g_1,\dots,g_n)
+	\]
+	is a finite composite of pushouts of maps
+	\[
+		\square^\lrcorner_{n,m}(h_i, f_1,\dots,f_n,g_1,\dots,g_n)
+	\] 
+	where \((h_i:\Lambda^{r_i}_{\ell_i} \to \Delta^{r_i})_{i=1}^k\) are inner horn inclusions and the implicit maps 
+	\[
+		(\alpha_i,\beta_i):\Delta^{r_i}\to \Delta^n\times \Delta^m
+	\]
+	are initial and terminal vertex preserving. 
+
+	But by the previous lemma, we see that each of these maps is horizontal inner anodyne, so we are done.
+	\begin{comment}
+		Then by \ref{square2}, we see that 
+		\[\square^\lrcorner_{n,m}(h_i,\mathbf{f},\mathbf{g}) \cong \square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner)	 	\circ \tau(\mathbf{f},\mathbf{g})).\]
+		But the value of the argument in position \(1\leq j \leq r_i\) is 
+		\[P_j^\lrcorner\circ \tau_j(\mathbf{f},\mathbf{g})=f_{\alpha_i(j-1)+1}\times^\lrcorner \dots \times^\lrcorner f_{\alpha_i(j)} 		\times^\lrcorner g_{\beta_i(j-1)+1}\times \dots^\lrcorner \times^\lrcorner g_{\beta_i(j)},\]
+		which belongs to \(\operatorname{Cell}(\mathscr{B})\), where \(\mathscr{B}\) is the set of boundary inclusions in \(\psh{\C}\).  So we 	see 	that
+		\[\square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner \circ \tau)(\mathbf{f},\mathbf{g}))\] is in 
+		\[\{\square^\lrcorner_{r_i}(\mathscr{L}, \operatorname{Cell}(\mathscr{B}), \dots, \operatorname{Cell}(\mathscr{B}))\},\]
+		where \(\mathscr{L}\) is the set of inner horn inclusions, which by \ref{cornertensorcell} is a subset of 
+		\[\operatorname{Cell}(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}),\]
+		which belongs to \(\operatorname{Cell}(\mathscr{J}),\) since \(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}		\subseteq \mathscr{J}\).
+	\end{comment}
 \end{proof}
 
 \subsection{Comparison with Rezk's complete \(\Theta[\C]\)-spaces}\label{rezkcomparison}
@@ -1306,7 +1362,7 @@ This proves one direction of the theorem; now we prove the converse.
 \begin{proof} 
 	Since the map 
 	\[\lambda^n: \Lambda^n=\partial_0 \Delta^n \cup \partial_n\Delta^n \hookrightarrow \Delta^n\]
-	is inner anodyne, and since the empty maps \(e^{c_i}:\emptyset \hookrightarrow c_i\) are monic, it follows by \ref{cornertensorcell} that the corner-intertwiner 
+	is inner anodyne, and since the empty maps \(e^{c_i}:\varnothing \hookrightarrow c_i\) are monic, it follows by \ref{cornertensorcell} that the corner-intertwiner 
 	\[\square^\lrcorner_n(\lambda^n,e^{c_1},\dots,e^{c_n})\]
 	is horizontal inner anodyne.  However, it is easy to see that this map is exactly \[\square_n(\Lambda^n,c_1,\dots,c_n) \hookrightarrow [n](c_1,\dots,c_n).\]  Therefore, it suffices to show that the map 
 	\[\square_n(\operatorname{Sp}[n],c_1,\dots,c_n) \hookrightarrow \square_n(\Lambda^n,c_1,\dots,c_n)\] is a horizontal inner anodyne.  We will first show that the map 
@@ -1418,7 +1474,7 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 			};
 			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
-					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
+					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{H_{E^1,n}}\)} (b-2-3)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i)_{i=0}^{r+1}}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{H_r}\)} (b-2-3);
@@ -1434,7 +1490,7 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 			};
 			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
-					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id \times \id}\)} (b-2-1)
+					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-) \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square_{E^1,n}}\)} (b-2-3)
 			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i)_{i=0}^{r+1}}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{\square_r}\)} (b-2-3);
@@ -1443,20 +1499,30 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 	We see that each of the arrows in this picture preserves connected colimits argument-by-argument, so applying the corner tensor functor, we obtain a commutative diagram
 	\begin{center}
 		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=3em, column sep=2em]
+			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3.5em]
 			{
-				\overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \left(\psh{\C}^{[1]}\right)^n & \overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \prod_{i=0}^{r+1} \left(\psh{\C}^{[1]}\right)^{t_i} & \overcat{\psh{\Delta}}{\Delta^r} \times \left(\psh{\C}^{[1]}\right)^r\\
-				\overcat{\psh{\Delta}}{E^1\times \Delta^n}^{[1]} \times \left(\psh{\C}^{[1]}\right)^{n} & & \cellset^{[1]} \\
+				\overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times (\psh{\C}^{[1]})^n & \overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times \prod_{i=0}^{r+1} (\psh{\C}^{[1]})^{t_i} & \overcat{\psh{\Delta}}{\Delta^r}^{[1]} \times (\psh{\C}^{[1]})^r\\
+				\overcat{\psh{\Delta}}{E^1\times \Delta^n}^{[1]} \times (\psh{\C}^{[1]})^{n} & & \cellset^{[1]} \\
 			};
 			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id \times \tau}\)} (b-1-2) 
-					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-)^\lrcorner \times \id \times \id}\)} (b-2-1)
+					edge node[auto]{\(\scriptstyle{((\alpha,\beta))\circ(-)^\lrcorner \times \id}\)} (b-2-1)
 			(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner_{E^1,n}}\)} (b-2-3)
-			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i^\lrcorner)}\)} (b-1-3) 
+			(b-1-2) edge node[auto]{\(\scriptstyle{\id \times (P_i^\lrcorner)_{i=0}^{r+1}}\)} (b-1-3) 
 			(b-1-3)	edge node[auto]{\(\scriptstyle{\square^\lrcorner_r}\)} (b-2-3);
 		\end{tikzpicture}.
 	\end{center}
 \end{obs}
+\begin{lemma}
+	Let \((\alpha,\beta): \Delta^r \to E^1\times \Delta^n\) be a nondegenerate section with \(r\geq 2\), let \[\mathbf{f}=\{f_i:\partial c_i \hookrightarrow c_i\}_{i=1^n}\] be a family of boundary inclusions.  Then for any inner horn inclusion \(\lambda^r_k: \Lambda^r_k\hookrightarrow \Delta^r\), the map
+	\[
+		\square_{E^1,n}^\lrcorner(\lambda^r_k, \mathbf{f})
+	\]
+	is horizontal inner anodyne.
+\end{lemma}
+\begin{proof}
+	The proof is practically identical to that of \Cref{anodynelemma} using \Cref{joyalsquare2} in place of \Cref{square2}.  
+\end{proof}
 \begin{thm}\label{joyalisothm}
 	Set \(e:\Delta^0\to E^1\). Then for any boundary inclusion 
 	\[\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}),\]
@@ -1465,23 +1531,19 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 	is a horizontal inner anodyne.
 \end{thm}
 \begin{proof}
-	By \ref{retractjoyal} we see that \(e\times^\lrcorner \delta^n\) can be factored as \(\varepsilon\circ \iota\) such that it is a retract of \(\iota\), which is a relative cell complex of inner horn inclusions.  By a similar argument to \ref{cornerpushouts} and \ref{cornertensorcell}, it follows that 
+	By \ref{retractjoyal} we see that \(e\times^\lrcorner \delta^n\) can be factored as \(\varepsilon\circ \iota\) such that it is a retract of \(\iota\), which is a relative cell complex of inner horn inclusions.  By \Cref{cornertensorcell}, it follows that 
 	\[
 		\square^\lrcorner_{E^1,n}(\iota, \delta^{c_1},\dots,\delta^{c_n})
 	\]
-	is transfinite composite of inner horn inclusions
+	is transfinite composite of pushouts of inner horn inclusions
 	\[
 		\square^\lrcorner_{E^1,n}(h_i, \delta^{c_1},\dots,\delta^{c_n}),
 	\]
-	where the \(h_i:\Lambda^{r_i}_{\ell_i}\to \Delta^{r_i}\) are inner horn inclusions and the \(h_i\) are maps in \(\overcat{\psh{\Delta}}{E^1 \times \Delta^n}\).  Let \(h^\prime_i\) denote the same map in the category \(\overcat{\psh{\Delta}}{\Delta^{r_i}},\) and let \((\alpha,\beta)\) denote the map \(\Delta^{r_i} \to E^1 \times \Delta^n\), with \(\beta\).  Then by \ref{joyalsquare2}, 
+	where the \(h_i:\Lambda^{r_i}_{\ell_i}\to \Delta^{r_i}\) are inner horn inclusions in \(\overcat{\psh{\Delta}}{E^1 \times \Delta^n}\).  By the previous lemma, each of these maps is horizontal inner anodyne, and it follows therefore that the map
 	\[
-		\square_{E^1,n}^\lrcorner(h_i, \delta^{c_1},\dots,\delta^{c_n}) \cong \square^\lrcorner_{r_i}(h^\prime_i,(P_0^\lrcorner,\dots, P_{r_i+1}^\lrcorner) \circ \tau(\delta^{c_1},\dots,\delta^{c_n})),
+		\square^\lrcorner_{E^1,n}(\iota, \delta^{c_1},\dots,\delta^{c_n})
 	\]
-	but we see that the \(P^\lrcorner_i\) are corner products of boundary inclusions as in \ref{anodynethm}, and therefore, the maps
-	\[
-		\square^\lrcorner_{r_i}(h^\prime_i,(P_0^\lrcorner,\dots, P_{r_i+1}^\lrcorner) \circ \tau(\delta^{c_1},\dots,\delta^{c_n}))
-	\] 
-	are all horizontal inner anodyne.
+	is as well.  
 	But the map
 	\[
 		\square^\lrcorner_{E^1,n}(e\times^\lrcorner \delta^n, \delta^{c_1},\dots,\delta^{c_n})
@@ -1500,7 +1562,9 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 	The formal \(\C\)-quasicategories are the fibrant objects of the horizontal Joyal model structure.
 \end{cor}
 \begin{proof}
-	Since the formal \(\C\)-quasicategories have the right lifting property with respect to all inner anodynes, it suffices to check that they have the right lifting property with respect to \(e:\Delta^0\hookrightarrow E^1\), but such a lift always exists by choosing the obvious degenerate lift.
+	An object is fibrant in a Cisinski model structure if it has the right lifting property with respect to all of the anodyne maps generated by pushout products of the generating cofibrations with the interval object as well as pushout-products of the generating inner anodynes with monomorphisms.  
+	
+	Since the formal \(\C\)-quasicategories have the right lifting property with respect to all inner anodynes, which are closed under pushout-products with arbitrary monomorphisms, and since the maps \(e\times^\lrcorner  \square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\) are inner anodyne for all \(n>0\),  it suffices to show that any formal \(\C\)-quasicategory has the right lifting property with respect to the single map \(e\times^\lrcorner \delta^0\), but this map is isomorphic to the map \(e:\Delta^0 \hookrightarrow E^1\), and such a lift always exists by choosing the lift through the retraction \(E^1\to \Delta^0\).
 \end{proof}
 \begin{cor}
 	The fibrations between fibrant objects in the horizontal Joyal model structure are horizontal inner fibrations having the right lifting property with respect to the map \(e:\Delta^0\hookrightarrow E^1\).
@@ -1515,7 +1579,7 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 There is an adjoint pair that should be familiar to those who have experience with \((\infty,1)\)-categories, namely the coherent realization and nerve pair, \[\psh{\Theta[\ast]}  \underset{\mathfrak{N}_\Delta}{\overset{\mathfrak{C}_\Delta}{\rightleftarrows}} \Cat_{\Psh_\Delta(\ast)},\] where we have obvious isomorphisms \(\Theta[\ast]\cong \Delta\) and \(\Psh_\Delta(\ast)\cong \psh{\Delta}\)
 
 An important theorem early in \emph{Higher Topos Theory} tells us that this adjunction gives a Quillen equivalence when the lefthand side is equipped with the Joyal model structure and the righthand side is equipped with the Bergner model structure.  The goal of this section is to show that for any \(\C\) with the aforementioned properties, we can construct an analogous adjunction:
-\[\cellset \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\spsh}\]
+\[\cellset \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{{\spsh}_{\operatorname{inj}}}\]
 
 
 \begin{defn} 
@@ -1559,7 +1623,7 @@ We will extensively abuse notation in what follows by identifying a simplicial s
 		\item The Hom-object
 		      \[\Hom(i,j)=
 			      \begin{cases}
-				      \emptyset                                                & \text{ for } i>j \\
+				      \varnothing                                                & \text{ for } i>j \\
 				      c\Delta^0                                                & \text{ for } i=j \\
 				      X_{i+1} \times \Delta^1 \times \dots \times \Delta^1 \times X_j & \text{ for } i<j
 			      \end{cases}
@@ -1726,7 +1790,7 @@ In order to compare \(\mathfrak{C}^{\Nec}_\Delta\) and \(\mathfrak{C}_\Delta\), 
 
 The functors \(\mathfrak{C}_\Delta^{\Nec}\) and \(\mathfrak{C}_\Delta^{\Nec}\), much like the functor \(\mathfrak{C}_\Delta\), send simplicial sets to simplicially enriched categories with set of objects equal to the set of \(0\)-simplices.  Ergo, they induce useful functor when applied pointwise to precategories.
 \begin{defn}
-	As in Definition \ref{pointwisedefn},  the \emph{pointwise necklace realization}
+	As in \Cref{pointwisedefn},  the \emph{pointwise necklace realization}
 	\[
 		\mathfrak{C}^{\Nec}_{\Delta,\bullet}:\mathbf{PCat}(\C) \to \Cat_{\spsh}
 	\] 
@@ -2018,7 +2082,7 @@ from which we obtain the following corollary:
 
 
 \subsection{Quillen functoriality}
-In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\spsh_{\mathrm{inj}}}\] is a Quillen pair. We will extensively use the characterization of \(\mathfrak{C}\) given in Proposition \ref{pointwise}.  We begin with the following observation:
+In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\spsh_{\mathrm{inj}}}\] is a Quillen pair. We will extensively use the characterization of \(\mathfrak{C}\) given in \Cref{pointwise}.  We begin with the following observation:
 
 \begin{prop}
 	For any \(n>0\), let \(K\subseteq \{1,\dots,n-1\}\) and define
@@ -2079,9 +2143,9 @@ In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \under
 	The functor \(\mathfrak{C}\) sends monomorphisms to cofibrations and horizontal inner anodynes to trivial cofibrations.
 \end{prop}
 \begin{proof}
-	Let \[\mathbf{2}:\spsh \to \Cat_{\spsh}\] be the functor sending a simplicial presheaf \(X\) to the enriched category with objects \(\{0,1\}\) with \(\mathbf{2}(X)(0,0)=\mathbf{2}(X)(1,1)=\ast\), \(\mathbf{2}(X)(1,0)=\emptyset\), and \(\mathbf{2}(X)(0,1)=X\).
+	Let \[\mathbf{2}:\spsh \to \Cat_{\spsh}\] be the functor sending a simplicial presheaf \(X\) to the enriched category with objects \(\{0,1\}\) with \(\mathbf{2}(X)(0,0)=\mathbf{2}(X)(1,1)=\ast\), \(\mathbf{2}(X)(1,0)=\varnothing\), and \(\mathbf{2}(X)(0,1)=X\).
 
-	When \(K=\emptyset\), \(\lambda^n_K=\delta^n\), so the lemma tells us that \[\mathfrak{C}(\square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\] is a pushout of the map \[\mathbf{2}(\delta^{c_1}\times^\lrcorner \delta^1 \times^\lrcorner \dots \times^\lrcorner \delta^1 \times^\lrcorner \delta^{c_n}),\] which is a cofibration, which proves the claim.
+	When \(K=\varnothing\), \(\lambda^n_K=\delta^n\), so the lemma tells us that \[\mathfrak{C}(\square^\lrcorner_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\] is a pushout of the map \[\mathbf{2}(\delta^{c_1}\times^\lrcorner \delta^1 \times^\lrcorner \dots \times^\lrcorner \delta^1 \times^\lrcorner \delta^{c_n}),\] which is a cofibration, which proves the claim.
 
 	Similarly, when \(K\) is a singleton, \(\lambda^n_K=\lambda^n_k\) is the inclusion of an inner horn, so \[\mathfrak{C}(\square^\lrcorner_n(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n})\] is the pushout of the map \[\mathbf{2}(\delta^{c_1}\times^\lrcorner h^1_k \times^\lrcorner \dots \times^\lrcorner h^{n-1}_k \times^\lrcorner \delta^{c_n}),\] where \(h^k_k=\lambda^1_1\).  This is a corner map where one factor is a trivial cofibration (because it is Kan anodyne), and therefore its image under \(\mathbf{2}\) is a trivial cofibration.  Since the pushout of a trivial cofibration is a trivial cofibration, we are done.
 \end{proof}
@@ -2101,7 +2165,7 @@ In this section, we show that the adjunction \[\cellset_{\mathrm{hJoyal}} \under
 	The coherent nerve sends fibrations between fibrant \(\spsh\)-enriched categories to fibrations for the horizontal Joyal model structure.
 \end{prop}
 \begin{proof}
-	Given a fibration between two fibrant \(\spsh\)-enriched categories, \(p:\mathcal{D}\to \mathcal{D}^\prime\), we see immediately that the coherent nerve takes this fibration to a horizontal inner fibration between formal \(\C\)-quasicategories by Proposition \ref{quillen1}.  To show that it is a fibration for the horizontal Joyal model structure, it suffices by Theorem \ref{isofibrations} to show that it has the right lifting property with respect to the inclusion \(e:\Delta^0 \hookrightarrow E^1\). By Proposition \ref{quillen1}, we see that \(\mathfrak{C}\) takes the monomorphism \(e\) to a cofibration, and by the previous lemma, we see that \(\mathfrak{C}(e)\) is a weak equivalence.  It follows that \(\mathfrak{N}(p)\) is a fibration for the horizontal Joyal model structure.
+	Given a fibration between two fibrant \(\spsh\)-enriched categories, \(p:\mathcal{D}\to \mathcal{D}^\prime\), we see immediately that the coherent nerve takes this fibration to a horizontal inner fibration between formal \(\C\)-quasicategories by \Cref{quillen1}.  To show that it is a fibration for the horizontal Joyal model structure, it suffices by \Cref{isofibrations} to show that it has the right lifting property with respect to the inclusion \(e:\Delta^0 \hookrightarrow E^1\). By \Cref{quillen1}, we see that \(\mathfrak{C}\) takes the monomorphism \(e\) to a cofibration, and by the previous lemma, we see that \(\mathfrak{C}(e)\) is a weak equivalence.  It follows that \(\mathfrak{N}(p)\) is a fibration for the horizontal Joyal model structure.
 \end{proof}
 
 \begin{cor}\label{horizquillen}
@@ -2119,7 +2183,7 @@ The following lemma will be useful for later.
 	\[k_!(A\times c) \hookrightarrow k_!(B\times c)\] is horizontal inner anodyne. Consequently, if \(X\) is a horizontal \(\C\)-quasicategory, each simplicial set \(k^\ast(X)_c\) is a quasicategory. 
 \end{lemma}
 \begin{proof}
-	This follows directly by Lemma \ref{precatproperty} applied to the maps
+	This follows directly by \Cref{precatproperty} applied to the maps
 	\[V_{\Lambda^n_i}(c,\dots,c) \hookrightarrow V_{\Delta^n}(c,\dots,c),\] as these maps are exactly the maps
 	\[k_!(\Lambda^n_i\times c) \hookrightarrow k_!(\Delta^n \times c).\]
 \end{proof}
@@ -2186,7 +2250,7 @@ From the naturality of this result, we obtain the following corollary:
 		\mathfrak{C}_{\Delta,\bullet}(X)(x,x^\prime)_c \leftrightsquigarrow \Map_{X_c}(x,x^\prime)
 	\]
 \end{cor}
-Combining this corollary with Lemma \ref{precatanodyne}, we obtain the following:
+Combining this corollary with \Cref{precatanodyne}, we obtain the following:
 \begin{cor}
 	Upon restriction to bi-pointed horizontal quasicategories, we have a natural zig-zag of weak equivalences in \(\spsh\)
 	\[
@@ -2214,7 +2278,7 @@ We also make note of one more useful fact:
 	are retracts of the inner anodynes inclusions 
 	\[\Delta^1\hookrightarrow C^n_R\]
 	and
-	\[\Delta^1\hookrightarrow C^n_L\] respectively.  It then follows immediately from Lemma \ref{precatanodyne} that the maps
+	\[\Delta^1\hookrightarrow C^n_L\] respectively.  It then follows immediately from \Cref{precatanodyne} that the maps
 	\[k_!(C^n_R\times c) \to k_!(\Delta^1\times c)=[1](c)\]
 	and 
 	\[k_!(C^n_L\times c) \to k_!(\Delta^1\times c)=[1](c)\]
@@ -2234,8 +2298,8 @@ where each map embeds along the respective outer shuffle. We also have an obviou
 \[\mathscr{H}(\Delta^n)\times [1](c) \hookrightarrow E^n\times [1](c).\]
 
 Then we define the following four cosimplicial objects:
-\[C^\bullet_{\mathrm{cyl}}(c)\defeq \colim \left( V[1](\emptyset) \leftarrow \Delta^\bullet \times V[1](\emptyset) \hookrightarrow \Delta^\bullet\times [1](c)\right)\]
-\[C^\bullet_{E}(c)\defeq \colim \left( V[1](\emptyset) \leftarrow E^\bullet \times V[1](\emptyset) \hookrightarrow E^\bullet\times [1](c)\right)\]
+\[C^\bullet_{\mathrm{cyl}}(c)\defeq \colim \left( V[1](\varnothing) \leftarrow \Delta^\bullet \times V[1](\varnothing) \hookrightarrow \Delta^\bullet\times [1](c)\right)\]
+\[C^\bullet_{E}(c)\defeq \colim \left( V[1](\varnothing) \leftarrow E^\bullet \times V[1](\varnothing) \hookrightarrow E^\bullet\times [1](c)\right)\]
 \[C^\bullet_{R}(c)\defeq \colim \left( \ast \leftarrow \Delta^\bullet \hookrightarrow (\bullet)^\triangleright(c)\right)\]
 \[C^\bullet_{L}(c)\defeq \colim \left( \ast \leftarrow \Delta^\bullet \hookrightarrow (\bullet)^\triangleleft(c)\right).\]
 
@@ -2266,7 +2330,7 @@ induced by the inclusions we described above.
 		X_2 &= \bigcup_{1< i < j \leq n} [0,1,i,j](c,\ast,\ast),  
 	\end{align*}
 	and so on.  We see that \(X_{n-1}=C^n_L(c)\), so it suffices to show that each inclusion \(X_{k-1} \subseteq X_{k}\) is obtained by horizontal inner anodyne attachments.  Notice first of all that 
-	\[h^\ell_1:\square_\ell(\Lambda^\ell_1,c,\ast,\dots,\ast)\hookrightarrow \square_\ell(\Delta^\ell,c,\ast,\dots,\ast)\] is horizontal inner anodyne, since it is exactly \[\square^\lrcorner_k(\lambda^\ell_1,e^{c},e^\ast,\dots,e^\ast),\] where \(e^x\) denotes the empty map \(\emptyset \to x\).
+	\[h^\ell_1:\square_\ell(\Lambda^\ell_1,c,\ast,\dots,\ast)\hookrightarrow \square_\ell(\Delta^\ell,c,\ast,\dots,\ast)\] is horizontal inner anodyne, since it is exactly \[\square^\lrcorner_k(\lambda^\ell_1,e^{c},e^\ast,\dots,e^\ast),\] where \(e^x\) denotes the empty map \(\varnothing \to x\).
 	Then choose \(1< i_1 < \dots < i_k \leq n\) in \(X_k\).  Then \(X_{k-1}\) contains all of the faces \([0,1,i_1,\dots, \hat{i}_{k_j},\dots,i_k](c,\ast,\dots,\ast)\), but it also contains the degenerate face \([1,i_1,\dots,i_k](\ast,\dots,\ast)\), so therefore the map \(X_{k-1} \subseteq X_k\) is obtained by pushing out along copies of \(h^{k+1}_1\), and therefore it is horizontal inner anodyne.  Therefore, the composite of the filtration \([1](c)=X_0 \subseteq \dots \subseteq X_{n-1}\) is horizontal inner anodyne, and by \(3\)-for-\(2\), we see that the retraction \(C^n_L(c) \to [1](c)\) is a horizontal Joyal equivalence.  The proof for \(C^\bullet_R\) follows by symmetry. 
 	The proof for \(C^\bullet_{\mathrm{cyl}}(c)\) is similar and can be obtained by applying the scheme for \(C^\bullet_L(c)\) to the proof of that case in \cite{ds2}*{Proposition 9.4}. We omit it because we do not make use of that particular resolution.
 \end{proof}
@@ -2367,7 +2431,7 @@ induced by the inclusions we described above.
   For any formal \(\C\)-quasicategory \(X\) and any pair of vertices \(x,y\), there is a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\).
 \end{prop}
 \begin{proof}
-	By Lemma \ref{resolutionlemma}, we see that we can equivalently compute \(\Map_X(x,y)\) using the cosimplicial resolutions \(k_!(C^\bullet_R\times c)\)of \([1](c)\), from which the result follows by Corollary \ref{mapspacecor}.
+	By \Cref{resolutionlemma}, we see that we can equivalently compute \(\Map_X(x,y)\) using the cosimplicial resolutions \(k_!(C^\bullet_R\times c)\)of \([1](c)\), from which the result follows by \Cref{mapspacecor}.
 \end{proof}
 
 \begin{lemma}\label{dssquare1}
@@ -2456,7 +2520,7 @@ Upon restriction to \[\overcat{\Nec}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c},\]
 			(b-4-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)} (b-4-2);
 		\end{tikzpicture}.
 	\end{center}
-	This diagram is obtained by composing the diagram from \cite{ds2}*{Proposition 5.2} reproduced below with the diagrams appearing in Lemmas \ref{dssquare1} and \ref{dssquare2}
+	This diagram is obtained by composing the diagram from \cite{ds2}*{Proposition 5.2} reproduced below with the diagrams appearing in \Cref{dssquare1} and \Cref{dssquare2}
 	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em,
@@ -2513,7 +2577,7 @@ Upon restriction to \[\overcat{\Nec}{k^\ast(\mathfrak{N}\mathcal{D}_{x,y})_c},\]
 \end{proof}
 
 \begin{rem}
-	This result is even stronger than it first appears, because it implies that the counit map is a weak equivalence for fibrant categories enriched in any Cartesian-closed left-Bousfield localization of \(\spsh_{inj}\).  It reduces proving comparison theorems for such localizations to showing that \(\mathfrak{C}\) is a left-Quillen functor (something we already know for the horizontal Joyal model structure by Corollary \ref{horizquillen}) and reflects weak equivalences.
+	This result is even stronger than it first appears, because it implies that the counit map is a weak equivalence for fibrant categories enriched in any Cartesian-closed left-Bousfield localization of \(\spsh_{inj}\).  It reduces proving comparison theorems for such localizations to showing that \(\mathfrak{C}\) is a left-Quillen functor (something we already know for the horizontal Joyal model structure by \Cref{horizquillen}) and reflects weak equivalences.
 \end{rem}
 
 \subsection{The horizontal comparison theorem}\label{horizcomparison}
@@ -2538,7 +2602,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 	\[\mathcal{Q}:\cellset \to \psh{\Theta[\C]\times \Delta}\]
 	is defined by the rule
 	\[\mathcal{Q}(X)_{[n](c_1,\dots,c_n),m} \defeq\Hom([n](c_1,\dots,c_n)\times E^m,X).\]
-	Since \(\mathcal{Q}\) is the right adjoint of a Quillen equivalence by Section \ref{rezkcomparison}, a map \(f\) between fibrant objects is a weak equivalence if and only if its image under \(\mathcal{Q}\) is. Since Dwyer-Kan equivalences between Complete \(\Theta[\C]\) Segal spaces are exactly the weak equivalences by \cite{rezk-theta-n-spaces}, the claim holds for \(X\) and \(Y\) fibrant.
+	Since \(\mathcal{Q}\) is the right adjoint of a Quillen equivalence by \Cref{rezkcomparison}, a map \(f\) between fibrant objects is a weak equivalence if and only if its image under \(\mathcal{Q}\) is. Since Dwyer-Kan equivalences between Complete \(\Theta[\C]\) Segal spaces are exactly the weak equivalences by \cite{rezk-theta-n-spaces}, the claim holds for \(X\) and \(Y\) fibrant.
 
 	In general, given a horizontal Dwyer-Kan equivalence \(f:X\to Y\) where \(X\) and \(Y\) are no longer assumed to be fibrant, we can take a fibrant replacement \(\tilde{Y}\) of \(Y\) such that \(Y\to Y^\prime\) is a trivial cofibration for the horizontal Joyal model structure.  Then we can also factor \(X\to Y\to \tilde{Y}\) into a trivial Joyal cofibration \(X\to \tilde{X}\) followed by a fibration \(\tilde{X}\to \tilde{Y}\).  But notice now that the condition of being horizontally DK-equivalent is homotopy invariant, so the map \(\tilde{X}\to \tilde{Y}\) is also a horizontal DK-equivalence.  Since \(\tilde{Y}\) is fibrant and \(\tilde{X}\to \tilde{Y}\) is a horizontal Joyal fibration, this is a horizontal Joyal equivalence.  Then by \(3\)-for-\(2\)  we see that \(f\) is also a horizontal Joyal equivalence, which concludes the proof.
 \end{proof}
@@ -2547,7 +2611,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 	A map \(f:X\to Y\) of presheaves on \(\Theta[\C]\) is a horizontal Joyal equivalence if and only if \(\mathfrak{C}(f)\) is a weak equivalence of \(\Psh_\Delta (\C)_{\mathrm{inj}}\)-enriched categories.
 \end{prop}
 \begin{proof}
-	We only need to check one direction, since the other direction is immediate by the fact that \(\mathfrak{C}\) is left-Quillen.  Assume \(f:X\to Y\) has the property that \(\mathfrak{C}(f)\) is an equivalence. Then as in the previous proposition, we can reduce to the case where \(X\) and \(Y\) are fibrant, but in this case, we know from Proposition \ref{mapspacecomparison} that \(\mathfrak{C}(X)(x,x^\prime)\) is connected by a natural zig-zag of weak equivalences to \(\Map_X(x,y)\), so if the map  \(\mathfrak{C}(X)(x,x^\prime)\to \mathfrak{C}(Y)(f(x),f(x^\prime))\) is a weak equivalence, it follows that the map \(\Map_X(x,x^\prime)\to \Map_Y(f(x),f(x^\prime))\) is also a weak equivalence.
+	We only need to check one direction, since the other direction is immediate by the fact that \(\mathfrak{C}\) is left-Quillen.  Assume \(f:X\to Y\) has the property that \(\mathfrak{C}(f)\) is an equivalence. Then as in the previous proposition, we can reduce to the case where \(X\) and \(Y\) are fibrant, but in this case, we know from \Cref{mapspacecomparison} that \(\mathfrak{C}(X)(x,x^\prime)\) is connected by a natural zig-zag of weak equivalences to \(\Map_X(x,y)\), so if the map  \(\mathfrak{C}(X)(x,x^\prime)\to \mathfrak{C}(Y)(f(x),f(x^\prime))\) is a weak equivalence, it follows that the map \(\Map_X(x,x^\prime)\to \Map_Y(f(x),f(x^\prime))\) is also a weak equivalence.
 
 	Then it suffices to show that when \(\mathfrak{C}(f)\) is an equivalence, the induced map on sets of homotopy classes
 	\[[\ast,X]_{E^1} \to [\ast,Y]_{E^1}\]
@@ -2587,7 +2651,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 			(b-2-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2);
 		\end{tikzpicture},
 	\end{center}
-	in which the indicated arrows are equivalences (for the bottom horizontal, this was by choice, and for the righthand vertical, it comes from Theorem \ref{counitthm}).  But if we precompose with the unit map \(\mathfrak{C}\eta_X:\mathfrak{C}(X)\to \mathfrak{C}\mathfrak{N}\mathfrak{C}(X)\), the lefthand arrow becomes the identity by the triangle identities, which proves the claim by applying \(3\)-for-\(2\) to the commutative diagram
+	in which the indicated arrows are equivalences (for the bottom horizontal, this was by choice, and for the righthand vertical, it comes from \Cref{counitthm}).  But if we precompose with the unit map \(\mathfrak{C}\eta_X:\mathfrak{C}(X)\to \mathfrak{C}\mathfrak{N}\mathfrak{C}(X)\), the lefthand arrow becomes the identity by the triangle identities, which proves the claim by applying \(3\)-for-\(2\) to the commutative diagram
 	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=2em]
@@ -2655,7 +2719,7 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
     \begin{cases}
       \ast \text{ if } x=y\\
       A \text{ if } x<y\\
-      \emptyset \text{ otherwise}
+      \varnothing \text{ otherwise}
     \end{cases}. 
   \]
   For all \(n \geq 0\) and \(c \in \C\), there is a natural weak equivalence 
@@ -2667,7 +2731,7 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
   is an injective equivalence.  This class is closed under filtered colimits, since injective weak equivalences are closed under filtered colimits, so it suffices to consider the case where \(A\) has finitely many nondegenerate representable cells \([n] \times c\).  Since \(\Delta\) and \(\C\) are regular Cartesian Reedy, so is their product by \cite{cisinski-book}*{8.2.7}, and the boundary of a representable cell is given by the formula 
   \[\partial(\Delta^n\times c)=\partial\Delta^n \times c \cup \Delta^n \times \partial c.\]
   We work by induction on Reedy dimension and number of cells.
-  If \(A=\emptyset\), we are done, since the map in question is the identity.
+  If \(A=\varnothing\), we are done, since the map in question is the identity.
   Otherwise, suppose
   \[A=A^\prime \coprod_{\partial(\Delta^n\times c)}  \Delta^n\times c.\]
   This is a homotopy pushout since \(\partial(\Delta^n \times c) \to \Delta^n\times c\) is an injective cofibration. Similarly, 
@@ -2687,7 +2751,7 @@ In what follows, let \(\Sigma\) be \(\Sigma_R\).
 \begin{thm}\label{maintheorem2}
   The Quillen pair \(\cellset_\M \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{\Psh_{\Delta}(\C)_{\setS}}\) is a Quillen equivalence.
 \end{thm}
-\begin{proof} It suffices to show that \(\mathfrak{C}\) is homotopy-conservative, so let \(f:X\to Y\) be a map in \(\cellset\) such that \(\mathfrak{C}(f)\) is an equivalence in \(\Cat_{\spsh_{\M}}\). Using the same argument as in Section \ref{horizcomparison}, we reduce to the case where \(f:X\to Y\) is a map between \(\M\)-quasicategories.  Since \(\M\)-quasicategories are also formal \(\C\)-quasicategories, we can apply Proposition \ref{mapspacecomparison} to obtain a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\) for any pair of vertices \(x,y\) of \(X\).  By \(3\)-for-\(2\) and since \[\mathfrak{C}(X)(x,y) \to \mathfrak{C}(Y)(fx,fy)\] was assumed to be an \(\M\)-equivalence, we see that the map \(\Map_X(x,y)\to \Map_Y(fx,fy)\) must also be an \(\M\)-equivalence.  In fact, since both \(\Map_X(x,y)\) and \(\Map_Y(fx,fy)\) are local, this map is actually an equivalence for \(\Cat_{\spsh_{\mathrm{inj}}}\).  The argument showing that \(f\) is bijective on iso-components is the same as in the proof of Proposition \ref{conservativity} by passing to the underlying quasicategory.  Therefore, it follows that \(f\) is a horizontal Dwyer-Kan equivalence, which concludes the proof.
+\begin{proof} It suffices to show that \(\mathfrak{C}\) is homotopy-conservative, so let \(f:X\to Y\) be a map in \(\cellset\) such that \(\mathfrak{C}(f)\) is an equivalence in \(\Cat_{\spsh_{\M}}\). Using the same argument as in \Cref{horizcomparison}, we reduce to the case where \(f:X\to Y\) is a map between \(\M\)-quasicategories.  Since \(\M\)-quasicategories are also formal \(\C\)-quasicategories, we can apply \Cref{mapspacecomparison} to obtain a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\) for any pair of vertices \(x,y\) of \(X\).  By \(3\)-for-\(2\) and since \[\mathfrak{C}(X)(x,y) \to \mathfrak{C}(Y)(fx,fy)\] was assumed to be an \(\M\)-equivalence, we see that the map \(\Map_X(x,y)\to \Map_Y(fx,fy)\) must also be an \(\M\)-equivalence.  In fact, since both \(\Map_X(x,y)\) and \(\Map_Y(fx,fy)\) are local, this map is actually an equivalence for \(\Cat_{\spsh_{\mathrm{inj}}}\).  The argument showing that \(f\) is bijective on iso-components is the same as in the proof of \Cref{conservativity} by passing to the underlying quasicategory.  Therefore, it follows that \(f\) is a horizontal Dwyer-Kan equivalence, which concludes the proof.
 \end{proof}
 \subsection{The Yoneda embedding and Yoneda's lemma}
 We need the following easy lemma:
@@ -2702,7 +2766,7 @@ Before we give a construction of the Yoneda embedding and a proof of Yoneda's le
 	Let \(X\in \cellset\) be a cellular \(\C\)-set, \(\mathcal{D}\) a small \(\spsh\)-enriched category, and let \(\mathfrak{C}(X)\to \mathcal{D}\) be an equivalence of \(\spsh_{\setS}\)-enriched categories. Suppose \(\mathbf{A}\) is a \(\spsh_{\setS}\)-enriched model category, and let \(\mathcal{U}\) be \(\mathcal{D}\)-chunk (see \cite{htt}*{A.3.4.9} for the definition).  Then the induced map
 	\[\mathfrak{N}((\mathcal{U}^\mathcal{D})^\circ)\to \mathfrak{N}(\mathcal{U}^\circ)^X\] is an equivalence of \(\M\)-quasicategories.
 \end{prop}
-\begin{proof} Although we have altered the statement slightly, the only result used in the proof in \cite{htt} that doesn't hold for all excellent monoidal model categories is \cite{htt}*{2.2.5.1}, but the analogue of this is exactly Theorem \ref{maintheorem2}.
+\begin{proof} Although we have altered the statement slightly, the only result used in the proof in \cite{htt} that doesn't hold for all excellent monoidal model categories is \cite{htt}*{2.2.5.1}, but the analogue of this is exactly \Cref{maintheorem2}.
 \end{proof}
 \begin{prop}\cite{htt}*{4.2.4.7}\label{lurieprop2}
 	Let \(\mathcal{I}\) be a fibrant \(\spsh_{\setS}\)-enriched category, \(X\) an object of \(\cellset\), and \(p:\mathfrak{N}\to X\) be any map.  Then we can find the following:
@@ -2740,7 +2804,7 @@ Let \(\Pre(X)\) denote the large \(\M\)-quasicategory \(\M^{X^\op}\), and let \(
 	The Yoneda embedding is fully faithful.
 \end{prop}
 \begin{proof} 
-	First, let \(\Phi:\mathfrak{C}(X^\op)\xrightarrow{\sim} \mathcal{D}\) be a fibrant replacement.  We have an equivalence by Propisition \ref{lurieprop1} 
+	First, let \(\Phi:\mathfrak{C}(X^\op)\xrightarrow{\sim} \mathcal{D}\) be a fibrant replacement.  We have an equivalence by \Cref{lurieprop1} 
 	\[j^{\prime\prime}: \mathfrak{N}\left(\left((\spsh_\setS)^\mathcal{D}_\mathrm{proj}\right)^\circ\right) \xrightarrow{\sim} \M^{\mathfrak{N}(\mathcal{D})}, \]
 	and since \(\M\) is fibrant and \(\Psi:X^\op \to \mathfrak{N}\mathcal{D}\), the adjunct of \(\Phi\) is an equivalence between cofibrant objects, it follows that the induced map \(\M^{\mathfrak{N}\mathcal{D}}\to \Pre(X)\) is an equivalence between fibrant objects, since the model structure is Cartesian.  Since \(X\) is cofibrant, it follows that there is a map \(h:X\to \M^{\mathfrak{N}\mathcal{D}}\) such that the composite
 	\[X \xrightarrow{h} \M^{\mathfrak{N}\mathcal{D}} \xrightarrow{\M^{\Psi}} \Pre(X)\]
@@ -2758,7 +2822,7 @@ Let \(\Pre(X)\) denote the large \(\M\)-quasicategory \(\M^{X^\op}\), and let \(
 	Let \(X\) be a small \(\C\)-cellular set, and let \(f: X^\op \to \M\) be an object of \(\Pre(X)\).  Then let \(F:\Pre(X)^\op \to \M^+\) be the functor represented by \(f\).  Then the composite \[X^\op\xrightarrow{j^\op_X} \Pre(X)^\op \xrightarrow{F} \M^+\] is equivalent to \(f\).
 \end{prop}
 \begin{proof}
-	By Proposition \ref{lurieprop2}, we can choose a small fibrant \(\M\)-enriched category \(\mathcal{D}\) and an equivalence \(\Phi:X^\op\to \mathfrak{N}(\mathcal{D})\) such that \(f\sim \mathfrak{N}(f^\prime) \circ \Phi\) for some \(f^\prime:\mathcal{D} \to \spsh_\setS^\circ\).  Without loss of generality, we can assume that \(f^\prime\) is a projectively cofibrant diagram.  Using Proposition \ref{lurieprop1}, we have an equivalence of \(\M\)-quasicategories 
+	By \Cref{lurieprop2}, we can choose a small fibrant \(\M\)-enriched category \(\mathcal{D}\) and an equivalence \(\Phi:X^\op\to \mathfrak{N}(\mathcal{D})\) such that \(f\sim \mathfrak{N}(f^\prime) \circ \Phi\) for some \(f^\prime:\mathcal{D} \to \spsh_\setS^\circ\).  Without loss of generality, we can assume that \(f^\prime\) is a projectively cofibrant diagram.  Using \Cref{lurieprop1}, we have an equivalence of \(\M\)-quasicategories 
 	\[\Psi:\mathfrak{N}\left(\left((\spsh_\setS)_\mathrm{proj}^\mathcal{D}\right)^\circ\right) \xrightarrow{\sim} \Pre(X).\] 
 	We observe that \(F\circ \Psi^\op\) can be identified with the coherent nerve of the the map 
 	\[G: \left(\left((\spsh_\setS)_\mathrm{proj}^\mathcal{D}\right)^\circ\right)^\op \to \left(\spsh^{+}_\setS\right)^\circ\] represented by \(f^\prime\).  The Yoneda embedding factors through \(\Psi\) by the adjunct of the composite 
@@ -2843,7 +2907,7 @@ Also note that our definitions of weighted limits and colimits do not work for c
 	By the functoriality of the corner tensor, this will follow by showing that the indexed join 
 	\end{proof}
 	\begin{cor}
-	Let \(\delta^0:\emptyset \to [0]\) denote the boundary map of the \(0\)-cell.  Then every boundary map 
+	Let \(\delta^0:\varnothing \to [0]\) denote the boundary map of the \(0\)-cell.  Then every boundary map 
 	\[\delta = \square_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\] can be factored by corner joins as
 	\[\delta^0\cjoin_{\delta^{c_1}} \delta^0 \cjoin_{\delta^{c_2}} \dots \cjoin_{\delta^{c_{n-1}}} \delta^0 \cjoin_{\delta^{c_n}} \delta^0.\]
 	\end{cor}
