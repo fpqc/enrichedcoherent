@@ -49,10 +49,10 @@
 \newtheorem{lemma}[equation]{Lemma}
 \newtheorem{claim}[equation]{Claim}
 \newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{note}[equation]{Note} 
 
 \theoremstyle{remark}
-\newtheorem{rem}[equation]{Remark}    
-\newtheorem{note}[equation]{Note}   
+\newtheorem{rem}[equation]{Remark}      
 \newtheorem{example}[equation]{Example}
 \newtheorem{ques}[equation]{Question}
 \newtheorem{obs}[equation]{Observation}
@@ -228,26 +228,42 @@ In the first chapter, we apply a general construction to define what we call \em
 
 We define the category of \emph{\(\C\)-cellular sets} to be the category of presheaves of sets on this category.  We then apply machinery of Cisinski and Oury to construct the \emph{horizontal Joyal model structure} on the category of \(\C\)-cellular sets that has many of the familiar nice properties of the Joyal model structure. We call the fibrant objects of this category the \emph{formal \(\C\)-quasicategories}.
 
-Among the important technical results proven in this chapter, we direct the attention of the reader to \Cref{horizontal}, proving that the model structure is Cartesian-monoidal as well as \Cref{rezkcomparison}, proving a useful equivalence with an analogous model structure constructed by Rezk.    
+We direct the attention of the reader to \Cref{horizontal}, which proves that the model structure is Cartesian-monoidal as well as \Cref{rezkcomparison}, where we prove a useful equivalence with an analogous model structure constructed by Rezk.    
 
 The chapter culminates with a key technical result that gives a characterization of the fibrant objects by a simple lifting property and the fibrations between them as the \emph{isofibrations}, namely the horizontal inner fibrations that have the right lifting property with respect to the inclusion of a vertex into a freestanding isomorphism, extending an important  theorem of Joyal to this setting.
 
 \subsection*{The Coherent Nerve, Horizontal case}
-In the second chapter, we define an extension of Lurie's coherent realization functor \(\mathfrak{C}_\Delta\) to our setting.  We leverage the equivalence between \(\C\)-indexed simplicially-enriched categories with a constant set of objects and \(\spsh\)-enriched categories to induce this functor pointwise from \(\mathfrak{C}_\Delta\).  We then work to give an explicit calculation of this functor on representables and more generally on \(\C\)-labeled simplices.  
+In the second chapter, we define an extension of Lurie's coherent realization functor \(\mathfrak{C}_\Delta\) to our setting.  We leverage the equivalence between \(\C\)-indexed simplicially-enriched categories with a constant set of objects and \(\spsh\)-enriched categories to induce this functor pointwise from \(\mathfrak{C}_\Delta\).  We then work to give an explicit calculation of this functor on representables and more generally on \(\psh{\C}\)-labeled simplices.  
 
-We use the pointwise characterization of this realization to straightforwardly extend the results of Dugger and Spivak \cite{ds1} on alternative realizations to our setting, while on the other hand, we make use of the explicit characterization to demonstrate directly that the coherent realization and its right adjoint, the coherent nerve, form a Quillen pair.
+We use the pointwise characterization of this realization to straightforwardly extend the results of Dugger and Spivak \cite{ds1} on alternative realizations to our setting, while on the other hand, we make use of the explicit characterization to demonstrate directly that the coherent realization and its right adjoint, the coherent nerve, form a Quillen pair
 \[
-	\mathfrak{C}:\cellset \rightleftarrows \Cat_{\spsh_{\mathrm{inj}}}:\mathfrak{N}
+	\mathfrak{C}:\cellset_{\mathrm{hJoyal}} \rightleftarrows \Cat_{\spsh_{\mathrm{inj}}}:\mathfrak{N}.
 \]
 
 For the next step in this chapter, we introduce cosimplicial resolutions in order to compute mapping objects for formal \(\C\)-quasicategories.  We extend ideas from \cite{ds2} to demonstrate that the coherent nerve and realization actually specify a Quillen equivalence.
 
 \subsection*{The Coherent Nerve, Local case}
-In this chapter, we give a way to perform a left-Bousfield localization of the horizontal Joyal model structure with respect to Cartesian presentations of the form \((\C,\setS)\) (though still under the hypothesis that \(\C\) is regular Cartesian Reedy).  The local objects are exactly the formal \(\C\)-quasicategories whose mapping objects are \(\setS\)-local.  Using our comparison theorem with Rezk's model structure, we can apply his result to show that this model structure is again Cartesian monoidal.  
+In the third and final chapter, we give a way to perform a left-Bousfield localization of the horizontal Joyal model structure with respect to Cartesian presentations of the form \((\C,\setS)\) (though still under the hypothesis that \(\C\) is regular Cartesian Reedy).  The local objects are exactly the formal \(\C\)-quasicategories whose mapping objects are \(\setS\)-local.  Using our comparison theorem with Rezk's model structure, we can apply his result to show that this model structure is again Cartesian monoidal.  
 
 To prove the main result of the paper, we use the compatibility of the coherent realization and nerve with the formation of mapping objects to demonstrate that they remain Quillen equivalences after simultaneous localization. 
 
 As a corollary of the main result, we apply a theorem of Lurie to construct a Yoneda embedding.  We then demonstrate that it is fully faithful and also prove Yoneda's lemma, which we then leverage to define representability.  From representability, we propose a definition of weighted limits and colimits.  
+
+\subsection*{Appendix: Recollections on Cisinski Theory}
+Throughout this paper, we will make extensive use of the extremely elegant theory of Cisinski from \cite{cisinski-book}, which allows for the construction and description of model structures on presheaf categories in which the cofibrations are exactly the monomorphisms.  As such, we will recall several key results:
+
+In the first section of the appendix, we will need to recall how to generate Cisinski model structures by anodyne closure with respect to a cellular model, a separating cylinder functor, and a small set of injective maps of presheaves.  We will also demonstrate how this plays into the theory of Cartesian-monoidal Cisinski model categories. A theorem of Cisinski demonstrates that taking an empty set of generating anodynes together with an injective separating interval object generates the minimal Cisinski model structure on a presheaf category. In particular, this will always exist by taking this object to be the subobject classifier.
+
+We will then recall how the existence of a minimal Cisinski model structure gives rise to the theory of localizers by applying left Bousfield-localization.  This theory generalizes the theory of presentation by generating anodynes.  In particular, given any small set of maps in a presheaf category, there is a closure of this set such that it generates a minimal Cisinski model structure in which those maps are weak equivalences.  Since localizers are defined by a closure operation and determine Cisinski model structures up to identity, it will be clear that Cisinski model structures arrange themselves into the structure of a poset ordered by inclusion of their localizers.
+
+In the next section, we will recall Cisinski's theory of simplicial completion and discrete localizers.  In particular, it is a theorem of \cite{cisinski-book} that there is a Galois connection called the simplicial completion between localizers on \(\psh{\mathcal{A}}\) and localizers on \(\psh{\mathcal{A}\times \Delta}\), which restricts to a bijection above the simplicial completion of the minimal localizer on \(\psh{\mathcal{A}}\). Localizers belonging to the image of the simplicial completion are called \emph{discrete}.
+
+We will then describe the tricky relationship between discrete localizers on \(\psh{\mathcal{A}\times \Delta}\) and Dugger presentations on \(\mathcal{A}\), which are the localizations of the injective model structure on simplicial presheaves on \(\mathcal{A}\).  In particular, we will recall the theorem of Cisinski that the simplicial completion of a localizer is also a Dugger presentation if and only if the localizer is \emph{regular}, which is an important property that ensures that every presheaf is canonically the \emph{homotopy colimit} of its representables.  An important fact is that every localizer admits a \emph{regular completion}, which is canonically generated by the regular completion of the minimal localizer together with any localizer.  It follows from this fact that the Galois connection also restricts to a bijection between discrete localizers admitting a Dugger presentation on \(\psh{\mathcal{A}\times \Delta}\) and regular localizers on \(\psh{\mathcal{A}}\).  
+
+Finally, we will digress into the topic of chapter 8 of \cite{cisinski-book}, the theory of skeletal categories.  These are generalized Reedy categories with canonical cellular models, which, under certain combinatorial hypotheses, have a minimal localizer that is already regular.  These categories will be important in the rest of the paper, as they greatly simplify the generation of the model structures in which we are interested.  
+
+\subsection*{Questions}
+We suspect that the arguments here can be generalized to more general small categories \(\C\) by replacing the boundary inclusions of \(\C\) with a more general cellular model and by replacing the horizontal Joyal model structure with its regular completion (see \ref{regcompletion}).  All of our motivating examples satisfy the case where \(\C\) is regular Cartesian Reedy, so we haven't attempted to work in this generality. 
 
 \subsection*{Looking forward}
 A major challenge in the theory of higher categories is the problem of coherence, that is to say, defining functors and appropriately-natural transformations valued in a higher category of higher categories. It was observed early as the 1970 that a powerful way to deal with coherence problems even for functors from a \(1\)-category to the \(2\)-category of categories was to perform a rectification of that theory to the theory of Cartesian fibrations.  
@@ -294,7 +310,7 @@ In this section, we will consider a slightly more general definition of the wrea
 For the purposes of this paper, we do not need this level of generality.  We specialize as follows: 
 
 \begin{defn}\label{cishelp}
-	A small regular skeletal Reedy category (also called a regular skeletal category (see \cite{cisinski-book}*{8.2})) \(\C\) (see \cite{cisinski-book}*{8.2.3}) is called a \emph{regular Cartesian Reedy category} if it satisfies two conditions:
+	A small regular skeletal Reedy category (also called a regular skeletal category) \(\C\) (see \cite{cisinski-book}*{8.2.3}) is called a \emph{regular Cartesian Reedy category} if it satisfies two conditions:
 
 	\begin{enumerate}[\indent(CR1)]
 		\item Finite products of representable presheaves on \(\C\) are \emph{regular} (see \cite{cisinski-book}*{8.2}).
@@ -302,9 +318,9 @@ For the purposes of this paper, we do not need this level of generality.  We spe
 	\end{enumerate}
 \end{defn}
 
-\begin{note}
+\begin{rem}
 	The axioms for regular Cartesian Reedy categories imply that \(\C\) is a Reedy multicategory in the sense of \cite{bergner-rezk-reedy}.  It also asserts a weak form of the Eilenberg-Zilber shuffle decomposition. There may be a way to prove (CR2) from (CR1), but we were unable to do so.
-\end{note}
+\end{rem}
 
 In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of presheaves of sets on a small regular Cartesian Reedy category \(\C\) admitting a terminal object.  Then we give the following definition:
 
@@ -508,122 +524,121 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 	\]
 	but \(U(0,1)=\square(B_1,\dots,B_n)\), which demonstrates that the map \(U(0,0) \to U(1,0)\) is the identity by cofinality. The map \(U(0,1) \to \square^\lrcorner(f_1,\dots,f_n)(0)\) is the pushout of an identity map, and the map \(U(0,1)\to \square^\lrcorner(f_1,\dots,f_n)(1)\) is also the identity, so it follows that the map \(\square^\lrcorner(f_1,\dots,f_n)\) must also be the identity.
 \end{proof}
-
-\begin{lemma}\label{cornerpushouts}
-	Suppose \(\square\) preserves pushouts in the first argument and 
-	\begin{center}
-		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
-			{
-				A_1 & A^\prime_1 \\
-				B_1 & B^\prime_1 \\
-			};
-			\path[->]
-			(b-1-1) edge node[auto,swap]{\(\scriptstyle{g}\)} (b-1-2)  edge node[auto,swap]{\(\scriptstyle{f_1}\)} (b-2-1)
-			(b-2-1) edge node[auto]{\(\scriptstyle{h}\)} (b-2-2)
-			(b-1-2) edge node[auto]{\(\scriptstyle{f^\prime_1}\)} (b-2-2);
-		\end{tikzpicture},
-	\end{center}
-	is a pushout square in \(\mathcal{A}_1\), then the induced square 
-	\[(g^\lrcorner,h^-):\square^\lrcorner(f_1,\dots,f_n) \to \square^\lrcorner(f^\prime_1,\dots,f_n) \] is a pushout square.
-\end{lemma}
-\begin{proof} 
-	Let \(Q\) denote \(\square^\lrcorner(f_1,\dots,f_n)(0)\) and \(Q^\prime=\square^\lrcorner(f^\prime_1,\dots,f_n)(0)\), with \(g^\lrcorner:Q\to Q^\prime\) being the induced map on the domains of corner tensors.  
-	Let \((\alpha,\alpha^\prime): \square(g,B_2,\dots,B_n) \to g^\lrcorner\) be the induced commutative square
-	\begin{center}
-		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
-			{
-				\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
-				Q & Q^\prime \\
-			};
-			\path[->]
-			(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\alpha}\)} (b-2-1)
-			(b-2-1) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-2-2)
-			(b-1-2) edge node[auto]{\(\scriptstyle{\alpha^\prime}\)} (b-2-2);
-		\end{tikzpicture}.
-	\end{center}
-	Then we can factor the square 
-	\begin{center}
-		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
-			{
-				\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
-				\square(B_1,B_2,\dots,B_n) & \square(B^\prime_1,B_2,\dots,B_n) \\
-			};
-			\path[->]
-			(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\square(f_1,B_2,\dots,B_n)}\)} (b-2-1)
-			(b-2-1) edge node[auto]{\(\scriptstyle{h^-}\)} (b-2-2)
-			(b-1-2) edge node[auto]{\(\scriptstyle{\square(f^\prime_1,B_2,\dots,B_n)}\)} (b-2-2);
-		\end{tikzpicture}
-	\end{center}
-	as the composite square
-	\begin{center}
-		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
-			{
-				\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
-				Q & Q^\prime \\
-				\square(B_1,B_2,\dots,B_n) & \square(B^\prime_1,B_2,\dots,B_n) \\
-			};
-			\path[->]
-			(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\alpha}\)} (b-2-1)
-			(b-2-1) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-2-2)
-			(b-1-2) edge node[auto]{\(\scriptstyle{\alpha^\prime}\)} (b-2-2)
-			(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner(f_1,\dots,f_n)}\)} (b-3-1)
-			(b-2-2) edge node[auto]{\(\scriptstyle{\square^\lrcorner(f^\prime_1,\dots,f_n)}\)} (b-3-2)
-			(b-3-1) edge node[auto]{\(\scriptstyle{h^-}\)} (b-3-2);
-		\end{tikzpicture}.
-	\end{center}
-	where the outer square is a pushout square by the fact that \(\square\) preserves colimits in the first argument. Then to prove the lemma, it suffices to prove the claim that \((\alpha,\alpha^\prime)\) is a pushout square.
-	Then we define 
-	\[
-		U(s,t)=\int^{e_1,\dots,e_n} \left([1](e_1,s) \times [1](e_2\wedge\dots\wedge e_n,t)\right)\cdot \square(f_1(e_1),f_2(e_2),\dots, f_n(e_n)).
-	\]
-	and 
-	\[
-		U^\prime(s,t)=\int^{e_1,\dots,e_n} \left([1](e_1,s) \times [1](e_2\wedge\dots\wedge e_n,t)\right)\cdot \square(f^\prime_1(e_1),f_2(e_2),\dots, f_n(e_n)).
-	\]
-	Then notice that 
-	\[
-		\alpha:\square(A_1,B_2,\dots,B_n) \to Q
-	\]
-	is the pushout of \(u:U(0,0)\to U(1,0)\) and 
-	\[
-		\alpha^\prime:\square(A^\prime_1,B_2,\dots,B_n) \to Q
-	\]
-	is the pushout of \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\).  So we have a commutative square (in which the vertices are arrows and the arrows are commutative squares)
-	\begin{center}
-		\begin{tikzpicture}
-			\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
-			{
-				u & \alpha \\
-				u^\prime & \alpha^\prime \\
-			};
-			\path[->]
-			(b-1-1) edge (b-1-2) edge (b-2-1)
-			(b-2-1) edge (b-2-2)
-			(b-1-2) edge (b-2-2);
-		\end{tikzpicture}.
-	\end{center}
-	 where \(u\to \alpha\) and \(u^\prime\to \alpha^\prime\) are coCartesian.  Then by the pasting law for pushouts, it suffices to show that the map \(u\to u^\prime\) is also coCartesian.  
-	By cofinality, we can see that 
-	the map \(u: U(0,0) \to U(1,0)\) is induced by the natural family of maps 
-	\[
-		\square(f_1,f_2(e_2),\dots, f_n(e_n)): \square(A_1,f_2(e_2),\dots, f_n(e_n))\to \square(B_1,f_2(e_2),\dots,f_n(e_n)),
-	\]
-	that \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\) is induced by the natural family of maps
-	\[\square(f^\prime_1,f_2(e_2),\dots, f_n(e_n)): \square(A^\prime_1,f_2(e_2),\dots, f_n(e_n))\to \square(B^\prime_1,f_2(e_2),\dots,f_n(e_n)),\]
-	that \(U(0,0)\to U^\prime(0,0)\) is induced by the natural family of maps
-	\[\square(g,f_2(e_2),\dots, f_n(e_n)): \square(A_1,f_2(e_2),\dots, f_n(e_n))\to \square(A^\prime_1,f_2(e_2),\dots,f_n(e_n)),\]
-	and that \(U(1,0) \to U^\prime(1,0)\) is induced by the natural family of maps
-	\[\square(h,f_2(e_2),\dots, f_n(e_n)): \square(B_1,f_2(e_2),\dots, f_n(e_n))\to \square(B^\prime_1,f_2(e_2),\dots,f_n(e_n)).\]
-	But these form a natural pushout square, which implies that \(u\to u^\prime\) is a pushout because \(\square\) preserves colimits in the first argument and the pushout moves outside of the coend.  This proves the claim that \(\alpha\to \alpha^\prime\) is a pushout, which proves the lemma.
-\end{proof}
-\begin{note}
-	The above holds for any \(i\in \{1,\dots,n\}\) as well, but for simplicity of notation, we proved it only in the case \(i=1\).  
-\end{note}
 \begin{comment}
+	\begin{lemma}\label{cornerpushouts}
+		Suppose \(\square\) preserves pushouts in the first argument and 
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+				{
+					A_1 & A^\prime_1 \\
+					B_1 & B^\prime_1 \\
+				};
+				\path[->]
+				(b-1-1) edge node[auto,swap]{\(\scriptstyle{g}\)} (b-1-2)  edge node[auto,swap]{\(\scriptstyle{f_1}\)} (b-2-1)
+				(b-2-1) edge node[auto]{\(\scriptstyle{h}\)} (b-2-2)
+				(b-1-2) edge node[auto]{\(\scriptstyle{f^\prime_1}\)} (b-2-2);
+			\end{tikzpicture},
+		\end{center}
+		is a pushout square in \(\mathcal{A}_1\), then the induced square 
+		\[(g^\lrcorner,h^-):\square^\lrcorner(f_1,\dots,f_n) \to \square^\lrcorner(f^\prime_1,\dots,f_n) \] is a pushout square.
+	\end{lemma}
+	\begin{proof} 
+		Let \(Q\) denote \(\square^\lrcorner(f_1,\dots,f_n)(0)\) and \(Q^\prime=\square^\lrcorner(f^\prime_1,\dots,f_n)(0)\), with \	(g^\lrcorner:Q\to Q^\prime\) being the induced map on the domains of corner tensors.  
+		Let \((\alpha,\alpha^\prime): \square(g,B_2,\dots,B_n) \to g^\lrcorner\) be the induced commutative square
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+				{
+					\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
+					Q & Q^\prime \\
+				};
+				\path[->]
+				(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\alpha}	\)} (b-2-1)
+				(b-2-1) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-2-2)
+				(b-1-2) edge node[auto]{\(\scriptstyle{\alpha^\prime}\)} (b-2-2);
+			\end{tikzpicture}.
+		\end{center}
+		Then we can factor the square 
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+				{
+					\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
+					\square(B_1,B_2,\dots,B_n) & \square(B^\prime_1,B_2,\dots,B_n) \\
+				};
+				\path[->]
+				(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\square	(f_1,B_2,\dots,B_n)}\)} (b-2-1)
+				(b-2-1) edge node[auto]{\(\scriptstyle{h^-}\)} (b-2-2)
+				(b-1-2) edge node[auto]{\(\scriptstyle{\square(f^\prime_1,B_2,\dots,B_n)}\)} (b-2-2);
+			\end{tikzpicture}
+		\end{center}
+		as the composite square
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+				{
+					\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
+					Q & Q^\prime \\
+					\square(B_1,B_2,\dots,B_n) & \square(B^\prime_1,B_2,\dots,B_n) \\
+				};
+				\path[->]
+				(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\alpha}	\)} (b-2-1)
+				(b-2-1) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-2-2)
+				(b-1-2) edge node[auto]{\(\scriptstyle{\alpha^\prime}\)} (b-2-2)
+				(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner(f_1,\dots,f_n)}\)} (b-3-1)
+				(b-2-2) edge node[auto]{\(\scriptstyle{\square^\lrcorner(f^\prime_1,\dots,f_n)}\)} (b-3-2)
+				(b-3-1) edge node[auto]{\(\scriptstyle{h^-}\)} (b-3-2);
+			\end{tikzpicture}.
+		\end{center}
+		where the outer square is a pushout square by the fact that \(\square\) preserves colimits in the first argument. Then to prove the 	lemma, it suffices to prove the claim that \((\alpha,\alpha^\prime)\) is a pushout square.
+		Then we define 
+		\[
+			U(s,t)=\int^{e_1,\dots,e_n} \left([1](e_1,s) \times [1](e_2\wedge\dots\wedge e_n,t)\right)\cdot \square(f_1(e_1),f_2(e_2),\dots,	 f_n(e_n)).
+		\]
+		and 
+		\[
+			U^\prime(s,t)=\int^{e_1,\dots,e_n} \left([1](e_1,s) \times [1](e_2\wedge\dots\wedge e_n,t)\right)\cdot \square(f^\prime_1(e_1),	f_2(e_2),\dots, f_n(e_n)).
+		\]
+		Then notice that 
+		\[
+			\alpha:\square(A_1,B_2,\dots,B_n) \to Q
+		\]
+		is the pushout of \(u:U(0,0)\to U(1,0)\) and 
+		\[
+			\alpha^\prime:\square(A^\prime_1,B_2,\dots,B_n) \to Q
+		\]
+		is the pushout of \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\).  So we have a commutative square (in which the vertices are arrows 	and the arrows are commutative squares)
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+				{
+					u & \alpha \\
+					u^\prime & \alpha^\prime \\
+				};
+				\path[->]
+				(b-1-1) edge (b-1-2) edge (b-2-1)
+				(b-2-1) edge (b-2-2)
+				(b-1-2) edge (b-2-2);
+			\end{tikzpicture}.
+		\end{center}
+		 where \(u\to \alpha\) and \(u^\prime\to \alpha^\prime\) are coCartesian.  Then by the pasting law for pushouts, it suffices to 	show that the map \(u\to u^\prime\) is also coCartesian.  
+		By cofinality, we can see that 
+		the map \(u: U(0,0) \to U(1,0)\) is induced by the natural family of maps 
+		\[
+			\square(f_1,f_2(e_2),\dots, f_n(e_n)): \square(A_1,f_2(e_2),\dots, f_n(e_n))\to \square(B_1,f_2(e_2),\dots,f_n(e_n)),
+		\]
+		that \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\) is induced by the natural family of maps
+		\[\square(f^\prime_1,f_2(e_2),\dots, f_n(e_n)): \square(A^\prime_1,f_2(e_2),\dots, f_n(e_n))\to \square(B^\prime_1,f_2(e_2),\dots,	f_n(e_n)),\]
+		that \(U(0,0)\to U^\prime(0,0)\) is induced by the natural family of maps
+		\[\square(g,f_2(e_2),\dots, f_n(e_n)): \square(A_1,f_2(e_2),\dots, f_n(e_n))\to \square(A^\prime_1,f_2(e_2),\dots,f_n(e_n)),\]
+		and that \(U(1,0) \to U^\prime(1,0)\) is induced by the natural family of maps
+		\[\square(h,f_2(e_2),\dots, f_n(e_n)): \square(B_1,f_2(e_2),\dots, f_n(e_n))\to \square(B^\prime_1,f_2(e_2),\dots,f_n(e_n)).\]
+		But these form a natural pushout square, which implies that \(u\to u^\prime\) is a pushout because \(\square\) preserves colimits 	in the first argument and the pushout moves outside of the coend.  This proves the claim that \(\alpha\to \alpha^\prime\) is a 	pushout, which proves the lemma.
+	\end{proof}
+	\begin{note}
+		The above holds for any \(i\in \{1,\dots,n\}\) as well, but for simplicity of notation, we proved it only in the case \(i=1\).  
+	\end{note}
 	\begin{cor}
 		If \(\square\) preserves pushouts in the \(i^{\mathrm{th}}\) argument, then if \(f_i\) is a pushout of \(f_i^\prime\), it 	follows that \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\) is a pushout of \(\square^\lrcorner(f_1,\dots,f^\prime_i,	\dots,f_n)\).
 	\end{cor}
@@ -691,7 +706,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 				p & q \\
 			};
 			\path[->]
-			(b-1-1) edge node[auto]{\(\scriptstyle{(h,\id)}\)} (b-1-2) edge node[auto]{\(\scriptstyle{(u,qv)}\)} (b-2-1)
+			(b-1-1) edge node[auto]{\(\scriptstyle{(h,\id)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{(u,qv)}\)} (b-2-1)
 			(b-1-2) edge node[auto]{\(\scriptstyle{(v,qv)}\)} (b-2-2)
 			(b-2-1) edge node[auto]{\(\scriptstyle{(g,\id)}\)} (b-2-2);
 		\end{tikzpicture}.
@@ -708,7 +723,7 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 			};
 			\path[->]
 			(b-1-1) edge node[auto]{\(\scriptstyle{\id^-}=\id\)} (b-1-4) edge node[auto]{\(\scriptstyle{qv^-}\)} (b-4-1)
-			(b-1-4) edge node[auto]{\(\scriptstyle{qv^-}\)} (b-4-4)
+			(b-1-4) edge node[auto,swap]{\(\scriptstyle{qv^-}\)} (b-4-4)
 			(b-2-2) edge node[auto,swap]{\(\scriptstyle{\square^\lrcorner(h,\mathbf{f})}\)} (b-1-1) edge node[auto]{\(\scriptstyle{h^\lrcorner}\)} (b-2-3) edge node[auto]{\(\scriptstyle{u^\lrcorner}\)} (b-3-2)
 			(b-2-3) edge node[auto]{\(\scriptstyle{\square^\lrcorner(\id,\mathbf{f})}\)} (b-1-4) edge node[auto]{\(\scriptstyle{v^\lrcorner}\)} (b-3-3)
 			(b-3-2) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-3-3) edge node[auto]{\(\scriptstyle{\square^\lrcorner(p,\mathbf{f})}\)} (b-4-1)
@@ -1767,7 +1782,7 @@ whose evaluation on a simplicial set \(X\) is given as follows:
 	where \(\overcat{\Nec}{X_{x,x^\prime}}\) denotes the slice over the bi-pointed simplicial set \(X_{x,x^\prime}\) in the category of bi-pointed simplicial sets.  
 	\item The composition map is induced by concatenation of necklaces.  That is, given a pair of necklaces \(T\to X_{x,x^\prime}\) and \(T^\prime\to X_{x^\prime,x^{\prime\prime}}\), their composite is given by the necklace 
 	\[
-		T {}_{\omega_T}\vee_{\alpha_{T^\prime}} T^\prime \to X_{x,x^{\prime\prime}}.
+		T \bigvee_{\omega_T,\alpha_{T^\prime}} T^\prime \to X_{x,x^{\prime\prime}}.
 	\]
 \end{itemize}
 
@@ -2244,18 +2259,18 @@ From the naturality of this result, we obtain the following corollary:
 \end{cor}
 Combining this corollary with \Cref{precatanodyne}, we obtain the following:
 \begin{cor}
-	Upon restriction to bi-pointed horizontal quasicategories, we have a natural zig-zag of weak equivalences in \(\spsh\)
+	Upon restriction to bi-pointed formal \(\C\)-quasicategories, we have a natural zig-zag of weak equivalences in \(\spsh\)
 	\[
 		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Map_{k^*(X)_c}(x,x^\prime).
 	\]
 \end{cor}
 Unwinding the definitions, we note the following corollary:
 \begin{cor}\label{mapspacecor}
-	If \(X_{x,x^\prime}\) is a bi-pointed horizontal quasicategory, we have zig-zags of weak equivalences in \(\spsh\)
+	If \(X_{x,x^\prime}\) is a bi-pointed formal \(\C\)-quasicategory, we have zig-zags of weak equivalences in \(\spsh\)
 	\begin{align*}
-		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Hom(k_!(C^\bullet_R\times c), X_{x,x^\prime},
+		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Hom(k_!(C^\bullet_R\times c), X_{x,x^\prime}),
 		\intertext{and}
-		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Hom(k_!(C^\bullet_L\times c), X_{x,x^\prime}.
+		\mathfrak{C}(X)(x,x^\prime)_c \leftrightsquigarrow \Hom(k_!(C^\bullet_L\times c), X_{x,x^\prime}).
 	\end{align*}
 \end{cor}
 We also make note of one more useful fact:
@@ -2278,7 +2293,7 @@ We also make note of one more useful fact:
 \end{proof}
 
 \subsection{The \(\Hom\) by cosimplicial resolution}
-For every object \([1](c)\) in \(\Theta[\C]\), we introduce four canonical cosimplicial resolutions, which we can use to define simplicial presheaves that represent the mapping space between two vertices of a \(\Theta[C]\)-set.
+For every object \([1](c)\) in \(\Theta[\C]\), we introduce four canonical cosimplicial resolutions, which we can use to define simplicial presheaves that represent the mapping space between two vertices of a \(\Theta[\C]\)-set.
 
 First, we define the functor
 \[(\bullet)^{\triangleright}(c),\text{ resp. }(\bullet)^{\triangleleft}(c): \Delta \to \Theta[\C],\]
@@ -2423,7 +2438,7 @@ induced by the inclusions we described above.
   For any formal \(\C\)-quasicategory \(X\) and any pair of vertices \(x,y\), there is a natural zig-zag of weak equivalences between \(\Map_X(x,y)\) and \(\mathfrak{C}(X)(x,y)\).
 \end{prop}
 \begin{proof}
-	By \Cref{resolutionlemma}, we see that we can equivalently compute \(\Map_X(x,y)\) using the cosimplicial resolutions \(k_!(C^\bullet_R\times c)\)of \([1](c)\), from which the result follows by \Cref{mapspacecor}.
+	By \Cref{resolutionlemma}, we see that we can equivalently compute \(\Map_X(x,y)\) using the cosimplicial resolutions \(k_!(C^\bullet_R\times c)\) of \([1](c)\), from which the result follows by \Cref{mapspacecor}.
 \end{proof}
 
 \begin{lemma}\label{dssquare1}
@@ -2828,17 +2843,17 @@ Let \(\Pre(X)\) denote the large \(\M\)-quasicategory \(\M^{X^\op}\), and let \(
 We fix a Cartesian presentation \(\M=(\C,\setS)\).  Our presentation here follows the one given in \cite{nlabwlim}.
 
 \begin{defn}
-	Let \(D\) be a small \(\C\)-cellular set, that is, an object of \(\cellset\), and suppose we have a diagram \(f:D\to \M\) and a \emph{weight} \(W:D\to \M\).  If \(X\) is an \(\M\)-quasicategory and \(f:D\to X\) is a diagram, we define the map \(h_f: X^\op \to M^D\) to be the adjunct of the composite \[D\to X\xrightarrow{j} \M^{X^\op},\] and we define the \emph{weight representation} \(h^W:\M^D \to \M^+\) be the map co-representing \(W\) as an object of \(\M^D\).  Then if the composite \(h^W\circ h_f:X^\op \to \M^+\) is representable, we call its representing object \emph{the limit of \(f\) weighted by \(W\)}, denoted  by \(\limw^W f\).
+	Let \(D\) be a small \(\C\)-cellular set, that is, an object of \(\cellset\), and suppose we have a diagram \(f:D\to \M\) and a \emph{weight} \(W:D\to \M\).  If \(X\) is an \(\M\)-quasicategory and \(f:D\to X\) is a diagram, we define the map \(h_f: X^\op \to M^D\) to be the adjunct of the composite \[D\to X\xrightarrow{j} \M^{X^\op},\] and we define \(h^W:\M^D \to \M^+\) to be the map co-representing \(W\) as an object of \(\M^D\).  Then if the composite \(h^W\circ h_f:X^\op \to \M^+\) is representable, we call its representing object \emph{the limit of \(f\) weighted by \(W\)}, denoted  by \(\limw^W f\).
 
 	Dually, coweights for colimits are diagrams \(D^\op \to \M\), and their coweighting functors are their associated corepresentable functors \(\M^{D^\op}\to \M^+\).  Given a diagram \(f:D\to X\), the \emph{colimit of \(f\) weighted by \(W\)} is defined to be an object of \(X\) that corepresents the weighted limit of \(f^\op\), which is denoted by \(\colim^W f\).  
 \end{defn}
 
 \begin{prop} The large \(\M\)-quasicategory \(\M\) has all small weighted limits and colimits.
 \end{prop}
-\begin{proof}  Given \(f:D\to \M\) and a weight \(W:D\to \M\), it is straightforward to see that a representing object for the weighted limit is exactly \[\Map_{\M^D}(W,f),\] by unwinding the definitions.
+\begin{proof}  Given \(f:D\to \M\) and a weight \(W:D\to \M\), it is straightforward to see that a representing object for the weighted limit is exactly \[\Map_{\M^D}(W,f),\] by unwinding the definitions.  The existence of weighted colimits is subtler, but follows from general facts about weighted homotopy colimits in enriched model categories.
 \end{proof}
 
-For now, we don't have much to say for this particular application.  If other definitions are proposed for weighted limits and colimits, they should be equivalent to this one.  
+For now, we don't have much to say for this particular application.  If other definitions are proposed for weighted limits and colimits, they should be equivalent to these.  
 
 \subsection{Examples}
 The only examples we really care about are the cases where \(\C=\Theta_n\) for \(0\leq n\leq \omega\) and where \(\setS\) is the set of generating anodynes for the model structure on weak \(n\)-categories.  We invite the reader to consider other applications.  We expect that a simple application would be to consider the left-Bousfield localization of spaces at homology equivalences, but we aren't certain if this is a Cartesian model structure.
@@ -2846,10 +2861,149 @@ The only examples we really care about are the cases where \(\C=\Theta_n\) for \
 Also note that our definitions of weighted limits and colimits do not work for computing lax and oplax weighted limits and colimits in weak \(\omega\)-categories (taking \(\C\) to be \(\Theta=\Theta_\omega\) and \(\setS\) to be the union of all of the generating weak equivalences for the Rezk model structure).  The problem is that the lax Gray tensor product has not yet been shown to be homotopy-invariant (in particular, a left-Quillen bifunctor), so the function complexes of lax and oplax natural transformations are themselves not yet known to be homotopy invariant.  This is why we encourage people in the future to refer to weighted limits and colimits in these cases as \emph{weighted pseudolimits} and \emph{weighted pseudocolimits} respectively.
 
 
-%\appendix
+\appendix
 %\renewcommand{\thesection}{A.\arabic{section}}
+\section{Appendix: Recollections on Cisinski Theory}
+We recall in the appendix a number of important technical results of Cisinski theory, which comprises a large body of results on the construction of extremely tame model structures on presheaf categories.
+\subsection{Cisinski model structures and localizers}
+In what follows, we will work with a fixed small category \(\mathcal{A}\). These are stated in more generality in \cite{cisinski-book}*{Chapter 1}, but we will specialize to the case of a Cartesian cylinder functor.
+\begin{defn}
+	A \emph{separating interval object} of \(\psh{\mathcal{A}}\) is an object \(I\) together with two monic arrows \(\partial_0,\partial_1:\ast \to I\) such that the pullback \(\ast \times_{I} \ast=\varnothing\).  We call the induced map \(\delta^I:\ast \coprod \ast \xrightarrow{(\partial_0,\partial_1)} I\) the \emph{boundary map}
+\end{defn}
+\begin{defn}
+	A cellular model \(\mathscr{M}\) for \(\psh{\mathcal{A}}\) is a small set of monomorphisms such that \(\operatorname{llp}(\operatorname{rlp}(\mathscr{M}))\) is exactly the class of monomorphisms of \(\psh{\mathcal{A}}\).   
+\end{defn}
+\begin{prop}[\cite{cisinski-book}*{Proposition 1.2.27}]
+	Every category of presheaves on a small category \(\mathcal{A}\) admits a cellular model in which the target of each map is a quotient of a representable.
+\end{prop}
+\begin{defn}
+	A \emph{class of anodynes} \(\mathbf{An}\) for a separating interval \(I\) is a class of monomorphisms \(f\) that satisfies the following properties:
+	\begin{itemize}
+		\item \(\mathbf{An}\) is generated by a set \(S\), that is, there exists a set of monomorphisms \(S\) such that \(\mathbf{An}=\operatorname{llp}(\operatorname{rlp}(S))\).
+		\item For any monomorphism \(g\), the corner maps \(\partial_i \times^\lrcorner g\in \mathbf{An}\) for \(i\in \{0,1\}\).  
+		\item For any map \(f\in \mathbf{An}\), the map \(\delta^I \times^\lrcorner f \in \mathbf{An}\).  
+	\end{itemize} 
+\end{defn}
+\begin{prop}[\cite{cisinski-book}*{Proposition 1.3.13}] Given any set \(S\) of monomorphisms and any separating interval object \(I\), there exists a smallest class of anodynes \(\mathbf{An}_I(S)\) for \(I\).  In particular, this class is generated by the set of maps \(\Lambda_I(S,\mathscr{M})\) where \(\mathscr{M}\) is a cellular model for \(\mathcal{A}\) defined as follows:
+	\begin{itemize}
+		\item We define the set \(\Lambda_I^0(S,\mathscr{M})=S \cup \partial_0 \times^\lrcorner \mathscr{M} \cup \partial_1 \times^\lrcorner \mathscr{M}\)
+		\item Then we define for any set of maps \(T\) the set \(\Lambda_I(T)=\delta^I\times^\lrcorner T\).
+		\item Then we define \(\Lambda_I(S,\mathscr{M})=\bigcup_i^\infty \Lambda_I^i(\Lambda_I^0(S,\mathscr{M}))\).  
+	\end{itemize}
+\end{prop}
+\begin{thm}[\cite{cisinski-book}*{1.3.22}]\label{cisinskimaintheorem}
+	Given a set of monomorphisms \(S\) and a separating interval \(I\), there exists a model structure on \(\psh{A}\) in which the cofibrations are the monomorphisms, the fibrant objects are the objects \(A\) such that the terminal map \(A\to \ast\) belongs to the class \(\operatorname{rlp}(\mathbf{An}_I(S))\), and in which a map \(f:A\to A^\prime\) with \(A^\prime\) fibrant is a fibration if and only if \(f\) belongs to \(\operatorname{rlp}(\mathbf{An}_I(S))\).
+\end{thm}
+\begin{defn}
+	A \emph{Cisinski model structure} is any model structure constructed using \Cref{cisinskimaintheorem}.
+\end{defn}
+\begin{cor}
+	Taking \(S=\varnothing\) and \(I\) to be the subobject classifier \(\mathfrak{L}\) of \(\psh{A}\) with the two canonical sections \(\varnothing,\id:\ast \to \mathfrak{L}\), we obtain the minimal Cisinski model structure.  More generally, we can replace \(\mathfrak{L}\) with any injective separating interval.  
+\end{cor}
+\begin{defn}
+	An \(\mathcal{A}\)-localizer \(\mathsf{W}\) is a class of maps satisfying the following axioms
+	\begin{itemize}
+		\item The class \(\mathsf{W}\) satisfies \(3\)-for-\(2\).
+		\item Every trivial fibration belongs to \(\mathsf{W}\).
+		\item The class of monomorphisms in \(\mathsf{W}\) is closed under pushout and transfinite composition.
+	\end{itemize}
+	If \(S\) is a set of morphisms of \(\psh{\mathcal{A}}\), there exists a minimal localizer containing \(S\), which we call the \emph{localizer generated by S} and denote by \(\mathsf{W}(S)\).  We say that a localizer \(\mathsf{W}\) is \emph{accessible} if it generated by a set of morphisms.
+\end{defn}
+\begin{thm}[\cite{cisinski-book}*{Theorem 1.4.3}]
+	Given any set of morphisms \(S\) of \(\psh{\mathcal{A}}\), the localizer \(\mathsf{W}(S)\) is the class of weak equivalences for a Cisinski model structure.  Moreover, this model structure is the left-Bousfield localization of the minimal Cisinski model structure at the set \(S\).
+\end{thm}
+\subsection{Simplicial Completion}
+The localizers on \(\mathcal{A}\) have a non-free component, namely that the class of trivial fibrations must always belong to \(\mathsf{W}\).  The theory of simplicial completions allows us to embed the class of \(\mathcal{A}\)-localizers into a larger class of localizers that doesn't suffer from this defect.  These are models for \emph{free homotopy theories} modeled on \(\mathcal{A}\).  The idea here is to replace the interval object with an external interval object.
+\begin{defn}
+	We define the \emph{free homotopy theory} on \(\mathcal{A}\) generated by \(S\) to be \(\mathcal{A}\times \Delta\)-localizer generated the interval object \(\Delta^1 \defeq \ast \square \Delta^1,\) where \(\square\) denotes the external product.  
+\end{defn}
+\begin{rem}
+	By well-known combinatorial arguments, it can be seen that taking \(\Delta^1\) to be the separating interval object forces all objects \(\Delta^n=\ast \square \Delta^n\) to be weakly contractible. The free homotopy theory construction therefore adds new representables but homotopically nullifies all of them.  We can therefore view it as a way to present a homotopy theory for presheaves on \(\mathcal{A}\) without automatically forcing all of the trivial fibrations to be weak equivalences. 
 
-
+	The free homotopy theory on \(\mathcal{A}\) is in general radically different from the homotopy theory given by the injective model structure on simplicial presheaves, which we will see later is its regular completion.  Cisinski gives the example where \(\mathcal{A}=B\mathbb{G}\) for a simplicial group \(\mathbb{G}\).  The difference between the free homotopy theory and its regular completion in this case is the difference between equivariant homotopy theory and higher Galois theory.  That is, the free homotopy theory presents ordinary equivariant homotopy theory, while the regular completion of the free homotopy theory on \(B\mathbb{G}\) models non-abelian \(\mathbb{G}\)-representations. 
+\end{rem}
+\begin{defn}
+	Given an \(\mathcal{A}\)-localizer \(\mathsf{W}\), we define the \emph{simplicial completion} of \(\mathsf{W}\) to be the \(\mathcal{A}\times \Delta\) localizer \(\mathsf{W}_\Delta\) generated by the class of maps of simplicial objects \(X\to X^\prime\) such that \(X_n \to X^\prime_n\) belongs to \(\mathsf{W}\) for each \(i\geq 0\) together with the projection maps \(X\times \Delta^1\) for all simplicial presheaves \(X\) on \(A\).  We say that an \(\mathcal{A}\times \Delta\)-localizer is \emph{discrete} if it is the simplicial completion of a localizer on \(\mathcal{A}\).  
+\end{defn}
+\begin{prop}
+	If the localizer \(\mathsf{W}\) is accessible, so is \(\mathsf{W}_\Delta\).  
+\end{prop}
+\begin{prop}
+	If the localizer \(\mathsf{W}\) is the minimal \(\mathcal{A}\)-localizer, then \(\mathsf{W}_\Delta\) is the localization of the free homotopy theory on \(\mathcal{A}\) at the set of maps \(\Lambda_I(\varnothing,\mathscr{M})\) for any injective separating interval object \(I\) and any cellular model \(\mathscr{M}\).  
+\end{prop}
+\begin{prop}[\cite{cisinski-book}*{Proposition 2.3.27}]
+	If \(\mathsf{W}\) is any accessible localizer, the functor \(p^\ast:\psh{\mathcal{A}} \to \psh{\mathcal{A}\times \Delta}\) induced by the projection \(\mathcal{A}\times \Delta \to \mathcal{A}\) is a left Quillen equivalence.  Also, by choosing a Reedy-cofibrant cosimplicial resolution \(D^\bullet\) of the terminal object \(\ast\) of \(A\), the functor 
+	\[
+		\operatorname{Real}_D: \psh{\mathcal{A}\times \Delta} \to \psh{\mathcal{A}}
+	\]
+	induced by left Kan extension of the functor defined by the rule
+	\[
+		(A,[n])\mapsto A\times D^n
+	\]
+	is also a left Quillen equivalence.  
+\end{prop}
+\begin{cor}
+	The simplicial completion defines a bijective Galois connection between \(\mathcal{A}\)-localizers and discrete \(\mathcal{A}\times \Delta\)-localizers.
+\end{cor}
+\subsection{Regularity}
+An important property of simplicial sets is no longer present in the case of a general \(\mathcal{A}\)-localizer, namely the property that every object is the canonical homotopy colimit of its diagram of representables.  This leads to the following definition:
+\begin{defn}
+	A presheaf \(X\) on \(\mathcal{A}\) is called \(\mathsf{W}\)-\emph{regular} with respect to a localizer \(\mathsf{W}\) if the canonical map 
+	\[
+		\hocoliml_{A\to X\in \overcat{\mathcal{A}}{X}} A \to \coliml_{A\to X\in \overcat{\mathcal{A}}{X}} A \to X
+	\]
+	is a \(\mathsf{W}\)-equivalence.
+	A localizer \(\mathsf{W}\) on \(\mathcal{A}\) is called a \emph{regular localizer} if every presheaf \(X\) on \(A\) is \(\mathsf{W}\)-regular.
+\end{defn}
+\begin{prop}[\cite{cisinski-book}*{Remark 3.4.14}]
+	If \(\mathsf{W} \subseteq \mathsf{W}^\prime\) is an inclusion of localizers and \(\mathsf{W}\) is regular, then so too is \(\mathsf{W^\prime}\).  
+\end{prop}
+\begin{defn}\label{regcompletion}
+	The \emph{regular completion} of a localizer \(\mathsf{W}\) is the smallest regular localizer containing \(\mathsf{W}\).  In particular, it follows from the preceding proposition that the regular completion is the smallest localizer generated by \(\mathsf{W}\) and the regular completion of the minimal localizer.
+\end{defn}
+\begin{prop}[\cite{cisinski-book}*{Corollary 3.4.24}]
+	The regular completion of an accessible localizer is accessible.
+\end{prop}
+\begin{prop}[\cite{cisinski-book}*{Proposition 3.4.34}]
+	The localizer of the injective model structure on simplicial presheaves on \(\mathcal{A}\) consisting of the maps of simplicial presheaves \(X\to X^\prime\) whose components are weak homotopy equivalences \(X_A\to  X^\prime_A\) is the regular completion of the localizer of the free homotopy theory on \(\mathcal{A}\).
+\end{prop}
+\begin{cor}
+	The Cisinski model structure obtained from the simplicial completion \(\mathsf{W}_\Delta\) of an accessible localizer \(\mathsf{W}\) on \(\mathcal{A}\) is a left-Bousfield localization of the injective model structure on simplicial presheaves if and only if it is regular.  In particular, the Galois correspondence between localizers on \(\mathcal{A}\) and localizers containing the simplicial completion of the minimal localizer restricts to a bijective Galois correspondence between regular localizers on \(\mathcal{A}\) and discrete localizers on \(\mathcal{A}\times \Delta\) containing the objectwise weak homotopy equivalences.
+\end{cor}
+\subsection{Skeletal categories}
+In this section, we recall Cisinski's theory of skeletal categories (cat\'egories squelettiques).  These are generalized Reedy categories \(\mathcal{A}\) with a dimension grading and satisfying certain axioms. Under the strong condition of \emph{normality}, the category \(\psh{\mathcal{A}}\) admits a canonical cellular model given by the boundary inclusions.  Under a further strong assumption of \emph{regularity}, every \(\mathcal{A}\)-localizer will be shown to be regular.
+\begin{defn}
+	A \emph{skeletal category} is given by the data of a small category \(\mathcal{A}\), subcategories \(\mathcal{A}^-\) and \(\mathcal{A}^+\) together with a grading function \(\operatorname{dim}:\Ob \mathcal{A} \to \mathbf{N}\) satisfying the following axioms:
+	\begin{itemize}
+		\item Every isomorphism belongs to both \(\mathcal{A}^-\) and \(\mathcal{A}^+\).
+		\item If \(f:A\to A^\prime\) belongs to \(\mathcal{A}^+\) (resp. \(\mathcal{A}^-\)), then \(\dim(A) \leq \dim(A^\prime)\) (resp. \(\dim(A^\prime) \leq \dim(A)\)).
+		\item Every map \(f\) of \(\mathcal{A}\) admits a factorization, unique up to unique isomorphism of factorizations, into a composite \(\delta \circ \pi\) with \(\delta \in \mathcal{A}^+\) and \(\delta \in \mathcal{A}-\).
+		\item Two arrows \(f,g:A\to A^\prime\)of \(\mathcal{A}^-\) are equal if and only if they have the same sections.
+	\end{itemize}
+\end{defn}
+\begin{defn}
+	Given a natural number \(n\) and a presheaf \(X\) on \(\mathcal{A}\), we define the \(n\)-skeleton to be the sieve
+	\[
+		\operatorname{Sk}^n(X)_A\defeq \{u:A\to X \mid \exists \alpha:A\to A^\prime, \quad \dim(A^\prime)\leq n, \quad \exists u^\prime:A^\prime \to X, \quad u=u^\prime\circ \alpha\}.
+	\]
+	If \(A\) is a representable object of \(\mathcal{A}\), we define the boundary \(\partial A\) of \(A\) to be  \(\operatorname{Sk}^{\dim(A)-1}(A)\), and we denote its inclusion by \(\delta^A:\partial A \hookrightarrow A\).  
+\end{defn}
+We take the following as a definition, but it is in fact a characterization from \cite{cisinski-book}*{8.1.37}
+\begin{defn}
+	A skeletal category is called \emph{normal} if its objects have no nontrivial automorphisms.
+\end{defn}
+\begin{prop}[\cite{cisinski-book}*{Proposition 8.1.37}]
+	If \(\mathcal{A}\) is a normal skeletal category, then the set of maps \(\mathscr{M}\defeq \{\delta^A\}_{A\in \mathcal{A}}\) gives a cellular model for \(\psh{\mathcal{A}}\). Moreover, the class of monomorphisms of \(\mathcal{A}\) is exactly \(\operatorname{Cell}(\mathscr{M})\).
+\end{prop}
+\begin{rem}
+	Cisinski shows that whenever \(X\) is a normal presheaf (we omit this definition, but in the case where \(\mathcal{A}\) is normal skeletal, every presheaf satisfies this property), its \(n\)-skeleton can be computed as the image of \(X\) under the composite  adjunction induced by the inclusion of the full subcategory \(\mathcal{A}_{\leq n}\hookrightarrow \mathcal{A}\), similar to the case of \(\Delta\).  In particular, normal skeletal categories have a well-behaved skeleton-coskeleton adjunction.  
+\end{rem}
+\begin{defn}
+	We say that presheaf \(X\) on a skeletal category is \emph{regular} if every nondegenerate section of \(X\) is monic. Additionally, we say that a skeletal category is \emph{regular} if it is normal and every representable presheaf is regular.
+\end{defn}
+\begin{thm}[\cite{cisinski-book}*{Proposition 8.2.9}]
+	Every localizer \(\mathsf{W}\) on a regular skeletal category is regular.
+\end{thm}
 \begin{comment}
 	\subsection{The indexed join}
 	As with simplicial sets, the join will naturally exist in the augmented category, so we introduce the following definition:
