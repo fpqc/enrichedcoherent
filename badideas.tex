@@ -1,0 +1,592 @@
+\begin{comment}
+	The category \(\ssetlab\) is rather different from \(\cellset\).  For example, in \(\cellset\), we can take the quotient of the representable \([2](c,c')\) by killing the subobject \([1](c\times c')\), which is the inner face.  If we do this, the outer faces are merely connected together, and this object corepresents the situation in which a \(c\) cell is right inverse to a \(c^\prime\) cell.  But this object cannot be represented as the intertwiner of an object in \(\ssetlab\).  To see this, look at the fibre over the quotient \(X\) of \(\Delta^2\) by its inner face.  This simplicial set has a unique top-dimensional cell \(\sigma:\Delta^2\to X\), so giving a natural transformation \(X\to \psh{\C}_\bullet\) is totally determined by our choice of where to map it.  Then by the simplicial relations, we can see that whatever pair of objects \(c,c^\prime\) we pick in \(\psh{\C}_2=\psh{\C}^2\), \(\partial_1 \Omega(\sigma)\cong c\times c^\prime\) by pseudonaturality.  However, we also know that the inner face \(\partial_1 \sigma\) is degenerate and therefore must map to the terminal object in \(\psh{\C}\).  This relation forces us to choose \(c=c^\prime=\ast\).  Similar problems happen when attempting to glue together objects that aren't identical between a pair of vertices.
+
+	The other main kind of pathology, shared with the full subcategory \(\Delta \int \psh{\C}\), is that it allows us to label simplices by the empty presheaf on \(\C\).  This is exactly the kind of pathology that is killed by the intertwiner.  For example, consider \([1](\varnothing)\).  Then \(V[1](\varnothing)=\ast \coprod \ast\), since the only object of \(\Theta[\C]\) admitting a map to \([1](\varnothing)\) is \([0]\).
+\end{comment}
+
+\begin{comment}
+	\begin{prop}
+	Given a necklace \(T\), there is a unique embedding \(\iota_T:T\hookrightarrow \Delta[T]\), where \(\Delta[T]\) is the unique representable whose spine is exactly the spine of \(T\).  This map sends the spine of \(T\) isomorphically onto the spine of \(\Delta[T]\) and is a horizontal inner anodyne.
+	\end{prop}
+\end{comment}
+
+\begin{comment}
+	\begin{lemma}\label{cornerpushouts}
+		Suppose \(\square\) preserves pushouts in the first argument and 
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+				{
+					A_1 & A^\prime_1 \\
+					B_1 & B^\prime_1 \\
+				};
+				\path[->]
+				(b-1-1) edge node[auto,swap]{\(\scriptstyle{g}\)} (b-1-2)  edge node[auto,swap]{\(\scriptstyle{f_1}\)} (b-2-1)
+				(b-2-1) edge node[auto]{\(\scriptstyle{h}\)} (b-2-2)
+				(b-1-2) edge node[auto]{\(\scriptstyle{f^\prime_1}\)} (b-2-2);
+			\end{tikzpicture},
+		\end{center}
+		is a pushout square in \(\mathcal{A}_1\), then the induced square 
+		\[(g^\lrcorner,h^-):\square^\lrcorner(f_1,\dots,f_n) \to \square^\lrcorner(f^\prime_1,\dots,f_n) \] is a pushout square.
+	\end{lemma}
+	\begin{proof} 
+		Let \(Q\) denote \(\square^\lrcorner(f_1,\dots,f_n)(0)\) and \(Q^\prime=\square^\lrcorner(f^\prime_1,\dots,f_n)(0)\), with \	(g^\lrcorner:Q\to Q^\prime\) being the induced map on the domains of corner tensors.  
+		Let \((\alpha,\alpha^\prime): \square(g,B_2,\dots,B_n) \to g^\lrcorner\) be the induced commutative square
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+				{
+					\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
+					Q & Q^\prime \\
+				};
+				\path[->]
+				(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\alpha}	\)} (b-2-1)
+				(b-2-1) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-2-2)
+				(b-1-2) edge node[auto]{\(\scriptstyle{\alpha^\prime}\)} (b-2-2);
+			\end{tikzpicture}.
+		\end{center}
+		Then we can factor the square 
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+				{
+					\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
+					\square(B_1,B_2,\dots,B_n) & \square(B^\prime_1,B_2,\dots,B_n) \\
+				};
+				\path[->]
+				(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\square	(f_1,B_2,\dots,B_n)}\)} (b-2-1)
+				(b-2-1) edge node[auto]{\(\scriptstyle{h^-}\)} (b-2-2)
+				(b-1-2) edge node[auto]{\(\scriptstyle{\square(f^\prime_1,B_2,\dots,B_n)}\)} (b-2-2);
+			\end{tikzpicture}
+		\end{center}
+		as the composite square
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+				{
+					\square(A_1,B_2,\dots,B_n) & \square(A^\prime_1,B_2,\dots,B_n) \\
+					Q & Q^\prime \\
+					\square(B_1,B_2,\dots,B_n) & \square(B^\prime_1,B_2,\dots,B_n) \\
+				};
+				\path[->]
+				(b-1-1) edge node[auto,swap]{\(\scriptstyle{\square(g,B_2,\dots,B_n)}\)} (b-1-2) edge node[auto,swap]{\(\scriptstyle{\alpha}	\)} (b-2-1)
+				(b-2-1) edge node[auto]{\(\scriptstyle{g^\lrcorner}\)} (b-2-2)
+				(b-1-2) edge node[auto]{\(\scriptstyle{\alpha^\prime}\)} (b-2-2)
+				(b-2-1) edge node[auto]{\(\scriptstyle{\square^\lrcorner(f_1,\dots,f_n)}\)} (b-3-1)
+				(b-2-2) edge node[auto]{\(\scriptstyle{\square^\lrcorner(f^\prime_1,\dots,f_n)}\)} (b-3-2)
+				(b-3-1) edge node[auto]{\(\scriptstyle{h^-}\)} (b-3-2);
+			\end{tikzpicture}.
+		\end{center}
+		where the outer square is a pushout square by the fact that \(\square\) preserves colimits in the first argument. Then to prove the 	lemma, it suffices to prove the claim that \((\alpha,\alpha^\prime)\) is a pushout square.
+		Then we define 
+		\[
+			U(s,t)=\int^{e_1,\dots,e_n} \left([1](e_1,s) \times [1](e_2\wedge\dots\wedge e_n,t)\right)\cdot \square(f_1(e_1),f_2(e_2),\dots,	 f_n(e_n)).
+		\]
+		and 
+		\[
+			U^\prime(s,t)=\int^{e_1,\dots,e_n} \left([1](e_1,s) \times [1](e_2\wedge\dots\wedge e_n,t)\right)\cdot \square(f^\prime_1(e_1),	f_2(e_2),\dots, f_n(e_n)).
+		\]
+		Then notice that 
+		\[
+			\alpha:\square(A_1,B_2,\dots,B_n) \to Q
+		\]
+		is the pushout of \(u:U(0,0)\to U(1,0)\) and 
+		\[
+			\alpha^\prime:\square(A^\prime_1,B_2,\dots,B_n) \to Q
+		\]
+		is the pushout of \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\).  So we have a commutative square (in which the vertices are arrows 	and the arrows are commutative squares)
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=5em]
+				{
+					u & \alpha \\
+					u^\prime & \alpha^\prime \\
+				};
+				\path[->]
+				(b-1-1) edge (b-1-2) edge (b-2-1)
+				(b-2-1) edge (b-2-2)
+				(b-1-2) edge (b-2-2);
+			\end{tikzpicture}.
+		\end{center}
+		 where \(u\to \alpha\) and \(u^\prime\to \alpha^\prime\) are coCartesian.  Then by the pasting law for pushouts, it suffices to 	show that the map \(u\to u^\prime\) is also coCartesian.  
+		By cofinality, we can see that 
+		the map \(u: U(0,0) \to U(1,0)\) is induced by the natural family of maps 
+		\[
+			\square(f_1,f_2(e_2),\dots, f_n(e_n)): \square(A_1,f_2(e_2),\dots, f_n(e_n))\to \square(B_1,f_2(e_2),\dots,f_n(e_n)),
+		\]
+		that \(u^\prime:U^\prime(0,0)\to U^\prime(1,0)\) is induced by the natural family of maps
+		\[\square(f^\prime_1,f_2(e_2),\dots, f_n(e_n)): \square(A^\prime_1,f_2(e_2),\dots, f_n(e_n))\to \square(B^\prime_1,f_2(e_2),\dots,	f_n(e_n)),\]
+		that \(U(0,0)\to U^\prime(0,0)\) is induced by the natural family of maps
+		\[\square(g,f_2(e_2),\dots, f_n(e_n)): \square(A_1,f_2(e_2),\dots, f_n(e_n))\to \square(A^\prime_1,f_2(e_2),\dots,f_n(e_n)),\]
+		and that \(U(1,0) \to U^\prime(1,0)\) is induced by the natural family of maps
+		\[\square(h,f_2(e_2),\dots, f_n(e_n)): \square(B_1,f_2(e_2),\dots, f_n(e_n))\to \square(B^\prime_1,f_2(e_2),\dots,f_n(e_n)).\]
+		But these form a natural pushout square, which implies that \(u\to u^\prime\) is a pushout because \(\square\) preserves colimits 	in the first argument and the pushout moves outside of the coend.  This proves the claim that \(\alpha\to \alpha^\prime\) is a 	pushout, which proves the lemma.
+	\end{proof}
+	\begin{note}
+		The above holds for any \(i\in \{1,\dots,n\}\) as well, but for simplicity of notation, we proved it only in the case \(i=1\).  
+	\end{note}
+	\begin{cor}
+		If \(\square\) preserves pushouts in the \(i^{\mathrm{th}}\) argument, then if \(f_i\) is a pushout of \(f_i^\prime\), it 	follows that \(\square^\lrcorner(f_1,\dots,f_i,\dots,f_n)\) is a pushout of \(\square^\lrcorner(f_1,\dots,f^\prime_i,	\dots,f_n)\).
+	\end{cor}
+\end{comment}
+
+\begin{comment}\begin{obs} 
+	Given \(f:Y\to \Delta^n\), we can nail down the computation of \(\square_n(f, \Omega)\) using our previous computations because in this case, \(\Omega(\id_{\Delta^n})\) is determined by a choice of a family of \(\C\)-presheaves \((X_i)_{i=1}^n\).  Therefore, we have that for \([t]=[m](c_1,\dots,c_m)\),
+	\[\square_n(f,X_1,\dots,X_n)_t = \coprod_{y:\Delta^m\to Y} \prod_{i=1}^m \prod_{k=fy(i-1)+1}^{fy(i)} X_{k,c_i}.\]
+\end{obs}\end{comment}
+
+\begin{comment}
+	\begin{thm}[\cite{oury}*{3.78}]
+	The category \(\ssetlab\) is cocomplete.
+	\end{thm}
+	\begin{proof} 
+	This result is merely stated in Oury's paper and relies on a theorem in the theory of Grothendieck fibrations, where to check the cocompleteness of a fibration constructed from pseudofunctor \(T:\mathcal{D}^\op\to \mathbf{CAT}\), it suffices to show
+	\begin{enumerate}[\indent(1)]
+		\item The category \(\mathcal{D}\) is cocomplete and has pullbacks
+		\item The category \(Td\) is cocomplete for each \(d\in \Ob\mathcal{D}\)
+		\item For each map \(f:d\to d^\prime\), the map \(Tf:Td^\prime Td\) admits a left adjoint.
+	\end{enumerate} 
+	In our case, \(\psh{\Delta}\) is evidently cocomplete. We show that the third condition holds for simplices.  If \([n]\to [n+1]\) is a codimension \(1\) inner face map omitting the vertex \(k\in [n+1]\), we know that the pullback functor is given by sending \((X_i)_{i=1}^{n+1}\) to the family \((Y_i)_{i=1}^n\) where 
+	\[
+		Y_i =
+		\begin{cases}
+			X_i & \text{ if } i<k\\
+			X_i \times X_{i+1}  & \text{ if } i=k\\
+			X_{i+1} &\text{ if } i>k
+		\end{cases}
+	\]
+	This functor is the right adjoint to the diagonal functor and therefore has an evident left-adjoint.  If \(f:[n]\to [n+1]\) is an outer face, say \(\partial^{n+1}\) omitting the vertex \(n+1\), then the pullback to \([n]\) is given by omitting the object \(X_{n+1}\).  The left adjoint in this case is given by sending \([n](X_1,\dots,X_n)\) to \([n](X_1,\dots,X_n,\varnothing)\), and similarly for the other outer face.
+	
+	Suppose then that the map \(f:[n+1]\to [n]\) is a codimension \(1\) degeneracy such that \(f(k-1)=f(k)\).  The left adjoint to the pullback is given by sending \([n+1](X_1,\dots,X_{n+1}\) to \([n](X_1,\dots,\widehat{X_k}, \dots, X_n)\).  
+
+	For a general simplicial set \(S\), we see that \(TS\) is cocomplete by taking \(S\) as the colimit of its representables.  Then
+	\[TS=\Hom(S,\psh{\C}_\bullet)=\Hom\left(\coliml_{\Delta^n \to S \in \overcat{\Delta}{S}} \Delta^n, \psh{\C}_\bullet\right)=\lim_{\Delta^n \to S \in \overcat{\Delta}{S}} \psh{\C}^n,\] where each \(\psh{\C}^n\) is cocomplete and the limit is taken over a family of right adjoints.  Given a diagram \(D\to TS\), this defines a system of compatible diagrams of shape \(D\) in each of the \(\psh{\C}^n\), and taking colimits in each one, we obtain a compatible family of colimits, which we can then map back to \(TS\) along the system of left adjoints, so \(TS\) is cocomplete.  The proof that the pullback along every map \(S\to T\) admits a left adjoint is similar.  
+	\end{proof}
+	\begin{note}
+	The statement of the previous theorem in \cite{oury} has a typo, asking for right adjoints rather than left adjoints.
+	\end{note}
+
+	\begin{defn} 
+	Since \(\ssetlab\) is cocomplete and admits finite products that preserve colimits argument-by-argument, we can use \ref{cornertensor} define the \emph{corner product of labeled simplicial sets} 
+	\[\times^\lrcorner_n:\left(\ssetlab\right)^{[1]} \times \left(\ssetlab\right)^{[1]} \to \left(\ssetlab\right)^{[1]}. \]
+	\end{defn}
+\end{comment}
+
+\begin{comment}
+	\begin{defn} Let \(\mathfrak{C}\) be the composite \[\Theta[\C]\hookrightarrow\Delta\int \psh{\C} \xrightarrow{Q} \Cat_{\spsh}.\] Since \(\Cat_{\spsh}\) is cocomplete, there exists a colimit-preserving extension to \(\cellset\), the \emph{homotopy-coherent realization}, which by abuse of notation, we also call \(\mathfrak{C}\).  It is the left adjoint in an adjunction \[\mathfrak{C}:\cellset\rightleftarrows \Cat_{\spsh}:\mathfrak{N},\]  wherein the right adjoint is called the \emph{homotopy-coherent nerve}.
+	\end{defn}
+\end{comment}
+
+\begin{comment}
+	\section{Enriched necklaces and the coherent realization}
+
+
+	\begin{defn}
+		A \emph{pre-necklace} is a sober \(\C\)-cellular set whose projection to \(\psh{\Delta}\) (i.e. image under the functor \	(\pi: \cellset \to \psh{\Delta}\)) is a simplicial necklace in the sense of Dugger and Spivak.
+
+		Given a pre-necklace \(T\), we define the \emph{shape of \(T\)} to be its associated simplicial set \(\pi(T)\).
+
+		Suppose \(T\) is a pre-necklace such that its projection is the simplicial necklace \(\Delta^{m_1}\vee \dots \vee \Delta^	{m_k}\). Then we say that \(T\) is a \emph{necklace} if the pullback of \(T\) along each bead inclusion \(\Delta^{m_i}	\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is representable for each \(1\leq i \leq k\).
+
+		We consider every necklace \(T\) as bi-pointed by its initial and terminal vertex, which we will write as \(\alpha\) and \	(\omega\) respectively.  A \emph{morphism of necklaces} is a morphism of \(f:T\to T^\prime\) of \(\cellset_{\ast,\ast}\) 	between necklaces such that \(f(\alpha_T)=\alpha_{T^\prime}\) and \(f(\omega_T)=\omega_{T^\prime}\). We define the 	category \(\Nec\) to be the full subcategory \(\cellset_{\ast,\ast}\) consisting of the necklaces and morphisms of 	necklaces between them.
+
+		We define the sets \(V_T\) (resp. \(J_T\)) of \emph{vertices of \(T\)} (resp. \emph{joints of \(T\)}) to be the sets of 	vertices and joints of the underlying simplicial necklace.
+
+		Similarly, for a pair of vertices \(a,b\) of \(T\) with \(a\leq b\) we define \(V_T(a,b)\)to be the subset of all 	vertices \(i\) such that \(a\leq i\leq b\). We define \(J_T(a,b)\) to be \(\{a,b\}\cup (V_T(a,b)\cap J_T)\).
+
+		Given \(a,b\in V_T\), there is a full simplicial subset \(\pi(T)(a,b)\subseteq \pi(T)\) consisting of the simplicial set 	of simplices \(\sigma\) of \(\pi(T)\) for which all vertices of \(\sigma\) lie in \(V_T(a,b)\). We define \(T(a,b)\) to 	be the pullback of \(T\) along the inclusion \(\pi(T)(a,b)\hookrightarrow \pi(T)\).  It is clear from this definition 	that \(V_T(a,b)=V_{T(a,b)}\) and \(J_T(a,b)=J_{T(a,b)}\).
+	\end{defn}
+
+	Following Dugger and Spivak, we define a construction as follows: Given a \(\C\)-cellular set \(X\) with two vertices \(x,	y\in X_0\), we obtain a functor \[\mathcal{E}_X(x,y):\overcat{\Nec}{X_{x,y}} \to \spsh\] defined by the rule \[(T\to X_{x,y})	\mapsto \mathfrak{C}(T)(\alpha_T,\omega_T).\] We define \[E_X(x,y)=\colim(\mathcal{E}(x,y)),\] which by the universal 	property of colimits admits a universal map \[E_X(x,y)\to \mathfrak{C}(X)(x,y).\] We can see that there is an associative 	composition operation \[E_X(x,y)\times E_X(y,z)\to E_X(x,z)\] inherited from the operation of wedge-concatenation of 	necklaces \[\mathcal{E}_X(x,y)\times \mathcal{E}_X(y,z) \to \mathcal{E}_X(x,z).\] This makes \(E_X\) into a \(\spsh\)	-enriched category equipped with a functor \(E_X\to \mathfrak{C}(X)\).
+
+	\begin{prop} For any \(\C\)-cellular set \(X\), the induced map \(E_X\to \mathfrak{C}(X)\) is an isomorphism.
+	\end{prop}
+	\begin{proof} Following along closely with the proof of \cite{ds1}*{Proposition 4.3}, we consider the following commutative 	diagram:
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+				{
+					\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y) & E_X(x,y)                \\
+					\left( \coliml\limits_{[t]\in\overcat{\Theta[\C]}{X}} \mathfrak{C}([t])\right)(x,y) & \mathfrak{C}(X)(x,y) \\
+				};
+				\path[->]
+				(b-1-1) edge (b-1-2)
+				edge node[auto,swap]{\(\scriptstyle \cong\)} (b-2-1)
+				(b-2-1) edge [-,double] (b-2-2)
+				(b-1-2) edge (b-2-2);
+			\end{tikzpicture}.
+		\end{center}
+		The bottom horizontal equality is by definition, and the left vertical map is an isomorphism because \(E_{[t]}\cong 	\mathfrak{C}([t])\) for all representables, since they are all necklaces and therefore are terminal in their respective 	diagrams defining \(E\). It follows that the top horizontal map is injective, and it suffices therefore to show that it 	is surjective. Choose any representable \(\xi:\Delta^n \times c \to E_X(x,y)\). Since \(\Delta^n\times [c]\) is 	representable and \(E_X(x,y)\) is a colimit, it follows that the map \(\Delta^n\times c\to E_X(x,y)\) factors through 	some \[f:\mathfrak{C}(T)(\alpha,\omega) \to \mathfrak{C}(X)(x,y)\] and is represented therefore represented by the data 	of such a factorization.   Consider the commutative diagram diagram:
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+				{
+					\left( \coliml\limits_{[t]\in\overcat{\Theta[\C]}{T}} \mathfrak{C}([t])\right)(\alpha,\omega) & \mathfrak{C}	(T)(\alpha,\omega) \\
+					\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{T}} E_{[t]}\right)(x,y) & E_T(\alpha,\omega)               	 \\
+					\left( \coliml\limits_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y) & E_X(x,y)                \\
+				};
+				\path[->]
+				(b-1-1) edge (b-1-2)
+				(b-2-1) edge (b-1-1) edge (b-2-2) edge node[auto,swap]{\(\scriptstyle{f_\ast}\)} (b-3-1)
+				(b-2-2) edge (b-1-2) edge node[auto,swap]{\(\scriptstyle{E_f}\)} (b-3-2)
+				(b-3-1) edge (b-3-2);
+			\end{tikzpicture}.
+		\end{center}
+		Therefore, it suffices to show that the middle horizontal map is surjective, since if this is the case, we can chase \	(\xi\) back to an element of \(\left( \colim_{[t]\in \overcat{\Theta[\C]}{X}} E_{[t]}\right)(x,y)\), which proves 	surjectivity.  But the top horizontal map is an isomorphism by the definition of \(\mathfrak{C}\), and both top row 	vertical maps are isomorphisms, again because the diagrams over which \(E_{[t]}\) and \(E_T\) are colimits over have 	terminal objects, namely the necklaces \([t]\) and \(T\) themselves.
+	\end{proof}
+
+	This is not the end of the story.  This colimit is still very complicated, and we must simplify it further.  In particular, 	we will show that \(\mathfrak{C}(X)(x,y)_c\) can be represented as a colimit of contractible spaces functorially in \(c\).  	This will play an important role in obtaining appropriate analogues of the other models for \(\mathfrak{C}\) from \cite{ds1}. 	 In order to continue down this road, we need the following definition:
+
+	\begin{defn}
+		We say that a necklace \(T\) is \emph{of uniform type \(c\in \C\)} if the pullback of \(T\) along each bead inclusion \	(\Delta^{m_i}\hookrightarrow \Delta^{m_1}\vee \dots \vee \Delta^{m_k}\) is the representable \(\C\)-cellular set 	associated with \([m_i](c,\dots,c)\).  If \(T\) is any simplicial necklace, we denote by \(T\{c\}\) the necklace of type \	(c\) of the same underlying simplicial shape. We define the category \(\Nec_c\) to be the full subcategory of the 	category \(\Nec\) spanned by the necklaces of uniform type \(c\).
+	\end{defn}
+
+	\begin{defn}
+		We define the subcategory \[\Nec^\mathbf{sp}_c\subseteq \Nec_c\] to be the wide subcategory whose morphisms are \emph	{special}, which are maps that factor as the composite of a pure codegeneracy followed by a map whose restriction to each 	edge of the spine of the domain is a diagonal \(c\xrightarrow{id^k} c^k\) of the appropriate arity.
+	\end{defn}
+
+	We begin by giving the following construction: Given a \(\C\)-cellular set \(X\) together with two vertices \(x,y\in X_0\), 	we give a functor \[\mathcal{E}_{X,c}(x,y):\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\to \psh{\Delta}\] defined by the rule \	[T\mapsto \mathfrak{C}_\Delta(\pi(T))(\alpha,\omega),\] where \(\mathfrak{C}_\Delta\) denotes the ordinary coherent 	realization of a simplicial set.
+
+	We then define a simplicial set \[E_{X,c}(x,y)=\colim \mathcal{E}_{X,c}.\] We note that by concatenation of necklaces of 	uniform type \(c\), we obtain an associative composition law \[E_{X,c}(x,y)\times E_{X,c}(y,z)\to E_{X,c}(x,z).\]  We will 	see in what follows that \(E_{X,c}\) is naturally isomorphic to \(\mathfrak{C}(X)_c\).
+
+	\begin{lemma}\label{replemma} If \(T\) is a necklace of uniform type \(c\) and \(T^\prime\) is any necklace, then every 	morphism of necklaces \(f:T\to T^\prime\) factors uniquely as the composite of a special map \(T\to T^\prime\{c\}\) and a map 	\(f_*:T^\prime\{c\}\to T^\prime\) that projects to the identity map in \(\psh{\Delta}\).
+	\end{lemma}
+	\begin{proof} We reduce immediately to the case where the map on underlying simplicial necklaces is injective, using the 	Eilenberg-Zilber property for necklaces.  We can also assume that \(T^\prime\) is representable of the form \([n](c_1,\dots,	c_n)\), since given an injective map of simplicial necklaces \(\pi(T)\to \pi(T^\prime)\), every bead of \(\pi(T)\) lands in 	exactly one bead of \(\pi(T^\prime).\)
+
+		Then we look at the action of \(f\) on each edge \(e\) of the spine of \(T\). Notice that if \(f\) maps an edge \(e\) of 	the spine of \(\pi(T)\) to the edge \(i<j\), we obtain a map \[c\to \prod_{k=i+1}^j c_k,\] which by the universal 	property of the product, corresponds to a family of maps \((f_k:c\to c_k)_{k=i+1}^j\).  Since \(f\) must map the spine of 	\(\pi(T)\) to a directed path from \(0\to n\), taken together, we obtain maps \[(f_k:c\to c_k)_{k=1}^n.\] These data 	together with the identity map \(\id:[n]\to [n]\) specify precisely a map \[[n](c,\dots,c)\to [n](c_1,\dots,c_n).\]  We 	have the obvious map \(T\to [n](c,\dots,c)\) where each edge of the spine is assigned the appropriate diagonal map, and 	this composes with the new map \([n](c,\dots,c)\to [n](c_1,\dots,c_n)\) to give the original map. This factorization is 	clearly unique.
+	\end{proof}
+
+	\begin{prop} If \(T\) is a necklace, then \(E_{T,c}(\alpha,\omega)\) is canonically isomorphic to \(\mathfrak{C}(T)(\alpha,	\omega)_c\)
+	\end{prop}
+	\begin{proof}
+		By the lemma, we see that there is a discrete full cofinal subcategory of \(\overcat{\Nec^\mathbf{sp}_c}{T}\) spanned by 	the maps \(T\{c\} \to T\), so it suffices to show that \(\mathfrak{C}(T)(\alpha,\omega)_c\) is a disjoint union of copies 	of \(\mathfrak{C}_\Delta(\pi(T\{c\}))(\alpha,\omega)\) indexed by the maps \(T\{c\}\to T\) that project to the identity, 	but this follows by an easy direct computation of \(\mathfrak{C}(T)(\alpha,\omega)_c\), which we give for the case \(T=[n]	(c_1,\dots,c_n)\) as 
+		\[\Hom(c,c_1) \times \Delta^1\times \dots \times \Delta^1 \times \Hom(c,c_n).\]
+		For a more general necklace of shape \(\Delta^{m_1}\vee \dots \vee \Delta^{m_k},\) it is the same, but omitting the 	appropriate \(\Delta^1\) terms.
+	\end{proof}
+
+	These propositions give us what we need to prove the aforementioned reduction:
+
+	\begin{prop} For any \(\C\)-cellular set \(X\), we have natural isomorphisms of \(\spsh\)-enriched categories, \(E_{X,\bullet}	\cong E_X \cong \mathfrak{C}(X).\)
+	\end{prop}
+	\begin{proof} We begin by naming the natural inclusion
+		\[\iota_c:\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}\hookrightarrow \overcat{\Nec}{X_{x,y}}\]
+		Then we compute:
+		\begin{align*}
+			E_{X,c}(x,y) & = \colim_{\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}} \mathcal{E}_{X,c}(x,y)\\
+			             & = \Lan_{\pt} \mathcal{E}_{X,c}(x,y)
+			\intertext{where \(\pt\) denotes the terminal functor}
+			             & =\Lan_{\pt \circ \iota_c} \mathcal{E}_{X,c}(x,y)\\
+			             & \cong\Lan_{\pt}\left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y)\right)\\
+			             & = \colim_{\overcat{\Nec}{X_{x,y}}} \left(\Lan_{\iota_c} \mathcal{E}_{X,c}(x,y) \right),
+			\intertext{but by the formula for pointwise Left Kan extensions,}
+			             & \cong \colim_{\overcat{\Nec}{X_{x,y}}} \left(\colim_{\overcat{\Nec^\mathbf{sp}_c}{T}}\mathcal{E}_{T,c}	(\alpha,\omega)\right) \\
+			             & = \colim_{\overcat{\Nec}{X_{x,y}}} \mathfrak{C}(T)(\alpha,\omega)_c\\
+			             & = {E_X(x, y)}_c\\
+			             & \cong {\mathfrak{C}(X)(x,y)}_c,
+		\end{align*}
+		which proves the proposition.
+	\end{proof}
+
+	\section{Homotopical models for \(\mathfrak{C}\)}
+	In their paper \cite{ds1}, Dugger and Spivak make use of another model for \(\mathfrak{C}_\Delta\), which they call \	(\mathfrak{C}^\Nec\), but which we will denote by \(\mathfrak{C}_\Delta^\Nec\).  They show that this functor is related by a 	zig-zag of weak equivalences to \(\mathfrak{C}_\Delta\).  Although it is not a left-adjoint, it is highly computable and easy 	to understand because its mapping spaces are always just the nerves of ordinary categories.
+
+	We will define a version of \(\mathfrak{C}^\Nec\) for \(\Theta[\C]\)-sets and show that it too is related by a zig-zag of 	natural weak equivalences of \(\Psh_\Delta\)-enriched categories to \(\mathfrak{C}\). Following Dugger and Spivak, we also 	construct a third model \(\mathfrak{C}^{\operatorname{hoc}}\) modeled by taking the homotopy-colimit instead of the ordinary 	colimit that we showed defines \(\mathcal{C}\).
+
+	\begin{defn}
+		The \emph{necklace realization} \(\mathfrak{C}^\Nec(X)\) of a \(\C\)-cellular set \(X\) is defined to be the \(\spsh\)	-enriched category whose set of objects is the set of vertices of \(X\) and whose mapping objects are simplicial 	presheaves on \(\C\) defined by the rule:
+		\[c\mapsto \mathfrak{C}^\Nec(x,y)_c=N(\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}}).\]
+		As usual, the composition \[\mathfrak{C}^\Nec(X)(x,y)\times \mathfrak{C}^\Nec(X)(y,z)\to \mathfrak{C}^\Nec(X)(x,z)\] is 	obtained by concatenation of uniform necklaces.
+
+		The \emph{homotopy colimit realization} is defined similarly to the ordinary \(\mathfrak{C}\), but instead of an using an 	ordinary colimit, we define \[\mathfrak{C}^\Hoc(X)(x,y)_c=\hocolim\mathcal{E}_{X,c}(x,y).\]
+	\end{defn}
+
+	Dugger and Spivak use a very specific model of the homotopy colimit of a diagram in simplicial sets, and it works perfectly 	here as well.  By \cite{ds1}*{Remark 5.1}, we note that the homotopy colimit of a diagram \(F:D\to \psh{\Delta}\) can be 	modeled as the diagonal simplicial set of the bisimplicial set whose \(k,\ell\) simplices are given by pairs \[(\sigma:[n]\to 	D; x \in F(\sigma(0))_\ell).\]  Using this model we can see that the nerve of a category is isomorphic to this model of the 	homotopy colimit of the constant diagram at \(\Delta^0\).
+
+	In the case of \(\mathfrak{C}^\Hoc\), we can see immediately that there is a unique natural transformation \[\mathcal{E}_{X,c}	(x,y)\to \pt,\] and this induces a map on homotopy colimits.  Moreover, since \(\mathcal{E}_{X,c}(x,y)(T)=\mathfrak{C}_\Delta	(\pi(T))(\alpha,\omega)\) and since \(\pi(T)\) is a simplicial necklace,  \(\mathfrak{C}_\Delta(\pi(T))(\alpha,\omega)\) is 	weakly contractible. Therefore, the induced map on homotopy-colimits is a weak equivalence of simplicial sets.  This shows 	that the natural map \[\mathfrak{C}^\Hoc \to \mathfrak{C}^\Nec\] is a weak equivalence.
+
+	Then we need to show that \(E_{X,c}\) is a homotopy colimit:
+	\begin{thm}\label{necthm}
+		The natural map \[\mathfrak{C}^\Hoc_c \to \mathfrak{C}_c\] is a pointwise weak equivalence.
+	\end{thm}
+	\begin{proof}
+		See \cite{ds1}*{4.4, 4.10, 5.2}.  Their proof works exactly the same way as in our case.  What they show is that the \	(\ell^\mathrm{th}\) row of the bisimplicial set of pairs 
+		\[(\sigma:[n]\to \overcat{\Nec_c^\mathbf{sp}}{X_{x,y}}; \zeta \in \mathfrak{C}_\Delta(\pi\sigma(0))_\ell)\]
+		is homotopy-discrete, which means that the homotopy and ordinary colimit agree.  Our indexing category is just a disjoint 	union of copies of their indexing category, so if theirs is homotopy-discrete, so is ours.
+	\end{proof}
+\end{comment}
+
+\begin{comment}
+	\section{Enriched gadgets}
+	The general theory of gadgets developed in \cite{ds1} is difficult to adapt to the enriched setting, and we give a 	less-than-ideal generalization in the sequel:
+
+	\begin{defn}
+		A \emph{gadget} of rank \(n\) is a functor \[G: \C \to \cellset_{\ast,\ast}\] such that there exists a \(c\)-indexed 	simplicial presheaf \(S_G^\bullet\) and a natural zig-zag of weak homotopy equivalences of simplicial presheaves \	[\mathfrak{C}(G(c))(\alpha,\omega) \xleftarrow{\sim} S_G^c \xrightarrow{\sim} c^n\] for all \(c\in \C\) (where \(c^n\) 	denotes the \(n^\mathrm{th}\) Cartesian power of the representable), where naturality implies that for any \(f:c\to d\) 	in \(\C\), the diagram
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em,
+				column sep=3em]
+				{
+				\mathfrak{C}(G(c))(\alpha,\omega) & S_G^c & c^n\\
+				\mathfrak{C}(G(d))(\alpha,\omega) & S_G^d & d^n\\
+				};
+				\path[->]
+				(b-1-2) edge (b-1-1)
+				edge (b-1-3)
+				edge node[auto,swap]{\(\scriptstyle{S^f_G}\)} (b-2-2)
+				(b-1-1) edge node[auto,swap]{\(\scriptstyle{\mathfrak{C}(G(f))(\alpha,\omega)} \)} (b-2-1)
+				(b-2-2) edge (b-2-1)
+				(b-2-2) edge (b-2-3)
+				(b-1-3) edge node[auto,swap]{\(\scriptstyle{f^n}\)} (b-2-3);
+			\end{tikzpicture}.
+		\end{center}
+		commutes.
+	\end{defn}
+
+	\begin{rem}
+		We can see from the definition that every simplicial necklace \(T\) defines a gadget sending \(c\) in \(\C\) to the 	uniform necklace \(T\{c\}\) of type \(c\).  In what follows, by abuse of notation, we will use \(T\) to denote both the 	underlying simplicial necklace as well as this gadget.
+	\end{rem}
+
+	Unlike in the simplicial case, we have seen that we cannot simply get away with looking at full subcategories, so we have to 	be careful about morphisms.
+
+	\begin{defn}
+		Let \(T\) be a simplicial necklace.  Then for a gadget \(G\) of rank \(n\), we define a \emph{special morphism} \(f:T\to 	G\) to be a natural transformation such that for each \(c\) in \(\C\), the image of the induced map \[\mathfrak{C}_\Delta	(\pi(T))(\alpha,\omega) \to \mathfrak{C}(G)(\alpha,\omega)_c\] lands in the connected component corresponding to the \	(n^\mathrm{th}\) diagonal \((\id_c)^n\).
+
+		More generally, given a pair of gadgets \(G,G^\prime\), we define a \emph{special morphism} \(\phi:G\to G^\prime\) to be 	a natural transformation such that given any simplicial necklace \(T\) and any special morphism \(f:T\to G\), the induced 	map \(\phi\circ f:T\to G^\prime\) is special.
+	\end{defn}
+
+	\begin{rem}
+		If \(T\) and \(T^\prime\) are two simplicial necklaces, the component at \(c\) of a special morphism \(T\to T^\prime\) is 	precisely a special map between uniform necklaces of type \(c\).
+	\end{rem}
+
+	\begin{defn}
+		We define \emph{a category of gadgets} \(\mathcal{G}\) to be a subcategory of the category of all gadgets and special 	maps containing all necklaces and all special morphisms \(T\to G\) where \(T\) is a necklace and \(G\) is in \(\mathcal{G}	\).  We say that the category of gadgets is \emph{closed under wedges} if it is closed under concatenation of gadgets.
+
+		We define \(\mathcal{G}_c\) to be the image of \(\mathcal{G}\) under evaluation at \(c\in \C\).
+	\end{defn}
+
+	\begin{defn}
+		Given a \(\C\)-cellular set \(X\), two vertices \(x,y\) in \(X_0\) and a category of gadgets \(\mathcal{G}\), we define a 	simplicial presheaf on \(\C\) by the formula \[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_c\defeq N\overcat{\mathcal{G}_c}{X_{x,y}	}.\]
+
+		When \(\mathcal{G}\) is closed under wedges, we can define the \(\spsh\)-enriched category \(\mathfrak{C}^{\mathcal{G}}(X)	\) to be the category whose objects are the vertices of \(X\) and whose Hom-objects are
+		\[\mathfrak{C}^{\mathcal{G}}(X)(x,y)_\cdot.\]
+		This defines an enriched category by taking the composition operation to be concatenation of gadgets, which works since \	(\mathcal{G}\) is closed under wedges.
+	\end{defn}
+	\begin{prop}\label{gadgetlemma}
+		Given a \(\C\)-cellular set \(X\) and two vertices \(x,y\) of \(X\) and a category of gadgets \(\mathcal{G}\) the map \	[N\overcat{\Nec^\mathbf{sp}_c}{X_{x,y}} \hookrightarrow N\overcat{\mathcal{G}_c}{X_{x,y}}\] is a weak homotopy 	equivalence.
+	\end{prop}
+	\begin{proof}
+		By Quillen's theorem A, it suffices to look at the overcategories \(\overcat{\Nec^\mathbf{sp}_c}{G(c)}\) along the 	inclusion \(\Nec^\mathbf{sp}_c\hookrightarrow \mathcal{G}_c\) for all \(G\) in \(\mathcal{G}\) and show that their nerves 	are contractible, but these overcategories correspond on-the-nose to the subcategories classifying the diagonal component 	of \(\mathfrak{C}^\Nec(G)(\alpha,\omega)\), which is contractible because \(G\) is a gadget.
+	\end{proof}
+	\begin{cor}
+		The constructions \(\mathfrak{C}^\Nec\) and \(\mathfrak{C}^\mathcal{G}\) are naturally weakly equivalent when \(\mathcal	{G}\) is closed under wedges.
+	\end{cor}
+	\begin{proof}
+		The map between the two constructions is the identity on objects and induces Hom-wise weak equivalences of simplicial 	presheaves.
+	\end{proof}
+\end{comment}
+
+\begin{comment}
+	\begin{cor}
+		Each of the functors \(C^n_\mathrm{cyl}(\bullet), C^n_R(\bullet), C^n_L(\bullet), C^n_E(\bullet)\) defines a rank-\(1\) 	gadget for each \(n\geq 0\).
+	\end{cor}
+	\begin{proof}
+		Since \(\mathfrak{C}\) is left-Quillen, it preserves weak equivalences between cofibrant objects in \(\cellset\).  It 	follows that since for each \(n\geq 0\) we have that \(C^n_{-}(\bullet)\to [1](\bullet)\) is a weak equivalence, then
+		\[\mathfrak{C}(C^n_{-}(\bullet))(\alpha,\omega) \to \mathfrak{C}([1](\bullet))(\alpha,\omega)=\bullet\]
+		is a weak equivalence, so we have the natural zig-zag we require.
+	\end{proof}
+\end{comment}
+
+\begin{comment}
+	We define a slightly modified version for special maps.
+
+	\begin{defn}
+		If \(G\) is a gadget, let \(\mathcal{G}\) denote the category of all gadgets with special maps between them.  Then we 	define the \emph{special mapping object} to be \[\Map^\mathbf{sp}_G(\alpha,\omega)_c=\mathcal{G}(C^\bullet_R(c),G(c)).\]
+	\end{defn}
+
+	\begin{prop}\label{goodgadgets}
+		Given a necklace gadget \(T\), the special mapping object \[\Map^\mathbf{sp}_T(\alpha,\omega)\] is contractible.
+	\end{prop}
+	\begin{proof}
+		Since \(T(c)\hookrightarrow \Delta[T](c)\) is a horizontal inner-anodyne and \(\Delta[T](c)\) is fibrant, we can compute \	(\Map^\mathbf{sp}_{T(c)}(\alpha,\omega)\) by the formula 
+		\[\Map^\mathbf{sp}_T(\alpha,\omega)_{k,c} = \mathcal{G}(C_R^k(c),\Delta[T](c))\]
+		but every map \(C^k_R(c)\to \Delta[T](c)\) factors through the map \(C^n_R(c)\to [1](c),\) and the only special map \([1]	(c)\to \Delta[T](c)\) is the one that maps \(c\) into \(c\times \dots \times c\) via the diagonal.
+	\end{proof}
+
+	\section{Comparing \(\mathfrak{C}(X)(x,y)\) with \(\Map_X(x,y)\)}
+
+	We begin by defining a special category of gadgets \(\mathcal{Y}\), which is the full subcategory of the category of all 	gadgets whose objects are those gadgets \(G\) such that \(\Map_G(\alpha,\omega)\) is contractible.
+
+	In particular, by Proposition \ref{goodgadgets}, we see that every necklace gadget belongs to this category, so it is indeed 	a category of gadgets.  We define a full subcategory \(\mathcal{Y}_{\mathrm{f}}\subseteq \mathcal{Y}\) to be the full 	subcategory of \(\mathcal{Y}\) spanned by the gadgets \(G\) such that \(G(c)\) is fibrant for all \(c\in \Ob \C\).
+
+	Let
+	\[C^\bullet(c) \xrightarrow{\sim} R^\bullet(c)\xrightarrow{\sim} [1](c)\]
+	be a factorization into a Reedy trivial cofibration followed by a fibration, which is also a Reedy trivial fibration since we 	are factoring a Reedy equivalence.
+
+	The following proposition follows \cite{ds2}*{5.2} almost exactly word for word.
+
+	\begin{prop} 
+	  If \(X\) is formal \(\C\)-quasicategory,  and \(x,y\) are two vertices of \(x\), there is a commutative diagram
+		\begin{center}
+			\begin{tikzpicture}
+				\matrix (b) [matrix of math nodes, row sep=3em, column sep=3em]
+				{
+				\mathfrak{C}^\Nec(X)(x,y)_c & \mathfrak{C}^\mathcal{Y}(X)(x,y)_c & \mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)	_c \\
+				& N\overcat{\Delta}{\cellset_{\ast,\ast}(C^\bullet(c),X_{x,y})} & N\overcat{\Delta}{\cellset_{\ast,\ast}(R^\bullet	(c),X_{x,y})} \\
+				};
+				\path[->]
+				(b-1-1) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-2)
+				(b-1-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)}(b-1-2)
+				(b-2-3) edge node[auto,swap]{\(\scriptstyle{\sim}\)}(b-1-3)
+				edge node[auto]{\(\scriptstyle{\sim}\)} (b-2-2)
+				(b-2-2) edge node[auto]{\(\scriptstyle{\sim}\)} (b-1-2);
+			\end{tikzpicture}.
+		\end{center}
+		in which all of the maps are weak equivalences.
+	\end{prop}
+	\begin{proof}
+		First, we already know that the map
+		\[\mathfrak{C}^\Nec(X)(x,y)_c \to \mathfrak{C}^\mathcal{Y}(X)(x,y)_c\]
+		is a weak equivalence by Proposition \ref{gadgetlemma}.  The map
+		\[\mathfrak{C}^{\mathcal{Y}_\mathrm{f}}(X)(x,y)_c \hookrightarrow \mathfrak{C}^{\mathcal{Y}}(X)(x,y)_c\]
+		is the image under the nerve of the functor
+		\[j:\overcat{\mathcal{Y}_f(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}(c)}{X_{x,y}}.\]
+		We will show that it is a weak homotopy equivalence as follows: Let \(Z\mapsto \mathscr{F}(Z)\) denote a functorial 	fibrant replacement of \(Z\) in the horizontal Joyal model structure. Then since \(X\) is fibrant, there exists a map \	(\mathscr{F}(X)\to X\) retracting the inclusion \(X\hookrightarrow \mathscr{F}(X)\).  Using this fact, we define a functor
+		\[F:\overcat{\mathcal{Y}(c)}{X_{x,y}} \hookrightarrow \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\]
+		sending \[Y(c)\to X_{x,y} \mapsto \mathscr{F}Y(c)\to \mathscr{F}(X) \to X.\]
+		This works because
+		\[\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\to \Map^\mathbf{sp}_{\mathscr{F}(Y(c))}(\alpha,\omega)\]
+		and
+		\[\mathfrak{C}(Y(c))(\alpha,\omega)\to \mathfrak{C}(\mathscr{F}(Y(c)))(\alpha,\omega)\]
+		are weak equivalences, in the first instance because the formation of the special mapping space was homotopy-invariant, 	and in the second instance because \(\mathfrak{C}\) is left-Quillen. Then we see that \(Fj\) and \(jF\) both admit 	natural transformations back to the appropriate identity functors, which proves that they induce a weak homotopy 	equivalence on nerves.
+
+		The righthand vertical map comes from applying the nerve to the functor
+		\[f:\overcat{\Delta}{\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})} \to \overcat{\mathcal{Y}_f(c)}{X_{x,y}}\]
+		defined by the rule
+		\[([n],R^n(c) \to X_{x,y}) \mapsto (R^n(c), R^n(c)\to X_{x,y}).\]
+		To show that this functor induces a weak equivalence on nerves, we apply Quillen's theorem A.  Notice that for an object \	(y=(Y(c),Y(c)\to X_{x,y})\), the comma category \(\overcat{f}{y}\) is precisely
+		\[\overcat{\Delta}{\mathcal{G}(c)(R^\bullet(c),Y(c))}=\overcat{\Delta}{\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)}.\]
+		But by \cite{ds2}, the nerve of the category of elements of a simplicial set is weakly equivalent to that simplicial set, 	and since \(\Map^\mathbf{sp}_{Y(c)}(\alpha,\omega)\) was assumed to be contractible, the result follows.
+
+		To see that the bottom map is an equivalence, it follows simply because \(C^\bullet(c) \to R^\bullet(c)\) is a Reedy 	trivial cofibration, so
+		\[\cellset_{\ast,\ast}(R^\bullet(c),X_{x,y})  \to \cellset_{\ast,\ast}(C^\bullet(c),X_{x,y})\]
+		is a weak equivalence.  Therefore, again by \cite{ds2}, the nerve of the category of elements of simplicial sets 	preserves weak equivalences.
+	\end{proof}
+\end{comment}
+
+\begin{comment}
+    Then by \ref{square2}, we see that 
+    \[\square^\lrcorner_{n,m}(h_i,\mathbf{f},\mathbf{g}) \cong \square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner)	 	\circ \tau(\mathbf{f},\mathbf{g})).\]
+    But the value of the argument in position \(1\leq j \leq r_i\) is 
+    \[P_j^\lrcorner\circ \tau_j(\mathbf{f},\mathbf{g})=f_{\alpha_i(j-1)+1}\times^\lrcorner \dots \times^\lrcorner f_{\alpha_i(j)} 		\times^\lrcorner g_{\beta_i(j-1)+1}\times \dots^\lrcorner \times^\lrcorner g_{\beta_i(j)},\]
+    which belongs to \(\operatorname{Cell}(\mathscr{B})\), where \(\mathscr{B}\) is the set of boundary inclusions in \(\psh{\C}\).  So we 	see 	that
+    \[\square^\lrcorner_{r_i}(h^\prime_i, (P_1^\lrcorner,\dots, P_{r_i}^\lrcorner \circ \tau)(\mathbf{f},\mathbf{g}))\] is in 
+    \[\{\square^\lrcorner_{r_i}(\mathscr{L}, \operatorname{Cell}(\mathscr{B}), \dots, \operatorname{Cell}(\mathscr{B}))\},\]
+    where \(\mathscr{L}\) is the set of inner horn inclusions, which by \ref{cornertensorcell} is a subset of 
+    \[\operatorname{Cell}(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}),\]
+    which belongs to \(\operatorname{Cell}(\mathscr{J}),\) since \(\{\square^\lrcorner_{r_i}(\mathscr{L},\mathscr{B},\dots,\mathscr{B})\}		\subseteq \mathscr{J}\).
+\end{comment}
+
+\begin{comment}
+	\subsection{The indexed join}
+	As with simplicial sets, the join will naturally exist in the augmented category, so we introduce the following definition:
+	\begin{defn}
+	Let \(\Theta[\C]_+\) denote the category of augmented \(\C\)-cells, which can be obtained by adjoining a formal initial object to \(\Theta[\C]\) denoted by \([-1]\). The category of presheaves on this category, denoted by \(\cellset_+\) can be thought of as the category consisting of triples \(X\xrightarrow{\phi} E\), consisting of a \(\C\)-cellular set \(X\), a discrete \(\C\)-cellular set \(E\),  and a \(\C\)-cellular map \(\phi:X\to E\).  There is an obvious inclusion functor \(\iota: \Theta[\C]\to \Theta[\C]_+\), and this induces a functor \(\iota^\ast:\cellset_+ \to \cellset\) defined by the rule \(X\xrightarrow{\phi} E\mapsto X\).  The left-adjoint \(\iota_!\) sends a \(\C\)-cellular set \(X\) to the triple \(X\mapsto X \xrightarrow{p_X} \pi_0 X\), and the right adjoint \(\iota_\ast\) sends the \(\C\)-cellular set \(X\) to the terminal map \(X\mapsto X\xrightarrow{t_x} [0]\).  It is easy to see  from this description that \(\iota^\ast\) preserves all colimits and that \(\iota_\ast\) preserves connected colimits.  
+	\end{defn}
+	We then introduce the following functors
+	\begin{defn}
+	We define the \emph{indexed sum} 
+	\[\star: \Theta[\C]_+ \times \C \times \Theta[\C]_+\to \Theta[\C]_+\]
+	be the functor defined by the formula 
+	\[[n](c_1,\dots,c_n)\join_c [m](c^\prime_1,\dots,c^\prime_m) \defeq [n+1+m](c_1,\dots,c_n,c, c^\prime_1,\dots,c^\prime_m).\]
+	This functor extends by Day convolution to a functor, the augmented indexed join,
+	\[\star:\cellset_+ \times \psh{\C} \times \cellset_+ \to \cellset_+\]
+	defined by the coend formula
+	\[A \operatorname*{\odot}_X B ([z]) \defeq \int^{[x],c,[y]} \Theta[\C]([z],[x]\join_c [y]) \times A([x])\times \iota^\ast \left(V[1](X)\right)([1](c)) \times B([y]).\] 
+	We then define the \emph{indexed join}
+	\[\star:\cellset \times \psh{\C} \times \cellset \to \cellset\]
+	by the formula
+	\[A\join_X B \defeq \iota_\ast\left(\iota^\ast(A) \operatorname*{\odot}_X \iota^\ast(B)\right).\]
+	\end{defn}
+	\begin{note}
+	When \(X=\ast\) is the terminal object of \(\psh{\C}\), we simply denote the join relative to \(X\) by \(A\star B\). 
+	\end{note}
+
+	\begin{lemma}
+	The indexed join preserves connected colimits in each argument.
+	\end{lemma}
+	\begin{proof}
+	Since \(\iota_\ast\) preserves connected colimits, and \(\iota^\ast\) preserves all colimits, it suffices to show that \(A \operatorname*{\odot}_X B\) preserves connected colimits argument-by-argument. It is clear that it preserves all colimits in \(A\) and \(B\), and in the coend formula, we see that \(V[1](-)=\square_1(\id_{\Delta^1},-)\) preserves connected colimits in its argument.  Therefore, the coend preserves all colimits preserved in each of its factors since colimits in sets are universal.  
+	\end{proof}
+
+	\begin{defn}
+	The set of \emph{horizontal left horns} is given by the set of left cones over boundary maps \[[0]\star \square_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n}).\]  Similarly, the set of \emph{horizontal right horn inclusions} is given by the set of right cones under boundary maps, \[\square_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\star [0].\]
+	\end{defn}
+
+	By \ref{cornertensorfunctoriality}, since this functor preserves colimits argument-by-argument, we have an extension to a functor
+	\[\cjoin:\cellset^{[1]} \times {\psh{\C}}^{[1]} \times \cellset^{[1]} \to \cellset^{[1]},\]
+	and we will demonstrate that this functor has nice combinatorial properties:
+
+	\begin{lemma}
+	Given any family of maps \[(f_i:A_i\to B_i)_{i=1}^3\] in \(\psh{C}\) and any family of maps \[(g_i:X_i\to Y_i)_{i=0}^3\] in \(\cellset\), all ways to parenthesize 
+	\[g_0 \cjoin_{f_1} g_1 \cjoin_{f_2} g_2 \cjoin_{f_3} g_3\]
+	are coherently isomorphic.
+	\end{lemma}
+	\begin{proof}
+	By the functoriality of the corner tensor, this will follow by showing that the indexed join 
+	\end{proof}
+	\begin{cor}
+	Let \(\delta^0:\varnothing \to [0]\) denote the boundary map of the \(0\)-cell.  Then every boundary map 
+	\[\delta = \square_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\] can be factored by corner joins as
+	\[\delta^0\cjoin_{\delta^{c_1}} \delta^0 \cjoin_{\delta^{c_2}} \dots \cjoin_{\delta^{c_{n-1}}} \delta^0 \cjoin_{\delta^{c_n}} \delta^0.\]
+	\end{cor}
+	\begin{lemma}
+	Given two boundary inclusions \[\delta =\square_n(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) \qquad \text{and}\qquad \delta^\prime = \square_m(\delta^m,\delta^{d_1},\dots,\delta^{d_m})\] and a boundary inclusion \(\delta^c:\partial c\hookrightarrow c\), we have that the corner join \[\delta \cjoin_{\delta^c} \delta^\prime = \square_{n+1+m}(\delta^{n+1+m}, \delta^{c_1},\dots,\delta^{c_n},\delta^{c},\delta^{d_1},\dots,\delta^{d_m})\]
+	is a boundary inclusion.
+	\end{lemma}
+	\begin{proof}
+	\end{proof}
+	\begin{lemma}
+	If \(f:A\to A^\prime\), \(g:B\to B^\prime\) are maps, and \(\delta^c:\partial c\hookrightarrow  c\) is a boundary inclusion in \(\psh{\C}\), then the following hold:
+	\begin{itemize}
+		\item If \(f\) is horizontal right or inner horn inclusion, and \(g\) is a boundary inclusion, then \(f\cjoin_{\delta^c} g\) is a horizontal inner horn inclusion.
+		\item If \(g\) is horizontal left or inner horn inclusion, and \(f\) is a boundary inclusion, then \(f\cjoin_{\delta^c} g\) is horizontal inner anodyne.
+		\item If \(f\) is a horizontal left horn inclusion, and \(g\) is a boundary inclusion, then \(f\cjoin_{\delta^c} g\) is a horizontal left horn inclusion.
+		\item If \(g\) is a horizontal right horn inclusion, and \(f\) is a boundary inclusion, then \(f\cjoin_{\delta^c} g\) is a horizontal right horn inclusion.
+	\end{itemize}
+	\end{lemma}
+	\begin{proof}
+	\end{proof}
+	In this section, we give a recognition theorem for horizontal Joyal fibrations between formal \(\C\)-quasicategories.  In particular, we prove that a morphism between formal \(\C\)-quasicategories is a fibration for the horizontal Joyal model structure if and only if it is a horizontal inner fibration and has the right lifting property with respect to the single morphism \(\{0\}\hookrightarrow E^1\). In the course of the proof, we will also demonstrate that the formal \(\C\)-quasicategories are precisely the fibrant objects of the horizontal Joyal model structure.  We begin with a definition:
+
+	\begin{defn}
+	For any representable \([x]=[n](c_1,\dots,c_n)\) with \(c_1=\ast\) (respectively with \(c_n=\ast\)), we define the \emph{horizontal left horn inclusion} (resp. \emph{horizontal right horn inclusion}) to be the map \[\square^\lrcorner_n(\lambda^n_0,\delta^{c_1}, \dots, \delta^{c_n})\] and respectively \[\square^\lrcorner_n(\lambda^n_n,\delta^{c_1}, \dots, \delta^{c_n}).\]
+
+	We call the domain of such a map the \emph{left horn} (resp. \emph{right horn}) and denote it by \(\Lambda^n_L[x]\) (respectively \(\Lambda^n_R[x]\)).
+	\end{defn}
+
+	This definition is a bit trickier than the usual definition of left and right horn, but it is sufficient for our purposes. The reason why we require the condition \(c_1=\ast\) (resp. \(c_n=\ast\)) is to ensure that we only remove faces of codimension \(1\) from the horn.
+
+	\begin{defn}
+	Let \(X\) be a \(\C\)-cellular set, and let \(f:\Lambda^n_L[x]\to X\) be a map from a left horn.  Then we say that \(f\) is a \emph{special horizontal left horn} if the restriction of \(f\) along the inclusion \(\mathscr{H}\Delta^1=[1](c_1)\hookrightarrow [x]\) factors through \(E^1\), and dually for right horns.
+
+	We say that a map \(X\to Y\) is \emph{special anodyne} if it is the transfinite composition of pushouts along special horn inclusions and horizontal inner anodynes.
+	\end{defn}
+
+	In what follows, fix the notation \(e:\{0\}\hookrightarrow E^1\) to be the obvious inclusion of the vertex.  The proof directly makes use of the filtration of \cite{ds2}{Proposition A.4}.
+
+	\begin{prop} Given any representable \(\C\)-cellular set \([x]=[r](c_1,\dots,c_r)\) such that \(n>0\), the map
+	\[e \times^\lrcorner \square^\lrcorner_r(\delta^r,\delta^{c_1},\dots,\delta^{c_r})\]
+	is special anodyne.
+	\end{prop}
+	\begin{proof}
+	Let \([x]=[r](c_1,\dots,c_n)\) be a representable \(\C\)-cellular set.  Then we begin by noting that \(E^1\times [x]\) is sober, since \(E^1\) is sober, representables are sober, and products of sober presheaves are sober. In particular, \(E^1\times [x]\) is a labeled simplicial set lying over \(E^1\times \Delta^n\).  We define the boundary of \([x]\) by \[\partial[x] = \operatorname{dom}\left(\square^\lrcorner_n(\delta^r, \delta^{c_1},\dots, \delta^{c_r})\right),\] that is, the domain of the corner-intertwiner.  Then the domain of the corner product can be written as \[M_0=\partial[x] \times E^1 \cup [x]\times \{0\}.\]  Let \(U_i[t]\) be the pullback of \(E^1\times [x]\) along the inclusion \(Y_i[t]\to E^1\times \Delta^r\) from \cite{ds2}*{Proposition A.4}.  Then set \[M_i[t]=U_i[t]\cup \left(E^1 \times \bigcup_{i=1}^n V[r](c_1,\dots,\partial c_i, \dots, c_n) \right).\] 
+	
+	Suppose \(0<i<r\).  From the proof of \cite{ds1}*{Proposition A.4}, we know that given any nondegenerate simplex of \(Y_i[t+1] - Y_i[t]\), its intersection with \(Y_i[t]\) is an inner horn \(\Lambda^{t+1}_{k}\), so if we let \([z]=[t+1](z_1,\dots,z_{t+1})\) be the pullback of \([t+1]\to Y_i[t+1]\) to \(E^1\times [x]\), we see that its intersection with \(U_i[t]\) is exactly \(V_{\Lambda^{t+1}_k[z]}\). Therefore, its intersection with \(M_i[t]\) is exactly the domain of \[\square^\lrcorner_{t+1}(\lambda^{t+1}_k, \delta^{c_1},\dots, \delta^{c_{t+1}}).\]
+
+	When \(i=0\) (resp. \(i=r\)), the horn attachments of the filtration are special left (resp. special right) horn inclusions, and the same proof works.
+
+	Therefore, each of these attachments to \(M_i[t]\) is either a horizontal inner horn attachment or a special outer horn attachment, which proves the proposition, since \(M_{r+1}=E^1\times \) 
+	\end{proof}
+
+	With this messy part out of the way, it suffices to show that every horizontal inner fibration between formal \(\C\)-quasicategories has the right lifting property with respect to special inner horn inclusions.
+\end{comment}
