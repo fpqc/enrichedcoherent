@@ -49,14 +49,17 @@
 \newtheorem{lemma}[equation]{Lemma}
 \newtheorem{claim}[equation]{Claim}
 \newtheorem{conjecture}[equation]{Conjecture}
-\newtheorem{note}[equation]{Note} 
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[equation]{Definition}
+\newtheorem{note}[equation]{Note}
 
 \theoremstyle{remark}
-\newtheorem{rem}[equation]{Remark}      
+\newtheorem{rem}[equation]{Remark}     
 \newtheorem{example}[equation]{Example}
 \newtheorem{ques}[equation]{Question}
 \newtheorem{obs}[equation]{Observation}
-\newtheorem{defn}[equation]{Definition}
 \newtheorem{exer}[equation]{Exercise}
 \newtheorem{warning}[equation]{Warning}
 \renewcommand{\therem}{}
@@ -215,13 +218,19 @@
 
 %%%%%
 \section*{Introduction}
-In his thesis, David Oury introduced machinery to give a novel proof that his constructed model structure on \(\Theta_2\)-sets is Cartesian-monoidal closed. Charles Rezk constructed a model structure on \(\Theta_2\)-spaces that is known to be Quillen biequivalent to Oury's model structure.  However,  Rezk's construction allows for enrichment in a larger class of model categories, namely Cartesian-closed model categories whose underlying categories are simplicial presheaves on a small category \(\C\) satisfying some tame restrictions.
+\label{sec:intro}
+\addcontentsline{toc}{section}{\nameref{sec:intro}}
+In his thesis \cite{oury}, David Oury introduced machinery to give a novel proof that his constructed model structure on \(\Theta_2\)-sets is Cartesian-monoidal closed. Around the same time, in \cite{rezk-theta-n-spaces}, Charles Rezk constructed a model structure on \(\Theta_n\)-spaces, that, in the case \(n=2\), was known by folklore to be Quillen bi-equivalent\footnote{Given two model categories \(\mathcal{M}\) and \(\mathcal{N}\) we say that they are \emph{Quillen bi-equivalent} to mean that there exists a pair of \emph{left} Quillen equivalences \(\mathcal{M}\to \mathcal{N}\) and \(\mathcal{N}\to \mathcal{M}\) that are mutually quasi-inverse on homotopy categories. This is somewhat nonstandard, but we know of no other name to refer to this strong condition} to Oury's model structure.  However, Rezk's construction allows us to model weak enrichment in a much larger class of model categories, namely Cartesian-closed model categories whose underlying categories are simplicial presheaves on a small category \(\C\) satisfying some tame restrictions.  
 
-Bergner and Rezk also showed by means of a zig-zag of Quillen equivalences that \(\Theta_n\)-spaces model the same homotopy theory as \(\Psh_\Delta(\Theta_{n-1})\)-enriched categories.  Because the equivalence is indirect, however, many of the ideas from Lurie's work on \((\infty,1)\)-categories cannot be adapted in a straightforward manner.  In order to rectify this, we construct a generalized version of the coherent realization and nerve using \(\Theta_n\)-sets (or more generally \(\Theta[\C]\)-sets), and we demonstrate that this adjunction is a Quillen equivalence using an enriched version of Dugger and Spivak's calculus of necklaces. 
+Bergner and Rezk, in a \cite{bergner-rezk-1} and \cite{bergner-rezk-2}, also showed by means of a zig-zag of Quillen equivalences that the category of \(\Theta_n\)-spaces equipped with Rezk's model structure models the same homotopy theory as the model category of \(\Psh_\Delta(\Theta_{n-1})\)-enriched categories, equipped with the Bergner-Lurie model structure for categories enriched in \(\Theta_{n-1}\)-spaces equipped with Rezk's model structure.  Because the equivalence is indirect, however, many of the ideas from Lurie's work on \((\infty,1)\)-categories cannot be adapted in a straightforward manner, specifically his construction of the Yoneda embedding and his proof of Yoneda's lemma in \cite{htt}.  In order to rectify this problem, we split the problem up into two parts: 
 
-In fact, our result is strictly stronger than the result of Bergner and Rezk because it allows us to account at the very least for the new case \(\Theta=\Theta_\omega\), which is regular Cartesian Reedy by \cite{berger-iterated-wreath}, which the Bergner-Rezk approach could not handle, since one of the categories appearing in the zig-zag (the height-\(n\) analogue of Segal categories) does not make sense for \(\C\neq \Theta_n\) for \(n\) finite. Their approach goes through rigidification results for simplicial algebras of algebraic theories due to Badzioch.
+We first introduce using a novel model structure on \(\Theta_n\)-sets (or more generally \(\Theta[\C]\)-sets for an appropriate \(\C\)) that emerges naturally as a hybrid of Oury's model structure on \(\Theta_2\)-sets and Rezk's model structure on \(\Theta[\C]\)-spaces.  Specifically, we use Oury's machinery to construct a model structure on \(\Theta[\C]\)-sets that models weak enrichment in simplicial presheaves on \(\C\). We then compare this model structure with an intermediate model structure of Rezk, demonstrating they are Quillen bi-equivalent.  As a result of this bi-equivalence, we can later use results of Rezk \cite{rezk-theta-n-spaces} to localize this model structure 'hom-wise' with respect to what Rezk calls a Cartesian presentation on \(\C\), which is again equivalent to Rezk's localized model structure by merit of Cisinski's results on simplicial completion (see Appendix or \cite{cisinski-book}).  Like Rezk's model structure, ours is also Cartesian-monoidal as a model category. Since we prove many of these theorems using machinery developed by Oury in the unpublished portion of his thesis \cite{oury}, we also provide full proofs of all of his relevant results, but in our more general setting.
 
-Our results work in more generality, although unfortunately not in complete generality.  We are forced to impose stringent conditions on \(\C\), but we stop well-short of requiring it to be a model of an algebraic theory. 
+We then construct a version of the coherent realization and nerve adjunction between \(\Theta[\C]\)-sets and categories enriched in simplicial presheaves on \(\C\), which reduce to the classical ones in the case where we take \(\C=\ast\) the terminal category. We then demonstrate that this adjunction is a Quillen equivalence between appropriate model structures using an enhanced version of Dugger and Spivak's calculus of necklaces developed in \cite{ds1} and \cite{ds2}. 
+
+Our direct result is strictly stronger than the result of Bergner and Rezk because it allows us to account at the very least for the new case \(\Theta=\Theta_\omega\), which satisfies all of our constraints on \(\C\) by \cite{berger-iterated-wreath}, which the Bergner-Rezk approach could not handle, since one of the categories appearing in the zig-zag (the height-\(n\) analogue of Segal categories) only makes sense for \(\C=\Theta_n\) for \(n\) finite. Their approach goes through rigidification results for homotopy-coherent simplicial models of algebraic theories due to Badzioch (see \cite{bergner-rezk-2}*{Section 5}). Moreover, all of our Quillen equivalences point in the right direction to apply Lurie's construction of the Yoneda embedding and reproduce his proof Yoneda's lemma in this generalized setting.
+
+The paper is organized into the following chapters:
 
 \subsection*{Formal \(\C\)-quasicategories}
 In the first chapter, we apply a general construction to define what we call \emph{labeled simplicial sets} with respect to a monoidal category \(\mathcal{V}\).  We then specialize to the case where \(\mathcal{V}\) is the Cartesian-monoidal category of presheaves of sets on a small category \(\C\), which we additionally require to be a special kind of Reedy category that axiomatizes a form of the Eilenberg-Zilber shuffle decomposition for products of simplicial sets.  We then define \(\Theta[\C]\) to be the full subcategory of the labeled simplicial sets whose underlying simplicial sets are simplices and whose edges are all labeled by representable presheaves on \(\C\).  
@@ -286,14 +295,36 @@ Finally, we would like to acknowledge Andrea Gagna for spending his time discuss
 
 \section{Formal \(\C\)-quasicategories}
 \subsection{The wreath product with \(\Delta\)}
-In this section, we will consider a slightly more general definition of the wreath product with \(\Delta\), as in Oury's thesis. Segal observed long ago that a monoidal category is classified precisely by a pseudofunctor \(M_\bullet:\Delta^\op\to \Cat\) such that \(M_0=\ast\) is the terminal category and the maps \(M_n \to {(M_1)}^n\) induced by the inclusion of the spine \(Sp[n]\hookrightarrow \Delta^n\) are all isomorphisms.  This brings us to our first definition:
+In this section, we will consider a slightly more general definition of the wreath product with \(\Delta\), as defined in \cite{oury}.  
+
+Segal observed long ago that a monoidal category is classified precisely by a pseudofunctor \(M_\bullet:\Delta^\op\to \Cat\) such that \(M_0=\ast\) is the terminal category and the maps \(M_n \to {(M_1)}^n\) induced by the inclusion of the spine \(Sp[n]\hookrightarrow \Delta^n\) are all equivalences of categories.  
+
+\begin{note}
+	For the sake of readability of this section, we will consider all limits taken in \(\Cat\) to be the appropriate \(2\)-categorical pseudo-limits.  A \(\Cat\)-valued pseudofunctor with \(1\)-categorical domain will consequently be called continuous if it sends limits to pseudo-limits.  With this out of the way, we proceed to our first definition
+\end{note}
 
 \begin{defn}
-	Suppose \(\mathcal{V}\) is a monoidal category.  Then we construct a Grothendieck fibration \[\Delta\int\mathcal{V}\to \Delta\] by applying the Grothendieck construction to the functor \[\mathcal{V}_\bullet:\Delta^\op\to \Cat\] classifying \(\mathcal{V}\). We call the total space of this fibration the \emph{wreath product} of \(\Delta\) with \(\mathcal{V}\).
-
-	Now, notice that since \(\Cat\) is complete, the functor \(\mathcal{V}_\bullet\) extends uniquely along the co-Yoneda embedding to a continuous functor 
-	\[\psh{\mathcal{V}^\op_\bullet}^\op: \psh{\Delta}^\op \to \Cat,\]
-	which is exactly the right Kan extension of \(\mathcal{V}_\bullet\) along the co-Yoneda embedding \(\Delta^\op \hookrightarrow \psh{\Delta}^\op\).  Applying the Grothendieck construction to the functor \(\psh{\mathcal{V}^\op_\bullet}^\op\), we define the Grothendieck fibration \[\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}.\] The total space of this fibration is called the category of \emph{\(\mathcal{V}\)-labeled simplicial sets}.
+	Suppose \(\mathcal{V}\) is a monoidal category.  Then we construct a Grothendieck fibration 
+	\[
+		\Delta\int\mathcal{V}\to \Delta
+	\]
+	by applying the Grothendieck construction to the pseudofunctor
+	\[
+		\mathcal{V}_\bullet:\Delta^\op\to \Cat
+	\]
+	classifying \(\mathcal{V}\). We call the total space of this fibration the \emph{wreath product} of \(\Delta\) with \(\mathcal{V}\).  The objects of \(\Delta\int \mathcal{V}\) can be identified with pairs \([n],(v_1,\dots,v_n),\) where \(v_1,\dots,v_n\) is a tuple of objects of \(\mathcal{V}\).  We will write such an object as \([n](v_1,\dots,v_n)\).
+\end{defn}
+We will also make use of a more elaborate construction from \cite{oury} that extends the wreath product to arbitrary simplicial sets:
+\begin{defn}
+	Notice that since \(\Cat\) is conically complete, the pseudofunctor \(\mathcal{V}_\bullet\) extends essentially uniquely along the co-Yoneda embedding to a continuous pseudofunctor 
+	\[
+		\psh{\mathcal{V}^\op_\bullet}^\op: \psh{\Delta}^\op \to \Cat,
+	\]
+	which is exactly the pseudo-right Kan extension of \(\mathcal{V}_\bullet\) along the co-Yoneda embedding \(\Delta^\op \hookrightarrow \psh{\Delta}^\op\).  Applying the Grothendieck construction to the functor \(\psh{\mathcal{V}^\op_\bullet}^\op\), we define the Grothendieck fibration
+	\[
+		\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}.
+	\]
+	The total space of this fibration is called the category of \emph{\(\mathcal{V}\)-labeled simplicial sets}.
 	
 	%Recall that the \(2\)-pseudofunctor \(\mathbf{CAT}(\Delta^\op, \Cat)(\cdot,\cdot)\) is defined by sending a pair of pseudofunctors \(F_\bullet,G_\bullet\) to the category whose objects are pseudonatural transformations \(F_\bullet\Rightarrow G_\bullet\) and whose morphisms are modifications. If \(G_\bullet\) is a pseudofunctor, we define the functor \[h_{G_\bullet}=\mathbf{CAT}(\Delta^\op, \Cat)(\cdot,G_\bullet):\mathbf{CAT}(\Delta^\op, \Cat)\to \mathbf{CAT}\]
 
@@ -301,7 +332,31 @@ In this section, we will consider a slightly more general definition of the wrea
 
 	%Then by composition, we obtain a functor \[h_{\mathcal{V}_\bullet}\circ \iota_*: \psh{\Delta}^\op \to \mathbf{CAT}.\] Then  to be the Grothendieck construction of \(h_{\mathcal{V}_\bullet}\circ\iota_*\). 
 \end{defn}
-\begin{prop} The pullback of the fibration \[\psh{\Delta}\int V \to \psh{\Delta}\] along the Yoneda embedding \(\Delta\hookrightarrow \psh{\Delta}\) is exactly the fibration \[\Delta\int\mathcal{V}\to \Delta,\] and therefore, the induced map \[\Delta\int\mathcal{V}\hookrightarrow \psh{\Delta}\int\mathcal{V}\] is a fully faithful embedding.
+\begin{note}
+	It will be useful to explicitly compute the value of \(\psh{\mathcal{V}^\op_\bullet}^\op(S)\) for a simplicial set \(S\) in somewhat simpler terms.  First, consider \(\Delta^n\) to be a discrete simplicial object in \(\Cat\), we can naturally identify \(\mathcal{V}_n\) with the category \(\Cat^{\Delta^\op}(\Delta^n, \mathcal{V}_\bullet)\) whose objects are pseudonatural transformations of simplicial objects and whose morphisms are modifications.  We can then compute
+	\begin{align*}
+		\psh{\mathcal{V}^\op_\bullet}^\op(S) &= \lim_{\Delta^n \in \overcat{\Delta}{S}} \mathcal{V}_n\\
+		&\simeq  \lim_{\Delta^n \in \overcat{\Delta}{S}} \Cat^{\Delta^\op}(\Delta^n, \mathcal{V}_\bullet)\\
+		&\simeq \Cat^{\Delta^\op}(\colim_{\Delta^n \in \overcat{\Delta}{S}} \Delta^n, \mathcal{V}_\bullet)\\
+		&\simeq \Cat^{\Delta^\op}(S, \mathcal{V}_\bullet).
+	\end{align*}
+	In particular, we can identify the category \(\psh{\mathcal{V}^\op_\bullet}^\op(S)\) with the category whose objects are pseudonatural transformations \(\Omega:S\to \mathcal{V}_\bullet\) and whose morphisms are modifications, viewing \(S\) as a simplicial object in \(\Cat\).  However, since \(S_n\) is a discrete category for every \(n\), a pseudonatural transformation is simply a natural transformation.
+	
+	It follows that the objects of \(\psh{\Delta}\int \mathcal{V}\) with pairs \((S,\Omega)\) consisting of a simplicial set \(S\) and a natural transformation \(\Omega:S\to \mathcal{V}_\bullet\).  
+\end{note}
+\begin{prop} The pullback of the fibration 
+	\[
+		\psh{\Delta}\int V \to \psh{\Delta}
+	\]
+	along the Yoneda embedding \(\Delta\hookrightarrow \psh{\Delta}\) is exactly the fibration 
+	\[
+		\Delta\int\mathcal{V}\to \Delta,
+	\]
+	and therefore, the induced map
+	\[
+		\Delta\int\mathcal{V}\hookrightarrow \psh{\Delta}\int\mathcal{V}
+	\]
+	is a fully faithful embedding.
 \end{prop}
 \begin{proof}  As the functor \(\mathcal{V}_\bullet\) factors as the composite 
 	\[\Delta^\op \hookrightarrow \psh{\Delta}^\op \xrightarrow{\psh{\mathcal{V}^\op_\bullet}^\op} \Cat,\] where the first functor is fully faithful, it follows that \(\Delta\int \mathcal{V} \to \Delta\) is the pullback of the fibration \(\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}\) along the fully faithful Yoneda embedding.  Ergo, the map in question is fully faithful.  
@@ -325,11 +380,14 @@ For the purposes of this paper, we do not need this level of generality.  We spe
 In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of presheaves of sets on a small regular Cartesian Reedy category \(\C\) admitting a terminal object.  Then we give the following definition:
 
 \begin{defn} For any regular Cartesian Reedy category \(\C\) admitting a terminal object, we define the category of \(\C\)-cells
-	\[\Theta[\C]\subseteq \Delta \int \psh{\C}\]
+	\[
+		\Theta[\C]\subseteq \Delta \int \psh{\C}
+	\]
 	to be the full subcategory spanned by the objects of the form \([n](h_{c_1},\cdots, h_{c_n})\) for \(c_1,\cdots, c_n \in \C\), and where \(h_\bullet\) denotes the Yoneda embedding.
 \end{defn}
 
-\begin{rem} The requirement that \(\C\) have a terminal object is a technical condition that ensures that \(\Delta\) embeds fully and faithfully in \(\Theta[\C]\).  The condition that \(\C\) is regular Cartesian Reedy is probably not necessary, but it will ensure later on that the generating cofibrations of the injective model structure on simplicial presheaves \(\spsh\) admit a very simple description.
+\begin{rem}
+	The requirement that \(\C\) have a terminal object is a technical condition that ensures that \(\Delta\) embeds fully and faithfully in \(\Theta[\C]\).  The condition that \(\C\) is regular Cartesian Reedy is probably not necessary, but it will ensure later on that the generating cofibrations of the injective model structure on simplicial presheaves \(\spsh\) admit a very simple description.
 \end{rem}
 
 \begin{rem} 
@@ -357,9 +415,16 @@ In the sequel, we assume that \(\mathcal{V}=\psh{\C}\) is the category of preshe
 \end{defn}
 
 \subsection{The generalized intertwiner and \(\ssetlab\)}\label{sec:intertwiner}
-Rezk introduced an intertwining functor by means of an explicit construction, but Oury gave an even more powerful version, which we recall here:
+Rezk introduced a functor called the \emph{intertwiner} by means of an explicit construction in \cite{rezk-theta-n-spaces}, but Oury has given an even more powerful version in \cite{oury}, which we recall here:
 
-\begin{defn} Recall that we have a fully-faithful embedding \[L:\Theta[\C]\hookrightarrow \Delta\int\psh{\C}\hookrightarrow \ssetlab.\]  We define the \emph{intertwiner} to be the functor \[\square:\ssetlab \to \cellset\] by the formula \[(S,\Omega)\mapsto S\square\Omega=\Hom_{\ssetlab}(L(\cdot), (S,\Omega)).\]
+\begin{defn} Recall that we have a fully-faithful embedding \[L:\Theta[\C]\hookrightarrow \Delta\int\psh{\C}\hookrightarrow \ssetlab.\]  We define the \emph{intertwiner} to be the restricted Yoneda functor 
+	\[
+		\square:\ssetlab \to \cellset
+	\]
+	by the formula 
+	\[
+		(S,\Omega)\mapsto S\square\Omega=\Hom_{\ssetlab}(L(\cdot), (S,\Omega)).
+	\]
 \end{defn}
 
 \begin{note} The restriction of the intertwiner to \(\Delta \int \psh{\C}\) is exactly the intertwiner of Rezk.  When we apply the intertwiner to an object belonging to the full subcategory \(\Delta\int \psh{\C}\), that is, \((S,\Omega)=[n](A_1,\dots, A_n)\), we will switch to Rezk's notation, namely \[V[n](A_1,\dots,A_n)\defeq S\square \Omega\]
@@ -373,7 +438,7 @@ Rezk introduced an intertwining functor by means of an explicit construction, bu
 \begin{proof}
 	Recall before we begin that a map \((S,\Omega)\to (S^\prime,\Omega^\prime)\) is given by a morphism of simplicial sets \(f:S\to S^\prime\) and a natural modification \(\zeta:\Omega\to \Omega^\prime\circ f\).
 
-	In order to prove fullness, let \(\gamma:S\square\Omega\to S^\prime\square\Omega^\prime\) be a map in \(\cellset\). We notice that \(\Hom([n](\varnothing,\dots,\varnothing), (S,\Omega))\) is naturally isomorphic to \(S_n\), and proceed by diagram chase. Since by assumption \((S,\Omega)\) is normalized, every map \([n](\varnothing,\dots,\varnothing)\to (S,\Omega)\) factors uniquely through at least one map \([n](c_1,\dots,c_n)\to (S,\Omega)\).
+	In order to prove fullness, let \(\gamma:S\square\Omega\to S^\prime\square\Omega^\prime\) be a map in \(\cellset\). We notice that \(\Hom([n](\varnothing,\dots,\varnothing), (S,\Omega))\) is naturally isomorphic to \(S_n\), and proceed by diagram chase. Since by assumption \((S,\Omega)\) is normalized, every map \([n](\varnothing,\dots,\varnothing)\to (S,\Omega)\) factors through at least one map \([n](c_1,\dots,c_n)\to (S,\Omega)\).  
 
 	Choosing such a factorization, the natural transformation \(\gamma\) sends this to a map \[[n](c_1,\dots,c_n)\to (S^\prime,\Omega^\prime),\] and finally, precomposing this map with the unique map \([n](\varnothing,\dots,\varnothing)\to [n](c_1,\dots,c_n)\), we obtain a map \([n](\varnothing,\dots,\varnothing)\to (S^\prime,\Omega^\prime)\). Taking these together gives a map \(S_n\to S^\prime_n\), naturally in \(n\).
 
@@ -396,16 +461,35 @@ Rezk introduced an intertwining functor by means of an explicit construction, bu
 \begin{proof} By construction.
 \end{proof}
 
+\begin{lemma}
+	The category \(\ssetlab\) has finite products.
+\end{lemma}
+\begin{proof}
+	Then we define the Cartesian product of \((S,\Omega)\) and \((S^\prime,\Omega^\prime)\) by the formula 
+	\[
+		S\times S^\prime \xrightarrow{\Omega \times \Omega^\prime} \psh{\C}_\bullet \times \psh{\C}_\bullet \xrightarrow{\times} \psh{\C}_\bullet.
+	\]  It is clear that this satisfies the universal property of the product.
+\end{proof}
+\begin{lemma} Given a simplicial set \(S\), the category of labelings of \(S,\) that is, the fibre \(\left(\ssetlab\right)_S\) is closed under finite Cartesian products. 
+\end{lemma}
+\begin{proof} Given two labelings \((S,\Omega)\) and  \((S,\Omega^\prime)\) the product of their labelings in the fibre \(\left(\ssetlab\right)_S\) can be given by the formula 
+	\[S\xrightarrow{\Delta} S\times S \xrightarrow{\Omega\times \Omega^\prime}  \psh{\C}_\bullet \times \psh{\C}_\bullet \xrightarrow{\times} \psh{\C}_\bullet.\]  We leave the verification to the reader.
+\end{proof}
+
 \begin{prop} The class of sober \(\C\)-cellular sets is closed under Cartesian product.
 \end{prop}
-\begin{proof} From the construction of the intertwiner, we see that if \(\ssetlab\) has all Cartesian products, then the intertwiner preserves them, since
-	\[\Hom_{\ssetlab}(L(\cdot), (S,\Omega)\times (S^\prime,\Omega^\prime))=\Hom_{\ssetlab}(L(\cdot), (S,\Omega))\times \Hom_{\ssetlab}(L(\cdot), (S^\prime,\Omega^\prime)).\] Then we define the Cartesian product of \((S,\Omega)\) and \((S^\prime,\Omega^\prime)\) by the formula \[S\times S^\prime \xrightarrow{\Omega \times \Omega^\prime} \psh{\C}_\bullet \times \psh{\C}_\bullet \xrightarrow{\times} \psh{\C}_\bullet.\]  It is clear that this satisfies the universal property of the product.
+\begin{proof} From the construction of the intertwiner, we see that since \(\ssetlab\) has all Cartesian products, the intertwiner preserves them, since
+	\[
+		\Hom_{\ssetlab}(L(\cdot), (S,\Omega)\times (S^\prime,\Omega^\prime))=\Hom_{\ssetlab}(L(\cdot), (S,\Omega))\times \Hom_{\ssetlab}(L(\cdot), (S^\prime,\Omega^\prime)).
+	\] 
 \end{proof}
 
 \begin{prop}\label{pullbacksober}
-	The functor associated with the fibration \(\Theta[\C]\to \Delta\) induces an adjunction 
-	\[\cellset \underset{\mathscr{H}}{\overset{\pi}{\rightleftarrows}} \psh{\Delta} ,\]
-	as we saw earlier. If \(X=S\square\Omega\) is sober, and \(f:S^\prime\to S\) is a map of simplicial sets, then the image of the Cartesian lift \(\tilde{f}:(S^\prime, f^\ast(\Omega))\to (S,\Omega)\) under the intertwiner is exactly the pullback of \(\mathscr{H}(f)\) along the component at \(X\) of the unit of the adjunction \(\mu_X:X\to \mathscr{H}\pi X= \mathscr{H} S\).
+	The projection functor \(\Theta[\C]\to \Delta\) induces an adjunction 
+	\[
+		\cellset \underset{\mathscr{H}}{\overset{\pi}{\rightleftarrows}} \psh{\Delta},
+	\]
+	(as we saw earlier). If \(X=S\square\Omega\) is sober, and \(f:S^\prime\to S\) is a map of simplicial sets, then the image of the Cartesian lift \(\tilde{f}:(S^\prime, f^\ast(\Omega))\to (S,\Omega)\) under the intertwiner is exactly the pullback of \(\mathscr{H}(f)\) along the component at \(X\) of the unit of the adjunction \(\mu_X:X\to \mathscr{H}\pi X= \mathscr{H} S\).
 \end{prop}
 \begin{proof} 
 	By inspection of the definition of \(S\square\Omega\), we can see that \(\pi(S\square\Omega)=S\).
@@ -420,8 +504,11 @@ We define a Cisinski model structure on \(\cellset\) and state several results t
 \begin{defn}\label{modelstrucdefn}
 	There is a Cisinski model structure called the \emph{horizontal Joyal model structure} on \(\cellset\) where the separating interval is given by 
 	\[E^1=\mathscr{H}(\operatorname{cosk}_0 \Delta^1),\]
-	and the set of generating anodynes is given by
-	\[\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n}) : 0<k<n \text{ and } c_1,\dots,c_n \in \Ob \C\},\]
+	which is also isomorphic to \(N(G_2)\square \Omega_{\mathfrak{t}}\), where \(G_2\) is the freestanding isomorphism and \(\Omega_{\mathfrak{t}}\) is the terminal labeling of its nerve. 
+	The set of generating anodynes is given by
+	\[
+		\mathscr{J}=\{\square_n^\lrcorner(\lambda^n_k,\delta^{c_1},\dots,\delta^{c_n}) : 0<k<n \text{ and } c_1,\dots,c_n \in \Ob \C\},
+	\]
 	where \(\lambda^n_k:\Lambda^n_k\hookrightarrow \Delta^n\) is the simplicial horn inclusion, and where \(\delta^c:\partial c \hookrightarrow c\) is the inclusion of the boundary of \(c\) (recall that \(\C\) was taken to be a regular Cartesian Reedy category, so this makes sense).
 
 	We call \(\operatorname{rlp}(\mathscr{J})\) the class of \emph{horizontal inner fibrations}, and we call \(\operatorname{llp}(\operatorname{rlp}(\mathscr{J}))\) the class of \emph{horizontal inner anodynes}.
@@ -442,7 +529,8 @@ We define a Cisinski model structure on \(\cellset\) and state several results t
 The following results are stated here without proof.  All proofs are heavily inspired by \cite{oury} and provided in full in \Cref{reedy}, \Cref{horizontal}, and \Cref{admissible}.
 
 \begin{prop}
-	The class of all monomorphisms of \(\cellset\) is exactly \(\operatorname{Cell}(\mathscr{M}),\) where \[\mathscr{M}=\{\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) : n\geq 0 \text{ and } c_1,\dots,c_n \in \Ob \C\}.\]
+	The class of all monomorphisms of \(\cellset\) is exactly \(\operatorname{Cell}(\mathscr{M}),\) where \[\mathscr{M}=\{\square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n}) : n\geq 0 \text{ and } c_1,\dots,c_n \in \Ob \C\},\]
+	where \(\delta^n:\partial \Delta^n \hookrightarrow \Delta^n\) is the inclusion of the boundary.
 \end{prop}
 
 \begin{prop}
@@ -460,12 +548,12 @@ The following results are stated here without proof.  All proofs are heavily ins
 \subsection{The corner tensor construction}\label{cornertensor} 
 The overwhelming majority of this section is due to Oury, although we had to redo some of the proofs, since they contained mistakes. Following \cite{oury}*{3.1} we define the corner tensor, a vast generalization of the corner product.
 \begin{defn}
-	Let \(\mathcal{V}\) be a cocomplete symmetric monoidal closed category, and let all categories, functors, and natural transformations in what follows to be \(\mathcal{V}\)-enriched.  Suppose we have a category \(\mathcal{T}\) and an \(n\)-ary functor \[\wedge:\mathcal{T}^{\otimes n} \to \mathcal{T}\] be a functor.  Let \((\mathcal{A}_i)_{i=1}^n\) and \(\mathcal{D}\) be categories admitting enough colimits such that all tensors with \(\Hom_T\) exist and coends over \(\mathcal{T}\) exist.  Let
-	\[\nabla_i: \mathcal{A}_i \otimes \mathcal{A}_i \to \mathcal{A_i}, \qquad \nabla:\mathcal{D}\otimes \mathcal{D} \to \mathcal{D}, \qquad \square:\mathcal{A}_1\otimes\dots \otimes \mathcal{A}_n \to \mathcal{D}\]
+	Let \(\mathcal{V}\) be a cocomplete symmetric monoidal closed category, and let all categories, functors, and natural transformations in what follows to be \(\mathcal{V}\)-enriched.  Suppose we have a category \(\mathcal{T}\) and an \(n\)-ary functor \[\wedge:\mathcal{T}^{\otimes n} \to \mathcal{T}.\]  Let \((\mathcal{A}_i)_{i=1}^n\) and \(\mathcal{D}\) be categories admitting enough colimits such that all tensors with \(\Hom_T\) exist and coends over \(\mathcal{T}\) exist.  Let
+	\[\nabla_i: \mathcal{A}_i \otimes \mathcal{A}_i \to \mathcal{A}_i, \qquad \nabla:\mathcal{D}\otimes \mathcal{D} \to \mathcal{D}, \qquad \square:\mathcal{A}_1\otimes\dots \otimes \mathcal{A}_n \to \mathcal{D}\]
 	be functors.  Then we define the following functors:
-	\[\nabla^\lrcorner_i: \mathcal{A}^\mathcal{T}_i \otimes \mathcal{A}^\mathcal{T}_i \to \mathcal{A_i}^\mathcal{T}, \qquad \nabla^\lrcorner:\mathcal{D}^\mathcal{T}\otimes \mathcal{D}^\mathcal{T} \to \mathcal{D}^\mathcal{T}, \qquad \square^\lrcorner: \mathcal{A}_1^\mathcal{T}\otimes\dots \otimes \mathcal{A}_n^\mathcal{T} \to \mathcal{D}^\mathcal{T}\]
+	\[\nabla^\lrcorner_i: \mathcal{A}^\mathcal{T}_i \otimes \mathcal{A}^\mathcal{T}_i \to \mathcal{A}_i^\mathcal{T}, \qquad \nabla^\lrcorner:\mathcal{D}^\mathcal{T}\otimes \mathcal{D}^\mathcal{T} \to \mathcal{D}^\mathcal{T}, \qquad \square^\lrcorner: \mathcal{A}_1^\mathcal{T}\otimes\dots \otimes \mathcal{A}_n^\mathcal{T} \to \mathcal{D}^\mathcal{T}\]
 	by the Day convolution, for example,
-	\[\square^\lrcorner(M_1,\dots,M_n)t = \int^{u_1,\dots,u_n} \mathcal{T}(\wedge(u_1,\dots,u_n),t) \otimes \square(M_1(u_1),\dots,M_n(u_n).\]
+	\[\square^\lrcorner(M_1,\dots,M_n)(t) = \int^{u_1,\dots,u_n \in \mathcal{T}} \mathcal{T}(\wedge(u_1,\dots,u_n),t) \otimes \square(M_1(u_1),\dots,M_n(u_n).\]
 \end{defn}
 \begin{lemma}
 	The functor \(\square^\lrcorner\) preserves all colimits preserved by \(\square\) in each variable and by \(\otimes\) in its second variable.  
@@ -481,18 +569,39 @@ We specialize now to the case where \(\mathcal{V}\) is just the category of sets
 \end{note}
 \begin{defn}
 	Given \(\square:\mathcal{A}_1\times \dots \times \mathcal{A}_n \to \mathcal{D}\), where each category appearing is cocomplete, we define the \emph{corner tensor} \(\square^\lrcorner:\mathcal{A}_1^{[1]}\times \dots \times \mathcal{A}_n^{[1]} \to \mathcal{D}^{[1]}\) by the formula
-	\[\square^\lrcorner(f_1,\dots,f_n)(t)=\int^{u_1,\dots,u_n} [1](u_1\wedge\dots\wedge u_n, t) \cdot \square(f_1(u_1),\dots,f_n(u_n)).\]
+	\[\square^\lrcorner(f_1,\dots,f_n)(t)=\int^{u_1,\dots,u_n\in [1]} [1](u_1\wedge\dots\wedge u_n, t) \cdot \square(f_1(u_1),\dots,f_n(u_n)).\]
 	If \((g,h): f_i\to f^\prime_i\) is a commutative square, let 
 	\[
 		(g^\lrcorner,h^{-}):\square^\lrcorner(f_1,\dots,f_i,\dots,f_n) \to \square^\lrcorner(f_1,\dots,f^\prime_i,\dots,f_n)
 	\]
 	be the induced commutative square.  
 \end{defn}
+\begin{note}
+	Let \([1]^n\) be the \(n\)-fold power of the poset \([1]\), which is a cube, and let \(C_n=[1]^n - \{(1,\dots,1)\}\) be the subposet of the cube removing the terminal vertex.  To unwind the coend, notice that the set \([1](u_1\wedge \dots \wedge u_n,0)\) vanishes when all of the \(u_i=1\).  We can therefore evaluate the domain of the corner tensor as the colimit of the restriction
+	\[
+		\square^\lrcorner(f_1,\dots,f_n)(0)=\colim \left.\square(f_1,\dots,f_n)\right|_{C_n}.
+	\]
+	The codomain of the corner tensor can be computed by noticing that the set \([1](u_1\wedge \dots \wedge u_n,1)\) is always a singleton, and therefore the colimit can be computed simply as the colimit of the functor \(\square(f_1,\dots,f_n):[1]^n \to \mathcal{D}\).  However, this colimit is indexed by a category with a terminal object and therefore agrees with the the evaluation at that terminal object. That is, we have
+	\[
+		\square^\lrcorner(f_1,\dots,f_n)(1)=\square(f_1(1),\dots,f_n(1)).
+	\]  
+\end{note}
 \begin{example}
 	If we take \(\square\) to be a bifunctor \(\mathcal{D}\times \mathcal{D} \to \mathcal{D}\) in an appropriately cocomplete category, then given \(f_1:A\to B\) and \(f_2:C\to D\), their corner tensor is the familiar corner product: 
 	\[
 		f_1 \square^\lrcorner f_2 = \left(A\square D \coprod_{A\square C} B\square C \to  B\square D\right).
 	\]
+\end{example}
+\begin{example}
+	In the category of \(n\)-fold multisimplicial sets \(\psh{(\Delta)^n}\), we have an \(n\)-fold exterior product functor sending an \(n\)-tuple of simplicial sets \((S_1,\dots,S_n)\) to the exterior product \(\square(S_1,\dots,S_n)\).  It can be seen that the exterior product preserves colimits argument-by-argument, so applying the corner tensor, we can compute exterior corner products of maps.  It is a fact beyond the scope of this paper that the Cisinski model structure on multisimplicial sets that models the homotopy theory of spaces has cellular generating cofibrations given by 
+	\[
+		\square^\lrcorner(\delta^{m_1},\dots, \delta^{m_n})
+	\]
+	where \(\delta^m:\partial \Delta^m \hookrightarrow \Delta^m\) denotes the boundary inclusion.  The generating anodynes are given by 
+	\[
+		\square^\lrcorner(\delta^{m_1},\dots,\lambda^{m_i}_k,\dots, \delta^{m_n})
+	\]
+	where \(i\in \{1,\dots,n\}\), \(m_i >0\), and \(k\in \{0,\dots, m_i\}\), and where \(\lambda^{m_i}_k:\Lambda^{m_i}_k \hookrightarrow \Delta^{m_i}\) is any horn inclusion.  This generalizes the description of the generating anodynes and cofibrations for the Cisinski model structure on bisimplicial sets that models the homotopy theory of spaces.  
 \end{example}
 \begin{rem}
 	The previous example is in some sense universal, and it will allow us to reduce certain questions about big corner tensors to binary ones. In particular, we will frequently use the observation that, in the situation of the example the map \(f_1(0) \square f_2(1) \to (f_1 \square^\lrcorner f_2)(0)\) is a pushout of the map \(f_1(0) \square f_2(0) \to f_1(1) \square f_2(0)\).
@@ -616,7 +725,7 @@ Assume in the sequel that \(\square\) preserves connected colimits in each argum
 	\[\square^\lrcorner(\mathscr{J}_1,\dots,\operatorname{Cell}(\mathscr{J}_k),\dots,\mathscr{J}_n) \subseteq \operatorname{Cell}(\square^\lrcorner(\mathscr{J}_1,\dots,\mathscr{J}_k,\dots,\mathscr{J}_n)).\]
 \end{lemma}
 \begin{proof}
-	Again, by symmetry, it is enough to prove this for the case \(k=1\). 
+	Without loss of generality, we may assume \(k=1\) by symmetry of the Cartesian product in \(\Cat\). 
 	Let \(f_1\) be a map in \(\mathcal{A}_1\) that belongs to \(\operatorname{Cell}(\mathscr{J}_1)\).  Then this gives the data of a cocontinous diagram \(D:\alpha \to \mathcal{A}_1\) for an ordinal \(\alpha\) with colimit \(C\) and structure maps \(\phi_i: D(i)\to C\) such that \(f_1=\phi_0\).  Additionally, for any \(i <\alpha\), the maps \(g_i:D(i)\to D(i+1)\) are pushouts of maps belonging to \(\mathscr{J}_1\).
 	Let \(D^+:\alpha^\triangleright \to \mathcal{A}_1\) be the extension of \(D\) sending \(\alpha\) to \(C\) and such that \(D^+(i\to \alpha)=\phi_i\) for \(i<\alpha\).  Define \(D^2: \alpha^\triangleright \to \mathcal{A}_1^{[1]}\) by the rule \(i\mapsto \phi_i\) for \(i<\alpha\) and \(\alpha\mapsto \id_C\) and sending \(i\to i+1\) to the commutative square \((g_i,\id_c):\phi_i\to \phi_i+1\) and sending the map \(i\to \alpha\) to the commutative square \((\phi_i,\id_C):\phi_i\to \id_C\).  Then the colimit of \(D^2\) is \(\id_C\) as pictured below.
 	\begin{center}
@@ -705,11 +814,23 @@ In this section, we will prove some useful and interesting properties about regu
 	
 	If \(\alpha\) is a composite of outer face maps, then \((\alpha,\mathbf{f})\) lands in \([n](d_1,\dots,d_n)\) or \([n](d_{m-n},\dots, d_m)\), and then from the previous case together with the fact that those inclusions are monic.  Otherwise, by induction on dimension, we can assume that \(\alpha\) is the inclusion of a codimension \(1\) inner face map obtained by removing the \(k^\mathrm{th}\) vertex. Then \((\alpha,\mathbf{f})\) factors through the inclusion \[V[n](d_1,\dots,d_{k-1} \times d_k,\dots, d_m) \subseteq [m](d_1,\dots,d_m)\] by a map \(\operatorname{id}, \mathbf{g}\) where each \(g_i\) is a nondegenerate section.  Then each \(g_i\) must be monic since for \(i\neq k\), \(g_i\) is a nondegenerate section of a representable, which is monic, and for \(i=k\), \(g_i\) is a nondegenerate section \(c\to d_{k-1} \times d_k\), which is monic by the fact that \(\C\) is regular Cartesian.
 \end{proof}
-\begin{cor} The boundary \(\partial[n](c_1,\dots,c_n)\) can be computed using the corner-intertwiner (see \ref{horizontal})
-	\[Q=\operatorname{dom} \square^\lrcorner_n(\delta^n, \delta^{c_1}, \dots, \delta^{c_n}).\]
-\end{cor}
+\begin{prop} The boundary \(\partial[n](c_1,\dots,c_n)\) can be computed using the corner-intertwiner (see \ref{horizontal})
+	\[Q=\square^\lrcorner_n(\delta^n, \delta^{c_1}, \dots, \delta^{c_n})(0).\]
+\end{prop}
 \begin{proof}
-	It is clear that \(Q\subseteq \partial [n](c_1,\dots,c_n)\).  The calculations in the proof of the proposition prove the converse.  
+	It is clear that \(Q\subseteq \partial ([n](c_1,\dots,c_n))\), as it is a union of representable subobjects.  Suppose conversely that \([m](d_1,\dots,d_m) \to [n](c_1,\dots,c_n)\) is a nondegenerate section with \(\dim [m](d_1,\dots,d_m) < \dim [n](c_1,\dots,c_n)\).  As it is nondegenerate, we see immediately that \(m\leq n\).  
+	
+	Suppose \(m<n\).  Then the map \([m]\to [n]\) factors through \(V_{\partial \Delta^n}(c_1,\dots,c_n)\), and since the inclusion map 
+	\[
+		V_{\partial \Delta^n}(c_1,\dots,c_n) \hookrightarrow [n](c_1,\dots,c_n)
+	\]
+	is monic, it follows that the map 
+	\[
+		[m](d_1,\dots,d_m)\to V_{\partial \Delta^n}(c_1,\dots,c_n)
+	\]
+	must also be monic, and ergo that \([m](d_1,\dots,d_m)\subseteq Q\).
+	
+	Otherwise, suppose \(m=n\).  By the strictness of the inequality \(\dim [m](d_1,\dots,d_m) < \dim [n](c_1,\dots,c_n)\), we see that there exists some \(k\) with \(1\leq k \leq n\) such that \(\dim d_k < \dim c_k\), as otherwise the dimensions would be equal, since \(\dim d_i \leq dim c_i\) for all \(1\leq i \leq n\) by nondegeneracy.  Then it follows immediately that \([m](d_1,\dots,d_m) \subset V[n](c_1,\dots,\partial c_k, \dots, c_n)\), which proves the proposition.
 \end{proof}
 \begin{cor} 
 	We define the set
@@ -767,12 +888,6 @@ In this section, we will prove some useful and interesting properties about regu
 \subsection{The anodyne theorem for horizontal inner anodynes}\label{horizontal}
 In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the horizontal inner anodynes are closed under corner products with monomorphisms.  As a corollary of the analysis in this section, we will demonstrate that \(\Theta[\C]\) is regular Cartesian Reedy.  We make no claim to originality.
 
-\begin{lemma} Given a simplicial set \(S\), the category of labelings of \(S,\) that is, the fibre \(\left(\ssetlab\right)_S\) is closed under finite Cartesian products. 
-\end{lemma}
-\begin{proof} The product of two \(S\)-labeled simplicial sets \((S,\Omega), (S,\Omega^\prime)\) can be given by the formula 
-	\[S\xrightarrow{\Delta} S\times S \xrightarrow{\Omega\times \Omega^\prime}  \psh{\C}_\bullet \times \psh{\C}_\bullet \xrightarrow{\times} \psh{\C}_\bullet.\]  We leave the verification to the reader.
-\end{proof}
-
 \begin{defn} Given a simplicial set \(S\) define the functor 
 	\[H_S: \overcat{\psh{\Delta}}{S} \times  \left(\ssetlab\right)_S \to \ssetlab\]
 	by the rule
@@ -800,7 +915,9 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 
 \begin{rem} 
 	Notice that given a finite family of labeled simplicial sets \((\mathbf{S},\mathbf{\Omega})=(S_i,\Omega_i)_{i=1}^n\) and a family \(\mathbf{f}=\left(S\xrightarrow{f_i} S_i\right)^n_{i=1},\) 
-	\[H_{\mathbf{S}}(\mathbf{f},\mathbf{\Omega})\cong H_{S_1}(f_1, \Omega_1) \times^S \dots \times^S H_{S_n}(f_n,\Omega_n),\]
+	\[
+		H_{\mathbf{S}}(\mathbf{f},\mathbf{\Omega})\cong H_{S_1}(f_1, \Omega_1) \times^S \dots \times^S H_{S_n}(f_n,\Omega_n),
+	\]
 	where \(\times^S\) denotes the product in \(\left(\ssetlab\right)_S\).
 \end{rem}
 
@@ -1398,9 +1515,9 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 	The formal \(\C\)-quasicategories are the fibrant objects of the horizontal Joyal model structure.
 \end{cor}
 \begin{proof}
-	An object is fibrant in a Cisinski model structure if it has the right lifting property with respect to all of the anodyne maps generated by pushout products of the generating cofibrations with the interval object as well as pushout-products of the generating inner anodynes with monomorphisms.  
+	By Cisinski's theorem (see \Cref{cisinskimaintheorem}), an object is fibrant in a Cisinski model structure if it has the right lifting property with respect to all of the anodyne maps generated by pushout products of the generating cofibrations with the inclusion of either endpoint of interval object as well as pushout-products of the generating anodynes with pushout-product powers of the boundary inclusion into the interval object.  By \Cref{anodynethm}, we see that an object has the right lifting property with respect to the second set of maps if and only if it has the right lifting property with respect to the horizontal inner anodynes, since such maps all belong to the saturated class generated only by the horizontal inner horn inclusions, which are the generating anodynes in this situation. 
 	
-	Since the formal \(\C\)-quasicategories have the right lifting property with respect to all inner anodynes, which are closed under pushout-products with arbitrary monomorphisms, and since the maps \(e\times^\lrcorner  \square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\) are inner anodyne for all \(n>0\),  it suffices to show that any formal \(\C\)-quasicategory has the right lifting property with respect to the single map \(e\times^\lrcorner \delta^0\), but this map is isomorphic to the map \(e:\Delta^0 \hookrightarrow E^1\), and such a lift always exists by choosing the lift through the retraction \(E^1\to \Delta^0\).
+	Since the formal \(\C\)-quasicategories by definition have the right lifting property with respect to all inner anodynes, which are closed under pushout-products with arbitrary monomorphisms, and since the maps \(e\times^\lrcorner  \square_n^\lrcorner(\delta^n,\delta^{c_1},\dots,\delta^{c_n})\) are inner anodyne for all \(n>0\),  it suffices to show that any formal \(\C\)-quasicategory has the right lifting property with respect to the single map \(e\times^\lrcorner \delta^0\), but this map is isomorphic to the map \(e:\Delta^0 \hookrightarrow E^1\), and such a lift always exists by choosing the lift through the retraction \(E^1\to \Delta^0\).
 \end{proof}
 \begin{cor}
 	The fibrations between fibrant objects in the horizontal Joyal model structure are horizontal inner fibrations having the right lifting property with respect to the map \(e:\Delta^0\hookrightarrow E^1\).
@@ -2553,6 +2670,24 @@ We take the following as a definition, but it is in fact a characterization from
 			issn={0001-8708},
 			review={\MR {2331244 (2008f:55010)}},
 		}
+
+		\bib{bergner-rezk-1}{article}{
+			author={Bergner, J. E.},
+			author={Rezk, C.},
+			title={Comparison of models for \((\infty,n)\)-Categories, I},
+			journal={Geometry \& Topology},
+			date={2013},
+			volume={17},
+		}
+
+		\bib{bergner-rezk-2}{article}{
+			author={Bergner, J. E.},
+			author={Rezk, C.},
+			title={Comparison of models for \((\infty,n)\)-Categories, II},
+			eprint={arXiv:1406.4182v3},
+			date={2018},
+		}
+
 		\bib{bergner-rezk-reedy}{article}{
 			author={Bergner, J. E.},
 			author={Rezk, C.},
