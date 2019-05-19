@@ -1,4 +1,4 @@
-\documentclass[leqno]{article}
+\documentclass[titlepage]{article}
 %Put numbers to the left of ``Theorem'', etc.
 %\swapnumbers
 
@@ -6,7 +6,7 @@
 \usepackage{amsmath,amsthm,amssymb,empheq,mathtools}
 \usepackage{microtype}
 % For convenience
-\usepackage{verbatim,enumerate}
+\usepackage{verbatim,enumitem}
 % Fonts
 \usepackage[cal=euler,scr=bickham]{mathalfa}
 % Bib
@@ -25,10 +25,10 @@
 \usetikzlibrary{matrix,arrows,cd}
 
 \title{Rigidification and the Coherent Nerve for enriched Quasicategories}
-\author{Harry Gindi}
+\author{Harry Gindi\\[1cm]{\small Supervised by: D.-C. Cisinski and G. Raptis}}
 %\address{Department of Mathematics \\ University of Regensburg \\ Regensburg, Bavaria 93051}
 %\email{harry.gindi@gmail.com}
-\date{}
+\date{\today}
 %\subjclass[2010]{18A30, 18D05, 18E35, 18G55, 55P10, 55U35}
 %\keywords{enriched categories, higher category theory, homotopy theory}
 
@@ -201,19 +201,27 @@
 \begin{document}
 %%% the title
 \maketitle
-
+\renewcommand{\abstractname}{Selbst\"andigkeitserkl\"arung}
+	\begin{abstract}
+	Ich, Gindi, Harry geboren am 28. November 1989 in New York, erkl\"are hiermit, dass ich die vorliegende Arbeit ohne unzulässige Hilfe Dritter und ohne Benutzung anderer als der angegebenen Hilfsmittel angefertigt habe. 
+	Die aus anderen Quellen direkt oder indirekt \"ubernommenen Daten und Konzepte sind unter Angabe der Quelle gekennzeichnet. Insbesondere habe ich nicht die entgeltliche Hilfe von Vermittlungs- bzw. Beratungsdiensten (Promotionsberater oder andere Personen) in Anspruch genommen. 
+	Die Arbeit wurde bisher weder im In- noch im Ausland in gleicher oder \"ahnlicher Form einer anderen Pr\"ufungsbeh\"orde vorgelegt.
+	\\[1cm]{\small Regensburg, \today}
+	\end{abstract}
 %%% abstract
+\renewcommand{\abstractname}{Abstract}
 \begin{abstract}
 	We introduce, for \(\C\) a regular Cartesian Reedy category a model category whose fibrant objects are an analogue of quasicategories enriched in simplicial presheaves on \(\C\).  We then develop a coherent realization and nerve for this model structure and demonstrate using an enriched version of the necklaces of Dugger and Spivak that our model category is Quillen-equivalent to the category of categories enriched in simplicial presheaves on \(\C\).  We then show that for any Cartesian-closed left-Bousfield localization of the category of simplicial presheaves on \(\C\), the coherent nerve and realization descend to a Quillen equivalence on the localizations of these model categories. As an application, we demonstrate a version of Yoneda's lemma for these enriched quasicategories.
 \end{abstract}
 
+
+\clearpage
+
+
+
+
 \tableofcontents
-
-
-
-
-%%% table of contents
-%\tableofcontents
+\clearpage
 
 
 %%%%%
@@ -287,7 +295,7 @@ We hope also that new approaches to dealing with coherence problems might be dis
 
 We would also like to thank Denis-Charles Cisinski for his help with axiomatizing the Eilenberg-Zilber shuffle decomposition \Cref{cishelp}, which is an important technical condition without which many of the constructions in this paper would not function.  
 
-We would like to give a special thanks Alexander Campbell for his invaluable help in correcting the proof of \Cref{joyalisothm}, which previously cited an incorrect result.
+We would like to give a special thanks Alexander Campbell for his invaluable help in correcting the proof of \Cref{joyalisothm}, which previously cited an incorrect result as well as his advice on strictifying the construction of labeled simplicial sets.
 
 Finally, we would like to acknowledge Andrea Gagna for spending his time discussing these ideas with us over several long conversations as well as Eric Peterson for his sage advice and friendship over the years.  
 
@@ -312,7 +320,7 @@ Segal observed long ago that a monoidal category is classified precisely by a ps
 	\[
 		\mathcal{V}_\bullet:\Delta^\op\to \Cat
 	\]
-	classifying \(\mathcal{V}\). We call the total space of this fibration the \emph{wreath product} of \(\Delta\) with \(\mathcal{V}\).  The objects of \(\Delta\int \mathcal{V}\) can be identified with pairs \([n],(v_1,\dots,v_n),\) where \(v_1,\dots,v_n\) is a tuple of objects of \(\mathcal{V}\).  We will write such an object as \([n](v_1,\dots,v_n)\).
+	classifying \(\mathcal{V}\). We call the total space of this fibration the \emph{wreath product} of \(\Delta\) with \(\mathcal{V}\).  The objects of \(\Delta\int \mathcal{V}\) can be identified with pairs \(([n],(v_1,\dots,v_n)),\) where \((v_1,\dots,v_n)\) is a tuple of objects of \(\mathcal{V}\).  We will write such an object as \([n](v_1,\dots,v_n)\).
 \end{defn}
 We will also make use of a more elaborate construction from \cite{oury} that extends the wreath product to arbitrary simplicial sets:
 \begin{defn}
@@ -337,16 +345,35 @@ We will also make use of a more elaborate construction from \cite{oury} that ext
 	\begin{align*}
 		\psh{\mathcal{V}^\op_\bullet}^\op(S) &= \lim_{\Delta^n \in \overcat{\Delta}{S}} \mathcal{V}_n\\
 		&\simeq  \lim_{\Delta^n \in \overcat{\Delta}{S}} \Cat^{\Delta^\op}(\Delta^n, \mathcal{V}_\bullet)\\
-		&\simeq \Cat^{\Delta^\op}(\colim_{\Delta^n \in \overcat{\Delta}{S}} \Delta^n, \mathcal{V}_\bullet)\\
+		&\simeq \Cat^{\Delta^\op}(\colim_{\Delta^n \in \overcat{\Delta}{S}} \Delta^n, \mathcal{V}_\bullet)
+		\intertext{since the cosimplicial object \(\Delta^\bullet\) in \(\Cat^{\Delta^\op}\) is Reedy-cofibrant, and therefore}
 		&\simeq \Cat^{\Delta^\op}(S, \mathcal{V}_\bullet).
 	\end{align*}
-	In particular, we can identify the category \(\psh{\mathcal{V}^\op_\bullet}^\op(S)\) with the category whose objects are pseudonatural transformations \(\Omega:S\to \mathcal{V}_\bullet\) and whose morphisms are modifications, viewing \(S\) as a simplicial object in \(\Cat\).  However, since \(S_n\) is a discrete category for every \(n\), a pseudonatural transformation is simply a natural transformation.
+	In particular, we can identify the category \(\psh{\mathcal{V}^\op_\bullet}^\op(S)\) with the category whose objects are pseudonatural transformations \(\Omega:S\to \mathcal{V}_\bullet\) and whose morphisms are modifications, viewing \(S\) as a simplicial object in \(\Cat\).  However, since \(S_n\) is a discrete category for every \(n\), every pseudonatural transformation is in fact isomorphic to a natural transformation.
 	
 	It follows that the objects of \(\psh{\Delta}\int \mathcal{V}\) with pairs \((S,\Omega)\) consisting of a simplicial set \(S\) and a natural transformation \(\Omega:S\to \mathcal{V}_\bullet\).  
 \end{note}
+\begin{note}
+	It is possible, by careful application of coherence results, to rectify everything in sight.  First, notice that if \(\mathcal{V}_\bullet\) is Reedy-fibrant with respect to the canonical model structure on \(\Cat\), we can compute the pseudolimit as a strict limit in the \(1\)-category \(\Cat\) while also replacing pseudonatural transformations with strict ones.  
+	
+	This raises the question of how to obtain a Reedy-fibrant \(\mathcal{V}_\bullet\) from a monoidal category \(\mathcal{V}\).  For this, consider the monoidal category \(\mathcal{V}\) as a one-object bicategory and apply the \(2\)-nerve of Lack and Paoli \cite{lack-paoli}.  This produces a simplicial category whose object in degree \(0\) is the terminal category and whose object in degree \(1\) is in fact isomorphic to \(\mathcal{V}\).  This simplicial object is also Reedy-fibrant and satisfies the Segal condition.  We can unwind \(\mathcal{V}_\bullet\) as follows:
+	\begin{itemize}
+		\item The objects of \(\mathcal{V}_n\) are the normal pseudofunctors \([n] \to \mathbf{B}\mathcal{V}\), where \(\mathbf{B}\mathcal{V}\) denotes the associated single-object bicategory.
+		\item The morphisms are given by \emph{icons} between pseudofunctors.  These are lax natural transformations whose object components are identities.
+	\end{itemize}
+	Unraveling this construction, we have a natural \emph{isomorphism} of categories 
+	\[
+		\operatorname{Nat}(\Delta^n, \mathcal{V}_\bullet) \cong \mathcal{V}_n.
+	\]
+	and using the Reedy-fibrancy of \(\mathcal{V}_\bullet\), we also have a natural \emph{isomorphism} of categories
+	\[
+		\operatorname{Nat}(S,\mathcal{V}_\bullet) \cong \psh{\mathcal{V}^\op_\bullet}^\op(S),
+	\]
+	where \(\operatorname{Nat}\) denotes the category of strict natural transformations and modifications between them.
+\end{note}
 \begin{prop} The pullback of the fibration 
 	\[
-		\psh{\Delta}\int V \to \psh{\Delta}
+		\psh{\Delta}\int \mathcal{V} \to \psh{\Delta}
 	\]
 	along the Yoneda embedding \(\Delta\hookrightarrow \psh{\Delta}\) is exactly the fibration 
 	\[
@@ -365,10 +392,10 @@ We will also make use of a more elaborate construction from \cite{oury} that ext
 For the purposes of this paper, we do not need this level of generality.  We specialize as follows: 
 
 \begin{defn}\label{cishelp}
-	A small regular skeletal Reedy category (also called a regular skeletal category) \(\C\) (see \cite{cisinski-book}*{8.2.3}) is called a \emph{regular Cartesian Reedy category} if it satisfies two conditions:
+	A small regular skeletal Reedy category (also called a regular skeletal category) \(\C\) (see \Cref{regskelcat}) is called a \emph{regular Cartesian Reedy category} if it satisfies two conditions:
 
-	\begin{enumerate}[\indent(CR1)]
-		\item Finite products of representable presheaves on \(\C\) are \emph{regular} (see \cite{cisinski-book}*{8.2}).
+	\begin{enumerate}[leftmargin=5em,label=(CR\arabic*{})]
+		\item The class of regular presheaves on \(\C\) (see \Cref{regskelcat}) is closed under finite products.
 		\item If \(I\) is a finite set and \(c\to \prod\limits_{i\in I }c_i \) is a nondegenerate section, then \(\dim c \leq \sum\limits_{i\in I}\dim c_i\).
 	\end{enumerate}
 \end{defn}
@@ -430,7 +457,7 @@ Rezk introduced a functor called the \emph{intertwiner} by means of an explicit 
 \begin{note} The restriction of the intertwiner to \(\Delta \int \psh{\C}\) is exactly the intertwiner of Rezk.  When we apply the intertwiner to an object belonging to the full subcategory \(\Delta\int \psh{\C}\), that is, \((S,\Omega)=[n](A_1,\dots, A_n)\), we will switch to Rezk's notation, namely \[V[n](A_1,\dots,A_n)\defeq S\square \Omega\]
 \end{note}
 
-\begin{defn} An object \((S,\Omega)\) of \(\ssetlab\) is called \emph{normalized} if the image of \(\Omega_1\) does not contain the empty presheaf on \(\C\).
+\begin{defn} An object \((S,\Omega)\) of \(\ssetlab\) is called \emph{normalized} if the image of the component \(\Omega_1\) of the natural transformation \(\Omega\) does not contain the empty presheaf on \(\C\).
 \end{defn}
 
 \begin{prop} The restriction of the intertwiner to the full subcategory of normalized objects in \(\ssetlab\) is fully faithful.
@@ -806,7 +833,7 @@ In this section, we will prove some useful and interesting properties about regu
 	\[\dim[n](c_1,\dots,c_n)\defeq n+\dim_\C c_1 + \dots + \dim_\C c_n.\]
 \end{prop}
 \begin{proof} 
-	It follows by \cite{bergner-rezk-reedy}*{Proposition 4.4} that \(\Theta[\C]\) is normal skeletal Reedy with the desired dimension function (see \cite{cisinski-book}*{8.1}). To prove that \(\Theta[\C]\) is regular, it suffices to show that any nondegenerate section 
+	It follows by \cite{bergner-rezk-reedy}*{Proposition 4.4} that \(\Theta[\C]\) is normal skeletal Reedy with the desired dimension function (see \Cref{normskelcat}). To prove that \(\Theta[\C]\) is regular, it suffices to show that any nondegenerate section 
 	\[(\alpha,\mathbf{f}):[n](c_1,\dots,c_n) \to [m](d_1,\dots, d_m)\]
 	is monic.  If \(n>m\), then the map \(\alpha\) is a simplicial degeneracy and therefore the map factors through \([m](c_{i_1},\dots,c_{i_m})\), which means that \((\alpha,\mathbf{f}))\) cannot be nondegenerate.  
 	
@@ -1210,7 +1237,7 @@ Finally, we reach our destination.
 Since Rezk's complete Segal model structure on \(\Psh_\Delta(\Theta[\C])\) is Cartesian, since \(\ast \hookrightarrow E\) is one of the generators of the localization (see \cite{rezk-theta-n-spaces}), and since \(\Theta[\C]\) is regular skeletal Reedy, it follows by several results of Cisinski \cite{cisinski-book}*{Proposition 8.2.9, Theorem 3.4.36, Proposition 2.3.30} that Rezk's localizer for complete \(\Theta[\C]\)-Segal spaces is the simplicial completion of a localizer on \(\Theta[\C]\).  
 \begin{obs}
 	To show that Rezk's localizer is the simplicial completion of the localizer generated by the horizontal inner anodynes, it suffices to show the following two properties hold:
-	\begin{enumerate}[\indent (i)] 
+	\begin{enumerate}[leftmargin=3em,label=(\roman*{})] 
 		\item The maps 
 		\(\square_n^\lrcorner(\lambda^n_i,\delta^{c_1},\dots,\delta^{c_n})\times \Delta^0\) belong to the localizer for complete \(\Theta[\C]\)-Segal spaces for \(n\geq 2\) and \(0<i<n\).
 		\item The Segal maps \(\operatorname{Se}[n](c_1,\dots,c_n): \operatorname{Sp}[n](c_1,\dots,c_n) \hookrightarrow [n](c_1,\dots,c_n)\) are horizontal inner anodyne.
@@ -1528,15 +1555,16 @@ In what follows, we will use a very nice observation of Danny Stevenson \cite{da
 
 
 \section{The Coherent Nerve, Horizontal case}
+In \cite{htt}, Lurie reintroduces an important adjunction \[\psh{\Delta}  \underset{\mathfrak{N}_\Delta}{\overset{\mathfrak{C}_\Delta}{\rightleftarrows}} \Cat_{\psh{\Delta}},\] coming originally from work of Cordier and Porter, where the left adjoint is called the \emph{coherent realization} and the right adjoint is called the \emph{coherent nerve}.  One of the significant early theorems in \cite{htt} demonstrates that this adjunction is in fact a Quillen equivalence between the Joyal model structure on the one hand and the Bergner model structure on the other.
+
+We find that it is useful to instead consider this adjunction as one of the form \[\psh{\Theta[\ast]}  \underset{\mathfrak{N}_\Delta}{\overset{\mathfrak{C}_\Delta}{\rightleftarrows}} \Cat_{\Psh_\Delta(\ast)},\] where we have obvious isomorphisms \(\Theta[\ast]\cong \Delta\) and \(\Psh_\Delta(\ast)\cong \psh{\Delta}\).  This is suggestive of a generalization to a new case where we replace \(\ast\) with a small regular Cartesian Reedy category \(\C\). We will develop this adjunction throughout the current chapter, and we will demonstrate that an analogous Quillen equivalence indeed holds.
 \subsection{The coherent realization for \(\Theta[\C]\)}
-There is an adjoint pair that should be familiar to those who have experience with \((\infty,1)\)-categories, namely the coherent realization and nerve pair, \[\psh{\Theta[\ast]}  \underset{\mathfrak{N}_\Delta}{\overset{\mathfrak{C}_\Delta}{\rightleftarrows}} \Cat_{\Psh_\Delta(\ast)},\] where we have obvious isomorphisms \(\Theta[\ast]\cong \Delta\) and \(\Psh_\Delta(\ast)\cong \psh{\Delta}\)
-
-An important theorem early in \emph{Higher Topos Theory} tells us that this adjunction gives a Quillen equivalence when the lefthand side is equipped with the Joyal model structure and the righthand side is equipped with the Bergner model structure.  The goal of this section is to show that for any \(\C\) with the aforementioned properties, we can construct an analogous adjunction:
+The goal of this section is to show that for any small regular Cartesian Reedy category \(\C\), we can construct a new adjunction
 \[\cellset \underset{\mathfrak{N}}{\overset{\mathfrak{C}}{\rightleftarrows}} \Cat_{{\spsh}_{\operatorname{inj}}}\]
-
+generalizing the coherent nerve and realization.  We will also give a useful computation of \(\mathfrak{C}\) in some special cases.
 
 \begin{defn} 
-	The category of \(\C\)-precategories is the full subcategory of \(\spsh\) spanned by the \emph{precategory objects}, namely those simplicial presheaves \(F\) on \(\C\) such that \(F_0\) is a constant presheaf on \(\C\).  We denote this category by \(\mathbf{PCat}(\C)\). 
+	The category of \(\C\)-precategories is the full subcategory of \(\psh{\Delta \times \C}\) spanned by the \emph{precategory objects}, namely those simplicial presheaves \(F\) on \(\C\) such that \(F_0\) is a constant presheaf on \(\C\).  We denote this category by \(\mathbf{PCat}(\C)\). 
 \end{defn}
 
 \begin{defn}
@@ -1544,11 +1572,11 @@ An important theorem early in \emph{Higher Topos Theory} tells us that this adju
 	\[
 		([n],c) \mapsto [n](c,\dots,c).
 	\]
-	Induces a colimit-preserving functor \(k^\ast: \cellset \to \spsh\) that lands in \(\mathbf{PCat}(\C)\) called the \emph{associated precategory}.
+	Induces a colimit-preserving functor \(k^\ast: \cellset \to \psh{\Delta\times\C}\) that lands in \(\mathbf{PCat}(\C)\) called the \emph{associated precategory}.
 \end{defn}
 
 \begin{defn}\label{pointwisedefn}
-	The \emph{pointwise realization} functor \(\mathfrak{C}_{\Delta,\bullet}: \spsh \to \Cat_{\psh{\Delta}}^{\C^\op}\) defined by the rule 
+	The \emph{pointwise realization} functor \(\mathfrak{C}_{\Delta,\bullet}: \psh{\Delta\times\C} \to \Cat_{\psh{\Delta}}^{\C^\op}\) defined by the rule 
 	\[
 		\mathfrak{C}_{\Delta,\bullet}(X)_c \defeq \mathfrak{C}_{\Delta}(X_c)
 	\]
@@ -1578,7 +1606,7 @@ We will extensively abuse notation in what follows by identifying a simplicial s
 			      \begin{cases}
 				      \varnothing                                                & \text{ for } i>j \\
 				      c\Delta^0                                                & \text{ for } i=j \\
-				      X_{i+1} \times \Delta^1 \times \dots \times \Delta^1 \times X_j & \text{ for } i<j
+				      X_{i+1} \times \Delta^1 \times X_{i+2}\times \dots \times \Delta^1 \times X_j & \text{ for } i<j
 			      \end{cases}
 		      \]
 		\item The associative composition law, \(\Hom(i,j)\times \Hom(j,k)\to \Hom(i,k)\) which is the inclusion on the bottom face with respect to \(j\):
@@ -1698,6 +1726,121 @@ We will extensively abuse notation in what follows by identifying a simplicial s
 	which proves the claim.
 \end{proof}
 
+\subsection{The Bergner-Lurie model structure on \(\Cat_{\spsh_{\mathrm{inj}}}\)}
+In this section, we cite important results from \cite{htt}*{Appendix A.3} concerning the generalized Bergner model structure for categories enriched in an excellent monoidal model category.  
+
+\begin{defn}
+	Let \(\mathbf{S}\) be a monoidal model category, and let \(X\) be an \(\mathbf{S}\)-enriched category.  Then we define the \emph{homotopy category} \(\mathbf{h}X\) to be the ordinary category underlying the the associated \(\mathbf{h}\mathbf{S}\)-enriched category also denoted by \(\mathbf{h}X\).  
+\end{defn}
+
+\begin{defn}
+	Let \(\mathbf{S}\) be a monoidal model category, and let \(f:X\to Y\) be an \(\mathbf{S}\)-enriched functor of \(\mathbf{S}\)-enriched categories.  
+	
+	\begin{itemize}
+		\item We say that \(f\) is \emph{weakly fully faithful} if for every pair of objects \(x,x^\prime\) of \(X\), the component map 
+		\[
+			f_{x,x^\prime}: X(x,x^\prime) \to Y(f(x),f(x^\prime))
+		\]
+		is a weak equivalence of \(\mathbf{S}\).
+		\item We say that \(f\) is \emph{weakly essentially surjective} if the induced functor on homotopy categories \(\mathbf{h}X\to \mathbf{h}Y\) is essentially surjective, that is, if for every object \(y\) of \(\mathbf{h}Y\) there exists an object \(x\) of \(\mathbf{h}X\) and an isomorphism \(y\cong f(x)\) in \(\mathbf{h}Y\).
+		\item We say that \(f\) is an \emph{\(\mathbf{S}\)-enriched weak equivalence} if it is weakly fully faithful and weakly essentially surjective.
+	\end{itemize}
+\end{defn}
+\begin{defn}
+	Let \(\mathbf{S}\) be a monoidal model category. 
+
+	We say that an \(\mathbf{S}\)-enriched category \(X\) is \emph{locally fibrant} if for every pair of objects \(x,x^\prime\) of \(X\), the object of morphisms \(X(x,x^\prime)\) is a fibrant object of \(\mathbf{S}\).
+	
+	We say that an \(\mathbf{S}\)-enriched functor of \(\mathbf{S}\)-enriched categories \(f:X\to Y\) be an  is a \emph{local fibration} if the following two conditions hold:
+	\begin{enumerate}
+		\item  For every pair of objects \(x,x^\prime\) of \(X\), the component map 
+		\[
+			f_{x,x^\prime}: X(x,x^\prime) \to Y(f(x),f(x^\prime))
+		\]
+		is a fibration.
+		\item The induced functor on homotopy categories \(\mathbf{h}X\to \mathbf{h}Y\) is an isofibration of ordinary categories.
+	\end{enumerate}
+\end{defn}
+\begin{defn}
+	Let \(\mathbf{S}\) be a monoidal model category.  We will define the \emph{categorical suspension} functor \(\mathbf{2}:\mathbf{S} \to \Cat_{\mathbf{S}}\).  Given an object \(S\) of \(\mathbf{S}\), we define \(\mathbf{2}(S)\) as follows:  
+	\begin{itemize}
+		\item The set of objects of \(\mathbf{2}(S)\) is precisely the set \(\{0,1\}\).
+		\item The object of morphisms is defined by 
+		\[
+			\mathbf{2}(S)(i,j)=
+			\begin{cases}
+				\mathbf{1}_\mathbf{S} & \text{if}\quad i=j\\
+				S & \text{if}\quad i<j\\
+				\varnothing & \text{if} \quad i>j
+			\end{cases},
+		\]  
+	\end{itemize}
+	where \(\mathbf{1}_{\mathbf{S}}\) is the unit object of \(\mathbf{S}\). The extension of the definition to morphisms is the obvious one.
+	We also define the \(\mathbf{S}\)-enriched category \({[0]}_{\mathbf{S}}\) to be the enriched category with one object whose object of endomorphisms is exactly \(\mathbf{1}_{\mathbf{S}}\).  
+\end{defn}
+\begin{prop}[\cite{htt}*{Proposition A.3.2.4}]
+	Suppose \(\mathbf{S}\) is a monoidal combinatorial model category in which all objects are cofibrant.  Then there exists a left-proper combinatorial model structure on \(\Cat_{\mathbf{S}}\) with weak equivalences the \(\mathbf{S}\)-enriched weak equivalences as defined above and with cofibrations the weakly saturated class generated by the set
+	\[
+		\{\varnothing \hookrightarrow {[0]}_{\mathbf{S}}\}\cup \{\mathbf{2}(f)\mid f \enskip \text{is a generating cofibration of} \enskip \mathbf{S}\} 
+	\]
+	This model structure is called the Lurie-Bergner model structure on \(\mathbf{S}\)-enriched categories.
+\end{prop}
+\begin{defn}[\cite{htt}*{Definition A.3.2.16}]
+	A model category \(\mathbf{S}\) equipped with a monoidal product \(\otimes\) is called \emph{excellent} if the following conditions hold:
+	\begin{enumerate}[label=(A\arabic*{})]
+		\item The model category \(\mathbf{S}\) is combinatorial.
+		\item Every monomorphism of \(\mathbf{S}\) is a cofibration, and cofibrations are stable under products.
+		\item The collection of weak equivalences of \(\mathbf{S}\) is stable under filtered colimits
+		\item The monoidal structure of \(\mathbf{S}\) is compatible with the model structure.  That is, the tensor product is a left-Quillen bifunctor.
+		\item The model category \(\mathbf{S}\) satisfies the invertibility hypothesis.
+	\end{enumerate}
+\end{defn}
+We quickly make use of the following lemma:
+\begin{lemma}[\cite{htt}*{Lemma A.3.2.20}]\label{excellentlemma}
+	Let \(\mathbf{S}\) be an excellent monoidal model category, and let \(\mathbf{S}^\prime\) be a monoidal model category satisfying axioms (A1-A4).  Then if there exists a monoidal left-Quillen functor \(\mathbf{S}\to \mathbf{S}^\prime,\) it follows that \(\mathbf{S}^\prime\) is also excellent.
+\end{lemma}
+\begin{cor}
+	For any small category \(\C\), the model category \(\spsh_{\mathrm{inj}}\) of simplicial presheaves on \(\C\) with the injective model structure and the Cartesian product is excellent.
+\end{cor}
+\begin{proof}
+	It is clear that axioms (A1), (A2), and (A4) are satisfied. Axiom (A3) is also satisfied by recalling that the injective model structure is regular by \Cref{injregular} and therefore closed under filtered colimits by \Cref{filteredcolims}. It therefore suffices to demonstrate axiom (A5).  
+	
+	If we take \(p^\ast: \psh{\Delta} \to \spsh\) to be the functor induced by the projection \(p:\C\times \Delta \to \Delta\), it is clearly monoidal, as it preserves all limits.  Moreover, it is also clear that it sends monomorphisms to monomorphisms and weak equivalences to weak equivalences. Since \(\psh{\Delta}\) is excellent, it follows therefore from \Cref{excellentlemma} that \(\spsh_{\mathrm{inj}}\) is also excellent.
+\end{proof}
+\begin{cor}
+	If \(\setS\) is a set of morphisms of \(\spsh\) such that the left-Bousfield localization of \(\spsh_{\mathrm{inj}}\) at \(\setS\) is again a Cartesian-monoidal model category, then the model category \(\spsh_{\setS}\) obtained from this localization is also excellent.
+\end{cor}
+\begin{proof}
+	As before, axioms (A1) and (A2) are obviously satisfied.  Axiom (A4) is satisfied by hypothesis, and axiom (A3) follows from the fact that any localizer containing a regular localizer is again regular by \Cref{regularinclusion}.  It again suffices to demonstrate axiom (A5).
+
+	Notice now that the identity functor is a monoidal left-Quillen functor \(\spsh_{\mathrm{inj}} \to \spsh_{\setS}\).  Then axiom (A5) again follows from \Cref{excellentlemma}.
+\end{proof}
+\begin{thm}[\cite{htt}*{Theorem A.3.2.24}]
+	Let \(\mathbf{S}\) be an excellent monoidal model category.  Then the following two results hold:
+	\begin{enumerate}
+		\item An \(\mathbf{S}\)-enriched category \(X\) is Bergner-Lurie fibrant if and only if it is locally fibrant.
+		\item An \(\mathbf{S}\)-enriched functor \(f:X\to Y\) is a fibration for the Bergner-Lurie model structure if and only if it is a local fibration.
+	\end{enumerate}
+\end{thm}
+Tying this all together, we obtain the following characterization of the Bergner-Lurie model structure:
+\begin{cor}
+	For any small category \(\C\) and any set \(\setS\) of morphisms of \(\spsh\), there exists a left-proper combinatorial model structure on \(\Cat_{\spsh}\) characterized by the following classes of maps
+	\begin{itemize}
+		\item[(C)] 	The cofibrations are exactly the weakly saturated class generated by the set of maps
+					\[
+						\{\varnothing \hookrightarrow {[0]}_{\spsh}\}\cup \{\mathbf{2}(f)\mid f \enskip \text{is a generating cofibration of} \enskip \mathbf{\spsh}\} 
+					\]
+		\item[(W)]  The weak equivalences are exactly the \(\spsh_\setS\)-enriched weak equivalences.
+		\item[(F)]  The fibrant objects are the \(\spsh\)-enriched categories whose \(\Hom\)-objects are \(\setS\)-local injectively-fibrant simplicial presheaves on \(\C\), and the fibrations with fibrant target are exactly the local fibrations. 
+	\end{itemize}
+\end{cor}
+\begin{note}
+	We denote the Bergner-Lurie model structure with respect to a set of maps \(\setS\) of \(\spsh\) by \(\Cat_{\spsh_{\setS}}\).  In the special case when \(\setS\) is empty, this reduces to the case where \(\spsh\) is equipped with the injective model structure, and we denote its associated Bergner-Lurie model category by \(\Cat_{\spsh_{\mathrm{inj}}}\).
+\end{note}
+\begin{rem}
+	The absence of hypotheses on \(\C\) in this section is what leads us to believe that there may be a way to drop the hypothesis that \(\C\) is regular Cartesian Reedy, but this goes beyond the scope of this paper.
+\end{rem}
+
 \subsection{Necklaces and the coherent realization}
 Necklaces were introduced by Dugger and Spivak in \cite{ds1} in order to understand the mapping objects \(\mathfrak{C}_\Delta(X)(x,y)\).  They prove a useful theorem that allows one to compute the coherent realization up to homotopy as a simplicially-enriched category whose hom-objects are the nerves of ordinary categories.  We will demonstrate here how their theory generalizes to our setting. We begin by recalling the definition of a necklace:
 
@@ -1707,8 +1850,9 @@ Necklaces were introduced by Dugger and Spivak in \cite{ds1} in order to underst
 		\Delta^{m_1} \vee \dots \vee \Delta^{m_n},
 	\]
 	with specified vertices 
-	\[(\alpha,\omega):\Delta^0\coprod \Delta^0 \xrightarrow{\{0\}\coprod \{m_n\}} \Delta^{m_1} \coprod \Delta^{m_n}\xrightarrow{\iota_1\coprod \iota_n} S.\]
+	\[(\alpha,\omega):\Delta^0\coprod \Delta^0 \xrightarrow{\{0\}\coprod \{m_n\}} \Delta^{m_1} \coprod \Delta^{m_n}\xrightarrow{\iota_1\coprod \iota_n} T.\]
 	By abuse of notation, we will simply refer to necklaces by the name of the simplicial set, suppressing the distinguished vertices \((\alpha,\omega)\).
+	We define the category \(\Nec\) to be the full subcategory of bi-pointed simplicial sets spanned by the necklaces.
 \end{defn}
 
 Dugger and Spivak construct a functor
@@ -1731,14 +1875,14 @@ whose evaluation on a simplicial set \(X\) is given as follows:
 
 In order to compare \(\mathfrak{C}^{\Nec}_\Delta\) and \(\mathfrak{C}_\Delta\), Dugger and Spivak introduce an auxiliary functor \(\mathfrak{C}^{\Hoc}_\Delta\) that admits specified natural transformations to both.  This leads to the main theorem:
 
-\begin{thm}[\cite{ds1}*{Theorem 5.2}]
+\begin{thm}[\cite{ds1}*{Theorem 5.2}]\label{dugspivthm}
 	There is a specified natural zig-zag of weak equivalences of functors valued in simplicially-enriched categories:
 	\[
 		\mathfrak{C}^{\Nec}_\Delta \leftarrow \mathfrak{C}^{\Hoc}_\Delta \to \mathfrak{C}_\Delta.
 	\]
 \end{thm}
 
-The functors \(\mathfrak{C}_\Delta^{\Nec}\) and \(\mathfrak{C}_\Delta^{\Nec}\), much like the functor \(\mathfrak{C}_\Delta\), send simplicial sets to simplicially enriched categories with set of objects equal to the set of \(0\)-simplices.  Ergo, they induce useful functor when applied pointwise to precategories.
+The functors \(\mathfrak{C}_\Delta^{\Nec}\) and \(\mathfrak{C}_\Delta^{\Hoc}\), much like the functor \(\mathfrak{C}_\Delta\), send simplicial sets to simplicially enriched categories with set of objects equal to the set of \(0\)-simplices.  Ergo, they induce useful functors when applied pointwise to precategories.
 \begin{defn}
 	As in \Cref{pointwisedefn},  the \emph{pointwise necklace realization}
 	\[
@@ -1759,7 +1903,7 @@ The functors \(\mathfrak{C}_\Delta^{\Nec}\) and \(\mathfrak{C}_\Delta^{\Nec}\), 
 	The \emph{homotopy colimit realization} functor \(\mathfrak{C}^{\Hoc}\) is defined similarly.
 \end{defn}
 
-From these definitions and the theorem above, we deduce the following useful corollary.
+From these definitions and \Cref{dugspivthm} above, we deduce the following useful corollary.
 
 \begin{cor}\label{necthm}
 	There is a specified natural zig-zag of weak equivalences of functors valued in \(\Cat_{\spsh}\)
@@ -2290,7 +2434,7 @@ Dugger and Spivak introduce a definition of a Dwyer-Kan equivalence as a steppin
 	is a Quillen equivalence.
 \end{thm}
 \begin{proof}
-	All we have left to show is that the derived unit of the adjunction,
+	As we have proven that the derived counit is always an equivalence in \Cref{counitthm}, all we have left to show is that the derived unit transformation
 	\[X\to \mathfrak{N}\mathfrak{C}(X) \to \mathfrak{N}\mathcal{D}\]
 	is a weak equivalence for all presheaves \(X\) on \(\Theta[\C]\), where \(\mathfrak{C}(X) \to \mathcal{D}\) is a weak equivalence and \(\mathcal{D}\) is fibrant.  However, by the previous proposition, we see that it suffices to show that the map
 	\[\mathfrak{C}(X)\to \mathfrak{C}\mathfrak{N}\mathfrak{C}(X) \to \mathfrak{C}\mathfrak{N}\mathcal{D}\]
@@ -2445,7 +2589,7 @@ We begin by constructing the Yoneda embedding:
 	\[J_\mathcal{D}:\mathcal{D}\to \left(\spsh^{\mathcal{D}^\op}\right)_\mathrm{proj}^\circ\]
 	that is fully faithful up to homotopy, since it is homotopic to the enriched Yoneda embedding. 
 	Then we have a map
-	\[\mathfrak{C}(X\times X^\op) \xrightarrow{\mathfrak{C}(p_1) \times \mathfrak{C}(p_2)} \mathfrak{C}(X) \times \mathfrak{C}(X)^\op \xrightarrow{\Phi \times \Phi^\op} \mathcal{D}\times \mathcal{D}^\op \xrightarrow{\Hom_{\mathcal{D}}}, \spsh_\setS^\circ)\]
+	\[\mathfrak{C}(X\times X^\op) \xrightarrow{\mathfrak{C}(p_1) \times \mathfrak{C}(p_2)} \mathfrak{C}(X) \times \mathfrak{C}(X)^\op \xrightarrow{\Phi \times \Phi^\op} \mathcal{D}\times \mathcal{D}^\op \xrightarrow{\Hom_{\mathcal{D}}} \spsh_\setS^\circ\]
 	which yields by adjunction
 	\[X \to \mathfrak{N}(\spsh_\setS^\circ)^{X^\op}.\]
 	We denote \(\mathfrak{N}(\spsh_\setS^\circ)\) simply by \(\M\), and finally, we obtain \emph{the Yoneda embedding} for \(\M\)-quasicategories:
@@ -2550,7 +2694,7 @@ In what follows, we will work with a fixed small category \(\mathcal{A}\). These
 	Taking \(S=\varnothing\) and \(I\) to be the subobject classifier \(\mathfrak{L}\) of \(\psh{A}\) with the two canonical sections \(\varnothing,\id:\ast \to \mathfrak{L}\), we obtain the minimal Cisinski model structure.  More generally, we can replace \(\mathfrak{L}\) with any injective separating interval.  
 \end{cor}
 \begin{defn}
-	An \(\mathcal{A}\)-localizer \(\mathsf{W}\) is a class of maps satisfying the following axioms
+	An \(\mathcal{A}\)-localizer \(\mathsf{W}\) is a class of maps of \(\psh{A}\) satisfying the following axioms
 	\begin{itemize}
 		\item The class \(\mathsf{W}\) satisfies \(3\)-for-\(2\).
 		\item Every trivial fibration belongs to \(\mathsf{W}\).
@@ -2566,10 +2710,10 @@ The localizers on \(\mathcal{A}\) have a non-free component, namely that the cla
 \begin{defn}
 	We define the \emph{free homotopy theory} on \(\mathcal{A}\) generated by \(S\) to be \(\mathcal{A}\times \Delta\)-localizer generated the interval object \(\Delta^1 \defeq \ast \square \Delta^1,\) where \(\square\) denotes the external product.  
 \end{defn}
-\begin{rem}
+\begin{rem}[\cite{cisinski-book}*{3.4.50}]
 	By well-known combinatorial arguments, it can be seen that taking \(\Delta^1\) to be the separating interval object forces all objects \(\Delta^n=\ast \square \Delta^n\) to be weakly contractible. The free homotopy theory construction therefore adds new representables but homotopically nullifies all of them.  We can therefore view it as a way to present a homotopy theory for presheaves on \(\mathcal{A}\) without automatically forcing all of the trivial fibrations to be weak equivalences. 
 
-	The free homotopy theory on \(\mathcal{A}\) is in general radically different from the homotopy theory given by the injective model structure on simplicial presheaves, which we will see later is its regular completion.  Cisinski gives the example where \(\mathcal{A}=B\mathbb{G}\) for a simplicial group \(\mathbb{G}\).  The difference between the free homotopy theory and its regular completion in this case is the difference between equivariant homotopy theory and higher Galois theory.  That is, the free homotopy theory presents ordinary equivariant homotopy theory, while the regular completion of the free homotopy theory on \(B\mathbb{G}\) models non-abelian \(\mathbb{G}\)-representations. 
+	The free homotopy theory on \(\mathcal{A}\) is in general radically different from the homotopy theory given by the injective model structure on simplicial presheaves, which we will see later is its regular completion.  Cisinski gives the example where \(\mathcal{A}=B\mathbb{G}\) for a group \(\mathbb{G}\).  The difference between the free homotopy theory and its regular completion in this case is the difference between equivariant homotopy theory and higher Galois theory.  That is, the free homotopy theory presents ordinary equivariant homotopy theory, while the regular completion of the free homotopy theory on \(B\mathbb{G}\) models non-abelian \(\mathbb{G}\)-representations. 
 \end{rem}
 \begin{defn}
 	Given an \(\mathcal{A}\)-localizer \(\mathsf{W}\), we define the \emph{simplicial completion} of \(\mathsf{W}\) to be the \(\mathcal{A}\times \Delta\) localizer \(\mathsf{W}_\Delta\) generated by the class of maps of simplicial objects \(X\to X^\prime\) such that \(X_n \to X^\prime_n\) belongs to \(\mathsf{W}\) for each \(i\geq 0\) together with the projection maps \(X\times \Delta^1\) for all simplicial presheaves \(X\) on \(A\).  We say that an \(\mathcal{A}\times \Delta\)-localizer is \emph{discrete} if it is the simplicial completion of a localizer on \(\mathcal{A}\).  
@@ -2581,7 +2725,7 @@ The localizers on \(\mathcal{A}\) have a non-free component, namely that the cla
 	If the localizer \(\mathsf{W}\) is the minimal \(\mathcal{A}\)-localizer, then \(\mathsf{W}_\Delta\) is the localization of the free homotopy theory on \(\mathcal{A}\) at the set of maps \(\Lambda_I(\varnothing,\mathscr{M})\) for any injective separating interval object \(I\) and any cellular model \(\mathscr{M}\).  
 \end{prop}
 \begin{prop}[\cite{cisinski-book}*{Proposition 2.3.27}]
-	If \(\mathsf{W}\) is any accessible localizer, the functor \(p^\ast:\psh{\mathcal{A}} \to \psh{\mathcal{A}\times \Delta}\) induced by the projection \(\mathcal{A}\times \Delta \to \mathcal{A}\) is a left Quillen equivalence.  Also, by choosing a Reedy-cofibrant cosimplicial resolution \(D^\bullet\) of the terminal object \(\ast\) of \(A\), the functor 
+	If \(\mathsf{W}\) is any accessible localizer, the functor \(p^\ast:\psh{\mathcal{A}} \to \psh{\mathcal{A}\times \Delta}\) induced by the projection \(\mathcal{A}\times \Delta \to \mathcal{A}\) is a left Quillen equivalence.  Also, by choosing a Reedy-cofibrant cosimplicial resolution \(D^\bullet\) of the terminal object \(\ast\) of \(A\) with respect to the minimal localizer \(\mathsf{W}_{\mathrm{min}}\), the functor 
 	\[
 		\operatorname{Real}_D: \psh{\mathcal{A}\times \Delta} \to \psh{\mathcal{A}}
 	\]
@@ -2604,7 +2748,7 @@ An important property of simplicial sets is no longer present in the case of a g
 	is a \(\mathsf{W}\)-equivalence.
 	A localizer \(\mathsf{W}\) on \(\mathcal{A}\) is called a \emph{regular localizer} if every presheaf \(X\) on \(A\) is \(\mathsf{W}\)-regular.
 \end{defn}
-\begin{prop}[\cite{cisinski-book}*{Remark 3.4.14}]
+\begin{prop}[\cite{cisinski-book}*{Remark 3.4.14}]\label{regularinclusion}
 	If \(\mathsf{W} \subseteq \mathsf{W}^\prime\) is an inclusion of localizers and \(\mathsf{W}\) is regular, then so too is \(\mathsf{W^\prime}\).  
 \end{prop}
 \begin{defn}\label{regcompletion}
@@ -2613,12 +2757,16 @@ An important property of simplicial sets is no longer present in the case of a g
 \begin{prop}[\cite{cisinski-book}*{Corollary 3.4.24}]
 	The regular completion of an accessible localizer is accessible.
 \end{prop}
-\begin{prop}[\cite{cisinski-book}*{Proposition 3.4.34}]
+\begin{prop}[\cite{cisinski-book}*{Proposition 3.4.34}]\label{injregular}
 	The localizer of the injective model structure on simplicial presheaves on \(\mathcal{A}\) consisting of the maps of simplicial presheaves \(X\to X^\prime\) whose components are weak homotopy equivalences \(X_A\to  X^\prime_A\) is the regular completion of the localizer of the free homotopy theory on \(\mathcal{A}\).
 \end{prop}
 \begin{cor}
 	The Cisinski model structure obtained from the simplicial completion \(\mathsf{W}_\Delta\) of an accessible localizer \(\mathsf{W}\) on \(\mathcal{A}\) is a left-Bousfield localization of the injective model structure on simplicial presheaves if and only if it is regular.  In particular, the Galois correspondence between localizers on \(\mathcal{A}\) and localizers containing the simplicial completion of the minimal localizer restricts to a bijective Galois correspondence between regular localizers on \(\mathcal{A}\) and discrete localizers on \(\mathcal{A}\times \Delta\) containing the objectwise weak homotopy equivalences.
 \end{cor}
+We also make note of the following technical fact:
+\begin{prop}[\cite{cisinski-book}*{Corollary 3.4.41}]\label{filteredcolims}
+	Let \(\mathcal{A}\) be a small category, and let \(\mathsf{W}\) be a regular \(\mathcal{A}\)-localizer.  Then \(\mathsf{W}\) is closed under filtered colimits.
+\end{prop}
 \subsection{Skeletal categories}
 In this section, we recall Cisinski's theory of skeletal categories (cat\'egories squelettiques).  These are generalized Reedy categories \(\mathcal{A}\) with a dimension grading and satisfying certain axioms. Under the strong condition of \emph{normality}, the category \(\psh{\mathcal{A}}\) admits a canonical cellular model given by the boundary inclusions.  Under a further strong assumption of \emph{regularity}, every \(\mathcal{A}\)-localizer will be shown to be regular.
 \begin{defn}
@@ -2641,13 +2789,13 @@ We take the following as a definition, but it is in fact a characterization from
 \begin{defn}
 	A skeletal category is called \emph{normal} if its objects have no nontrivial automorphisms.
 \end{defn}
-\begin{prop}[\cite{cisinski-book}*{Proposition 8.1.37}]
+\begin{prop}[\cite{cisinski-book}*{Proposition 8.1.37}]\label{normskelcat}
 	If \(\mathcal{A}\) is a normal skeletal category, then the set of maps \(\mathscr{M}\defeq \{\delta^A\}_{A\in \mathcal{A}}\) gives a cellular model for \(\psh{\mathcal{A}}\). Moreover, the class of monomorphisms of \(\mathcal{A}\) is exactly \(\operatorname{Cell}(\mathscr{M})\).
 \end{prop}
 \begin{rem}
 	Cisinski shows that whenever \(X\) is a normal presheaf (we omit this definition, but in the case where \(\mathcal{A}\) is normal skeletal, every presheaf satisfies this property), its \(n\)-skeleton can be computed as the image of \(X\) under the composite  adjunction induced by the inclusion of the full subcategory \(\mathcal{A}_{\leq n}\hookrightarrow \mathcal{A}\), similar to the case of \(\Delta\).  In particular, normal skeletal categories have a well-behaved skeleton-coskeleton adjunction.  
 \end{rem}
-\begin{defn}
+\begin{defn}\label{regskelcat}
 	We say that presheaf \(X\) on a skeletal category is \emph{regular} if every nondegenerate section of \(X\) is monic. Additionally, we say that a skeletal category is \emph{regular} if it is normal and every representable presheaf is regular.
 \end{defn}
 \begin{thm}[\cite{cisinski-book}*{Proposition 8.2.9}]
@@ -2746,6 +2894,16 @@ We take the following as a definition, but it is in fact a characterization from
 			date={2007},
 			pages={277--326},
 		}
+		
+		\bib{lack-paoli}{article}{
+			author={Lack, S.},
+			author={Paoli, S.},
+			title={2-nerves for Bicategories},
+			journal={K-Theory},
+			volume={38},
+			date={2008},
+		}
+
 
 		\bib{nlabwlim}{webpage}{
 			author={nLab authors},
