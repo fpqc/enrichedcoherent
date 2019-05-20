@@ -1,10 +1,11 @@
-\documentclass[titlepage]{article}
+\documentclass[titlepage,a4paper,twoside,openleft]{article}
 %Put numbers to the left of ``Theorem'', etc.
 %\swapnumbers
 
 % Symbol Packages
 \usepackage{amsmath,amsthm,amssymb,empheq,mathtools}
 \usepackage{microtype}
+\usepackage{titlepic}
 % For convenience
 \usepackage{verbatim,enumitem}
 % Fonts
@@ -24,11 +25,12 @@
 \usepackage{tikz}
 \usetikzlibrary{matrix,arrows,cd}
 
-\title{Rigidification and the Coherent Nerve for enriched Quasicategories}
+\title{Rigidification and the Coherent Nerve for Enriched Quasicategories}
 \author{Harry Gindi\\[1cm]{\small Supervised by: D.-C. Cisinski and G. Raptis}}
 %\address{Department of Mathematics \\ University of Regensburg \\ Regensburg, Bavaria 93051}
 %\email{harry.gindi@gmail.com}
 \date{\today}
+\titlepic{\includegraphics[width=20em]{siegel.jpg}}
 %\subjclass[2010]{18A30, 18D05, 18E35, 18G55, 55P10, 55U35}
 %\keywords{enriched categories, higher category theory, homotopy theory}
 
@@ -54,12 +56,12 @@
 \theoremstyle{definition}
 \newtheorem{defn}[equation]{Definition}
 \newtheorem{note}[equation]{Note}
+\newtheorem{obs}[equation]{Observation}
 
 \theoremstyle{remark}
 \newtheorem{rem}[equation]{Remark}     
 \newtheorem{example}[equation]{Example}
 \newtheorem{ques}[equation]{Question}
-\newtheorem{obs}[equation]{Observation}
 \newtheorem{exer}[equation]{Exercise}
 \newtheorem{warning}[equation]{Warning}
 \renewcommand{\therem}{}
@@ -922,7 +924,7 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 	and we define the \emph{relative intertwiner over \(S\)}
 	\[\square_S \defeq \square \circ H_S.\]
 	
-	Notice that when \(S=\Delta^n\), the fibre decomposes as \[\left(\ssetlab\right)_n\cong \psh{\C}^n.\] So we can write 
+	Notice that when \(S=\Delta^n\), the fibre decomposes as \[\left(\ssetlab\right)_n\simeq \psh{\C}^n.\] So we can write 
 	\[\square_n:\overcat{\psh{\Delta}}{\Delta^n} \times \psh{\C}^n \to \cellset.\]
 \end{defn}
 
@@ -950,11 +952,11 @@ In this section, following \cite{oury}*{3.4.4}, we will demonstrate that the hor
 
 \begin{obs}
 	Let \[(\mathbf{S},\mathbf{\Omega})=\left(\Delta^{m_i},\Omega_i\right)_{i=1}^n\] be a family of labeled simplices, and let \[\mathbf{f}=\left(\Delta^r\xrightarrow{f_i} \Delta^{m_i}\right)^n_{i=1},\] be a family of maps defining an \(r\)-simplex of the product.
-	We may identify the \(\Omega_i\) with families of \(\C\)-presheaves \((X_{i,\ell})^{m_i}_{\ell=1}\), so we compute \(H_{\Delta^{m_i}}(f_i,\Omega_i)\) as 
-	\[ \left(\prod_{k=f_i(j-1)+1}^{f_i(j)} X_{i,k} \right)_{j=1}^r,\]
+	We may identify the \(\Omega_i\) with families of \(\C\)-presheaves \((X_{i,\ell})^{m_i}_{\ell=1}\), so we compute \(H_{\Delta^{m_i}}(f_i,\Omega_i)\) as the labeled simplex
+	\[[r]\left(\left(\prod_{k=f_i(j-1)+1}^{f_i(j)} X_{i,k} \right)_{j=1}^r\right),\]
 	and therefore, we can compute 
-	\(H_{\mathbf{S}}(\mathbf{f},\mathbf{\Omega})\) as 
-	\[ \left(\prod_{i=1}^n \left(\prod_{k=f_i(j-1)+1}^{f_i(j)} X_{i,k} \right)\right)_{j=1}^r.\]
+	\(H_{\mathbf{S}}(\mathbf{f},\mathbf{\Omega})\) as the labeled simplex
+	\[ [r]\left(\left(\prod_{i=1}^n \left(\prod_{k=f_i(j-1)+1}^{f_i(j)} X_{i,k} \right)\right)_{j=1}^r\right).\]
 \end{obs}
 \begin{lemma}
 	The relative intertwiner \(\square_S\) preserves colimits in the first variable.
@@ -1036,7 +1038,7 @@ Following \cite{oury}*{3.85}, we begin with the following observations:
 			(b-3-1) edge node[auto]{\(\scriptstyle{H_{n,m}}\)} (b-3-2);
 		\end{tikzpicture}
 	\end{center}
-	commutes as well where \(\varsigma\) permutes the factors and \(P\) is the functor sending a pair of labeled simplicial sets \(f:S\to (\Delta^n,\Omega)\) and \(g:S^\prime\to (\Delta^m,\Omega^\prime)\) over \(\Delta^n\) and \(\Delta^m\) respectively to the labeled simplicial set \[f\times g:S\times S^\prime \to (\Delta^n\times \Delta^m,\Omega\times \Omega^\prime)\] over the product.  Taking these two diagrams together, we see that the diagram 
+	commutes as well where \(\varsigma\) permutes the factors and \(P\) is the functor sending a pair of simplicial sets \(f:S\to \Delta^n\) and \(g:S^\prime\to \Delta^m\) over \(\Delta^n\) and \(\Delta^m\) respectively to the simplicial set \[f\times g:S\times S^\prime \to \Delta^n\times \Delta^m\] over the product \(\Delta^n \times \Delta^m\).  Taking these two diagrams together, we see that the diagram 
 	\begin{center}
 		\begin{tikzpicture}
 			\matrix (b) [matrix of math nodes, row sep=3em, column sep=4em]
@@ -1071,7 +1073,7 @@ Then by \ref{conncolims}, every functor appearing in this diagram preserves conn
 		(b-3-1) edge node[auto]{\(\scriptstyle{\square_{n,m}^\lrcorner}\)} (b-3-2);
 	\end{tikzpicture}
 \end{center}
-also commutes, where \(P^\lrcorner=\times^\lrcorner\).
+also commutes, where \(P^\lrcorner=\times^\lrcorner\) is the corner product of simplicial sets.
 \end{obs}
 
 \begin{obs}\label{simplicialhorns}
@@ -1149,7 +1151,7 @@ also commutes, where \(P^\lrcorner=\times^\lrcorner\).
 			(b-1-3)	edge node[auto]{\(\scriptstyle{\square_r}\)} (b-2-3);
 		\end{tikzpicture}.
 	\end{center}
-	The bottom horizontal and right vertical maps preserve connected colimits, as we have seen.  The left vertical map preserves connected colimits because colimits are computed in the domain for comma categories.  The map \(\prod_{i=1}^r Pi\) preserves colimits in each argument because colimits are universal in toposes. 
+	The bottom horizontal and lower right vertical maps preserve connected colimits, as we have seen.  The left vertical map preserves connected colimits because colimits are computed in the domain for comma categories.  The map \(\prod_{i=1}^r P_i\) preserves colimits in each argument because colimits are universal in toposes. 
 	Then applying the corner tensor functor, we have the commutative diagram
 	\begin{center}
 		\begin{tikzpicture}
@@ -2774,8 +2776,8 @@ In this section, we recall Cisinski's theory of skeletal categories (cat\'egorie
 	\begin{itemize}
 		\item Every isomorphism belongs to both \(\mathcal{A}^-\) and \(\mathcal{A}^+\).
 		\item If \(f:A\to A^\prime\) belongs to \(\mathcal{A}^+\) (resp. \(\mathcal{A}^-\)), then \(\dim(A) \leq \dim(A^\prime)\) (resp. \(\dim(A^\prime) \leq \dim(A)\)).
-		\item Every map \(f\) of \(\mathcal{A}\) admits a factorization, unique up to unique isomorphism of factorizations, into a composite \(\delta \circ \pi\) with \(\delta \in \mathcal{A}^+\) and \(\delta \in \mathcal{A}-\).
-		\item Two arrows \(f,g:A\to A^\prime\)of \(\mathcal{A}^-\) are equal if and only if they have the same sections.
+		\item Every map \(f\) of \(\mathcal{A}\) admits a factorization, unique up to unique isomorphism of factorizations, into a composite \(\delta \circ \pi\) with \(\delta \in \mathcal{A}^+\) and \(\delta \in \mathcal{A}^-\).
+		\item Two arrows \(f,g:A\to A^\prime\) of \(\mathcal{A}^-\) are equal if and only if they have the same sections.
 	\end{itemize}
 \end{defn}
 \begin{defn}
