@@ -1,4 +1,4 @@
-\documentclass[titlepage,a4paper,twoside,openleft]{article}
+\documentclass[a4paper]{article}
 %Put numbers to the left of ``Theorem'', etc.
 %\swapnumbers
 
@@ -26,11 +26,10 @@
 \usetikzlibrary{matrix,arrows,cd}
 
 \title{Rigidification and the Coherent Nerve for Enriched Quasicategories}
-\author{Harry Gindi\\[1cm]{\small Supervised by: D.-C. Cisinski and G. Raptis}}
+\author{Harry Gindi}
 %\address{Department of Mathematics \\ University of Regensburg \\ Regensburg, Bavaria 93051}
 %\email{harry.gindi@gmail.com}
 \date{\today}
-\titlepic{\includegraphics[width=20em]{siegel.jpg}}
 %\subjclass[2010]{18A30, 18D05, 18E35, 18G55, 55P10, 55U35}
 %\keywords{enriched categories, higher category theory, homotopy theory}
 
@@ -202,6 +201,7 @@
 %%
 \begin{document}
 %%% the title
+\pagenumbering{gobble}
 \maketitle
 
 %%% abstract
@@ -210,14 +210,10 @@
 \end{abstract}
 
 
-\clearpage
-
-
-
-
 \tableofcontents
-\clearpage
 
+\clearpage
+\pagenumbering{arabic}
 
 %%%%%
 \section*{Introduction}
@@ -2937,14 +2933,4 @@ We take the following as a definition, but it is in fact a characterization from
 
 	\end{biblist}
 \end{bibdiv}
-
-\renewcommand{\abstractname}{Selbst\"andigkeitserkl\"arung}
-	\begin{abstract}
-		Ich habe die Arbeit selbst\"andig verfasst, keine anderen als die angegebenen Quellen und Hilfsmittel benutzt und bisher keiner anderen Pr\"ufungsbeh\"orde vorgelegt. Au{\ss}erdem best\"atige ich hiermit, dass die vorgelegten Druckexemplare und die vorgelegte elektronische Version der Arbeit identisch sind und dass ich von den in \S 26 Abs. 6 vorgesehenen Rechtsfolgen Kenntnis habe.
-		\\[1cm]{\small Regensburg, \today}
-	\end{abstract}
-
-	%	Ich, Gindi, Harry geboren am 28. November 1989 in New York, erkl\"are hiermit, dass ich die vorliegende Arbeit ohne unzulässige Hilfe Dritter und ohne Benutzung anderer als der angegebenen Hilfsmittel angefertigt habe. 
-	%Die aus anderen Quellen direkt oder indirekt \"ubernommenen Daten und Konzepte sind unter Angabe der Quelle gekennzeichnet. Insbesondere habe ich nicht die entgeltliche Hilfe von Vermittlungs- bzw. Beratungsdiensten (Promotionsberater oder andere Personen) in Anspruch genommen. 
-	%Die Arbeit wurde bisher weder im In- noch im Ausland in gleicher oder \"ahnlicher Form einer anderen Pr\"ufungsbeh\"orde vorgelegt.
 \end{document}
